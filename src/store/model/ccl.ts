@@ -23,7 +23,7 @@ export const Ccl: Store = {
       brand: 'test:brand',
       model: 'test:model',
       series: 'test:series',
-      url: 'https://www.cclonline.com/product/296443/RTX-2060-SUPER-VENTUS-GP-OC/Graphics-Cards/MSI-GeForce-RTX-2060-SUPER-VENTUS-GP-OC-8GB-Overclocked-Graphics-Card/VGA5671/',
+      url: 'https://www.cclonline.com/gv-n4060wf2oc-8gd-gigabyte-geforce-rtx-4060-windforce-oc-8gb-gddr6-graphics-card-417877/',
     },
     {
       brand: 'amd',
@@ -77,6 +77,22 @@ export const Ccl: Store = {
       {
         series: '3090',
         url: 'https://www.cclonline.com/category/430/PC-Components/Graphics-Cards/GeForce-RTX-3090-Graphics-Cards/',
+      },
+      {
+        series: '5070',
+        url: 'https://www.cclonline.com/pc-components/graphics-cards/nvidia-geforce-rtx-5070-graphics-cards/',
+      },
+      {
+        series: '5070ti',
+        url: 'https://www.cclonline.com/pc-components/graphics-cards/nvidia-geforce-rtx-5070-Ti-graphics-cards/',
+      },
+      {
+        series: '5080',
+        url: 'https://www.cclonline.com/pc-components/graphics-cards/nvidia-geforce-rtx-5080-graphics-cards/',
+      },
+      {
+        series: '5090',
+        url: 'https://www.cclonline.com/pc-components/graphics-cards/nvidia-geforce-rtx-5090-graphics-cards/',
       },
       {
         series: 'rx6800',
