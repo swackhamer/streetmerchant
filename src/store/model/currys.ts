@@ -129,6 +129,14 @@ export const Currys: Store = {
         series: '5090',
         url: 'https://www.currys.co.uk/computing/components-and-upgrades/graphics-cards/rtx-5090',
       },
+      {
+        series: 'rx9070',
+        url: 'https://www.currys.co.uk/computing/components-and-upgrades/graphics-cards/rx-9070',
+      },
+      {
+        series: 'rx9070xt',
+        url: 'https://www.currys.co.uk/computing/components-and-upgrades/graphics-cards/rx-9070-xt',
+      },
     ],
   },
   name: 'currys',

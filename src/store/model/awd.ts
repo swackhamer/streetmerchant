@@ -61,6 +61,14 @@ export const Awd: Store = {
         url: 'https://www.awd-it.co.uk/components/graphics-cards/ati/amd-radeon-6800-6800xt.html',
       },
       {
+        series: 'rx9070',
+        url: 'https://www.awd-it.co.uk/components/graphics-cards/radeon/amd-radeon-rx-9070.html',
+      },
+      {
+        series: 'rx9070xt',
+        url: 'https://www.awd-it.co.uk/components/graphics-cards/radeon/amd-radeon-rx-9070-xt.html',
+      },
+      {
         series: '3060ti',
         url: 'https://www.awd-it.co.uk/components/graphics-cards/nvidia/nvidia-geforce-rtx-3060ti.html',
       },

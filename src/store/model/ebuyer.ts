@@ -95,6 +95,14 @@ export const Ebuyer: Store = {
         url: 'https://www.ebuyer.com/store/Components/cat/Graphics-Cards-AMD/subcat/AMD-RX-6900-XT',
       },
       {
+        series: 'rx9070',
+        url: 'https://www.ebuyer.com/store/Components/cat/Graphics-Cards-AMD/subcat/AMD-RX-9070',
+      },
+      {
+        series: 'rx9070xt',
+        url: 'https://www.ebuyer.com/store/Components/cat/Graphics-Cards-AMD/subcat/AMD-RX-9070-XT',
+      },
+      {
         series: '3060ti',
         url: 'https://www.ebuyer.com/store/Components/cat/Graphics-Cards-Nvidia/subcat/GeForce-RTX-3060-Ti',
       },

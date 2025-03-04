@@ -98,6 +98,14 @@ export const Novatech: Store = {
         series: '5090',
         url: 'https://www.novatech.co.uk/products/components/nvidiageforcegraphicscards/nvidiartxseries/nvidiartx5090/',
       },
+      {
+        series: 'rx9070',
+        url: 'https://www.novatech.co.uk/products/components/amdradeongraphicscards/radeonrx9070series/',
+      },
+      {
+        series: 'rx9070xt',
+        url: 'https://www.novatech.co.uk/products/components/amdradeongraphicscards/radeonrx9070xtseries/',
+      },
     ],
   },
   name: 'novatech',

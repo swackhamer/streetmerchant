@@ -106,6 +106,14 @@ export const Ccl: Store = {
         series: 'rx6900xt',
         url: 'https://www.cclonline.com/category/430/PC-Components/Graphics-Cards/attributeslist/1268064/',
       },
+      {
+        series: 'rx9070',
+        url: 'https://www.cclonline.com/pc-components/graphics-cards/amd-radeon-rx-9070-graphics-cards/',
+      },
+      {
+        series: 'rx9070xt',
+        url: 'https://www.cclonline.com/pc-components/graphics-cards/amd-radeon-rx-9070-xt-graphics-cards/',
+      },
     ],
   },
   name: 'ccl',

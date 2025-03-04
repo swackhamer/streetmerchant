@@ -99,6 +99,14 @@ export const Box: Store = {
         series: '5090',
         url: 'https://www.box.co.uk/rtx-5090-graphics-cards',
       },
+      {
+        series: 'rx9070',
+        url: 'https://box.co.uk/amd-graphics-cards?graphic_engine=626826&product_list_limit=36',
+      },
+      {
+        series: 'rx9070xt',
+        url: 'https://box.co.uk/amd-graphics-cards?graphic_engine=626825&product_list_limit=36',
+      },
     ],
   },
   name: 'box',
