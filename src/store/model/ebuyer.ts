@@ -73,6 +73,12 @@ export const Ebuyer: Store = {
       series: 'ryzen5950',
       url: 'https://www.ebuyer.com/1126985-amd-ryzen-9-5950x-am4-processor-100-100000059wof',
     },
+    {
+      brand: 'amd',
+      model: '9950x3d',
+      series: 'ryzen9950x3d',
+      url: 'https://www.ebuyer.com/2491470-amd-ryzen-9-9950x3d-processor-100-100000719wof',
+    },
   ],
   linksBuilder: {
     builder: getProductLinksBuilder({

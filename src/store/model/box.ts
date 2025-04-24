@@ -55,6 +55,12 @@ export const Box: Store = {
       series: 'rx6900xt',
       url: 'https://www.box.co.uk/90YV0GE0-M0NM00-ASUS-Radeon-RX-X6900XT-16GB-OC-Gaming-Gr_3561243.html',
     },
+    {
+      brand: 'amd',
+      model: '9950x3d',
+      series: 'ryzen9950x3d',
+      url: 'https://box.co.uk/100-100000719wof-amd-ryzen-9-9950x3d-am5-zen5',
+    },
   ],
   linksBuilder: {
     builder: getProductLinksBuilder({

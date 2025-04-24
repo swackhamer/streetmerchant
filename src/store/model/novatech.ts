@@ -53,6 +53,12 @@ export const Novatech: Store = {
       series: 'ryzen5950',
       url: 'https://www.novatech.co.uk/products/amd-ryzen-9-5950x-sixteen-core-processorcpu-without-cooler-/100-100000059wof.html',
     },
+    {
+      brand: 'amd',
+      model: '9950x3d',
+      series: 'ryzen9950x3d',
+      url: 'https://www.novatech.co.uk/products/amd-ryzen-9-9950x3d-16-core-am5-processor-cpu/100-100000719wof.html',
+    },
   ],
   linksBuilder: {
     builder: getProductLinksBuilder({

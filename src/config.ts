@@ -501,6 +501,7 @@ const store = {
       ryzen9700x: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN9700X),
       ryzen9900x: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN9900X),
       ryzen9950x: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN9950X),
+      ryzen9950x3d: envOrNumber(process.env.MAX_PRICE_SERIES_RYZEN9950X3D),
       sf: envOrNumber(process.env.MAX_PRICE_SERIES_CORSAIR_SF),
       sonyps5c: envOrNumber(process.env.MAX_PRICE_SERIES_SONYPS5C),
       sonyps5de: envOrNumber(process.env.MAX_PRICE_SERIES_SONYPS5DE),

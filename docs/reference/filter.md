@@ -36,6 +36,7 @@
 | `MAX_PRICE_SERIES_RYZEN9700X` | Maximum price allowed for a match, applies AMD RX 9700X |
 | `MAX_PRICE_SERIES_RYZEN9900X` | Maximum price allowed for a match, applies AMD RX 9900X |
 | `MAX_PRICE_SERIES_RYZEN9950X` | Maximum price allowed for a match, applies AMD RX 9950X |
+| `MAX_PRICE_SERIES_RYZEN9950X3D` | Maximum price allowed for a match, applies AMD 9950X3D |
 | `MAX_PRICE_SERIES_SONYPS5C` | Maximum price allowed for a match, applies PS5 console |
 | `MAX_PRICE_SERIES_SONYPS5DE` | Maximum price allowed for a match, applies PS5 digital edition |
 | `MAX_PRICE_SERIES_XBOXSS` | Maximum price allowed for a match, applies Xbox Series S |

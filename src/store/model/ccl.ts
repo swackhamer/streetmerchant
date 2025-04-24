@@ -49,6 +49,12 @@ export const Ccl: Store = {
       series: 'ryzen5950',
       url: 'https://www.cclonline.com/product/331768/100-100000059WOF/CPU-Processors/AMD-Ryzen-9-5950X-3-4GHz-Hexadeca-Core-Processor-with-16-Cores-32-Threads-105W-TDP-72MB-Cache-4-9GHz-Turbo-No-Cooler/CPU0682/',
     },
+    {
+      brand: 'amd',
+      model: '9950x3d',
+      series: 'ryzen9950x3d',
+      url: 'https://www.cclonline.com/100-100000719wof-amd-ryzen-9-9950x3d-16-core-32-thread-am5-cpu-483923/',
+    },
   ],
   linksBuilder: {
     builder: getProductLinksBuilder({

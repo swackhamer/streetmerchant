@@ -48,6 +48,12 @@ export const Overclockers: Store = {
       series: 'ryzen5950',
       url: 'https://www.overclockers.co.uk/amd-ryzen-9-5950x-sixteen-core-4.9ghz-socket-am4-processor-retail-cp-3c9-am.html',
     },
+    {
+      brand: 'amd',
+      model: '9950x3d',
+      series: 'ryzen9950x3d',
+      url: 'https://www.overclockers.co.uk/amd-ryzen-9-9950x3d-sixteen-core-5.70ghz-socket-am5-processor-retail-pro-amd-04501.html',
+    },
   ],
   linksBuilder: {
     builder: getProductLinksBuilder({

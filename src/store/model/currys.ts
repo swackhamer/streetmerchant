@@ -49,6 +49,12 @@ export const Currys: Store = {
       url: 'https://www.currys.co.uk/gbuk/computing-accessories/components-upgrades/processors/amd-ryzen-9-5950x-processor-10216688-pdt.html',
     },
     {
+      brand: 'amd',
+      model: '9950x3d',
+      series: 'ryzen9950x3d',
+      url: 'https://www.currys.co.uk/products/amd-ryzen-9-9950x3d-processor-10279150.html',
+    },
+    {
       brand: 'sony',
       model: 'ps5 console',
       series: 'sonyps5c',
