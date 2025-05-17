@@ -215,7 +215,7 @@ Maximum prices for different product series (whole numbers only, no currency sym
 
 ## Supported Stores
 
-Below is a partial list of supported stores. For the complete list, see the [Filter documentation](reference/filter.md).
+Below is a partial list of supported stores. For the complete list, check the store folder in the source code.
 
 | Store Name | Country | Environment Variable |
 |------------|---------|---------------------|

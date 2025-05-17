@@ -1,4 +1,4 @@
-[![streetmerchant](assets/images/streetmerchant-banner.png)](https://jef.buzz/streetmerchant)
+[![streetmerchant](assets/images/streetmerchant-banner.png)](https://github.com/swackhamer/streetmerchant)
 
 # Streetmerchant Documentation
 
@@ -28,35 +28,12 @@ Streetmerchant is a powerful stock checking application that continuously monito
 ### Project Information
 - [Future Plans](future-plans.md): Roadmap and enhancement opportunities
 - [Changelog](changelog.md): Version history and updates
-- [FAQ](faq.md): Frequently asked questions
-
-### Reference Material
-- [Product Filtering](reference/filter.md): Detailed filtering options
-- [Proxy Configuration](reference/proxy.md): Advanced proxy setup
-- [Captcha Handling](reference/captcha.md): Interactive captcha solutions
-- [Notification Methods](reference/notification.md): Detailed notification configuration
 
 ## Community and Support
 
-- Have questions or need help? Visit our [GitHub discussion board](https://github.com/jef/streetmerchant/discussions).
-- Found a bug? File a [GitHub issue](https://github.com/jef/streetmerchant/issues/new/choose).
-- Want to chat? Join us on [Discord](https://discord.gg/gbVY4vB9JF).
+- Found a bug? File a [GitHub issue](https://github.com/swackhamer/streetmerchant/issues/new/choose).
 
 ## Contributing
 
-- Improve documentation through [pull requests](https://github.com/jef/streetmerchant/pulls).
-- Add helpful tips to the [community wiki](https://github.com/jef/streetmerchant/wiki).
+- Improve documentation through [pull requests](https://github.com/swackhamer/streetmerchant/pulls).
 - Implement new features or fix bugs by forking the repository.
-
-## Supporting the Project
-
-The best way to support this project is to donate to [Diabetes Research Institute](https://www.diabetesresearch.org/Give).
-
-> The Diabetes Research Institute leads the world in cure-focused diabetes research.
->
-> [diabetesresearch.org](https://www.diabetesresearch.org/about-DRI)
-
-If you want to support the project directly:
-
-- [GitHub Sponsors](https://github.com/sponsors/jef)
-- [Paypal](https://www.paypal.me/jxf)

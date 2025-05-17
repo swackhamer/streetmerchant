@@ -1,16 +1,16 @@
 # Project information
 site_name: streetmerchant
-site_url: https://jef.buzz/streetmerchant
-site_author: Jef LeCompte
-site_description: 🤖 The world's easiest, most powerful stock checker
+site_url: https://github.com/swackhamer/streetmerchant
+site_author: Allen Swackhamer
+site_description: 🤖 The world's most powerful stock checker for online retailers
 
 # Repository
-repo_name: jef/streetmerchant
-repo_url: https://github.com/jef/streetmerchant
+repo_name: swackhamer/streetmerchant
+repo_url: https://github.com/swackhamer/streetmerchant
 edit_uri: edit/main/docs/
 
 # Copyright
-copyright: Copyright &copy; 2016 - 2025 Jef LeCompte
+copyright: Copyright &copy; 2016 - 2025
 
 # Configuration
 theme:
@@ -93,13 +93,4 @@ nav:
     - Architecture: architecture.md
     - Memory Bank: memory-bank.md
     - Future Plans: future-plans.md
-  - Reference:
-    - Application: reference/application.md
-    - Captcha: reference/captcha.md
-    - Filter: reference/filter.md
-    - Notification: reference/notification.md
-    - Proxy: reference/proxy.md
-    - Terraform: reference/terraform.md
-  - FAQ: faq.md
   - Changelog: changelog.md
-  - About: about.md

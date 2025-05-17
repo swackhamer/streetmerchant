@@ -1,61 +1,46 @@
 # Streetmerchant Documentation
 
-This directory contains the official documentation for the Streetmerchant project.
+This directory contains the comprehensive documentation for the Streetmerchant project.
 
-## Documentation Structure
+## Core Documentation
 
-### Core Documentation
-- [**index.md**](index.md) - Documentation home page
-- [**architecture.md**](architecture.md) - Technical architecture and system design
-- [**usage.md**](usage.md) - Comprehensive usage guide
-- [**memory-bank.md**](memory-bank.md) - Quick reference for key information
-- [**future-plans.md**](future-plans.md) - Roadmap and enhancement plans
-- [**getting-started.md**](getting-started.md) - Installation and setup
-- [**about.md**](about.md) - Project information
-- [**changelog.md**](changelog.md) - Version history
-- [**faq.md**](faq.md) - Frequently asked questions
+- **[Getting Started](./getting-started.md)** - Installation and initial setup instructions
+- **[Usage Guide](./usage.md)** - How to use Streetmerchant effectively
+- **[Configuration Reference](./configuration-reference.md)** - Complete reference for all configuration options
+- **[Troubleshooting](./troubleshooting.md)** - Solutions for common issues and problems
 
-### Reference Documentation
-- [**reference/application.md**](reference/application.md) - Application configuration reference
-- [**reference/captcha.md**](reference/captcha.md) - Captcha handling documentation
-- [**reference/filter.md**](reference/filter.md) - Product filtering reference
-- [**reference/notification.md**](reference/notification.md) - Notification system reference
-- [**reference/proxy.md**](reference/proxy.md) - Proxy configuration guide
-- [**reference/terraform.md**](reference/terraform.md) - Terraform deployment guide
+## Technical Documentation
 
-### Help and Support
-- [**help/general.md**](help/general.md) - General help documentation
-- [**help/troubleshoot.md**](help/troubleshoot.md) - Troubleshooting guide
+- **[Architecture Overview](./architecture.md)** - Technical architecture and system components
+- **[Memory Bank](./memory-bank.md)** - Quick reference for project components and concepts
+- **[Extension Guide](./extension-guide.md)** - How to extend Streetmerchant with new stores or features
 
-### Assets
-- [**assets/images/**](assets/images/) - Documentation images
+## Project Information
 
-### JavaScript Resources
-- [**javascripts/tables.js**](javascripts/tables.js) - Table functionality for documentation
+- **[Changelog](./changelog.md)** - History of changes and improvements to the project
+- **[Future Plans](./future-plans.md)** - Roadmap and planned improvements
 
-### Legacy Documentation
-- [**old/**](old/) - Archived documentation
+## Documentation Building
 
-## Documentation Updates
+This documentation uses [MkDocs](https://www.mkdocs.org/) with the Material theme. The documentation site can be built using:
 
-The documentation has been recently reorganized and updated with:
+```bash
+# Install MkDocs and dependencies
+pip install mkdocs mkdocs-material
 
-1. A comprehensive **usage guide** that includes detailed configuration options and advanced features
-2. Updated **architecture documentation** reflecting recent improvements like protocol timeout handling
-3. A **future plans** document outlining potential enhancements and roadmap
-4. An updated **memory bank** for quick reference of key concepts and commands
-5. Reorganization of older planning documents in the `old/` directory
+# Build the documentation
+mkdocs build
+
+# Or serve the documentation locally
+mkdocs serve
+```
 
 ## Contributing to Documentation
 
-To improve this documentation:
+Contributions to documentation are welcome! When contributing:
 
-1. Submit a PR with your proposed changes
-2. Follow the existing style and format of the documentation
-3. Update the table of contents when adding new sections
-4. Ensure technical accuracy in all documentation updates
-5. Consider adding examples for complex concepts
-
-## Building Documentation
-
-This documentation can be built into a static site using MkDocs. See the `mkdocs.yml` file in the project root for configuration details.
+1. Follow the existing style and format
+2. Use Markdown for formatting
+3. Place images in the `assets/images` directory
+4. Reference other documents using relative links
+5. Update the navigation in `mkdocs.yml` if adding new pages
