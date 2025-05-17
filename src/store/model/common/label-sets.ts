@@ -82,18 +82,16 @@ export const bannedSellerLabels = {
  * Creates a complete label set using common configurations
  */
 export function createLabelSet(options: {
-  inStock?: LabelQuery | LabelQuery[];
-  outOfStock?: LabelQuery | LabelQuery[];
+  inStock?: LabelQuery;
+  outOfStock?: LabelQuery;
   maxPrice?: {
     container: string;
     euroFormat?: boolean;
   };
-  bannedSeller?: LabelQuery | LabelQuery[];
-  captcha?: LabelQuery | LabelQuery[];
+  bannedSeller?: LabelQuery;
+  captcha?: LabelQuery;
 }): Labels {
-  return {
-    ...options
-  };
+  return options;
 }
 
 /**
