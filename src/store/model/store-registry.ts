@@ -12,6 +12,7 @@ import {
   createMarketplaceStore,
   StoreFactoryOptions
 } from './common/store-factory';
+import {commonLabels} from './common/label-sets';
 
 /**
  * Extended options to help with store categorization
@@ -24,100 +25,48 @@ export interface ExtendedStoreOptions extends StoreFactoryOptions {
  * Central registry of all store configurations
  */
 export const storeRegistry: Record<string, ExtendedStoreOptions> = {
-  // Core store configurations
-  'bestbuy': {
-    name: 'bestbuy',
-    country: 'US',
-    currency: '$',
-    storeType: 'standard',
-    labels: {
-      inStock: {
-        container: '.add-to-cart-button',
-        text: ['add to cart']
-      },
-      maxPrice: {
-        container: '.priceView-customer-price span',
-        euroFormat: false
-      },
-      outOfStock: {
-        container: '.add-to-cart-button',
-        text: ['sold out']
-      }
-    }
-  },
+  // United States Stores
   'amazon': {
     name: 'amazon',
     country: 'US',
     currency: '$',
     storeType: 'marketplace',
-    labels: {
-      captcha: {
-        container: 'body',
-        text: ['enter the characters you see below']
-      },
-      inStock: {
-        container: '#add-to-cart-button',
-        text: ['add to cart']
-      },
-      maxPrice: {
-        container: '#priceblock_ourprice',
-        euroFormat: false
-      },
-      outOfStock: [
-        {
-          container: '#availability',
-          text: ['currently unavailable']
-        },
-        {
-          container: '#outOfStock',
-          text: ['unavailable']
-        }
-      ]
-    }
+    labels: commonLabels.amazon,
+  },
+  'bestbuy': {
+    name: 'bestbuy',
+    country: 'US',
+    currency: '$',
+    storeType: 'standard',
+    labels: commonLabels.bestbuy,
   },
   'newegg': {
     name: 'newegg',
     country: 'US',
     currency: '$',
     storeType: 'standard',
-    labels: {
-      inStock: {
-        container: '.product-buy',
-        text: ['add to cart']
-      },
-      maxPrice: {
-        container: '.price-current',
-        euroFormat: false
-      },
-      outOfStock: {
-        container: '.product-inventory',
-        text: ['out of stock']
-      }
-    }
+    labels: commonLabels.newegg,
   },
-  
-  // Additional stores
-  'alternate-de': {
-    name: 'alternate-de',
-    country: 'DE',
-    currency: '€',
-    storeType: 'european',
+  'antonline': {
+    name: 'antonline',
+    country: 'US',
+    currency: '$',
+    storeType: 'standard',
     labels: {
       inStock: {
-        container: '#add-to-cart button[disabled]',
-        text: ['in den warenkorb'],
+        container: '.add-to-cart-form',
+        text: ['add to cart'],
       },
       outOfStock: {
-        container: '.stockStatus',
-        text: ['ausverkauft'],
+        container: '.product-form-buttons',
+        text: ['sold out'],
       },
       maxPrice: {
-        container: '.price',
-        euroFormat: true,
+        container: '.price-value',
+        euroFormat: false,
       },
     },
   },
-  
   'amd': {
     name: 'amd',
     country: 'US',
@@ -140,28 +89,68 @@ export const storeRegistry: Record<string, ExtendedStoreOptions> = {
     minPageSleep: 15000,
     maxPageSleep: 30000,
   },
-  
-  'antonline': {
-    name: 'antonline',
+  'microcenter': {
+    name: 'microcenter',
     country: 'US',
     currency: '$',
     storeType: 'standard',
     labels: {
       inStock: {
-        container: '.add-to-cart-form',
+        container: '.inventory',
+        text: ['in stock']
+      },
+      maxPrice: {
+        container: '.price-info .price',
+        euroFormat: false
+      },
+      outOfStock: {
+        container: '.inventory',
+        text: ['sold out']
+      }
+    }
+  },
+  'evga': {
+    name: 'evga',
+    country: 'US',
+    currency: '$',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.product-buy-button',
+        text: ['add to cart']
+      },
+      maxPrice: {
+        container: '.product-price',
+        euroFormat: false
+      },
+      outOfStock: {
+        container: '.product-inventory',
+        text: ['out of stock']
+      }
+    },
+    minPageSleep: 10000,
+    maxPageSleep: 15000
+  },
+  'bandh': {
+    name: 'bandh',
+    country: 'US',
+    currency: '$',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.purchase-buttons button',
         text: ['add to cart'],
       },
       outOfStock: {
-        container: '.product-form-buttons',
-        text: ['sold out'],
+        container: '.purchase-buttons button',
+        text: ['notify when available'],
       },
       maxPrice: {
-        container: '.price-value',
+        container: '.price',
         euroFormat: false,
       },
     },
   },
-  
   'corsair': {
     name: 'corsair',
     country: 'US',
@@ -183,6 +172,63 @@ export const storeRegistry: Record<string, ExtendedStoreOptions> = {
     },
   },
   
+  // Canadian Stores
+  'bestbuy-ca': {
+    name: 'bestbuy-ca',
+    country: 'CA',
+    currency: '$',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.addToCartButton',
+        text: ['add to cart']
+      },
+      maxPrice: {
+        container: '.price-box__price',
+        euroFormat: false
+      },
+      outOfStock: {
+        container: '.addToCartButton',
+        text: ['sold out']
+      }
+    }
+  },
+  'amazon-ca': {
+    name: 'amazon-ca',
+    country: 'CA',
+    currency: '$',
+    storeType: 'marketplace',
+    labels: commonLabels.amazon,
+  },
+  'canadacomputers': {
+    name: 'canadacomputers',
+    country: 'CA',
+    currency: '$',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.page-outofstock-btn',
+        text: ['add to cart']
+      },
+      maxPrice: {
+        container: '.h3-pricing',
+        euroFormat: false
+      },
+      outOfStock: {
+        container: '.page-outofstock-btn',
+        text: ['out of stock']
+      }
+    }
+  },
+  
+  // UK Stores
+  'amazon-uk': {
+    name: 'amazon-uk',
+    country: 'UK',
+    currency: '£',
+    storeType: 'marketplace',
+    labels: commonLabels.amazon,
+  },
   'currys': {
     name: 'currys',
     country: 'UK',
@@ -202,7 +248,85 @@ export const storeRegistry: Record<string, ExtendedStoreOptions> = {
         euroFormat: false,
       },
     },
-  }
+  },
+  'scan': {
+    name: 'scan',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.buyPanel .actions',
+        text: ['add to basket'],
+      },
+      outOfStock: {
+        container: '.buyPanel .actions',
+        text: ['out of stock'],
+      },
+      maxPrice: {
+        container: '.price',
+        euroFormat: false,
+      },
+    },
+  },
+  
+  // German Stores
+  'amazon-de': {
+    name: 'amazon-de',
+    country: 'DE',
+    currency: '€',
+    storeType: 'marketplace',
+    labels: commonLabels.amazonDE,
+  },
+  'alternate-de': {
+    name: 'alternate-de',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+      inStock: {
+        container: '#add-to-cart button',
+        text: ['in den warenkorb'],
+      },
+      outOfStock: {
+        container: '.stockStatus',
+        text: ['ausverkauft'],
+      },
+      maxPrice: {
+        container: '.price',
+        euroFormat: true,
+      },
+    },
+  },
+  
+  // French Stores
+  'amazon-fr': {
+    name: 'amazon-fr',
+    country: 'FR',
+    currency: '€',
+    storeType: 'marketplace',
+    labels: commonLabels.amazonFR,
+  },
+  'ldlc': {
+    name: 'ldlc',
+    country: 'FR',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+      inStock: {
+        container: '.add-to-cart',
+        text: ['ajouter au panier'],
+      },
+      outOfStock: {
+        container: '.add-to-cart',
+        text: ['en rupture'],
+      },
+      maxPrice: {
+        container: '.price .price',
+        euroFormat: true,
+      },
+    },
+  },
 };
 
 /**

@@ -4,8 +4,9 @@
  * This file implements a class-based approach to browser session management,
  * consolidating the various browser handling functions into a single cohesive API.
  */
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import {sync as deleteSync} from 'del';
 import {Browser, CDPSession, LaunchOptions, Page} from 'puppeteer';
 import Puppeteer from 'puppeteer';
@@ -88,8 +89,8 @@ export class BrowserSession {
     
     // Delete Chrome profile to prevent proxy authentication issues
     const userDataDelGlobs = [
-      userDataDir.replace(/\\/g, '/') + '/Default/*',
-      '!' + userDataDir.replace(/\\/g, '/') + '/Default/Cache',
+      userDataDir.replaceAll('\\', '/') + '/Default/*',
+      '!' + userDataDir.replaceAll('\\', '/') + '/Default/Cache',
     ];
     deleteSync(userDataDelGlobs, {force: true});
     
@@ -149,7 +150,7 @@ export class BrowserSession {
       // Handle GPU acceleration
       let gpuAcceleration = false;
       
-      switch (process.platform) {
+      switch (os.platform()) {
         case 'darwin':
           args.push('--angle=metal');
           gpuAcceleration = true;
@@ -180,7 +181,7 @@ export class BrowserSession {
     }
     
     if (args.length > 0) {
-      logger.debug('ℹ puppeteer config: ', args.sort());
+      logger.debug('ℹ puppeteer config: ', args.toSorted());
     }
     
     const browser = await Puppeteer.launch({
@@ -342,7 +343,7 @@ export class BrowserSession {
       
       // Remove headless from the default user agent
       if (this.defaultUserAgent.includes('Headless')) {
-        this.defaultUserAgent = this.defaultUserAgent.replace(/headless/gi, '');
+        this.defaultUserAgent = this.defaultUserAgent.replaceAll(/headless/gi, '');
       }
     } catch {
       // noop

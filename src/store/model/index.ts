@@ -15,7 +15,7 @@ import './common/label-sets';
 // Import the store registry
 import {storeRegistry, createStoreFromRegistry} from './store-registry';
 
-// Sample store using series links
+// Sample store using series links (for testing only)
 import {SampleStoreSeries} from './sample-store-series';
 
 // Map to hold store instances
@@ -27,20 +27,25 @@ storeList.set(SampleStoreSeries.name, SampleStoreSeries);
 // Export the storeList for web interface
 export {storeList};
 
-// Function to dynamically load all stores
-function loadAllStores() {
-  // Add registry-based stores first
+// Function to load all stores from the registry
+function loadAllStoresFromRegistry() {
   for (const storeName of Object.keys(storeRegistry)) {
     try {
       const store = createStoreFromRegistry(storeName);
       storeList.set(storeName, store);
       logger.debug(`Loaded store from registry: ${storeName}`);
+      
+      // Initialize series links loader for each store
+      initializeSeriesLinksLoader(store);
     } catch (error) {
       logger.error(`Error loading store from registry: ${storeName}`, error);
     }
   }
-  
-  // Legacy approach: load remaining stores from files
+}
+
+// Function to dynamically discover and load stores from files
+// This is a fallback approach for stores not in registry
+function discoverAndLoadRemainingStores() {
   const fs = require('fs');
   const path = require('path');
   
@@ -69,6 +74,11 @@ function loadAllStores() {
         .map((part: string) => part.charAt(0).toUpperCase() + part.slice(1))
         .join('');
       
+      // Skip if store is already loaded from registry
+      if (storeList.has(storeName)) {
+        continue;
+      }
+      
       // Dynamic require the module
       const storeModule = require(`./${storeName}`);
       
@@ -78,6 +88,8 @@ function loadAllStores() {
         
         // Initialize series links loader
         initializeSeriesLinksLoader(storeModule[pascalStoreName]);
+        
+        logger.debug(`Loaded store from file: ${storeName}`);
       } else {
         logger.debug(`Store module found but no export named ${pascalStoreName} in ${file}`);
       }
@@ -87,9 +99,15 @@ function loadAllStores() {
   }
 }
 
-// Call the function to load stores
+// Load all stores, prioritizing registry
 try {
-  loadAllStores();
+  // First load from registry
+  loadAllStoresFromRegistry();
+  
+  // Then discover and load any remaining stores
+  discoverAndLoadRemainingStores();
+  
+  logger.info(`Loaded ${storeList.size} stores total`);
 } catch (error) {
   logger.error('Error loading stores:', error);
 }

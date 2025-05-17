@@ -13,6 +13,23 @@ export const inStockLabels = {
     container: '.add-to-cart',
     text: ['add to cart', 'add to bag', 'buy now'],
   },
+  amazonAddToCart: {
+    container: '#add-to-cart-button',
+    text: ['add to cart'],
+  },
+  bestbuyAddToCart: {
+    container: '.add-to-cart-button',
+    text: ['add to cart']
+  },
+  neweggAddToCart: {
+    container: '.product-buy',
+    text: ['add to cart']
+  },
+  // European variations
+  euroAddToCart: {
+    container: '.add-to-cart',
+    text: ['add to basket', 'add to cart', 'in den warenkorb', 'ajouter au panier', 'añadir a la cesta']
+  },
   // Patterns for availability messages
   available: {
     container: '.availability',
@@ -33,6 +50,29 @@ export const outOfStockLabels = {
   standard: {
     container: '.availability',
     text: ['out of stock', 'sold out', 'unavailable'],
+  },
+  amazonOutOfStock: [
+    {
+      container: '#availability',
+      text: ['currently unavailable']
+    },
+    {
+      container: '#outOfStock',
+      text: ['unavailable']
+    }
+  ],
+  bestbuyOutOfStock: {
+    container: '.add-to-cart-button',
+    text: ['sold out']
+  },
+  neweggOutOfStock: {
+    container: '.product-inventory',
+    text: ['out of stock']
+  },
+  // European variations
+  euroOutOfStock: {
+    container: '.availability',
+    text: ['out of stock', 'sold out', 'ausverkauft', 'en rupture', 'agotado', 'non disponibile']
   },
   // Pre-order patterns
   preOrder: {
@@ -55,10 +95,26 @@ export const pricingLabels = {
     container: '.price',
     euroFormat: false,
   },
+  amazonPrice: {
+    container: '#priceblock_ourprice',
+    euroFormat: false
+  },
+  bestbuyPrice: {
+    container: '.priceView-customer-price span',
+    euroFormat: false
+  },
+  neweggPrice: {
+    container: '.price-current',
+    euroFormat: false
+  },
   // Euro-formatted prices
   euro: {
     container: '.price',
     euroFormat: true,
+  },
+  amazonEuroPrice: {
+    container: '#priceblock_ourprice',
+    euroFormat: true
   },
   // Sale prices
   sale: {
@@ -76,20 +132,42 @@ export const bannedSellerLabels = {
     container: '.seller-info',
     text: ['third party', 'marketplace', 'sold by'],
   },
+  amazonThirdParty: {
+    container: '#merchant-info',
+    text: ['japan import', 'third party']
+  },
+};
+
+/**
+ * Common captcha detection patterns
+ */
+export const captchaLabels = {
+  amazon: {
+    container: 'body',
+    text: ['enter the characters you see below']
+  },
+  amazonDE: {
+    container: 'body',
+    text: ['geben sie die zeichen']
+  },
+  amazonFR: {
+    container: 'body',
+    text: ['entrez les caractères']
+  },
 };
 
 /**
  * Creates a complete label set using common configurations
  */
 export function createLabelSet(options: {
-  inStock?: LabelQuery;
-  outOfStock?: LabelQuery;
+  inStock?: LabelQuery | LabelQuery[];
+  outOfStock?: LabelQuery | LabelQuery[];
   maxPrice?: {
     container: string;
     euroFormat?: boolean;
   };
-  bannedSeller?: LabelQuery;
-  captcha?: LabelQuery;
+  bannedSeller?: LabelQuery | LabelQuery[];
+  captcha?: LabelQuery | LabelQuery[];
 }): Labels {
   return options;
 }
@@ -107,8 +185,8 @@ export const commonLabels = {
   
   // European store labels
   european: createLabelSet({
-    inStock: inStockLabels.addToCart,
-    outOfStock: outOfStockLabels.standard,
+    inStock: inStockLabels.euroAddToCart,
+    outOfStock: outOfStockLabels.euroOutOfStock,
     maxPrice: pricingLabels.euro,
   }),
   
@@ -119,4 +197,57 @@ export const commonLabels = {
     maxPrice: pricingLabels.standard,
     bannedSeller: bannedSellerLabels.thirdParty,
   }),
+
+  // Amazon-specific labels (US)
+  amazon: createLabelSet({
+    inStock: inStockLabels.amazonAddToCart,
+    outOfStock: outOfStockLabels.amazonOutOfStock,
+    maxPrice: pricingLabels.amazonPrice,
+    bannedSeller: bannedSellerLabels.amazonThirdParty,
+    captcha: captchaLabels.amazon
+  }),
+
+  // Amazon-specific labels (DE)
+  amazonDE: createLabelSet({
+    inStock: {
+      container: '#add-to-cart-button',
+      text: ['in den einkaufswagen']
+    },
+    outOfStock: [{
+      container: '#availability',
+      text: ['Derzeit nicht verfügbar']
+    }],
+    maxPrice: pricingLabels.amazonEuroPrice,
+    bannedSeller: bannedSellerLabels.amazonThirdParty,
+    captcha: captchaLabels.amazonDE
+  }),
+
+  // Amazon-specific labels (FR)
+  amazonFR: createLabelSet({
+    inStock: {
+      container: '#add-to-cart-button',
+      text: ['ajouter au panier']
+    },
+    outOfStock: [{
+      container: '#availability',
+      text: ['Actuellement indisponible']
+    }],
+    maxPrice: pricingLabels.amazonEuroPrice,
+    bannedSeller: bannedSellerLabels.amazonThirdParty,
+    captcha: captchaLabels.amazonFR
+  }),
+
+  // Best Buy specific labels
+  bestbuy: createLabelSet({
+    inStock: inStockLabels.bestbuyAddToCart,
+    outOfStock: outOfStockLabels.bestbuyOutOfStock,
+    maxPrice: pricingLabels.bestbuyPrice
+  }),
+
+  // Newegg specific labels
+  newegg: createLabelSet({
+    inStock: inStockLabels.neweggAddToCart,
+    outOfStock: outOfStockLabels.neweggOutOfStock,
+    maxPrice: pricingLabels.neweggPrice
+  })
 };

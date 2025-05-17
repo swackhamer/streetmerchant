@@ -3,6 +3,8 @@
  * 
  * This file implements a unified approach to handling HTTP requests and responses,
  * consolidating logic that was previously scattered across multiple files.
+ * 
+ * This is the recommended way to handle requests and responses in the application.
  */
 import {Page, HTTPResponse} from 'puppeteer';
 import {logger} from '../../logger';

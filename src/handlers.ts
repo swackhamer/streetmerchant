@@ -1,3 +1,10 @@
+/**
+ * Request and Response Handlers
+ * 
+ * This file contains the handlers for HTTP requests and responses.
+ * It provides basic functionality for request interception and statistics gathering.
+ * For more advanced request handling, use the RequestHandler class from the network module.
+ */
 import type {HTTPRequest, HTTPResponse, Page} from 'puppeteer';
 import {config} from './config';
 import {logger} from './logger';
@@ -10,6 +17,10 @@ const LOW_BANDWIDTH_MODES = [
 
 const rejectedResourceTypes = getLowBandwidthRejectedResourceTypes();
 
+/**
+ * Handler for HTTP requests
+ * Implements low bandwidth mode and continues valid requests
+ */
 export async function onRequest(page: Page, request: HTTPRequest) {
   if (
     request.isInterceptResolutionHandled() ||
@@ -25,15 +36,16 @@ export async function onRequest(page: Page, request: HTTPRequest) {
   }
 }
 
+/**
+ * Handler for HTTP responses
+ * Gathers statistics about the response
+ */
 export function onResponse(page: Page, response: HTTPResponse) {
   void gatherResponseStats(page, response);
 }
 
 /**
- * Determines whether the given HTTP request should be aborted due to not being deemed essential to page load.
- *
- * @param {HTTPRequest} request - The HTTP request to evaluate.
- * @return {Promise<boolean>} Returns a promise that resolves to true if the request is handled as low bandwidth, otherwise false.
+ * Determines whether the given HTTP request should be aborted due to low bandwidth mode
  */
 async function isHandleLowBandwidth(request: HTTPRequest): Promise<boolean> {
   if (
@@ -56,10 +68,7 @@ async function isHandleLowBandwidth(request: HTTPRequest): Promise<boolean> {
 }
 
 /**
- * Helper function to safely abort an HTTP request.
- *
- * @param {HTTPRequest} request - The HTTP request to abort.
- * @return {Promise<void>} Resolves when abort is either successful or handled.
+ * Helper function to safely abort an HTTP request
  */
 export async function tryAbortRequest(request: HTTPRequest): Promise<void> {
   try {
@@ -69,6 +78,9 @@ export async function tryAbortRequest(request: HTTPRequest): Promise<void> {
   }
 }
 
+/**
+ * Determines which resource types to reject in low bandwidth mode
+ */
 function getLowBandwidthRejectedResourceTypes(): string[] {
   if (
     config.browser.lowBandwidthMode >= 0 &&
