@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for gamestop-de
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const GamestopDE: Store = {
+/**
+ * GamestopDe store
+ */
+export const GamestopDe = createEuropeanStore({
+  name: 'gamestop-de',
+  country: 'DE',
   currency: '€',
   labels: {
     inStock: [
@@ -22,21 +32,6 @@ export const GamestopDE: Store = {
       text: ['Nicht verfügbar'],
     },
   },
-  links: [
-    {
-      brand: 'sony',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://www.gamestop.de/PS5/Games/58665',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://www.gamestop.de/PS5/Games/60315',
-    },
-  ],
-  name: 'gamestop-de',
-  country: 'DE',
-  successStatusCodes: [[0, 399], 404],
-};
+  successStatusCodes: [[0, 399]]
+
+});

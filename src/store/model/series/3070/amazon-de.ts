@@ -1,140 +1,117 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for amazon-de 3070 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08HSJ1622&Quantity.1=1',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3070', [
+    {
       model: 'dual',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08HSJ1622',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08HSJ1622&Quantity.1=1',
     },
-{
-      brand: 'asus',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08KHFZN9P&Quantity.1=1',
+    {
       model: 'dual oc',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08KHFZN9P',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08KHFZN9P&Quantity.1=1',
     },
-{
-      brand: 'asus',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08HT7PR9Y&Quantity.1=1',
+    {
       model: 'strix',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08HT7PR9Y',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08HT7PR9Y&Quantity.1=1',
     },
-{
-      brand: 'asus',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08L8JNTXQ&Quantity.1=1',
+    {
       model: 'strix oc',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08L8JNTXQ',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08L8JNTXQ&Quantity.1=1',
     },
-{
-      brand: 'msi',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08KWPDXJZ&Quantity.1=1',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3070', [
+    {
       model: 'ventus 2x oc',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08KWPDXJZ',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08KWPDXJZ&Quantity.1=1',
     },
-{
-      brand: 'msi',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08L6PCZTR&Quantity.1=1',
+    {
       model: 'ventus 3x oc',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08L6PCZTR',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08L6PCZTR&Quantity.1=1',
     },
-{
-      brand: 'msi',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08KWN2LZG&Quantity.1=1',
+    {
       model: 'gaming x trio',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08KWN2LZG',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08KWN2LZG&Quantity.1=1',
     },
-{
-      brand: 'gigabyte',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08M13DXSZ&Quantity.1=1',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3070', [
+    {
       model: 'vision oc',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08M13DXSZ',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08M13DXSZ&Quantity.1=1',
     },
-{
-      brand: 'gigabyte',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08KHL21CV&Quantity.1=1',
+    {
       model: 'gaming oc',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08KHL21CV',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08KHL21CV&Quantity.1=1',
     },
-{
-      brand: 'gigabyte',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08KHL2J5X&Quantity.1=1',
+    {
       model: 'eagle oc',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08KHL2J5X',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08KHL2J5X&Quantity.1=1',
     },
-{
-      brand: 'evga',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08L3QCZKZ&Quantity.1=1',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3070', [
+    {
       model: 'xc3 black',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08L3QCZKZ',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08L3QCZKZ&Quantity.1=1',
     },
-{
-      brand: 'evga',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08L3QZP7W&Quantity.1=1',
+    {
       model: 'xc3',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08L3QZP7W',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08L3QZP7W&Quantity.1=1',
     },
-{
-      brand: 'evga',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08L3Q41SM&Quantity.1=1',
+    {
       model: 'xc3 ultra',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08L3Q41SM',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08L3Q41SM&Quantity.1=1',
     },
-{
-      brand: 'zotac',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08HRBR7K9&Quantity.1=1',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3070', [
+    {
       model: 'twin edge',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08HRBR7K9',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08HRBR7K9&Quantity.1=1',
     },
-{
-      brand: 'zotac',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08LBVNKT1&Quantity.1=1',
+    {
       model: 'twin edge oc',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08LBVNKT1',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08LBVNKT1&Quantity.1=1',
     },
-{
-      brand: 'pny',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08HBF5L3K&Quantity.1=1',
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3070', [
+    {
       model: 'dual fan',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08HBF5L3K',
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08HBF5L3K&Quantity.1=1',
     },
-{
-      brand: 'pny',
-      cartUrl:
-        'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08HBJB7YD&Quantity.1=1',
+    {
       model: 'xlr8 revel',
-      series: '3070',
       url: 'https://www.amazon.de/dp/B08HBJB7YD',
-    }
+      cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08HBJB7YD&Quantity.1=1',
+    },
+  ]),
+
 ];

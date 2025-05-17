@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for gamestop-it
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const GamestopIT: Store = {
+/**
+ * GamestopIt store
+ */
+export const GamestopIt = createEuropeanStore({
+  name: 'gamestop-it',
+  country: 'IT',
   currency: '€',
   labels: {
     inStock: {
@@ -16,20 +26,5 @@ export const GamestopIT: Store = {
       text: ['Esaurito'],
     },
   },
-  links: [
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.gamestop.it/XboxSeriesX/Games/132509',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series s',
-      series: 'xboxss',
-      url: 'https://www.gamestop.it/XboxSeriesX/Games/128220',
-    },
-  ],
-  name: 'gamestop-it',
-  country: 'IT',
-};
+
+});

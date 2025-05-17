@@ -1,22 +1,24 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for zotac 5080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'zotac',
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '5080', [
+    {
       model: 'solid',
-      series: '5080',
       url: 'https://www.zotac.com/us/product/graphics_card/zotac-gaming-geforce-rtx-5080-solid',
     },
-{
-      brand: 'zotac',
+    {
       model: 'solid oc',
-      series: '5080',
       url: 'https://www.zotac.com/us/product/graphics_card/zotac-gaming-geforce-rtx-5080-solid-oc',
     },
-{
-      brand: 'zotac',
+    {
       model: 'amp extreme infinity',
-      series: '5080',
       url: 'https://www.zotac.com/us/product/graphics_card/zotac-gaming-geforce-rtx-5080-amp-extreme-infinity',
-    }
+    },
+  ]),
+
 ];

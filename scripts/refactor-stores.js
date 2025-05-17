@@ -74,28 +74,73 @@ async function parseStoreFile(filePath) {
   
   // Extract links
   const links = [];
-  const linkRegex = /{\s*brand:\s*['"](.*?)['"],\s*model:\s*['"](.*?)['"],\s*series:\s*['"](.*?)['"],\s*url:\s*['"](.*?)['"](?:,\s*(?:cartUrl|itemNumber|price):.+?)?(?:,\s*(?:cartUrl|itemNumber|price):.+?)?(?:,\s*(?:cartUrl|itemNumber|price):.+?)?\s*}/g;
-  let match;
   
-  while ((match = linkRegex.exec(content)) !== null) {
-    const [_, brand, model, series, url] = match;
+  // Use a line-by-line approach to find link objects
+  // First, split the content into lines
+  const lines = content.split('\n');
+  
+  // Variables to track the current link being built
+  let inLinkObject = false;
+  let currentLinkText = '';
+  
+  // Iterate through the lines to find and reconstruct link objects
+  for (const line of lines) {
+    const trimmedLine = line.trim();
     
-    // Extract optional properties if they exist
-    const cartUrlMatch = match[0].match(/cartUrl:\s*['"](.*?)['"]/);
-    const itemNumberMatch = match[0].match(/itemNumber:\s*['"](.*?)['"]/);
-    const priceMatch = match[0].match(/price:\s*(\d+)/);
+    // Check if we're starting a new link object
+    if (!inLinkObject && trimmedLine.startsWith('{') && 
+        (trimmedLine.includes('brand:') || trimmedLine.includes('model:') || 
+         trimmedLine.includes('series:') || trimmedLine.includes('url:'))) {
+      inLinkObject = true;
+      currentLinkText = trimmedLine;
+      
+      // Handle single-line link objects
+      if (trimmedLine.endsWith('},')) {
+        inLinkObject = false;
+        // Process the complete link object
+        processLinkObject(currentLinkText);
+        currentLinkText = '';
+      }
+    }
+    // If we're inside a link object, add the current line
+    else if (inLinkObject) {
+      currentLinkText += ' ' + trimmedLine;
+      
+      // Check if the link object is complete
+      if (trimmedLine.endsWith('},') || trimmedLine === '},' || trimmedLine === '}') {
+        inLinkObject = false;
+        // Process the complete link object
+        processLinkObject(currentLinkText);
+        currentLinkText = '';
+      }
+    }
+  }
+  
+  // Function to process a complete link object string
+  function processLinkObject(linkString) {
+    // Extract properties using individual regex patterns
+    const brandMatch = linkString.match(/brand:\s*['"]([^'"]*)['"]/);
+    const modelMatch = linkString.match(/model:\s*['"]([^'"]*)['"]/);
+    const seriesMatch = linkString.match(/series:\s*['"]([^'"]*)['"]/);
+    const urlMatch = linkString.match(/url:\s*['"]([^'"]*)['"]/);
+    const cartUrlMatch = linkString.match(/cartUrl:\s*['"]([^'"]*)['"]/);
+    const itemNumberMatch = linkString.match(/itemNumber:\s*['"]([^'"]*)['"]/);
+    const priceMatch = linkString.match(/price:\s*(\d+)/);
     
-    const link = {
-      brand,
-      model,
-      series,
-      url,
-      ...(cartUrlMatch ? { cartUrl: cartUrlMatch[1] } : {}),
-      ...(itemNumberMatch ? { itemNumber: itemNumberMatch[1] } : {}),
-      ...(priceMatch ? { price: parseInt(priceMatch[1], 10) } : {}),
-    };
-    
-    links.push(link);
+    // Only create a link if we have the required properties
+    if (brandMatch && modelMatch && seriesMatch && urlMatch) {
+      const link = {
+        brand: brandMatch[1],
+        model: modelMatch[1],
+        series: seriesMatch[1],
+        url: urlMatch[1],
+        ...(cartUrlMatch ? { cartUrl: cartUrlMatch[1] } : {}),
+        ...(itemNumberMatch ? { itemNumber: itemNumberMatch[1] } : {}),
+        ...(priceMatch ? { price: parseInt(priceMatch[1], 10) } : {}),
+      };
+      
+      links.push(link);
+    }
   }
   
   // Extract label configurations

@@ -1,52 +1,64 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for alternate-de 3070ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3070ti', [
+    {
       model: 'tuf oc',
-      series: '3070ti',
       url: 'https://www.alternate.de/html/product/1756986',
     },
-{
-      brand: 'gainward',
-      model: 'phoenix',
-      series: '3070ti',
-      url: 'https://www.alternate.de/html/product/1755059',
-    },
-{
-      brand: 'zotac',
-      model: 'trinity oc',
-      series: '3070ti',
-      url: 'https://www.alternate.de/html/product/1770275',
-    },
-{
-      brand: 'palit',
-      model: 'gaming pro',
-      series: '3070ti',
-      url: 'https://www.alternate.de/html/product/1755057',
-    },
-{
-      brand: 'msi',
-      model: 'ventus 3x oc',
-      series: '3070ti',
-      url: 'https://www.alternate.de/html/product/1753410',
-    },
-{
-      brand: 'asus',
+    {
       model: 'tuf',
-      series: '3070ti',
       url: 'https://www.alternate.de/html/product/1756984',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3070ti', [
+    {
+      model: 'phoenix',
+      url: 'https://www.alternate.de/html/product/1755059',
+    },
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3070ti', [
+    {
+      model: 'trinity oc',
+      url: 'https://www.alternate.de/html/product/1770275',
+    },
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3070ti', [
+    {
+      model: 'gaming pro',
+      url: 'https://www.alternate.de/html/product/1755057',
+    },
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3070ti', [
+    {
+      model: 'ventus 3x oc',
+      url: 'https://www.alternate.de/html/product/1753410',
+    },
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3070ti', [
+    {
       model: 'gaming oc',
-      series: '3070ti',
       url: 'https://www.alternate.de/html/product/1756202',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus master',
-      series: '3070ti',
       url: 'https://www.alternate.de/html/product/1759465',
-    }
+    },
+  ]),
+
 ];

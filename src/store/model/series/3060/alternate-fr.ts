@@ -1,34 +1,36 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for alternate-fr 3060 series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3060', [
+    {
       model: 'aorus elite',
-      series: '3060',
       url: 'https://www.alternate.fr/html/product/1757856',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3060',
       url: 'https://www.alternate.fr/html/product/1723538',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3060',
       url: 'https://www.alternate.fr/html/product/1763772',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3060',
       url: 'https://www.alternate.fr/html/product/1726410',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3060', [
+    {
       model: 'amp white',
-      series: '3060',
       url: 'https://www.alternate.fr/html/product/1715300',
-    }
+    },
+  ]),
+
 ];

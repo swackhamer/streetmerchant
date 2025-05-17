@@ -1,11 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy ryzen5900 series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
-      cartUrl: 'https://api.bestbuy.com/click/-/6438942/cart',
+  // Amd Cards
+  ...createBrandSeriesLinks('amd', 'ryzen5900', [
+    {
       model: '5900x',
-      series: 'ryzen5900',
       url: 'https://api.bestbuy.com/click/-/6438942/pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-/6438942/cart',
+    },
+  ]),
+
 ];

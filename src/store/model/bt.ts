@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for bt
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const BT: Store = {
+/**
+ * Bt store
+ */
+export const Bt = createStandardStore({
+  name: 'bt',
+  country: 'UK',
   currency: '£',
   labels: {
     outOfStock: {
@@ -8,20 +18,5 @@ export const BT: Store = {
       text: ["We've sold out of our current allocation of PlayStation 5"],
     },
   },
-  links: [
-    {
-      brand: 'sony',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://shop.bt.com/mini-sites/gaming',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://shop.bt.com/mini-sites/gaming',
-    },
-  ],
-  name: 'bt',
-  country: 'UK',
-};
+
+});

@@ -1,0 +1,20 @@
+
+    {
+      brand: 'test:brand',
+      model: 'test:model',
+      series: 'test:series',
+      url: 'https://www.spielegrotte.de/index.php?kat=100056&anr=54288',
+    },
+    {
+      brand: 'sony',
+      model: 'ps5 console',
+      series: 'sonyps5c',
+      url: 'https://www.spielegrotte.de/index.php?kat=100100&anr=56005',
+    },
+    {
+      brand: 'sony',
+      model: 'ps5 digital',
+      series: 'sonyps5de',
+      url: 'https://www.spielegrotte.de/index.php?kat=100100&anr=56006',
+    },
+  

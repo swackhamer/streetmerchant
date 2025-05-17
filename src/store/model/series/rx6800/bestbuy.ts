@@ -1,18 +1,27 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for bestbuy rx6800 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
-      cartUrl: 'https://api.bestbuy.com/click/-/6441020/cart',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', 'rx6800', [
+    {
       model: 'amd reference',
-      series: 'rx6800',
       url: 'https://api.bestbuy.com/click/-/6441020/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6441020/cart',
     },
-{
-      brand: 'xfx',
-      cartUrl: 'https://api.bestbuy.com/click/-/6442077/cart',
+  ]),
+
+  // Xfx Cards
+  ...createBrandSeriesLinks('xfx', 'rx6800', [
+    {
       model: 'amd reference',
-      series: 'rx6800',
       url: 'https://api.bestbuy.com/click/-/6442077/pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-/6442077/cart',
+    },
+  ]),
+
 ];

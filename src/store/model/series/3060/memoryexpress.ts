@@ -1,52 +1,56 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for memoryexpress 3060 series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3060', [
+    {
       model: 'eagle oc',
-      series: '3060',
       url: 'https://www.memoryexpress.com/Products/MX00116063',
     },
-{
-      brand: 'msi',
-      model: 'ventus 2x',
-      series: '3060',
-      url: 'https://www.memoryexpress.com/Products/MX00116071',
-    },
-{
-      brand: 'msi',
-      model: 'ventus 3x',
-      series: '3060',
-      url: 'https://www.memoryexpress.com/Products/MX00116072',
-    },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3060',
       url: 'https://www.memoryexpress.com/Products/MX00116154',
     },
-{
-      brand: 'evga',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3060', [
+    {
+      model: 'ventus 2x',
+      url: 'https://www.memoryexpress.com/Products/MX00116071',
+    },
+    {
+      model: 'ventus 3x',
+      url: 'https://www.memoryexpress.com/Products/MX00116072',
+    },
+    {
+      model: 'gaming x',
+      url: 'https://www.memoryexpress.com/Products/MX00116164',
+    },
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3060', [
+    {
       model: 'xc gaming',
-      series: '3060',
       url: 'https://www.memoryexpress.com/Products/MX00116013',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3060', [
+    {
       model: 'strix oc',
-      series: '3060',
       url: 'https://www.memoryexpress.com/Products/MX00116016',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3060',
       url: 'https://www.memoryexpress.com/Products/MX00116017',
     },
-{
-      brand: 'msi',
-      model: 'gaming x',
-      series: '3060',
-      url: 'https://www.memoryexpress.com/Products/MX00116164',
-    }
+  ]),
+
 ];

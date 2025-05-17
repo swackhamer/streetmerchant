@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for officedepot
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const OfficeDepot: Store = {
+/**
+ * Officedepot store
+ */
+export const Officedepot = createStandardStore({
+  name: 'officedepot',
+  country: 'US',
   currency: '$',
   labels: {
     captcha: {
@@ -16,32 +26,5 @@ export const OfficeDepot: Store = {
       euroFormat: false,
     },
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.officedepot.com/a/products/4652239/EVGA-GeForce-RTX-2060-Graphic-Card/',
-    },
-    {
-      brand: 'pny',
-      model: 'xlr8 revel',
-      series: '3080',
-      url: 'https://www.officedepot.com/a/products/7189374/PNY-GeForce-RTX-3080-10GB-GDDR6X/',
-    },
-    {
-      brand: 'pny',
-      model: 'xlr8 revel',
-      series: '3080',
-      url: 'https://www.officedepot.com/a/products/7791294/PNY-GeForce-RTX-3080-10GB-GDDR6X/',
-    },
-    {
-      brand: 'pny',
-      model: 'dual fan',
-      series: '3070',
-      url: 'https://www.officedepot.com/a/products/1992758/PNY-GeForce-RTX-3070-8GB-GDDR6/',
-    },
-  ],
-  name: 'officedepot',
-  country: 'US',
-};
+
+});

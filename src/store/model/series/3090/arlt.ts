@@ -1,22 +1,28 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for arlt 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'tuf oc',
-      series: '3090',
       url: 'https://www.arlt.com/Hardware/PC-Komponenten/Grafikkarten/NVIDIA/GeForce-RTX/RTX-3090/ASUS-TUF-Gaming-GeForce-RTX-3090-OC.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3090',
       url: 'https://www.arlt.com/Hardware/PC-Komponenten/Grafikkarten/NVIDIA/GeForce-RTX/RTX-3090/ASUS-ROG-Strix-GeForce-RTX-3090-OC.html',
     },
-{
-      brand: 'gainward',
+  ]),
+
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3090', [
+    {
       model: 'phoenix gs',
-      series: '3090',
       url: 'https://www.arlt.com/Gaming/Gaming-Hardware/Gainward-GeForce-RTX-3090-Phoenix-GS.html',
-    }
+    },
+  ]),
+
 ];

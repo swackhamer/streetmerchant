@@ -5,20 +5,20 @@ import {banner} from './banner';
 
 if (process.env.npm_config_conf) {
   if (
-    existsSync(path.resolve(__dirname, '../../' + process.env.npm_config_conf))
+    existsSync(path.join(__dirname, '../../' + process.env.npm_config_conf))
   ) {
     dotenv.config({
-      path: path.resolve(__dirname, '../../' + process.env.npm_config_conf),
+      path: path.join(__dirname, '../../' + process.env.npm_config_conf),
     });
   } else {
-    dotenv.config({path: path.resolve(__dirname, '../../.env')});
+    dotenv.config({path: path.join(__dirname, '../../.env')});
   }
-} else if (existsSync(path.resolve(__dirname, '../../dotenv'))) {
-  dotenv.config({path: path.resolve(__dirname, '../../dotenv')});
-} else if (existsSync(path.resolve(__dirname, '../dotenv'))) {
-  dotenv.config({path: path.resolve(__dirname, '../dotenv')});
+} else if (existsSync(path.join(__dirname, '../../dotenv'))) {
+  dotenv.config({path: path.join(__dirname, '../../dotenv')});
+} else if (existsSync(path.join(__dirname, '../dotenv'))) {
+  dotenv.config({path: path.join(__dirname, '../dotenv')});
 } else {
-  dotenv.config({path: path.resolve(__dirname, '../../.env')});
+  dotenv.config({path: path.join(__dirname, '../../.env')});
 }
 
 console.info(

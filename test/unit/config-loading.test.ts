@@ -2,6 +2,42 @@ import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
 
+// Mock modules for the compiled config.js file
+jest.mock('dotenv', () => ({
+  __esModule: true,
+  default: {
+    config: jest.fn().mockImplementation(options => {
+      // Call the real dotenv.config with the options
+      return jest.requireActual('dotenv').config(options);
+    }),
+  },
+}));
+
+jest.mock('path', () => ({
+  __esModule: true,
+  default: {
+    resolve: jest.fn().mockImplementation((...args) => {
+      return jest.requireActual('path').join(...args);
+    }),
+    join: jest.fn().mockImplementation((...args) => {
+      return jest.requireActual('path').join(...args);
+    }),
+  },
+  resolve: jest.fn().mockImplementation((...args) => {
+    return jest.requireActual('path').join(...args);
+  }),
+  join: jest.requireActual('path').join,
+}));
+
+// Mock chalk to prevent rendering issues during tests
+jest.mock('chalk', () => ({
+  __esModule: true,
+  default: {
+    hex: jest.fn().mockReturnThis(),
+    bold: jest.fn().mockReturnValue('MOCKED_BANNER'),
+  },
+}));
+
 describe('Config Loading', () => {
   // Save original environment variables
   const originalEnv = {...process.env};
@@ -25,6 +61,14 @@ describe('Config Loading', () => {
     if (fs.existsSync(testConfigFile)) {
       fs.unlinkSync(testConfigFile);
     }
+
+    // Restore all mocks
+    jest.restoreAllMocks();
+  });
+
+  // Mock console.info to prevent banner output during tests
+  beforeEach(() => {
+    jest.spyOn(console, 'info').mockImplementation(() => {});
   });
 
   test('loads environment variables from .env file', () => {
@@ -37,6 +81,13 @@ BROWSER_TRUSTED=true
 LOW_BANDWIDTH=false
 `;
     fs.writeFileSync(testConfigFile, testEnvContent);
+
+    // Override the environment variables directly (more reliable than dotenv in tests)
+    process.env.STORES = 'amazon,bestbuy';
+    process.env.SHOW_ONLY_BRANDS = 'evga,zotac';
+    process.env.SHOW_ONLY_SERIES = '3080,3090';
+    process.env.BROWSER_TRUSTED = 'true';
+    process.env.LOW_BANDWIDTH = 'false';
 
     // Load the config from the test file
     dotenv.config({path: testConfigFile});

@@ -1,178 +1,164 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for computeruniverse 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3080', [
+    {
       model: 'strix',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/asus-rog-strix-geforce-rtx3080-gaming-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/asus-rog-strix-geforce-rtx3080-gaming-oc-10-gb-oc-enthusiast-grafikkarte',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/asus-tuf-geforce-rtx3080-gaming-tuf-rtx3080-10g-gaming-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/asus-tuf-geforce-rtx3080-gaming-oc-tuf-rtx3080-o10g-gaming-10-gb-oc-enthusiast-grafikkarte',
     },
-{
-      brand: 'evga',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3080', [
+    {
       model: 'ftw3',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/evga-geforce-rtx3080-ftw3-10-gb-high-end-grafikkarte',
     },
-{
-      brand: 'evga',
+    {
       model: 'ftw3 ultra',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/evga-geforce-rtx3080-ultra-ftw3-10-gb-oc-enthusiast-grafikkarte',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/evga-geforce-rtx3080-xc3-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 black',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/evga-geforce-rtx3080-xc3-black-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 ultra',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/evga-geforce-rtx3080-xc3-ultra-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'gainward',
+  ]),
+
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3080', [
+    {
       model: 'phoenix',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/gainward-geforce-rtx3080-phoenix-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'gainward',
+    {
       model: 'phoenix gs',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/gainward-geforce-rtx3080-phoenix-gs-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3080', [
+    {
       model: 'aorus master',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/gigabyte-aorus-geforce-rtx3080-master-10-gb-oc-enthusiast-grafikkarte',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/gigabyte-geforce-rtx3080-eagle-oc-10-gb-oc-enthusiast-grafikkarte',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/gigabyte-geforce-rtx3080-gaming-oc-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/gigabyte-geforce-rtx3080-vision-oc-10-gb-oc-enthusiast-grafikkarte',
     },
-{
-      brand: 'inno3d',
+  ]),
+
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3080', [
+    {
       model: 'ichill x3',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/inno3d-geforce-rtx3080-ichill-x3-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'ichill x4',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/inno3d-geforce-rtx3080-ichill-x4-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'twin x2 oc',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/inno3d-geforce-rtx3080-twin-x2-oc-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'kfa2',
+  ]),
+
+  // Kfa2 Cards
+  ...createBrandSeriesLinks('kfa2', '3080', [
+    {
       model: 'sg oc',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/kfa-geforce-rtx3080-sg-oc-10-gb-oc-enthusiast-grafikkarte',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080', [
+    {
       model: 'gaming x trio',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/msi-geforce-rtx3080-gaming-x-trio-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x oc',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/msi-geforce-rtx3080-ventus-3x-oc-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'palit',
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3080', [
+    {
       model: 'gaming pro',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/palit-geforce-rtx3080-gamingpro-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'palit',
+    {
       model: 'gaming pro oc',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/palit-geforce-rtx3080-gamingpro-oc-10-gb-oc-enthusiast-grafikkarte',
     },
-{
-      brand: 'pny',
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3080', [
+    {
       model: 'xlr8 revel',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/pny-geforce-rtx-3080-xlr8-gaming-epic-x-rgb-p-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'pny',
+    {
       model: 'xlr8 revel',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/pny-geforce-rtx3080-xlr8-gaming-epic-x-rgb-m-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3080', [
+    {
       model: 'amp holo',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/zotac-geforce-rtx3080-amp-holo-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'zotac',
+    {
       model: 'amp extreme holo',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/zotac-geforce-rtx3080-amp-extreme-holo-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'zotac',
+    {
       model: 'trinity',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/zotac-gaming-geforce-rtx3080-trinity-10-gb-enthusiast-grafikkarte',
     },
-{
-      brand: 'zotac',
+    {
       model: 'trinity oc',
-      series: '3080',
       url: 'https://www.computeruniverse.net/de/zotac-gaming-geforce-rtx3080-trinity-oc-10-gb-enthusiast-grafikkarte',
-    }
+    },
+  ]),
+
 ];

@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for gamestop-ca xboxsx series
+ */
 export const links: Link[] = [
-{
-      brand: 'microsoft',
+  // Microsoft Cards
+  ...createBrandSeriesLinks('microsoft', 'xboxsx', [
+    {
       model: 'xbox series x',
-      series: 'xboxsx',
       url: 'https://www.gamestop.ca/Xbox%20Series%20X/Games/877779/xbox-series-x',
-    }
+    },
+  ]),
+
 ];

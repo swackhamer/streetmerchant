@@ -1,46 +1,57 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for galaxus rx6700xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'asrock',
+  // Asrock Cards
+  ...createBrandSeriesLinks('asrock', 'rx6700xt', [
+    {
       model: 'challenger',
-      series: 'rx6700xt',
       url: 'https://www.galaxus.de/de/product/15816697',
     },
-{
-      brand: 'asrock',
+    {
       model: 'phantom gaming oc',
-      series: 'rx6700xt',
       url: 'https://www.galaxus.de/de/product/15948741',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', 'rx6700xt', [
+    {
       model: 'tuf oc',
-      series: 'rx6700xt',
       url: 'https://www.galaxus.de/de/product/15300561',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6700xt', [
+    {
       model: 'aorus elite',
-      series: 'rx6700xt',
       url: 'https://www.galaxus.de/de/product/15301182',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', 'rx6700xt', [
+    {
       model: 'mech 2x oc',
-      series: 'rx6700xt',
       url: 'https://www.galaxus.de/de/product/15301319',
     },
-{
-      brand: 'sapphire',
+  ]),
+
+  // Sapphire Cards
+  ...createBrandSeriesLinks('sapphire', 'rx6700xt', [
+    {
       model: 'nitro+ oc',
-      series: 'rx6700xt',
       url: 'https://www.galaxus.de/de/product/15059558',
     },
-{
-      brand: 'sapphire',
+    {
       model: 'pulse',
-      series: 'rx6700xt',
       url: 'https://www.galaxus.de/de/product/15059559',
-    }
+    },
+  ]),
+
 ];

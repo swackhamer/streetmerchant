@@ -1,22 +1,32 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for mediamarkt-at 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'gainward',
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3080', [
+    {
       model: 'phantom gaming',
-      series: '3080',
       url: 'https://www.mediamarkt.at/de/product/-1817678.html',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3080', [
+    {
       model: 'trinity',
-      series: '3080',
       url: 'https://www.mediamarkt.at/de/product/-1803318.html',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3080', [
+    {
       model: 'tuf',
-      series: '3080',
       url: 'https://www.mediamarkt.at/de/product/-1799192.html',
-    }
+    },
+  ]),
+
 ];

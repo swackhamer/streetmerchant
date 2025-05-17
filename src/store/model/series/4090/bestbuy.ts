@@ -1,60 +1,67 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy 4090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'nvidia',
-      cartUrl: 'https://api.bestbuy.com/click/-/6521430/cart',
-      model: 'founders edition',
-      series: '4090',
+  // NVIDIA Founders Edition
+  ...createFoundersEditionLinks('4090', [
+    {
       url: 'https://api.bestbuy.com/click/-/6521430/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6521430/cart',
     },
-{
-      brand: 'pny',
-      cartUrl: 'https://api.bestbuy.com/click/-/6522679/cart',
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '4090', [
+    {
       model: 'xlr8 gaming',
-      series: '4090',
       url: 'https://api.bestbuy.com/click/-/6522679/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6522679/cart',
     },
-{
-      brand: 'asus',
-      cartUrl: 'https://api.bestbuy.com/click/-/6524435/cart',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '4090', [
+    {
       model: 'strix',
-      series: '4090',
       url: 'https://api.bestbuy.com/click/-/6524435/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6524435/cart',
     },
-{
-      brand: 'asus',
-      cartUrl: 'https://api.bestbuy.com/click/-/6524436/cart',
+    {
       model: 'tuf',
-      series: '4090',
       url: 'https://api.bestbuy.com/click/-/6524436/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6524436/cart',
     },
-{
-      brand: 'msi',
-      cartUrl: 'https://api.bestbuy.com/click/-/6522371/cart',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '4090', [
+    {
       model: 'gaming trio',
-      series: '4090',
       url: 'https://api.bestbuy.com/click/-/6522371/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6522371/cart',
     },
-{
-      brand: 'msi',
-      cartUrl: 'https://api.bestbuy.com/click/-/6522334/cart',
+    {
       model: 'suprim liquid x',
-      series: '4090',
       url: 'https://api.bestbuy.com/click/-/6522334/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6522334/cart',
     },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6521518/cart',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '4090', [
+    {
       model: 'gaming oc',
-      series: '4090',
       url: 'https://api.bestbuy.com/click/-/6521518/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6521518/cart',
     },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6521517/cart',
+    {
       model: 'windforce',
-      series: '4090',
       url: 'https://api.bestbuy.com/click/-/6521517/pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-/6521517/cart',
+    },
+  ]),
+
 ];

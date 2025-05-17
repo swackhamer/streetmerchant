@@ -1,52 +1,61 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for alternate-de rx6900xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', 'rx6900xt', [
+    {
       model: 'tuf oc',
-      series: 'rx6900xt',
       url: 'https://www.alternate.de/html/product/1702773',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6900xt', [
+    {
       model: 'aorus master',
-      series: 'rx6900xt',
       url: 'https://www.alternate.de/html/product/1723388',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: 'rx6900xt',
       url: 'https://www.alternate.de/html/product/1713711',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', 'rx6900xt', [
+    {
       model: 'amd reference',
-      series: 'rx6900xt',
       url: 'https://www.alternate.de/html/product/1700508',
     },
-{
-      brand: 'msi',
+    {
       model: 'gaming x trio',
-      series: 'rx6900xt',
       url: 'https://www.alternate.de/html/product/1712555',
     },
-{
-      brand: 'sapphire',
+  ]),
+
+  // Sapphire Cards
+  ...createBrandSeriesLinks('sapphire', 'rx6900xt', [
+    {
       model: 'nitro+ oc',
-      series: 'rx6900xt',
       url: 'https://www.alternate.de/html/product/1704994',
     },
-{
-      brand: 'xfx',
+  ]),
+
+  // Xfx Cards
+  ...createBrandSeriesLinks('xfx', 'rx6900xt', [
+    {
       model: 'merc',
-      series: 'rx6900xt',
       url: 'https://www.alternate.de/html/product/1713052',
     },
-{
-      brand: 'xfx',
+    {
       model: 'merc ultra',
-      series: 'rx6900xt',
       url: 'https://www.alternate.de/html/product/1704614',
-    }
+    },
+  ]),
+
 ];

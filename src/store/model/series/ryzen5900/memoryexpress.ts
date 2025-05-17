@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for memoryexpress ryzen5900 series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
+  // Amd Cards
+  ...createBrandSeriesLinks('amd', 'ryzen5900', [
+    {
       model: '5900x',
-      series: 'ryzen5900',
       url: 'https://www.memoryexpress.com/Products/MX00114451',
-    }
+    },
+  ]),
+
 ];

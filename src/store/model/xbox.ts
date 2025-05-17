@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for xbox
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const Xbox: Store = {
+/**
+ * Xbox store
+ */
+export const Xbox = createStandardStore({
+  name: 'xbox',
+  country: 'US',
   currency: '$',
   labels: {
     outOfStock: {
@@ -9,14 +19,5 @@ export const Xbox: Store = {
       text: ['Out of stock'],
     },
   },
-  links: [
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.xbox.com/en-us/configure/8WJ714N3RBTL',
-    },
-  ],
-  name: 'xbox',
-  country: 'US',
-};
+
+});

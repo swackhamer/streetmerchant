@@ -1,82 +1,76 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for dcomp 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3080', [
+    {
       model: 'tuf',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3172',
     },
-{
-      brand: 'evga',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3080', [
+    {
       model: 'xc3 black',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3205',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 ultra',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3206',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3080', [
+    {
       model: 'aorus master',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3183',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3310',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme waterforce',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3307',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme waterforce wb',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3308',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3136',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3135',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3166',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080', [
+    {
       model: 'gaming x trio',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3199',
     },
-{
-      brand: 'msi',
+    {
       model: 'suprim x',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3306',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x oc',
-      series: '3080',
       url: 'https://dcomp.com.au/productdetail/3141',
-    }
+    },
+  ]),
+
 ];

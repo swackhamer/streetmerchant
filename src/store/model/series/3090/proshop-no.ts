@@ -1,148 +1,124 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for proshop-no 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
       model: 'gaming x trio',
-      series: '3090',
       url: 'https://www.proshop.no/2876881',
     },
-{
-      brand: 'msi',
+    {
       model: 'suprim x',
-      series: '3090',
       url: 'https://www.proshop.no/2885271',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x oc',
-      series: '3090',
       url: 'https://www.proshop.no/2876883',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x',
-      series: '3090',
       url: 'https://www.proshop.no/2876882',
     },
-{
-      brand: 'asus',
-      model: 'tuf oc',
-      series: '3090',
-      url: 'https://www.proshop.no/2876869',
-    },
-{
-      brand: 'msi',
+    {
       model: 'gaming trio',
-      series: '3090',
       url: 'https://www.proshop.no/2876880',
     },
-{
-      brand: 'inno3d',
-      model: 'gaming x3',
-      series: '3090',
-      url: 'https://www.proshop.no/2878977',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
+      model: 'tuf oc',
+      url: 'https://www.proshop.no/2876869',
     },
-{
-      brand: 'inno3d',
-      model: 'ichill x3',
-      series: '3090',
-      url: 'https://www.proshop.no/2878978',
-    },
-{
-      brand: 'inno3d',
-      model: 'ichill x4',
-      series: '3090',
-      url: 'https://www.proshop.no/2878979',
-    },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3090',
       url: 'https://www.proshop.no/2876867',
     },
-{
-      brand: 'gigabyte',
-      model: 'aorus master',
-      series: '3090',
-      url: 'https://www.proshop.no/2876840',
-    },
-{
-      brand: 'asus',
+    {
       model: 'tuf',
-      series: '3090',
       url: 'https://www.proshop.no/2876764',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3090',
       url: 'https://www.proshop.no/2911582',
     },
-{
-      brand: 'asus',
+    {
       model: 'ekwb',
-      series: '3090',
       url: 'https://www.proshop.no/2887569',
     },
-{
-      brand: 'gigabyte',
-      model: 'aorus xtreme',
-      series: '3090',
-      url: 'https://www.proshop.no/2876839',
-    },
-{
-      brand: 'gigabyte',
-      model: 'aorus xtreme waterforce',
-      series: '3090',
-      url: 'https://www.proshop.no/2878404',
-    },
-{
-      brand: 'gigabyte',
-      model: 'vision oc',
-      series: '3090',
-      url: 'https://www.proshop.no/2878413',
-    },
-{
-      brand: 'inno3d',
-      model: 'ichill frostbite',
-      series: '3090',
-      url: 'https://www.proshop.no/2887323',
-    },
-{
-      brand: 'asus',
+    {
       model: 'strix',
-      series: '3090',
       url: 'https://www.proshop.no/2878405',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix',
-      series: '3090',
       url: 'https://www.proshop.no/2911581',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3090', [
+    {
+      model: 'gaming x3',
+      url: 'https://www.proshop.no/2878977',
+    },
+    {
+      model: 'ichill x3',
+      url: 'https://www.proshop.no/2878978',
+    },
+    {
+      model: 'ichill x4',
+      url: 'https://www.proshop.no/2878979',
+    },
+    {
+      model: 'ichill frostbite',
+      url: 'https://www.proshop.no/2887323',
+    },
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
+      model: 'aorus master',
+      url: 'https://www.proshop.no/2876840',
+    },
+    {
+      model: 'aorus xtreme',
+      url: 'https://www.proshop.no/2876839',
+    },
+    {
+      model: 'aorus xtreme waterforce',
+      url: 'https://www.proshop.no/2878404',
+    },
+    {
+      model: 'vision oc',
+      url: 'https://www.proshop.no/2878413',
+    },
+    {
       model: 'eagle oc',
-      series: '3090',
       url: 'https://www.proshop.no/2876841',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'turbo',
-      series: '3090',
       url: 'https://www.proshop.no/2878410',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle',
-      series: '3090',
       url: 'https://www.proshop.no/2878406',
     },
-{
-      brand: 'palit',
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3090', [
+    {
       model: 'gamerock oc',
-      series: '3090',
       url: 'https://www.proshop.no/2911898',
-    }
+    },
+  ]),
+
 ];

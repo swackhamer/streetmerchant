@@ -1,52 +1,52 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for proshop-de 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'strix',
-      series: '3090',
       url: 'https://www.proshop.de/2876865',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3090',
       url: 'https://www.proshop.de/2876867',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf',
-      series: '3090',
       url: 'https://www.proshop.de/2876764',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3090',
       url: 'https://www.proshop.de/2876869',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
       model: 'aorus master',
-      series: '3090',
       url: 'https://www.proshop.de/2876840',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme',
-      series: '3090',
       url: 'https://www.proshop.de/2876839',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'turbo',
-      series: '3090',
       url: 'https://www.proshop.de/2878410',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
       model: 'gaming x trio',
-      series: '3090',
       url: 'https://www.proshop.de/2876881',
-    }
+    },
+  ]),
+
 ];

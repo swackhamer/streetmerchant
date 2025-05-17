@@ -1,232 +1,192 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for alternate-de 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'strix',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1672870',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1672872',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc white',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1701891',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix white',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1701894',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1672259',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1672629',
     },
-{
-      brand: 'evga',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3090', [
+    {
       model: 'ftw3',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1673530',
     },
-{
-      brand: 'evga',
+    {
       model: 'ftw3 ultra',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1673531',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 black',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1673521',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1673525',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 ultra',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1673529',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 ultra hybrid',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1703237',
     },
-{
-      brand: 'gainward',
+  ]),
+
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3090', [
+    {
       model: 'phantom',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1688769',
     },
-{
-      brand: 'gainward',
+    {
       model: 'phantom',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1780227',
     },
-{
-      brand: 'gainward',
+    {
       model: 'phantom gs',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1688598',
     },
-{
-      brand: 'gainward',
+    {
       model: 'phoenix',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1673441',
     },
-{
-      brand: 'gainward',
+    {
       model: 'phoenix gs',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1673440',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
       model: 'aorus master',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1687793',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1680670',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme waterforce',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1694043',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme waterforce wb',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1694045',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1672744',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1672749',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'turbo',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1687703',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1691159',
     },
-{
-      brand: 'inno3d',
+  ]),
+
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3090', [
+    {
       model: 'gaming x3',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1673131',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'ichill frostbite',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1693868',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'ichill x3',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1673135',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'ichill x4',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1673129',
     },
-{
-      brand: 'palit',
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3090', [
+    {
       model: 'gamerock oc',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1688672',
     },
-{
-      brand: 'msi',
-      model: 'gaming x trio',
-      series: '3090',
-      url: 'https://www.alternate.de/html/product/1672341',
-    },
-{
-      brand: 'msi',
-      model: 'suprim x',
-      series: '3090',
-      url: 'https://www.alternate.de/html/product/1689857',
-    },
-{
-      brand: 'msi',
-      model: 'ventus 3x oc',
-      series: '3090',
-      url: 'https://www.alternate.de/html/product/1672346',
-    },
-{
-      brand: 'palit',
+    {
       model: 'gaming pro',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1673432',
     },
-{
-      brand: 'palit',
+    {
       model: 'gaming pro oc',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1673434',
     },
-{
-      brand: 'palit',
+    {
       model: 'gamerock',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1688678',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
+      model: 'gaming x trio',
+      url: 'https://www.alternate.de/html/product/1672341',
+    },
+    {
+      model: 'suprim x',
+      url: 'https://www.alternate.de/html/product/1689857',
+    },
+    {
+      model: 'ventus 3x oc',
+      url: 'https://www.alternate.de/html/product/1672346',
+    },
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3090', [
+    {
       model: 'trinity',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1672611',
     },
-{
-      brand: 'zotac',
+    {
       model: 'trinity oc',
-      series: '3090',
       url: 'https://www.alternate.de/html/product/1712450',
-    }
+    },
+  ]),
+
 ];

@@ -1,12 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for amd-de ryzen5800 series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/de/direct-buy/5450881600/de?add-to-cart=true',
+  // Amd Cards
+  ...createBrandSeriesLinks('amd', 'ryzen5800', [
+    {
       model: '5800x',
-      series: 'ryzen5800',
       url: 'https://www.amd.com/de/direct-buy/5450881600/de',
-    }
+      cartUrl: 'https://www.amd.com/de/direct-buy/5450881600/de?add-to-cart=true',
+    },
+  ]),
+
 ];

@@ -1,28 +1,32 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for neobyte 3070ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3070ti', [
+    {
       model: 'strix',
-      series: '3070ti',
       url: 'https://www.neobyte.es/tarjeta-grafica-asus-strix-rtx3070ti-8gb-9471.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3070ti',
       url: 'https://www.neobyte.es/tarjeta-grafica-asus-tuf-rtx3070ti-oc-8gb-9470.html',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3070ti', [
+    {
       model: 'eagle',
-      series: '3070ti',
       url: 'https://www.neobyte.es/gigabyte-rtx-3070ti-eagle-8gb-9469.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3070ti',
       url: 'https://www.neobyte.es/gigabyte-rtx-3070ti-gaming-oc-8gb-9468.html',
-    }
+    },
+  ]),
+
 ];

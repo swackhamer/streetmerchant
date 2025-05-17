@@ -1,16 +1,20 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for mediamarkt 3060 series
+ */
 export const links: Link[] = [
-{
-      brand: 'inno3d',
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3060', [
+    {
       model: 'ichill x3',
-      series: '3060',
       url: 'https://www.mediamarkt.de/de/product/-2718593.html',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'twin x2 oc',
-      series: '3060',
       url: 'https://www.mediamarkt.de/de/product/-2718594.html',
-    }
+    },
+  ]),
+
 ];

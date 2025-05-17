@@ -12,6 +12,9 @@ Streetmerchant is a stock checking application that continuously monitors online
 - **Purpose**: Defines how stock is checked across different retailers
 - **Key Files**:
   - `model/*.ts`: Individual store implementations
+  - `model/series/`: Series-based product link organization
+  - `model/auto-load-series.ts`: Dynamic loading of series links
+  - `model/series-links.ts`: Link management and filtering
   - `lookup.ts`: Orchestrates stock checking process
   - `filter.ts`: Filters products based on configuration
 
@@ -87,17 +90,23 @@ Streetmerchant is a stock checking application that continuously monitors online
 
 ## Recent Improvements
 
-1. **Protocol Timeout Enhancement**:
+1. **Series-Based Link Organization**:
+   - Implemented a directory structure organizing links by product series
+   - Created helper modules for dynamic link loading
+   - Added link filtering by brand, model, and price
+   - Improved code maintainability and organization
+
+2. **Protocol Timeout Enhancement**:
    - Added configurable `PROTOCOL_TIMEOUT` (default: 60s)
    - Prevents "Network.enable timed out" crashes
    - Improves stability especially with proxies
 
-2. **Enhanced Error Handling**:
+3. **Enhanced Error Handling**:
    - Improved filtering for protocol-related errors
    - Reduced log pollution from expected errors
    - Better patterns for detecting transient vs. critical errors
 
-3. **Test Coverage Improvements**:
+4. **Test Coverage Improvements**:
    - Added tests for `util.ts` and `banner.ts`
    - Enhanced notification testing
    - Better mocking strategies
@@ -158,6 +167,12 @@ pnpm run fix
   /messaging        # Notification implementations
   /store
     /model          # Store-specific implementations
+      /series       # Series-based link organization
+        /3080       # RTX 3080 series links
+        /3070       # RTX 3070 series links
+        /common     # Shared utilities for series-based organization
+      auto-load-series.ts  # Dynamic series link loading
+      series-links.ts      # Link management and filtering
     lookup.ts       # Core stock checking orchestration
   browser.ts        # Browser management
   config.ts         # Configuration handling
@@ -173,7 +188,9 @@ pnpm run fix
 ## Key Design Patterns
 
 1. **Strategy Pattern**: Store implementations
-2. **Dependency Injection**: Browser instances
-3. **Observer Pattern**: Notification system
-4. **Factory Method**: Browser/page creation
-5. **Retry with Exponential Backoff**: Network requests
+2. **Factory Pattern**: Store and link creation
+3. **Dependency Injection**: Browser instances
+4. **Observer Pattern**: Notification system
+5. **Factory Method**: Browser/page creation
+6. **Dynamic Module Loading**: Series-specific links
+7. **Retry with Exponential Backoff**: Network requests

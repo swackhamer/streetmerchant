@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for elcorteingles xboxss series
+ */
 export const links: Link[] = [
-{
-      brand: 'microsoft',
+  // Microsoft Cards
+  ...createBrandSeriesLinks('microsoft', 'xboxss', [
+    {
       model: 'xbox series s',
-      series: 'xboxss',
       url: 'https://www.elcorteingles.es/videojuegos/A37047080',
-    }
+    },
+  ]),
+
 ];

@@ -1,18 +1,22 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy sf series
+ */
 export const links: Link[] = [
-{
-      brand: 'corsair',
-      cartUrl: 'https://api.bestbuy.com/click/-/6351845/cart',
+  // Corsair Cards
+  ...createBrandSeriesLinks('corsair', 'sf', [
+    {
       model: '750 platinum',
-      series: 'sf',
       url: 'https://api.bestbuy.com/click/-/6351845/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6351845/cart',
     },
-{
-      brand: 'corsair',
-      cartUrl: 'https://api.bestbuy.com/click/-/6351844/cart',
+    {
       model: '600 platinum',
-      series: 'sf',
       url: 'https://api.bestbuy.com/click/-/6351844/pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-/6351844/cart',
+    },
+  ]),
+
 ];

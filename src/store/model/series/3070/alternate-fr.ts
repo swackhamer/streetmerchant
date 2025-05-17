@@ -1,22 +1,28 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for alternate-fr 3070 series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3070', [
+    {
       model: 'aorus master',
-      series: '3070',
       url: 'https://www.alternate.fr/html/product/1688810',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3070',
       url: 'https://www.alternate.fr/html/product/1688819',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3070', [
+    {
       model: 'amp holo',
-      series: '3070',
       url: 'https://www.alternate.fr/html/product/1702466',
-    }
+    },
+  ]),
+
 ];

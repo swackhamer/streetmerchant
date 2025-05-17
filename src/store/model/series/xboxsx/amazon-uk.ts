@@ -1,12 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for amazon-uk xboxsx series
+ */
 export const links: Link[] = [
-{
-      brand: 'microsoft',
-      cartUrl:
-        'https://www.amazon.co.uk/gp/aws/cart/add.html?ASIN.1=B08H93GKNJ&Quantity.1=1',
+  // Microsoft Cards
+  ...createBrandSeriesLinks('microsoft', 'xboxsx', [
+    {
       model: 'xbox series x',
-      series: 'xboxsx',
       url: 'https://www.amazon.co.uk/dp/B08H93GKNJ',
-    }
+      cartUrl: 'https://www.amazon.co.uk/gp/aws/cart/add.html?ASIN.1=B08H93GKNJ&Quantity.1=1',
+    },
+  ]),
+
 ];

@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for proshop-dk ryzen5950 series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
+  // Amd Cards
+  ...createBrandSeriesLinks('amd', 'ryzen5950', [
+    {
       model: '5950x',
-      series: 'ryzen5950',
       url: 'https://www.proshop.dk/2884175',
-    }
+    },
+  ]),
+
 ];

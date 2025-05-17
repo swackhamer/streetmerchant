@@ -1,16 +1,24 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for memoryexpress 5080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '5080', [
+    {
       model: 'windforce oc',
-      series: '5080',
       url: 'https://www.memoryexpress.com/Products/MX00132482',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '5080', [
+    {
       model: 'prime',
-      series: '5080',
       url: 'https://www.memoryexpress.com/Products/MX00132529',
-    }
+    },
+  ]),
+
 ];

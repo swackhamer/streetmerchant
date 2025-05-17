@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for gamestop-ie
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const GamestopIE: Store = {
+/**
+ * GamestopIe store
+ */
+export const GamestopIe = createEuropeanStore({
+  name: 'gamestop-ie',
+  country: 'IE',
   currency: '€',
   labels: {
     inStock: {
@@ -11,20 +21,5 @@ export const GamestopIE: Store = {
       container: 'span.pricetext',
     },
   },
-  links: [
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.gamestop.ie/Xbox%20Series/Games/73034/xbox-series-x-console',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://www.gamestop.ie/PlayStation%205/Games/72504/playstation-5-console',
-    },
-  ],
-  name: 'gamestop-ie',
-  country: 'IE',
-};
+
+});

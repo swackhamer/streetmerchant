@@ -1,28 +1,40 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for saturn 3070 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3070', [
+    {
       model: 'strix oc',
-      series: '3070',
       url: 'https://www.saturn.de/de/product/-2691244.html',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3070', [
+    {
       model: 'gaming oc',
-      series: '3070',
       url: 'https://www.saturn.de/de/product/-2691439.html',
     },
-{
-      brand: 'inno3d',
+  ]),
+
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3070', [
+    {
       model: 'ichill x3',
-      series: '3070',
       url: 'https://www.saturn.de/de/product/-2695942.html',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3070', [
+    {
       model: 'twin edge',
-      series: '3070',
       url: 'https://www.saturn.de/de/product/-2691365.html',
-    }
+    },
+  ]),
+
 ];

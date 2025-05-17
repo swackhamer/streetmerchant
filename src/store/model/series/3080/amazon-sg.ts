@@ -1,132 +1,112 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for amazon-sg 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'pny',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HBR7QBM&Quantity.1=1',
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3080', [
+    {
       model: 'xlr8 revel',
-      series: '3080',
       url: 'https://www.amazon.sg/dp/B08HBR7QBM',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HBR7QBM&Quantity.1=1',
     },
-{
-      brand: 'pny',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HBTJMLJ&Quantity.1=1',
+    {
       model: 'xlr8 revel',
-      series: '3080',
       url: 'https://www.amazon.sg/dp/B08HBTJMLJ',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HBTJMLJ&Quantity.1=1',
     },
-{
-      brand: 'msi',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR7SV3M&Quantity.1=1',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080', [
+    {
       model: 'gaming x trio',
-      series: '3080',
       url: 'https://www.amazon.sg/dp/B08HR7SV3M',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR7SV3M&Quantity.1=1',
     },
-{
-      brand: 'evga',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR3Y5GQ&Quantity.1=1',
-      model: 'ftw3 ultra',
-      series: '3080',
-      url: 'https://www.amazon.sg/dp/B08HR3Y5GQ',
-    },
-{
-      brand: 'evga',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR55YB5&Quantity.1=1',
-      model: 'xc3 ultra',
-      series: '3080',
-      url: 'https://www.amazon.sg/dp/B08HR55YB5',
-    },
-{
-      brand: 'evga',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR3DPGW&Quantity.1=1',
-      model: 'ftw3',
-      series: '3080',
-      url: 'https://www.amazon.sg/dp/B08HR3DPGW',
-    },
-{
-      brand: 'evga',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR4RJ3Q&Quantity.1=1',
-      model: 'xc3',
-      series: '3080',
-      url: 'https://www.amazon.sg/dp/B08HR4RJ3Q',
-    },
-{
-      brand: 'evga',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR6FMF3&Quantity.1=1',
-      model: 'xc3 black',
-      series: '3080',
-      url: 'https://www.amazon.sg/dp/B08HR6FMF3',
-    },
-{
-      brand: 'gigabyte',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HJTH61J&Quantity.1=1',
-      model: 'gaming oc',
-      series: '3080',
-      url: 'https://www.amazon.sg/dp/B08HJTH61J',
-    },
-{
-      brand: 'gigabyte',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HJS2JLJ&Quantity.1=1',
-      model: 'eagle oc',
-      series: '3080',
-      url: 'https://www.amazon.sg/dp/B08HJS2JLJ',
-    },
-{
-      brand: 'asus',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HH5WF97&Quantity.1=1',
-      model: 'tuf oc',
-      series: '3080',
-      url: 'https://www.amazon.sg/dp/B08HH5WF97',
-    },
-{
-      brand: 'asus',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HHDP9DW&Quantity.1=1',
-      model: 'tuf',
-      series: '3080',
-      url: 'https://www.amazon.sg/dp/B08HHDP9DW',
-    },
-{
-      brand: 'asus',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08J6F174Z&Quantity.1=1',
-      model: 'strix oc',
-      series: '3080',
-      url: 'https://www.amazon.sg/dp/B08J6F174Z',
-    },
-{
-      brand: 'msi',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR5SXPS&Quantity.1=1',
+    {
       model: 'ventus 3x oc',
-      series: '3080',
       url: 'https://www.amazon.sg/dp/B08HR5SXPS',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR5SXPS&Quantity.1=1',
     },
-{
-      brand: 'zotac',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HJNKT3P&Quantity.1=1',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3080', [
+    {
+      model: 'ftw3 ultra',
+      url: 'https://www.amazon.sg/dp/B08HR3Y5GQ',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR3Y5GQ&Quantity.1=1',
+    },
+    {
+      model: 'xc3 ultra',
+      url: 'https://www.amazon.sg/dp/B08HR55YB5',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR55YB5&Quantity.1=1',
+    },
+    {
+      model: 'ftw3',
+      url: 'https://www.amazon.sg/dp/B08HR3DPGW',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR3DPGW&Quantity.1=1',
+    },
+    {
+      model: 'xc3',
+      url: 'https://www.amazon.sg/dp/B08HR4RJ3Q',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR4RJ3Q&Quantity.1=1',
+    },
+    {
+      model: 'xc3 black',
+      url: 'https://www.amazon.sg/dp/B08HR6FMF3',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HR6FMF3&Quantity.1=1',
+    },
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3080', [
+    {
+      model: 'gaming oc',
+      url: 'https://www.amazon.sg/dp/B08HJTH61J',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HJTH61J&Quantity.1=1',
+    },
+    {
+      model: 'eagle oc',
+      url: 'https://www.amazon.sg/dp/B08HJS2JLJ',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HJS2JLJ&Quantity.1=1',
+    },
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3080', [
+    {
+      model: 'tuf oc',
+      url: 'https://www.amazon.sg/dp/B08HH5WF97',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HH5WF97&Quantity.1=1',
+    },
+    {
+      model: 'tuf',
+      url: 'https://www.amazon.sg/dp/B08HHDP9DW',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HHDP9DW&Quantity.1=1',
+    },
+    {
+      model: 'strix oc',
+      url: 'https://www.amazon.sg/dp/B08J6F174Z',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08J6F174Z&Quantity.1=1',
+    },
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3080', [
+    {
       model: 'trinity',
-      series: '3080',
       url: 'https://www.amazon.sg/dp/B08HJNKT3P',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HJNKT3P&Quantity.1=1',
     },
-{
-      brand: 'zotac',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HVV2P4Z&Quantity.1=1',
+    {
       model: 'trinity oc',
-      series: '3080',
       url: 'https://www.amazon.sg/dp/B08HVV2P4Z',
-    }
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08HVV2P4Z&Quantity.1=1',
+    },
+  ]),
+
 ];

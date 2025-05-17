@@ -1,76 +1,76 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for canadacomputers 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'strix oc',
-      series: '3090',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181841&language=en',
     },
-{
-      brand: 'evga',
-      model: 'ftw3 ultra',
-      series: '3090',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181854&language=en',
-    },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3090',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181413&language=en',
     },
-{
-      brand: 'zotac',
-      model: 'trinity',
-      series: '3090',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181419&language=en',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3090', [
+    {
+      model: 'ftw3 ultra',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181854&language=en',
     },
-{
-      brand: 'gigabyte',
-      model: 'gaming oc',
-      series: '3090',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181351&language=en',
-    },
-{
-      brand: 'msi',
-      model: 'gaming x trio',
-      series: '3090',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181350&language=en',
-    },
-{
-      brand: 'msi',
-      model: 'ventus 3x',
-      series: '3090',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181349&language=en',
-    },
-{
-      brand: 'evga',
+    {
       model: 'xc3 ultra',
-      series: '3090',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181853&language=en',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3090', [
+    {
+      model: 'trinity',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181419&language=en',
+    },
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
+      model: 'gaming oc',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181351&language=en',
+    },
+    {
       model: 'aorus xtreme',
-      series: '3090',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183096&language=en',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3090',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181352&language=en',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus master',
-      series: '3090',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183097&language=en',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3090',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=184164&language=en',
-    }
+    },
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
+      model: 'gaming x trio',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181350&language=en',
+    },
+    {
+      model: 'ventus 3x',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181349&language=en',
+    },
+  ]),
+
 ];

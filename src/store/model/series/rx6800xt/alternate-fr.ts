@@ -1,10 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for alternate-fr rx6800xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6800xt', [
+    {
       model: 'aorus master',
-      series: 'rx6800xt',
       url: 'https://www.alternate.fr/html/product/1705712',
-    }
+    },
+  ]),
+
 ];

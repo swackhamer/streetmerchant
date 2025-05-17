@@ -1,10 +1,15 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for nvidia-es 3080ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'nvidia',
-      model: 'founders edition',
-      series: '3080ti',
+  // NVIDIA Founders Edition
+  ...createFoundersEditionLinks('3080ti', [
+    {
       url: 'https://shop.nvidia.com/es-es/geforce/store/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080%20Ti&manufacturer=NVIDIA',
-    }
+    },
+  ]),
+
 ];

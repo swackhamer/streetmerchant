@@ -1,12 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for amd-de rx6700xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/de/direct-buy/5496921400/de?add-to-cart=true',
-      model: 'amd reference',
-      series: 'rx6700xt',
+  // AMD Reference
+  ...createAmdReferenceLinks('rx6700xt', [
+    {
       url: 'https://www.amd.com/de/direct-buy/5496921400/de',
-    }
+      cartUrl: 'https://www.amd.com/de/direct-buy/5496921400/de?add-to-cart=true',
+    },
+  ]),
+
 ];

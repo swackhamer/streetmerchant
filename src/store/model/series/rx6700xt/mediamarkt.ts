@@ -1,16 +1,25 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for mediamarkt rx6700xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'asrock',
+  // Asrock Cards
+  ...createBrandSeriesLinks('asrock', 'rx6700xt', [
+    {
       model: 'phantom gaming oc',
-      series: 'rx6700xt',
       url: 'https://www.mediamarkt.de/de/product/-85340951.html',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6700xt', [
+    {
       model: 'aorus elite',
-      series: 'rx6700xt',
       url: 'https://www.mediamarkt.de/de/product/-2728671.html',
-    }
+    },
+  ]),
+
 ];

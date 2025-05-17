@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for noelleeming
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const NoelLeeming: Store = {
+/**
+ * Noelleeming store
+ */
+export const Noelleeming = createStandardStore({
+  name: 'noelleeming',
+  country: 'NZ',
   currency: '$',
   labels: {
     inStock: [
@@ -11,32 +21,5 @@ export const NoelLeeming: Store = {
       },
     ],
   },
-  links: [
-    {
-      brand: 'sony',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://www.noelleeming.co.nz/prod192865.html',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://www.noelleeming.co.nz/prod192879.html',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.noelleeming.co.nz/prod193770.html',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series s',
-      series: 'xboxss',
-      url: 'https://www.noelleeming.co.nz/prod200475.html',
-    },
-  ],
-  name: 'noelleeming',
-  country: 'NZ',
-};
+
+});

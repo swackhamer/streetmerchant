@@ -1,8 +1,17 @@
-import {Store} from './store';
+/**
+ * Store configuration for smythstoys-ie
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const SmythsToysIE: Store = {
+/**
+ * SmythstoysIe store
+ */
+export const SmythstoysIe = createEuropeanStore({
+  name: 'smythstoys-ie',
+  country: 'IE',
   currency: '€',
-  disableAdBlocker: true,
   labels: {
     inStock: {
       container: '#addToCartButton',
@@ -17,21 +26,6 @@ export const SmythsToysIE: Store = {
       text: ['out of stock'],
     },
   },
-  links: [
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.smythstoys.com/ie/en-ie/video-games-and-tablets/xbox-gaming/xbox-series-x-%7c-s/xbox-series-x-%7c-s-consoles/xbox-series-x-1tb-console/p/192012',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://www.smythstoys.com/ie/en-ie/video-games-and-tablets/playstation-5/playstation-5-consoles/playstation-5-console/p/191259',
-    },
-  ],
-  name: 'smythstoys-ie',
-  country: 'IE',
-  waitUntil: 'domcontentloaded',
-};
+  disableAdBlocker: true,
+
+});

@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for ao
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const AO: Store = {
+/**
+ * Ao store
+ */
+export const Ao = createStandardStore({
+  name: 'ao',
+  country: 'UK',
   currency: '£',
   labels: {
     outOfStock: {
@@ -8,20 +18,5 @@ export const AO: Store = {
       text: ['currently unavailable'],
     },
   },
-  links: [
-    {
-      brand: 'sony',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://ao.com/brands/playstation',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://ao.com/brands/playstation',
-    },
-  ],
-  name: 'ao',
-  country: 'UK',
-};
+
+});

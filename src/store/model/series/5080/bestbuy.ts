@@ -1,81 +1,78 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy 5080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'nvidia',
-      cartUrl: 'https://api.bestbuy.com/click/-/6614153/cart',
-      model: 'founders edition',
-      series: '5080',
+  // NVIDIA Founders Edition
+  ...createFoundersEditionLinks('5080', [
+    {
       url: 'https://api.bestbuy.com/click/-/6614153/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6614153/cart',
     },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6616102/cart',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '5080', [
+    {
       model: 'windforce oc',
-      series: '5080',
       url: 'https://api.bestbuy.com/click/-/6616102/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6616102/cart',
     },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6615925/cart',
+    {
       model: 'gaming oc',
-      series: '5080',
       url: 'https://api.bestbuy.com/click/-/6615925/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6615925/cart',
     },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6615927/cart',
+    {
       model: 'aorus xtreme waterforce',
-      series: '5080',
       url: 'https://api.bestbuy.com/click/-/6615927/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6615927/cart',
     },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6615934/cart',
+    {
       model: 'master ice',
-      series: '5080',
       url: 'https://api.bestbuy.com/click/-/6615934/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6615934/cart',
     },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6615924/cart',
+    {
       model: 'master',
-      series: '5080',
       url: 'https://api.bestbuy.com/click/-/6615924/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6615924/cart',
     },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6616100/cart',
+    {
       model: 'aero oc sff',
-      series: '5080',
       url: 'https://api.bestbuy.com/click/-/6616100/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6616100/cart',
     },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6615928/cart',
+    {
       model: 'aorus xtreme waterforce wb',
-      series: '5080',
       url: 'https://api.bestbuy.com/click/-/6615928/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6615928/cart',
     },
-{
-      brand: 'asus',
-      cartUrl: 'https://api.bestbuy.com/click/-/6615831/cart',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '5080', [
+    {
       model: 'prime',
-      series: '5080',
       url: 'https://api.bestbuy.com/click/-/6615831/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6615831/cart',
     },
-{
-      brand: 'msi',
-      cartUrl: 'https://api.bestbuy.com/click/-/6615232/cart',
-      model: 'suprim soc',
-      series: '5080',
-      url: 'https://api.bestbuy.com/click/-/6615232/pdp',
-    },
-{
-      brand: 'asus',
-      cartUrl: 'https://api.bestbuy.com/click/-//cart',
+    {
       model: 'tuf gaming oc',
-      series: '5080',
       url: 'https://api.bestbuy.com/click/-//pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-//cart',
+    },
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '5080', [
+    {
+      model: 'suprim soc',
+      url: 'https://api.bestbuy.com/click/-/6615232/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6615232/cart',
+    },
+  ]),
+
 ];

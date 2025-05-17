@@ -1,12 +1,16 @@
-import {Store} from './store';
-import {Browser} from 'puppeteer';
-import {getSeriesLinks} from './series-links';
+/**
+ * Store configuration for akinformatica
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
 /**
- * Store implementation for Akinformatica
- * Using series-based organization for product links
+ * Akinformatica store
  */
-export const Akinformatica: Store = {
+export const Akinformatica = createEuropeanStore({
+  name: 'akinformatica',
+  country: 'IT',
   currency: '€',
   labels: {
     inStock: [
@@ -34,16 +38,5 @@ export const Akinformatica: Store = {
       },
     ],
   },
-  links: [], // Start with an empty links array that will be populated dynamically
-  name: 'akinformatica',
-  country: 'IT',
-  successStatusCodes: [[0, 399], 404],
-  
-  /**
-   * Setup action to dynamically load links from series subdirectories
-   */
-  setupAction: async (browser: Browser) => {
-    // Load links for all active series
-    Akinformatica.links = await getSeriesLinks('akinformatica');
-  }
-};
+  successStatusCodes: [[0, 399]]
+});

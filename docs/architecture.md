@@ -92,6 +92,45 @@ This approach improves code maintainability by:
 3. Providing better organization for large numbers of links
 4. Enabling series-specific optimizations
 
+### Implementation Details
+
+The series-based organization is implemented as follows:
+
+1. **Directory Structure**:
+   ```
+   src/store/model/series/
+   ├── 3050/              # RTX 3050 series links
+   │   ├── amazon.ts
+   │   ├── bestbuy.ts
+   │   └── ...
+   ├── 3060/              # RTX 3060 series links
+   │   ├── amazon.ts
+   │   └── ...
+   ├── 3070/              # RTX 3070 series links
+   │   └── ...
+   ├── common/            # Shared utilities
+   │   ├── link-factory.ts
+   │   ├── store-factory.ts
+   │   └── label-sets.ts
+   ├── series-names.ts    # Utility to discover available series
+   └── store.ts           # Re-export of Store interface
+   ```
+
+2. **Dynamic Loading**:
+   - Implemented via the `auto-load-series.ts` module that hooks into store initialization
+   - Each store automatically loads relevant links based on configured series
+   - The `setupAction` hook injects series links into the store's links collection
+
+3. **Helper Files**:
+   - Common utilities like `link-factory.ts` are re-exported from the series directory
+   - The `store.ts` file re-exports the Store interface for easier importing
+   - The `series-names.ts` module provides utility functions to discover available series
+
+4. **Link Management**:
+   - Links are loaded and cached by the `series-links.ts` module
+   - The `filterLinks` function applies filtering based on brand, model, and price
+   - Link validation ensures all links have required properties and valid formats
+
 See the [Series-Based Links Documentation](series-based-links.md) for more details.
 
 ## Data Flow
@@ -155,25 +194,39 @@ The new series-based organization system structures product links by series:
 
 ```typescript
 // Series-specific link file (src/store/model/series/3080/amazon.ts)
+import {Link, Brand, Series, Model} from '../../store';
+import {createLink} from '../common/link-factory';
+
 export const links: Link[] = [
-  {
-    brand: 'nvidia',
-    model: 'founders edition',
-    series: '3080',
+  // Using type assertions for better type safety
+  createLink({
+    brand: 'nvidia' as Brand,
+    model: 'founders edition' as Model,
+    series: '3080' as Series,
     url: 'https://www.amazon.com/nvidia-rtx-3080',
-  },
+  }),
   // More links...
 ];
 
-// Store implementation with dynamic link loading
-export const Amazon: Store = {
-  // Store configuration...
-  links: [], // Empty initial array
-  setupAction: async (browser: Browser) => {
-    // Load links for active series
-    Amazon.links = await getSeriesLinks('amazon');
+// Store implementation with automatic link loading
+import {createStandardStore} from './common/store-factory';
+
+export const Amazon = createStandardStore({
+  name: 'amazon',
+  country: 'us',
+  currency: '$',
+  labels: {
+    inStock: {
+      container: '.a-button-input[name="submit.add-to-cart"]',
+      text: ['add to cart'],
+    },
+    outOfStock: {
+      container: '#outOfStock',
+      text: ['currently unavailable'],
+    },
   },
-};
+  links: [], // Empty initial array - will be populated by auto-load-series
+});
 ```
 
 This approach improves organization, performance, and maintainability.

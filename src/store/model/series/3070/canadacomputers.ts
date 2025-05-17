@@ -1,106 +1,96 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for canadacomputers 3070 series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3070', [
+    {
       model: 'gaming oc',
-      series: '3070',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183099&language=en',
     },
-{
-      brand: 'msi',
-      model: 'gaming x trio',
-      series: '3070',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183210&language=en',
-    },
-{
-      brand: 'asus',
-      model: 'dual oc',
-      series: '3070',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183636&language=en',
-    },
-{
-      brand: 'asus',
-      model: 'strix oc',
-      series: '3070',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183637&language=en',
-    },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3070',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=184168&language=en',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus master',
-      series: '3070',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=184167&language=en',
     },
-{
-      brand: 'zotac',
-      model: 'twin edge oc',
-      series: '3070',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183561&language=en',
-    },
-{
-      brand: 'zotac',
-      model: 'twin edge oc',
-      series: '3070',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=185675&language=en',
-    },
-{
-      brand: 'msi',
-      model: 'ventus 2x oc',
-      series: '3070',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183208&language=en',
-    },
-{
-      brand: 'zotac',
-      model: 'twin edge',
-      series: '3070',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183560&language=en',
-    },
-{
-      brand: 'asus',
-      model: 'tuf oc',
-      series: '3070',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183638&language=en',
-    },
-{
-      brand: 'evga',
-      model: 'ftw3 ultra',
-      series: '3070',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183498&language=en',
-    },
-{
-      brand: 'msi',
-      model: 'ventus 3x oc',
-      series: '3070',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183209&language=en',
-    },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3070',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183100&language=en',
     },
-{
-      brand: 'evga',
-      model: 'xc3 ultra',
-      series: '3070',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183499&language=en',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3070', [
+    {
+      model: 'gaming x trio',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183210&language=en',
     },
-{
-      brand: 'msi',
+    {
+      model: 'ventus 2x oc',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183208&language=en',
+    },
+    {
+      model: 'ventus 3x oc',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183209&language=en',
+    },
+    {
       model: 'suprim x',
-      series: '3070',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=186197&language=en',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3070', [
+    {
+      model: 'dual oc',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183636&language=en',
+    },
+    {
       model: 'strix oc',
-      series: '3070',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183637&language=en',
+    },
+    {
+      model: 'tuf oc',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183638&language=en',
+    },
+    {
+      model: 'strix oc',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=186310&language=en',
-    }
+    },
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3070', [
+    {
+      model: 'twin edge oc',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183561&language=en',
+    },
+    {
+      model: 'twin edge oc',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=185675&language=en',
+    },
+    {
+      model: 'twin edge',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183560&language=en',
+    },
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3070', [
+    {
+      model: 'ftw3 ultra',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183498&language=en',
+    },
+    {
+      model: 'xc3 ultra',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=183499&language=en',
+    },
+  ]),
+
 ];

@@ -1,22 +1,28 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for storm 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'strix oc',
-      series: '3090',
       url: 'https://www.stormcomputers.com.au/product/asus-geforce-rtx3090-rog-strix-gaming-oc-24gb-gddr6x-rog-strix-rtx3090-o24g-gaming/',
     },
-{
-      brand: 'colorful',
+  ]),
+
+  // Colorful Cards
+  ...createBrandSeriesLinks('colorful', '3090', [
+    {
       model: 'battle-ax',
-      series: '3090',
       url: 'https://www.stormcomputers.com.au/product/colorful-geforce-rtx-3090-nb/',
     },
-{
-      brand: 'colorful',
+    {
       model: 'igame advanced oc',
-      series: '3090',
       url: 'https://www.stormcomputers.com.au/product/colorful-igame-geforce-rtx-3090-advanced-oc/',
-    }
+    },
+  ]),
+
 ];

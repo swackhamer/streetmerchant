@@ -1,16 +1,25 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for alternate-de rx6700xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'asrock',
+  // Asrock Cards
+  ...createBrandSeriesLinks('asrock', 'rx6700xt', [
+    {
       model: 'challenger',
-      series: 'rx6700xt',
       url: 'https://www.alternate.de/html/product/1757933',
     },
-{
-      brand: 'xfx',
+  ]),
+
+  // Xfx Cards
+  ...createBrandSeriesLinks('xfx', 'rx6700xt', [
+    {
       model: 'merc',
-      series: 'rx6700xt',
       url: 'https://www.alternate.de/html/product/1730305',
-    }
+    },
+  ]),
+
 ];

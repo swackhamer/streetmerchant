@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for walmart 3060ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'evga',
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3060ti', [
+    {
       model: 'ftw3 ultra',
-      series: '3060ti',
       url: 'https://www.walmart.com/ip/912221235',
-    }
+    },
+  ]),
+
 ];

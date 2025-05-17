@@ -1,82 +1,80 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for wipoid 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'evga',
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3090', [
+    {
       model: 'ftw3 ultra',
-      series: '3090',
       url: 'https://www.wipoid.com/evga-geforce-rtx-3090-ftw3-ultra-gaming-24gb-gddr6x.html',
     },
-{
-      brand: 'asus',
+    {
+      model: 'xc3 ultra',
+      url: 'https://www.wipoid.com/evga-geforce-rtx-3090-xc3-ultra-gaming-24gb-gddr6x.html',
+    },
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'ekwb',
-      series: '3090',
       url: 'https://www.wipoid.com/asus-ekwb-geforce-rtx-3090-24gb-gddr6x.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix white',
-      series: '3090',
       url: 'https://www.wipoid.com/asus-rog-strix-geforce-rtx-3090-oc-edition-white-24gb-gddr6x.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3090',
       url: 'https://www.wipoid.com/asus-tuf-gaming-geforce-rtx-3090-oc-edition-24gb-gddr6x.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3090',
       url: 'https://www.wipoid.com/asus-rog-strix-geforce-rtx-3090-oc-edition-24gb-gddr6x.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix',
-      series: '3090',
       url: 'https://www.wipoid.com/asus-rog-strix-geforce-rtx-3090-24gb-gddr6x.html',
     },
-{
-      brand: 'gigabyte',
-      model: 'gaming oc',
-      series: '3090',
-      url: 'https://www.wipoid.com/gigabyte-geforce-rtx-3090-oc-24gb-gddr6x.html',
-    },
-{
-      brand: 'msi',
-      model: 'gaming x trio',
-      series: '3090',
-      url: 'https://www.wipoid.com/msi-geforce-rtx-3090-gaming-x-trio-24gb-gddr6x.html',
-    },
-{
-      brand: 'gigabyte',
-      model: 'eagle oc',
-      series: '3090',
-      url: 'https://www.wipoid.com/gigabyte-geforce-rtx-3090-eagle-oc-24gb-gddr6x.html',
-    },
-{
-      brand: 'asus',
+    {
       model: 'tuf',
-      series: '3090',
       url: 'https://www.wipoid.com/asus-tuf-gaming-geforce-rtx-3090-24gb-gddr6x.html',
     },
-{
-      brand: 'zotac',
-      model: 'trinity',
-      series: '3090',
-      url: 'https://www.wipoid.com/zotac-gaming-geforce-rtx-3090-trinity-24gb-gddr6x.html',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
+      model: 'gaming oc',
+      url: 'https://www.wipoid.com/gigabyte-geforce-rtx-3090-oc-24gb-gddr6x.html',
     },
-{
-      brand: 'msi',
+    {
+      model: 'eagle oc',
+      url: 'https://www.wipoid.com/gigabyte-geforce-rtx-3090-eagle-oc-24gb-gddr6x.html',
+    },
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
+      model: 'gaming x trio',
+      url: 'https://www.wipoid.com/msi-geforce-rtx-3090-gaming-x-trio-24gb-gddr6x.html',
+    },
+    {
       model: 'ventus 3x',
-      series: '3090',
       url: 'https://www.wipoid.com/msi-geforce-rtx-3090-ventus-3x-24gb-gddr6x.html',
     },
-{
-      brand: 'evga',
-      model: 'xc3 ultra',
-      series: '3090',
-      url: 'https://www.wipoid.com/evga-geforce-rtx-3090-xc3-ultra-gaming-24gb-gddr6x.html',
-    }
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3090', [
+    {
+      model: 'trinity',
+      url: 'https://www.wipoid.com/zotac-gaming-geforce-rtx-3090-trinity-24gb-gddr6x.html',
+    },
+  ]),
+
 ];

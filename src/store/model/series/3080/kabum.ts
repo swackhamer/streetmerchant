@@ -1,40 +1,48 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for kabum 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080', [
+    {
       model: 'gaming x trio',
-      series: '3080',
       url: 'https://www.kabum.com.br/produto/127409',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x',
-      series: '3080',
       url: 'https://www.kabum.com.br/produto/127410',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3080', [
+    {
       model: 'tuf',
-      series: '3080',
       url: 'https://www.kabum.com.br/produto/121138',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3080', [
+    {
       model: 'eagle oc',
-      series: '3080',
       url: 'https://www.kabum.com.br/produto/128078',
     },
-{
-      brand: 'evga',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3080', [
+    {
       model: 'ichill x3',
-      series: '3080',
       url: 'https://www.kabum.com.br/produto/128051',
     },
-{
-      brand: 'evga',
+    {
       model: 'ichill x3',
-      series: '3080',
       url: 'https://www.kabum.com.br/produto/128052',
-    }
+    },
+  ]),
+
 ];

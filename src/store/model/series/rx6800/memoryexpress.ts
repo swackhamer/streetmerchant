@@ -1,34 +1,45 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for memoryexpress rx6800 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', 'rx6800', [
+    {
       model: 'strix oc',
-      series: 'rx6800',
       url: 'https://www.memoryexpress.com/Products/MX00114938',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: 'rx6800',
       url: 'https://www.memoryexpress.com/Products/MX00114937',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6800', [
+    {
       model: 'gaming oc',
-      series: 'rx6800',
       url: 'https://www.memoryexpress.com/Products/MX00115049',
     },
-{
-      brand: 'sapphire',
+  ]),
+
+  // Sapphire Cards
+  ...createBrandSeriesLinks('sapphire', 'rx6800', [
+    {
       model: 'nitro+',
-      series: 'rx6800',
       url: 'https://www.memoryexpress.com/Products/MX00115123',
     },
-{
-      brand: 'xfx',
+  ]),
+
+  // Xfx Cards
+  ...createBrandSeriesLinks('xfx', 'rx6800', [
+    {
       model: 'merc',
-      series: 'rx6800',
       url: 'https://www.memoryexpress.com/Products/MX00114997',
-    }
+    },
+  ]),
+
 ];

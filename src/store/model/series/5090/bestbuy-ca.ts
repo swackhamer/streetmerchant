@@ -1,52 +1,55 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy-ca 5090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'nvidia',
-      model: 'founders edition',
-      series: '5090',
+  // NVIDIA Founders Edition
+  ...createFoundersEditionLinks('5090', [
+    {
       url: 'https://www.bestbuy.ca/en-ca/product/18931348',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '5090', [
+    {
       model: 'astral oc',
-      series: '5090',
       url: 'https://www.bestbuy.ca/en-ca/product/19177947',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf',
-      series: '5090',
       url: 'https://www.bestbuy.ca/en-ca/product/18969272',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '5090', [
+    {
       model: 'ventus 3x',
-      series: '5090',
       url: 'https://www.bestbuy.ca/en-ca/product/18938755',
     },
-{
-      brand: 'msi',
+    {
       model: 'suprim liquid x',
-      series: '5090',
       url: 'https://www.bestbuy.ca/en-ca/product/18938754',
     },
-{
-      brand: 'msi',
+    {
       model: 'vanguard',
-      series: '5090',
       url: 'https://www.bestbuy.ca/en-ca/product/18938752',
     },
-{
-      brand: 'msi',
+    {
       model: 'gaming trio oc',
-      series: '5090',
       url: 'https://www.bestbuy.ca/en-ca/product/18938751',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '5090', [
+    {
       model: 'solid',
-      series: '5090',
       url: 'https://www.bestbuy.ca/en-ca/product/18931631',
-    }
+    },
+  ]),
+
 ];

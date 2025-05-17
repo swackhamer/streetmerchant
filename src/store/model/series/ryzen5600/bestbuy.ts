@@ -1,11 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy ryzen5600 series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
-      cartUrl: 'https://api.bestbuy.com/click/-/6438943/cart',
+  // Amd Cards
+  ...createBrandSeriesLinks('amd', 'ryzen5600', [
+    {
       model: '5600x',
-      series: 'ryzen5600',
       url: 'https://api.bestbuy.com/click/-/6438943/pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-/6438943/cart',
+    },
+  ]),
+
 ];

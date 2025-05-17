@@ -1,0 +1,26 @@
+
+    {
+      brand: 'sony',
+      model: 'ps5 console',
+      series: 'sonyps5c',
+      url: 'https://www.thewarehouse.co.nz/R2695122.html',
+    },
+    {
+      brand: 'sony',
+      model: 'ps5 digital',
+      series: 'sonyps5de',
+      url: 'https://www.thewarehouse.co.nz/R2695123.html',
+    },
+    {
+      brand: 'microsoft',
+      model: 'xbox series x',
+      series: 'xboxsx',
+      url: 'https://www.thewarehouse.co.nz/R2708605.html',
+    },
+    {
+      brand: 'microsoft',
+      model: 'xbox series s',
+      series: 'xboxss',
+      url: 'https://www.thewarehouse.co.nz/R2708604.html',
+    },
+  

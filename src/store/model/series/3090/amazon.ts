@@ -1,92 +1,87 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for amazon 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
-      cartUrl:
-        'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08J6GMWCQ&Quantity.1=1',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'strix oc',
-      series: '3090',
       url: 'https://www.amazon.com/dp/B08J6GMWCQ',
+      cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08J6GMWCQ&Quantity.1=1',
     },
-{
-      brand: 'zotac',
-      cartUrl:
-        'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HJQ182D&Quantity.1=1',
-      model: 'trinity',
-      series: '3090',
-      url: 'https://www.amazon.com/dp/B08HJQ182D',
-    },
-{
-      brand: 'pny',
-      cartUrl:
-        'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HBQWBHH&Quantity.1=1',
-      model: 'xlr8 revel',
-      series: '3090',
-      url: 'https://www.amazon.com/dp/B08HBQWBHH',
-    },
-{
-      brand: 'pny',
-      cartUrl:
-        'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HBVX53D&Quantity.1=1',
-      model: 'xlr8 revel',
-      series: '3090',
-      url: 'https://www.amazon.com/dp/B08HBVX53D',
-    },
-{
-      brand: 'msi',
-      cartUrl:
-        'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HRBW6VB&Quantity.1=1',
-      model: 'gaming x trio',
-      series: '3090',
-      url: 'https://www.amazon.com/dp/B08HRBW6VB',
-    },
-{
-      brand: 'msi',
-      cartUrl:
-        'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HR9D2JS&Quantity.1=1',
-      model: 'ventus 3x',
-      series: '3090',
-      url: 'https://www.amazon.com/dp/B08HR9D2JS',
-    },
-{
-      brand: 'evga',
-      cartUrl:
-        'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08J5F3G18&Quantity.1=1',
-      model: 'ftw3 ultra',
-      series: '3090',
-      url: 'https://www.amazon.com/dp/B08J5F3G18',
-    },
-{
-      brand: 'gigabyte',
-      cartUrl:
-        'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HJRF2CN&Quantity.1=1',
-      model: 'gaming oc',
-      series: '3090',
-      url: 'https://www.amazon.com/dp/B08HJRF2CN',
-    },
-{
-      brand: 'gigabyte',
-      cartUrl:
-        'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HJPDJTY&Quantity.1=1',
-      model: 'eagle oc',
-      series: '3090',
-      url: 'https://www.amazon.com/dp/B08HJPDJTY',
-    },
-{
-      brand: 'asus',
-      cartUrl:
-        'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HJGNJ81&Quantity.1=1',
+    {
       model: 'tuf oc',
-      series: '3090',
       url: 'https://www.amazon.com/dp/B08HJGNJ81',
+      cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HJGNJ81&Quantity.1=1',
     },
-{
-      brand: 'asus',
-      cartUrl:
-        'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HJLLF7G&Quantity.1=1',
+    {
       model: 'tuf oc',
-      series: '3090',
       url: 'https://www.amazon.com/dp/B08HJLLF7G',
-    }
+      cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HJLLF7G&Quantity.1=1',
+    },
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3090', [
+    {
+      model: 'trinity',
+      url: 'https://www.amazon.com/dp/B08HJQ182D',
+      cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HJQ182D&Quantity.1=1',
+    },
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3090', [
+    {
+      model: 'xlr8 revel',
+      url: 'https://www.amazon.com/dp/B08HBQWBHH',
+      cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HBQWBHH&Quantity.1=1',
+    },
+    {
+      model: 'xlr8 revel',
+      url: 'https://www.amazon.com/dp/B08HBVX53D',
+      cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HBVX53D&Quantity.1=1',
+    },
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
+      model: 'gaming x trio',
+      url: 'https://www.amazon.com/dp/B08HRBW6VB',
+      cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HRBW6VB&Quantity.1=1',
+    },
+    {
+      model: 'ventus 3x',
+      url: 'https://www.amazon.com/dp/B08HR9D2JS',
+      cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HR9D2JS&Quantity.1=1',
+    },
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3090', [
+    {
+      model: 'ftw3 ultra',
+      url: 'https://www.amazon.com/dp/B08J5F3G18',
+      cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08J5F3G18&Quantity.1=1',
+    },
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
+      model: 'gaming oc',
+      url: 'https://www.amazon.com/dp/B08HJRF2CN',
+      cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HJRF2CN&Quantity.1=1',
+    },
+    {
+      model: 'eagle oc',
+      url: 'https://www.amazon.com/dp/B08HJPDJTY',
+      cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HJPDJTY&Quantity.1=1',
+    },
+  ]),
+
 ];

@@ -1,22 +1,29 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for alternate-fr rx6900xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'xfx',
+  // Xfx Cards
+  ...createBrandSeriesLinks('xfx', 'rx6900xt', [
+    {
       model: 'merc',
-      series: 'rx6900xt',
       url: 'https://www.alternate.fr/html/product/1759745',
     },
-{
-      brand: 'xfx',
+    {
       model: 'merc',
-      series: 'rx6900xt',
       url: 'https://www.alternate.fr/html/product/1713052',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', 'rx6900xt', [
+    {
       model: 'gaming trio',
-      series: 'rx6900xt',
       url: 'https://www.alternate.fr/html/product/1751166',
-    }
+    },
+  ]),
+
 ];

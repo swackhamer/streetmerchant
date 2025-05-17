@@ -1,32 +1,32 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for asus 3060ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
-      itemNumber: '202012AM030000004',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3060ti', [
+    {
       model: 'tuf oc',
-      series: '3060ti',
       url: 'https://store.asus.com/us/item/202012AM030000004',
+      itemNumber: '202012AM030000004',
     },
-{
-      brand: 'asus',
-      itemNumber: '202012AM030000003',
+    {
       model: 'dual',
-      series: '3060ti',
       url: 'https://store.asus.com/us/item/202012AM030000003',
+      itemNumber: '202012AM030000003',
     },
-{
-      brand: 'asus',
-      itemNumber: '202012AM030000005',
+    {
       model: 'strix oc',
-      series: '3060ti',
       url: 'https://store.asus.com/us/item/202012AM030000005',
+      itemNumber: '202012AM030000005',
     },
-{
-      brand: 'asus',
-      itemNumber: '202012AM030000002',
+    {
       model: 'ko',
-      series: '3060ti',
       url: 'https://store.asus.com/us/item/202012AM030000002',
-    }
+      itemNumber: '202012AM030000002',
+    },
+  ]),
+
 ];

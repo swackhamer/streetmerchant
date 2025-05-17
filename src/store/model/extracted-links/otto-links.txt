@@ -1,0 +1,14 @@
+
+    {
+      brand: 'test:brand',
+      model: 'test:model',
+      series: 'test:series',
+      url: 'https://www.otto.de/p/playstation-5-medienfernbedienung-1170617135#variationId=1170617136',
+    },
+    {
+      brand: 'sony',
+      labels: {
+        inStock: {
+          container:
+            '.js_shortInfo__variationName.prd_shortInfo__variationName',
+          text: ['konsole'

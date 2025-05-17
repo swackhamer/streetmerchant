@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for vsgamers ryzen5950 series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
+  // Amd Cards
+  ...createBrandSeriesLinks('amd', 'ryzen5950', [
+    {
       model: '5950x',
-      series: 'ryzen5950',
       url: 'https://www.vsgamers.es/product/procesador-amd-ryzen-9-5950x-34-ghz',
-    }
+    },
+  ]),
+
 ];

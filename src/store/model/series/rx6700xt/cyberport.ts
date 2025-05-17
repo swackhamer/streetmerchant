@@ -1,52 +1,57 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for cyberport rx6700xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', 'rx6700xt', [
+    {
       model: 'dual',
-      series: 'rx6700xt',
       url: 'https://www.cyberport.de?DEEP=2E07-A0A',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: 'rx6700xt',
       url: 'https://www.cyberport.de?DEEP=2E07-A08',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6700xt', [
+    {
       model: 'aorus elite',
-      series: 'rx6700xt',
       url: 'https://www.cyberport.de?DEEP=2E21-326',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle',
-      series: 'rx6700xt',
       url: 'https://www.cyberport.de?DEEP=2E21-324',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: 'rx6700xt',
       url: 'https://www.cyberport.de?DEEP=2E21-325',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', 'rx6700xt', [
+    {
       model: 'gaming x',
-      series: 'rx6700xt',
       url: 'https://www.cyberport.de?DEEP=2E12-3FZ',
     },
-{
-      brand: 'msi',
+    {
       model: 'mech 2x oc',
-      series: 'rx6700xt',
       url: 'https://www.cyberport.de?DEEP=2E12-3G0',
     },
-{
-      brand: 'sapphire',
+  ]),
+
+  // Sapphire Cards
+  ...createBrandSeriesLinks('sapphire', 'rx6700xt', [
+    {
       model: 'pulse oc',
-      series: 'rx6700xt',
       url: 'https://www.cyberport.de?DEEP=2E01-7JQ',
-    }
+    },
+  ]),
+
 ];

@@ -1,184 +1,164 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for ldlc-es 3080ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3080ti', [
+    {
       model: 'strix',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438231.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438230.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438229.html',
     },
-{
-      brand: 'evga',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3080ti', [
+    {
       model: 'ftw3 ultra',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438264.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'ftw3',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438537.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 ultra',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438539.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 black',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438543.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'ftw3 ultra hybrid',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00440781.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438542.html',
     },
-{
-      brand: 'gainward',
+  ]),
+
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3080ti', [
+    {
       model: 'phoenix',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438243.html',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3080ti', [
+    {
       model: 'gaming oc',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438260.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438262.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438269.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438258.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus master',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438279.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438259.html',
     },
-{
-      brand: 'inno3d',
+  ]),
+
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3080ti', [
+    {
       model: 'ichill frostbite',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438516.html',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'x3 oc',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438517.html',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'ichill x3',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438292.html',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'ichill x4',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438564.html',
     },
-{
-      brand: 'kfa2',
+  ]),
+
+  // Kfa2 Cards
+  ...createBrandSeriesLinks('kfa2', '3080ti', [
+    {
       model: 'sg oc',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438228.html',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080ti', [
+    {
       model: 'gaming x trio',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438240.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'suprim x',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438242.html  ',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x oc',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438520.html',
     },
-{
-      brand: 'palit',
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3080ti', [
+    {
       model: 'gamerock oc',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438238.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'gaming pro',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438241.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'gamerock',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438263.html',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3080ti', [
+    {
       model: 'amp holo',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438234.html',
     },
-{
-      brand: 'zotac',
+    {
       model: 'trinity',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438232.html',
     },
-{
-      brand: 'zotac',
+    {
       model: 'trinity oc',
-      series: '3080ti',
       url: 'https://www.ldlc.com/es-es/ficha/PB00438233.html',
-    }
+    },
+  ]),
+
 ];

@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for playstation
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const PlayStation: Store = {
+/**
+ * Playstation store
+ */
+export const Playstation = createStandardStore({
+  name: 'playstation',
+  country: 'US',
   currency: '$',
   labels: {
     inStock: [
@@ -18,44 +28,5 @@ export const PlayStation: Store = {
       text: ['Out of Stock'],
     },
   },
-  links: [
-    {
-      brand: 'test:brand',
-      itemNumber: '3005715',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://direct.playstation.com/en-us/accessories/accessory/dualsense-wireless-controller.3005715',
-    },
-    {
-      brand: 'sony',
-      itemNumber: '3005816',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://direct.playstation.com/en-us/consoles/console/playstation5-console.3005816',
-    },
-    {
-      brand: 'sony',
-      itemNumber: '3005817',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://direct.playstation.com/en-us/consoles/console/playstation5-digital-edition-console.3005817',
-    },
-  ],
-  name: 'playstation',
-  country: 'US',
-  realTimeInventoryLookup: async (itemNumber: string) => {
-    const request_url =
-      'https://api.direct.playstation.com/commercewebservices/ps-direct-us/products/productList?fields=BASIC&productCodes=' +
-      itemNumber;
-    const response = await fetch(request_url);
-    const response_json = await response.json();
-    if (
-      response_json.products[0].stock.stockLevelStatus !== 'outOfStock' &&
-      response_json.products[0].maxOrderQuantity >= 0
-    ) {
-      return true;
-    }
 
-    return false;
-  },
-};
+});

@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for bpmpower
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const BpmPower: Store = {
+/**
+ * Bpmpower store
+ */
+export const Bpmpower = createEuropeanStore({
+  name: 'bpmpower',
+  country: 'IT',
   currency: '€',
   labels: {
     inStock: {
@@ -16,26 +26,5 @@ export const BpmPower: Store = {
       text: ['Esaurito'],
     },
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.bpm-power.com/it/online/audio/auricolari-audio/apple-airpods-2-2019-b1492931',
-    },
-    {
-      brand: 'msi',
-      model: 'ventus 3x oc',
-      series: '3070',
-      url: 'https://www.bpm-power.com/it/online/componenti-pc/schede-video/nvidia-msi-rtx-3070-b1710142',
-    },
-    {
-      brand: 'amd',
-      model: '5800x',
-      series: 'ryzen5800',
-      url: 'https://www.bpm-power.com/it/online/componenti-pc/processori/cpu-amd-ryzen-7-b1710075',
-    },
-  ],
-  name: 'bpm-power',
-  country: 'IT',
-};
+
+});

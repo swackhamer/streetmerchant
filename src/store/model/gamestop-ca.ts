@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for gamestop-ca
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const GamestopCA: Store = {
+/**
+ * GamestopCa store
+ */
+export const GamestopCa = createStandardStore({
+  name: 'gamestop-ca',
+  country: 'CA',
   currency: '$',
   labels: {
     maxPrice: {
@@ -11,38 +21,5 @@ export const GamestopCA: Store = {
       text: ['add to cart'],
     },
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.gamestop.ca/Switch/Games/727918/mario-kart-8-deluxe',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://www.gamestop.ca/PS5/Games/877522',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://www.gamestop.ca/PS5/Games/877523',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.gamestop.ca/Xbox%20Series%20X/Games/877779/xbox-series-x',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series s',
-      series: 'xboxss',
-      url: 'https://www.gamestop.ca/Xbox%20Series%20X/Games/877780/xbox-series-s',
-    },
-  ],
-  name: 'gamestop-ca',
-  country: 'CA',
-};
+
+});

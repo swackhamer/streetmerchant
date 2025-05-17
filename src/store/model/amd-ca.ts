@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for amd-ca
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const AmdCa: Store = {
+/**
+ * AmdCa store
+ */
+export const AmdCa = createStandardStore({
+  name: 'amd-ca',
+  country: 'CA',
   currency: '$',
   labels: {
     inStock: {
@@ -12,46 +22,5 @@ export const AmdCa: Store = {
       euroFormat: false,
     },
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.amd.com/en/direct-buy/5458373400/ca',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5458373400/ca?add-to-cart=true',
-      model: 'amd reference',
-      series: 'rx6800',
-      url: 'https://www.amd.com/en/direct-buy/5458373400/ca',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5458372800/ca?add-to-cart=true',
-      model: 'amd reference',
-      series: 'rx6800xt',
-      url: 'https://www.amd.com/en/direct-buy/5458372800/ca',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5458372200/ca?add-to-cart=true',
-      model: 'amd reference',
-      series: 'rx6900xt',
-      url: 'https://www.amd.com/en/direct-buy/5458372200/ca',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5496921500/ca?add-to-cart=true',
-      model: 'amd reference',
-      series: 'rx6800xt',
-      url: 'https://www.amd.com/en/direct-buy/5496921500/ca',
-    },
-  ],
-  name: 'amd-ca',
-  country: 'CA',
-};
+
+});

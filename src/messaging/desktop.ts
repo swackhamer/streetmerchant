@@ -43,7 +43,7 @@ export function sendDesktopNotification(link: Link, store: Store) {
     };
     
     // Send notification with detailed error handling
-    notifierInstance.notify(notificationOptions, (error, response, metadata) => {
+    notifierInstance.notify(notificationOptions, (error: any, response: any, metadata: any) => {
       if (error) {
         logger.error('✖ desktop notification failed', error);
         return;
@@ -61,15 +61,15 @@ export function sendDesktopNotification(link: Link, store: Store) {
     });
     
     // Set up event handlers
-    notifierInstance.on('click', () => {
+    (notifierInstance as any).on('click', () => {
       logger.debug('Desktop notification clicked');
     });
     
-    notifierInstance.on('timeout', () => {
+    (notifierInstance as any).on('timeout', () => {
       logger.debug('Desktop notification timed out');
     });
     
-    notifierInstance.on('action', (notifierObj, options, index) => {
+    (notifierInstance as any).on('action', (notifierObj: any, options: any, index: any) => {
       logger.debug(`Desktop notification action clicked: ${index}`);
       if (index === 0) { // "Open URL" action
         import('open').then(({default: open}) => {
@@ -84,7 +84,7 @@ export function sendDesktopNotification(link: Link, store: Store) {
  * Gets the appropriate notifier instance for the current platform
  * @returns The platform-specific notifier instance
  */
-function getPlatformNotifier() {
+function getPlatformNotifier(): any {
   const platform = process.platform;
   
   switch (platform) {

@@ -1,22 +1,33 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for memoryexpress rx6800xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'sapphire',
+  // Sapphire Cards
+  ...createBrandSeriesLinks('sapphire', 'rx6800xt', [
+    {
       model: 'pulse',
-      series: 'rx6800xt',
       url: 'https://www.memoryexpress.com/Products/MX00115124',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6800xt', [
+    {
       model: 'gaming oc',
-      series: 'rx6800xt',
       url: 'https://www.memoryexpress.com/Products/MX00115048',
     },
-{
-      brand: 'xfx',
+  ]),
+
+  // Xfx Cards
+  ...createBrandSeriesLinks('xfx', 'rx6800xt', [
+    {
       model: 'merc',
-      series: 'rx6800xt',
       url: 'https://www.memoryexpress.com/Products/MX00114996',
-    }
+    },
+  ]),
+
 ];

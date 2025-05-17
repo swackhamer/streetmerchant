@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for cyberport-at 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
       model: 'aorus master',
-      series: '3090',
       url: 'https://www.cyberport.at?DEEP=2e21-532',
-    }
+    },
+  ]),
+
 ];

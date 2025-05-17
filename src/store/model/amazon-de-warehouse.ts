@@ -1,7 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for amazon-de-warehouse
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const AmazonDeWarehouse: Store = {
-  backoffStatusCodes: [403, 429, 503],
+/**
+ * AmazonDeWarehouse store
+ */
+export const AmazonDeWarehouse = createEuropeanStore({
+  name: 'amazon-de-warehouse',
+  country: 'DE',
   currency: '€',
   labels: {
     captcha: {
@@ -33,38 +42,6 @@ export const AmazonDeWarehouse: Store = {
       },
     ],
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.amazon.de/gp/offer-listing/B07PW9VBK5',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://www.amazon.de/gp/offer-listing/B08H93ZRK9',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://www.amazon.de/gp/offer-listing/B08H98GVK8',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series s',
-      series: 'xboxss',
-      url: 'https://www.amazon.de/gp/offer-listing/B087VM5XC6',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.amazon.de/gp/offer-listing/B08H93ZRLL',
-    },
-  ],
-  name: 'amazon-de-warehouse',
-  country: 'DE',
-};
+  backoffStatusCodes: [403, 429, 503],
+
+});

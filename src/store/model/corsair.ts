@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for corsair
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const Corsair: Store = {
+/**
+ * Corsair store
+ */
+export const Corsair = createStandardStore({
+  name: 'corsair',
+  country: 'US',
   currency: '$',
   labels: {
     inStock: {
@@ -12,26 +22,5 @@ export const Corsair: Store = {
       euroFormat: false,
     },
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.corsair.com/us/en/Categories/Products/Power-Supply-Units/Power-Supply-Units-Advanced/SF-Series/p/CP-9020181-NA',
-    },
-    {
-      brand: 'corsair',
-      model: '750 platinum',
-      series: 'sf',
-      url: 'https://www.corsair.com/us/en/Categories/Products/Power-Supply-Units/Power-Supply-Units-Advanced/SF-Series/p/CP-9020186-NA',
-    },
-    {
-      brand: 'corsair',
-      model: '600 platinum',
-      series: 'sf',
-      url: 'https://www.corsair.com/us/en/Categories/Products/Power-Supply-Units/Power-Supply-Units-Advanced/SF-Series/p/CP-9020182-NA',
-    },
-  ],
-  name: 'corsair',
-  country: 'US',
-};
+
+});

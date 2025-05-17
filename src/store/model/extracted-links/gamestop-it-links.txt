@@ -1,0 +1,14 @@
+
+    {
+      brand: 'microsoft',
+      model: 'xbox series x',
+      series: 'xboxsx',
+      url: 'https://www.gamestop.it/XboxSeriesX/Games/132509',
+    },
+    {
+      brand: 'microsoft',
+      model: 'xbox series s',
+      series: 'xboxss',
+      url: 'https://www.gamestop.it/XboxSeriesX/Games/128220',
+    },
+  

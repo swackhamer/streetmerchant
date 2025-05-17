@@ -1,16 +1,20 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for alternate-fr 3080ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'zotac',
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3080ti', [
+    {
       model: 'trinity',
-      series: '3080ti',
       url: 'https://www.alternate.fr/html/product/1752971',
     },
-{
-      brand: 'zotac',
+    {
       model: 'amp holo',
-      series: '3080ti',
       url: 'https://www.alternate.fr/html/product/1752975',
-    }
+    },
+  ]),
+
 ];

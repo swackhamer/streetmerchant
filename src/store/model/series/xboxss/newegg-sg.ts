@@ -1,12 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for newegg-sg xboxss series
+ */
 export const links: Link[] = [
-{
-      brand: 'microsoft',
-      cartUrl:
-        'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=N82E16868105274',
+  // Microsoft Cards
+  ...createBrandSeriesLinks('microsoft', 'xboxss', [
+    {
       model: 'xbox series s',
-      series: 'xboxss',
       url: 'https://www.newegg.com/global/sg-en/p/N82E16868105274',
-    }
+      cartUrl: 'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=N82E16868105274',
+    },
+  ]),
+
 ];

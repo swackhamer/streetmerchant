@@ -1,74 +1,81 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'nvidia',
-      cartUrl: 'https://api.bestbuy.com/click/-/6429434/cart',
-      model: 'founders edition',
-      series: '3090',
+  // NVIDIA Founders Edition
+  ...createFoundersEditionLinks('3090', [
+    {
       url: 'https://api.bestbuy.com/click/-/6429434/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6429434/cart',
     },
-{
-      brand: 'asus',
-      cartUrl: 'https://api.bestbuy.com/click/-/6432447/cart',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'strix',
-      series: '3090',
       url: 'https://api.bestbuy.com/click/-/6432447/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6432447/cart',
     },
-{
-      brand: 'asus',
-      cartUrl: 'https://api.bestbuy.com/click/-/6432446/cart',
+    {
       model: 'tuf',
-      series: '3090',
       url: 'https://api.bestbuy.com/click/-/6432446/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6432446/cart',
     },
-{
-      brand: 'msi',
-      cartUrl: 'https://api.bestbuy.com/click/-/6430215/cart',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
       model: 'ventus 3x oc',
-      series: '3090',
       url: 'https://api.bestbuy.com/click/-/6430215/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6430215/cart',
     },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6430623/cart',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
       model: 'gaming',
-      series: '3090',
       url: 'https://api.bestbuy.com/click/-/6430623/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6430623/cart',
     },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6430624/cart',
+    {
       model: 'eagle',
-      series: '3090',
       url: 'https://api.bestbuy.com/click/-/6430624/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6430624/cart',
     },
-{
-      brand: 'evga',
-      cartUrl: 'https://api.bestbuy.com/click/-/6434363/cart',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3090', [
+    {
       model: 'xc3',
-      series: '3090',
       url: 'https://api.bestbuy.com/click/-/6434363/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6434363/cart',
     },
-{
-      brand: 'evga',
-      cartUrl: 'https://api.bestbuy.com/click/-/6436193/cart',
+    {
       model: 'ftw3',
-      series: '3090',
       url: 'https://api.bestbuy.com/click/-/6436193/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6436193/cart',
     },
-{
-      brand: 'evga',
-      cartUrl: 'https://api.bestbuy.com/click/-/6436192/cart',
+    {
       model: 'ftw3 ultra',
-      series: '3090',
       url: 'https://api.bestbuy.com/click/-/6436192/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6436192/cart',
     },
-{
-      brand: 'pny',
-      cartUrl: 'https://api.bestbuy.com/click/-/6432657/cart',
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3090', [
+    {
       model: 'xlr8 revel',
-      series: '3090',
       url: 'https://api.bestbuy.com/click/-/6432657/pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-/6432657/cart',
+    },
+  ]),
+
 ];

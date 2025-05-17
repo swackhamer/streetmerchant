@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for medimax
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const Medimax: Store = {
+/**
+ * Medimax store
+ */
+export const Medimax = createEuropeanStore({
+  name: 'medimax',
+  country: 'DE',
   currency: '€',
   labels: {
     inStock: [
@@ -22,26 +32,5 @@ export const Medimax: Store = {
       text: ['Ihr MEDIMAX Team'],
     },
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.medimax.de/p/1311642/drivesmart-51-lmt-d-ce',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://www.medimax.de/p/1315336/play-station-5-825gb-ssd',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://www.medimax.de/p/1315337/play-station-5-digital-edition-825gb-ssd',
-    },
-  ],
-  name: 'medimax',
-  country: 'DE',
-};
+
+});

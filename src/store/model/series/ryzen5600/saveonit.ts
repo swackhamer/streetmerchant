@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for saveonit ryzen5600 series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
+  // Amd Cards
+  ...createBrandSeriesLinks('amd', 'ryzen5600', [
+    {
       model: '5600x',
-      series: 'ryzen5600',
       url: 'https://www.saveonit.com.au/product/amd-ryzen-5-5600x-6-core-3-7-ghz-cpu-100-100000065box',
-    }
+    },
+  ]),
+
 ];

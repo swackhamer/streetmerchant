@@ -1,274 +1,228 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for materiel 3070 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3070', [
+    {
       model: 'dual',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202009220022.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'dual oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202009220023.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202009170013.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202009170012.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc white',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202101130115.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202009290076.html',
     },
-{
-      brand: 'evga',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3070', [
+    {
       model: 'ftw3',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010210030.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'ftw3 ultra',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010210031.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 black',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010210023.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010210026.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 ultra',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010210027.html',
     },
-{
-      brand: 'gainward',
+  ]),
+
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3070', [
+    {
       model: 'phantom',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010090025.html',
     },
-{
-      brand: 'gainward',
+    {
       model: 'phantom gs',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010090024.html',
     },
-{
-      brand: 'gainward',
+    {
       model: 'phoenix',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010090028.html',
     },
-{
-      brand: 'gainward',
+    {
       model: 'phoenix gs',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010090027.html',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3070', [
+    {
       model: 'master',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010200076.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202101050074.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202009290086.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202009290085.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010200077.html',
     },
-{
-      brand: 'inno3d',
+  ]),
+
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3070', [
+    {
       model: 'ichill x3',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010050072.html',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'ichill x4',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010050071.html',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'twin x2 oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010050078.html',
     },
-{
-      brand: 'kfa2',
+  ]),
+
+  // Kfa2 Cards
+  ...createBrandSeriesLinks('kfa2', '3070', [
+    {
       model: 'oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202011160124.html',
     },
-{
-      brand: 'kfa2',
+    {
       model: 'ex oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202011160123.html',
     },
-{
-      brand: 'kfa2',
+    {
       model: 'sg',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202009220060.html',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3070', [
+    {
       model: 'gaming trio',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202102220081.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'gaming x trio',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010010052.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'suprim',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202012070074.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'suprim x',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202011030097.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 2x',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202102240027.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 2x oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010010051.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202102220079.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010010050.html',
     },
-{
-      brand: 'palit',
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3070', [
+    {
       model: 'gamerock',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010090017.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'gamerock oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010090016.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'gaming pro',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010090023.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'gaming pro oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010090022.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'jetstream',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010090021.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'jetstream oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202010090019.html',
     },
-{
-      brand: 'pny',
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3070', [
+    {
       model: 'uprising',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202009070042.html',
     },
-{
-      brand: 'pny',
+    {
       model: 'xlr8 epic x',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202009070043.html',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3070', [
+    {
       model: 'amp holo',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202101120117.html',
     },
-{
-      brand: 'zotac',
+    {
       model: 'twin edge oc',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202009180082.html',
     },
-{
-      brand: 'zotac',
+    {
       model: 'twin edge oc white',
-      series: '3070',
       url: 'https://www.materiel.net/produit/202012220093.html',
-    }
+    },
+  ]),
+
 ];

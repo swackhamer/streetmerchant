@@ -1,16 +1,25 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for dcomp rx6800xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6800xt', [
+    {
       model: 'gaming oc',
-      series: 'rx6800xt',
       url: 'https://dcomp.com.au/productdetail/3421',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', 'rx6800xt', [
+    {
       model: 'gaming x trio',
-      series: 'rx6800xt',
       url: 'https://dcomp.com.au/productdetail/3387',
-    }
+    },
+  ]),
+
 ];

@@ -424,5 +424,5 @@ export async function tryLookupAndLoop(store: Store) {
 }
 
 function storeShouldRun(store: Store) {
-  return getStores().has(store.name) && abortctl.available('app.running');
+  return getStores().some(s => s.name === store.name) && abortctl.available('app.running');
 }

@@ -1,10 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for dcomp rx6900xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6900xt', [
+    {
       model: 'gaming oc',
-      series: 'rx6900xt',
       url: 'https://dcomp.com.au/productdetail/3422',
-    }
+    },
+  ]),
+
 ];

@@ -1,16 +1,20 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for igame 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'colorful',
+  // Colorful Cards
+  ...createBrandSeriesLinks('colorful', '3090', [
+    {
       model: 'battle-ax',
-      series: '3090',
       url: 'https://www.igamecomputer.com.au/products/mc022?_pos=1&_sid=b07af5f7e&_ss=r',
     },
-{
-      brand: 'colorful',
+    {
       model: 'igame advanced oc',
-      series: '3090',
       url: 'https://www.igamecomputer.com.au/products/mc021?_pos=2&_sid=b07af5f7e&_ss=r',
-    }
+    },
+  ]),
+
 ];

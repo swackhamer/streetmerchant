@@ -1,172 +1,144 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for proshop-no 3070 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3070', [
+    {
       model: 'gaming x trio',
-      series: '3070',
       url: 'https://www.proshop.no/2876871',
     },
-{
-      brand: 'msi',
+    {
       model: 'suprim',
-      series: '3070',
       url: 'https://www.proshop.no/2908888',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 2x oc',
-      series: '3070',
       url: 'https://www.proshop.no/2876873',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x oc',
-      series: '3070',
       url: 'https://www.proshop.no/2876875',
     },
-{
-      brand: 'msi',
+    {
       model: 'suprim x',
-      series: '3070',
       url: 'https://www.proshop.no/2885269',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3070', [
+    {
       model: 'strix oc',
-      series: '3070',
       url: 'https://www.proshop.no/2876845',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3070',
       url: 'https://www.proshop.no/2876856',
     },
-{
-      brand: 'gigabyte',
-      model: 'gaming oc',
-      series: '3070',
-      url: 'https://www.proshop.no/2878390',
-    },
-{
-      brand: 'gigabyte',
-      model: 'aorus master',
-      series: '3070',
-      url: 'https://www.proshop.no/2878383',
-    },
-{
-      brand: 'gigabyte',
-      model: 'vision oc',
-      series: '3070',
-      url: 'https://www.proshop.no/2878392',
-    },
-{
-      brand: 'gigabyte',
-      model: 'eagle oc',
-      series: '3070',
-      url: 'https://www.proshop.no/2878386',
-    },
-{
-      brand: 'asus',
+    {
       model: 'dual oc',
-      series: '3070',
       url: 'https://www.proshop.no/2876853',
     },
-{
-      brand: 'asus',
+    {
       model: 'dual',
-      series: '3070',
       url: 'https://www.proshop.no/2876851',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf',
-      series: '3070',
       url: 'https://www.proshop.no/2876854',
     },
-{
-      brand: 'inno3d',
-      model: 'twin x2 oc',
-      series: '3070',
-      url: 'https://www.proshop.no/2883917',
-    },
-{
-      brand: 'asus',
+    {
       model: 'strix',
-      series: '3070',
       url: 'https://www.proshop.no/2876843',
     },
-{
-      brand: 'gigabyte',
-      model: 'eagle',
-      series: '3070',
-      url: 'https://www.proshop.no/2878385',
-    },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3070',
       url: 'https://www.proshop.no/2911575',
     },
-{
-      brand: 'inno3d',
-      model: 'twin x2',
-      series: '3070',
-      url: 'https://www.proshop.no/2883916',
-    },
-{
-      brand: 'inno3d',
-      model: 'ichill x4',
-      series: '3070',
-      url: 'https://www.proshop.no/2883919',
-    },
-{
-      brand: 'asus',
+    {
       model: 'strix',
-      series: '3070',
       url: 'https://www.proshop.no/2911574',
     },
-{
-      brand: 'asus',
+    {
       model: 'ekwb',
-      series: '3070',
       url: 'https://www.proshop.no/2911577',
     },
-{
-      brand: 'inno3d',
+    {
+      model: 'strix',
+      url: 'https://www.proshop.no/2912910',
+    },
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3070', [
+    {
+      model: 'gaming oc',
+      url: 'https://www.proshop.no/2878390',
+    },
+    {
+      model: 'aorus master',
+      url: 'https://www.proshop.no/2878383',
+    },
+    {
+      model: 'vision oc',
+      url: 'https://www.proshop.no/2878392',
+    },
+    {
+      model: 'eagle oc',
+      url: 'https://www.proshop.no/2878386',
+    },
+    {
+      model: 'eagle',
+      url: 'https://www.proshop.no/2878385',
+    },
+  ]),
+
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3070', [
+    {
+      model: 'twin x2 oc',
+      url: 'https://www.proshop.no/2883917',
+    },
+    {
+      model: 'twin x2',
+      url: 'https://www.proshop.no/2883916',
+    },
+    {
+      model: 'ichill x4',
+      url: 'https://www.proshop.no/2883919',
+    },
+    {
       model: 'ichill x3',
-      series: '3070',
       url: 'https://www.proshop.no/2883918',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3070', [
+    {
       model: 'twin edge',
-      series: '3070',
       url: 'https://www.proshop.no/2911956',
     },
-{
-      brand: 'zotac',
+    {
       model: 'amp holo',
-      series: '3070',
       url: 'https://www.proshop.no/2912456',
     },
-{
-      brand: 'palit',
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3070', [
+    {
       model: 'gamerock oc',
-      series: '3070',
       url: 'https://www.proshop.no/2914382',
     },
-{
-      brand: 'palit',
+    {
       model: 'gamerock oc',
-      series: '3070',
       url: 'https://www.proshop.no/2914381',
     },
-{
-      brand: 'asus',
-      model: 'strix',
-      series: '3070',
-      url: 'https://www.proshop.no/2912910',
-    }
+  ]),
+
 ];

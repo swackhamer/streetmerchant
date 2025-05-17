@@ -1,7 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for elcorteingles
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const Elcorteingles: Store = {
-  backoffStatusCodes: [403, 429, 503],
+/**
+ * Elcorteingles store
+ */
+export const Elcorteingles = createEuropeanStore({
+  name: 'elcorteingles',
+  country: 'ES',
   currency: '€',
   labels: {
     // Captcha: {
@@ -34,38 +43,6 @@ export const Elcorteingles: Store = {
       },
     ],
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.elcorteingles.es/moda/A26324406/',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://www.elcorteingles.es/videojuegos/A37046604',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://www.elcorteingles.es/videojuegos/A37046605',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.elcorteingles.es/videojuegos/A37047078',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series s',
-      series: 'xboxss',
-      url: 'https://www.elcorteingles.es/videojuegos/A37047080',
-    },
-  ],
-  name: 'elcorteingles',
-  country: 'ES',
-};
+  backoffStatusCodes: [403, 429, 503],
+
+});

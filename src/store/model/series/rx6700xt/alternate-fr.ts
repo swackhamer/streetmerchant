@@ -1,34 +1,41 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for alternate-fr rx6700xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'xfx',
+  // Xfx Cards
+  ...createBrandSeriesLinks('xfx', 'rx6700xt', [
+    {
       model: 'qick',
-      series: 'rx6700xt',
       url: 'https://www.alternate.fr/html/product/1746956',
     },
-{
-      brand: 'gigabyte',
-      model: 'gaming oc',
-      series: 'rx6700xt',
-      url: 'https://www.alternate.fr/html/product/1723391',
-    },
-{
-      brand: 'gigabyte',
-      model: 'aorus',
-      series: 'rx6700xt',
-      url: 'https://www.alternate.fr/html/product/17411817',
-    },
-{
-      brand: 'xfx',
+    {
       model: 'merc',
-      series: 'rx6700xt',
       url: 'https://www.alternate.fr/html/product/1730305',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6700xt', [
+    {
+      model: 'gaming oc',
+      url: 'https://www.alternate.fr/html/product/1723391',
+    },
+    {
+      model: 'aorus',
+      url: 'https://www.alternate.fr/html/product/17411817',
+    },
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', 'rx6700xt', [
+    {
       model: 'gaming x',
-      series: 'rx6700xt',
       url: 'https://www.alternate.fr/html/product/1730741',
-    }
+    },
+  ]),
+
 ];

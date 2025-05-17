@@ -100,6 +100,8 @@ SHOW_ONLY_SERIES=3080,3090
 SHOW_ONLY_MODELS=ftw3,strix
 ```
 
+With the series-based organization system, Streetmerchant will automatically load links from the appropriate series directories, making it easier to target specific hardware generations.
+
 ### Price Limits
 
 Set maximum prices to avoid notifications for overpriced items:

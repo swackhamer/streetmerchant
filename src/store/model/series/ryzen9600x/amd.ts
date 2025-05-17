@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for amd ryzen9600x series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
+  // Amd Cards
+  ...createBrandSeriesLinks('amd', 'ryzen9600x', [
+    {
       model: '9600x',
-      series: 'ryzen9600x',
       url: 'https://shop-us-en.amd.com/amd-ryzen-5-9600x-processor/',
-    }
+    },
+  ]),
+
 ];

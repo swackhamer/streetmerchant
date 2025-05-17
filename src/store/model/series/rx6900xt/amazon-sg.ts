@@ -1,20 +1,27 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for amazon-sg rx6900xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'sapphire',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08PHWJC8X&Quantity.1=1',
+  // Sapphire Cards
+  ...createBrandSeriesLinks('sapphire', 'rx6900xt', [
+    {
       model: 'amd reference',
-      series: 'rx6900xt',
       url: 'https://www.amazon.sg/dp/B08PHWJC8X',
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08PHWJC8X&Quantity.1=1',
     },
-{
-      brand: 'xfx',
-      cartUrl:
-        'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08PDQJVD9&Quantity.1=1',
+  ]),
+
+  // Xfx Cards
+  ...createBrandSeriesLinks('xfx', 'rx6900xt', [
+    {
       model: 'amd reference',
-      series: 'rx6900xt',
       url: 'https://www.amazon.sg/dp/B08PDQJVD9',
-    }
+      cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B08PDQJVD9&Quantity.1=1',
+    },
+  ]),
+
 ];

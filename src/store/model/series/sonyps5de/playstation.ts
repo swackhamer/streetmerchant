@@ -1,11 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for playstation sonyps5de series
+ */
 export const links: Link[] = [
-{
-      brand: 'sony',
-      itemNumber: '3005817',
+  // Sony Cards
+  ...createBrandSeriesLinks('sony', 'sonyps5de', [
+    {
       model: 'ps5 digital',
-      series: 'sonyps5de',
       url: 'https://direct.playstation.com/en-us/consoles/console/playstation5-digital-edition-console.3005817',
-    }
+      itemNumber: '3005817',
+    },
+  ]),
+
 ];

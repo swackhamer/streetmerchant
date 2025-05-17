@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for galaxus
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const Galaxus: Store = {
+/**
+ * Galaxus store
+ */
+export const Galaxus = createEuropeanStore({
+  name: 'galaxus',
+  country: 'DE',
   currency: '€',
   labels: {
     inStock: {
@@ -24,86 +34,5 @@ export const Galaxus: Store = {
       },
     ],
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.galaxus.de/de/product/11156643',
-    },
-    {
-      brand: 'amd',
-      model: '5600x',
-      series: 'ryzen5600',
-      url: 'https://www.galaxus.de/de/product/13987919',
-    },
-    {
-      brand: 'amd',
-      model: '5800x',
-      series: 'ryzen5800',
-      url: 'https://www.galaxus.de/de/product/13987918',
-    },
-    {
-      brand: 'amd',
-      model: '5900x',
-      series: 'ryzen5900',
-      url: 'https://www.galaxus.de/de/product/13987917',
-    },
-    {
-      brand: 'amd',
-      model: '5950x',
-      series: 'ryzen5950',
-      url: 'https://www.galaxus.de/de/product/13987916',
-    },
-    {
-      brand: 'amd',
-      model: '5950x',
-      series: 'ryzen5950',
-      url: 'https://www.galaxus.de/de/product/13987916',
-    },
-    {
-      brand: 'asrock',
-      model: 'challenger',
-      series: 'rx6700xt',
-      url: 'https://www.galaxus.de/de/product/15816697',
-    },
-    {
-      brand: 'asrock',
-      model: 'phantom gaming oc',
-      series: 'rx6700xt',
-      url: 'https://www.galaxus.de/de/product/15948741',
-    },
-    {
-      brand: 'asus',
-      model: 'tuf oc',
-      series: 'rx6700xt',
-      url: 'https://www.galaxus.de/de/product/15300561',
-    },
-    {
-      brand: 'gigabyte',
-      model: 'aorus elite',
-      series: 'rx6700xt',
-      url: 'https://www.galaxus.de/de/product/15301182',
-    },
-    {
-      brand: 'msi',
-      model: 'mech 2x oc',
-      series: 'rx6700xt',
-      url: 'https://www.galaxus.de/de/product/15301319',
-    },
-    {
-      brand: 'sapphire',
-      model: 'nitro+ oc',
-      series: 'rx6700xt',
-      url: 'https://www.galaxus.de/de/product/15059558',
-    },
-    {
-      brand: 'sapphire',
-      model: 'pulse',
-      series: 'rx6700xt',
-      url: 'https://www.galaxus.de/de/product/15059559',
-    },
-  ],
-  name: 'galaxus',
-  country: 'DE',
-};
+
+});

@@ -1,76 +1,75 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy-ca 5080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'nvidia',
-      model: 'founders edition',
-      series: '5080',
+  // NVIDIA Founders Edition
+  ...createFoundersEditionLinks('5080', [
+    {
       url: 'https://www.bestbuy.ca/en-ca/product/18931347',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '5080', [
+    {
       model: 'astral oc',
-      series: '5080',
       url: 'https://www.bestbuy.ca/en-ca/product/19177946',
     },
-{
-      brand: 'asus',
+    {
       model: 'prime',
-      series: '5080',
       url: 'https://www.bestbuy.ca/en-ca/product/18971064',
     },
-{
-      brand: 'msi',
+    {
+      model: 'prime',
+      url: 'https://www.bestbuy.ca/en-ca/product/18971064',
+    },
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '5080', [
+    {
       model: 'ventus 3x oc',
-      series: '5080',
       url: 'https://www.bestbuy.ca/en-ca/product/18938760',
     },
-{
-      brand: 'msi',
+    {
       model: 'gaming trio oc',
-      series: '5080',
       url: 'https://www.bestbuy.ca/en-ca/product/18938759',
     },
-{
-      brand: 'msi',
+    {
       model: 'suprim liquid x',
-      series: '5080',
       url: 'https://www.bestbuy.ca/en-ca/product/18938758',
     },
-{
-      brand: 'msi',
+    {
       model: 'suprim liquid soc',
-      series: '5080',
       url: 'https://www.bestbuy.ca/en-ca/product/18938757',
     },
-{
-      brand: 'msi',
+    {
       model: 'vanguard soc launch edition',
-      series: '5080',
       url: 'https://www.bestbuy.ca/en-ca/product/18938756',
     },
-{
-      brand: 'asus',
-      model: 'prime',
-      series: '5080',
-      url: 'https://www.bestbuy.ca/en-ca/product/18971064',
-    },
-{
-      brand: 'pny',
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '5080', [
+    {
       model: 'triple fan oc',
-      series: '5080',
       url: 'https://www.bestbuy.ca/en-ca/product/18934178',
     },
-{
-      brand: 'pny',
+    {
       model: 'epic x oc',
-      series: '5080',
       url: 'https://www.bestbuy.ca/en-ca/product/18934177',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '5080', [
+    {
       model: 'solid oc',
-      series: '5080',
       url: 'https://www.bestbuy.ca/en-ca/product/18931629',
-    }
+    },
+  ]),
+
 ];

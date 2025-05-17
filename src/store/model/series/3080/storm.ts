@@ -1,22 +1,24 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for storm 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'colorful',
+  // Colorful Cards
+  ...createBrandSeriesLinks('colorful', '3080', [
+    {
       model: 'igame ultra oc',
-      series: '3080',
       url: 'https://www.stormcomputers.com.au/product/colorful-igame-rtx-3080-ultra/',
     },
-{
-      brand: 'colorful',
+    {
       model: 'igame advanced oc',
-      series: '3080',
       url: 'https://www.stormcomputers.com.au/product/colorful-igame-geforce-igame-rtx-3080-advanced-10gb-graphics-card/',
     },
-{
-      brand: 'colorful',
+    {
       model: 'igame vulcan oc',
-      series: '3080',
       url: 'https://www.stormcomputers.com.au/product/igame-geforce-rtx-3080-vulcan-oc-10g-v/',
-    }
+    },
+  ]),
+
 ];

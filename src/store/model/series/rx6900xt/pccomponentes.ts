@@ -1,16 +1,25 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for pccomponentes rx6900xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6900xt', [
+    {
       model: 'gaming oc',
-      series: 'rx6900xt',
       url: 'https://www.pccomponentes.com/gigabyte-radeon-rx-6900-xt-gaming-oc-16gb-gddr6',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', 'rx6900xt', [
+    {
       model: 'tuf oc',
-      series: 'rx6900xt',
       url: 'https://www.pccomponentes.com/asus-tuf-amd-radeon-rx-6900xt-oc-16gb-gddr6',
-    }
+    },
+  ]),
+
 ];

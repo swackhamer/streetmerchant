@@ -1,22 +1,24 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for zotac 5090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'zotac',
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '5090', [
+    {
       model: 'solid',
-      series: '5090',
       url: 'https://www.zotac.com/us/product/graphics_card/zotac-gaming-geforce-rtx-5090-solid',
     },
-{
-      brand: 'zotac',
+    {
       model: 'solid oc',
-      series: '5090',
       url: 'https://www.zotac.com/us/product/graphics_card/zotac-gaming-geforce-rtx-5090-solid-oc',
     },
-{
-      brand: 'zotac',
+    {
       model: 'amp extreme infinity',
-      series: '5090',
       url: 'https://www.zotac.com/us/product/graphics_card/zotac-gaming-geforce-rtx-5090-amp-extreme-infinity',
-    }
+    },
+  ]),
+
 ];

@@ -1,16 +1,24 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for mediamarkt-at 3060ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'gainward',
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3060ti', [
+    {
       model: 'phoenix',
-      series: '3060ti',
       url: 'https://www.mediamarkt.at/de/product/-1815563.html',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3060ti', [
+    {
       model: 'dual',
-      series: '3060ti',
       url: 'https://www.mediamarkt.at/de/product/-1812392.html',
-    }
+    },
+  ]),
+
 ];

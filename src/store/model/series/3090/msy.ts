@@ -1,58 +1,56 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for msy 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'tuf oc',
-      series: '3090',
       url: 'https://www.msy.com.au/asus-nvidia-geforce-tuf-rtx3090-o24g-gaming-24gb-rtx-3090-tuf-gaming-oc-pci-e-vga-card',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
       model: 'aorus master',
-      series: '3090',
       url: 'https://www.msy.com.au/gigabyte-nvidia-geforce-n3090aorus-m-24gd-24gb-rtx-3090-aorus-master-pci-e-vga-card',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme',
-      series: '3090',
       url: 'https://www.msy.com.au/gigabyte-nvidia-geforce-n3090aorus-x-24gd-24gb-rtx-3090-aorus-xtreme-pci-e-vga-card',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3090',
       url: 'https://www.msy.com.au/gigabyte-nvidia-n3090eagle-oc-24gd-24gb-rtx-3090-eagle-oc-pci-e-vga-card',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3090',
       url: 'https://www.msy.com.au/gigabyte-nvidia-n3090gaming-oc-24gd-24gb-rtx-3090-gaming-oc-pci-e-vga-card',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3090',
       url: 'https://www.msy.com.au/gigabyte-nvidia-geforce-n3090vision-oc-24gd-24gb-rtx-3090-vision-oc-vga-card',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
       model: 'ventus 3x oc',
-      series: '3090',
       url: 'https://www.msy.com.au/msi-nvidia-geforce-rtx-3090-ventus-3x-24g-oc-24gb-rtx-3090-ventus-3x-oc-pci-e-vga-card',
     },
-{
-      brand: 'msi',
+    {
       model: 'gaming x trio',
-      series: '3090',
       url: 'https://www.msy.com.au/msi-nvidia-geforce-rtx-3090-gaming-x-trio-24g-24gb-rtx-3090-gaming-x-trio-pci-e-vga-card',
     },
-{
-      brand: 'msi',
+    {
       model: 'suprim x',
-      series: '3090',
       url: 'https://www.msy.com.au/msi-nvidia-geforce-rtx-3090-suprim-x-24g-24gb-rtx-3090-suprim-x-pci-e-vga-card',
-    }
+    },
+  ]),
+
 ];

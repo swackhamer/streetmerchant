@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for gamestop xboxss series
+ */
 export const links: Link[] = [
-{
-      brand: 'microsoft',
+  // Microsoft Cards
+  ...createBrandSeriesLinks('microsoft', 'xboxss', [
+    {
       model: 'xbox series s',
-      series: 'xboxss',
       url: 'https://www.gamestop.com/video-games/xbox-series-x/consoles/products/xbox-series-s-digital-edition/B224746K.html',
-    }
+    },
+  ]),
+
 ];

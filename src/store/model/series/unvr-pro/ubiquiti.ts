@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for ubiquiti unvr-pro series
+ */
 export const links: Link[] = [
-{
-      brand: 'ubiquiti',
+  // Ubiquiti Cards
+  ...createBrandSeriesLinks('ubiquiti', 'unvr-pro', [
+    {
       model: 'network video recorder pro',
-      series: 'unvr-pro',
       url: 'https://store.ui.com/collections/unifi-protect/products/unvr-pro',
-    }
+    },
+  ]),
+
 ];

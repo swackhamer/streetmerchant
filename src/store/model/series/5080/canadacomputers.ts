@@ -1,16 +1,24 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for canadacomputers 5080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'zotac',
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '5080', [
+    {
       model: 'solid',
-      series: '5080',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=268152&language=en',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '5080', [
+    {
       model: 'windforce oc',
-      series: '5080',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=268141&language=en',
-    }
+    },
+  ]),
+
 ];

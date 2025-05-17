@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for ubiquiti udm-us series
+ */
 export const links: Link[] = [
-{
-      brand: 'ubiquiti',
+  // Ubiquiti Cards
+  ...createBrandSeriesLinks('ubiquiti', 'udm-us', [
+    {
       model: 'dream machine',
-      series: 'udm-us',
       url: 'https://store.ui.com/collections/unifi-network-unifi-os-consoles/products/udm-us',
-    }
+    },
+  ]),
+
 ];

@@ -1,226 +1,192 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for ldlc 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'evga',
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3080', [
+    {
       model: 'xc3 ultra',
-      series: '3080',
       url: 'https://www.ldlc.com/fr-be/fiche/PB00369303.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'ftw3 ultra',
-      series: '3080',
       url: 'https://www.ldlc.com/fr-be/fiche/PB00369299.html',
     },
-{
-      brand: 'msi',
-      model: 'gaming x trio',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00369299.html',
-    },
-{
-      brand: 'gigabyte',
-      model: 'gaming oc',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00369299.html',
-    },
-{
-      brand: 'gigabyte',
-      model: 'eagle oc',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00369072.html',
-    },
-{
-      brand: 'gigabyte',
-      model: 'aorus',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00376208.html',
-    },
-{
-      brand: 'inno3d',
-      model: 'twin x2',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00368690.html',
-    },
-{
-      brand: 'palit',
-      model: 'gaming pro',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00369094.html',
-    },
-{
-      brand: 'gainward',
-      model: 'phoenix',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00369150.html',
-    },
-{
-      brand: 'evga',
+    {
       model: 'xc3 black',
-      series: '3080',
       url: 'https://www.ldlc.com/fr-be/fiche/PB00369298.html',
     },
-{
-      brand: 'palit',
-      model: 'gamerock',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00386334.html',
-    },
-{
-      brand: 'kfa2',
-      model: 'sg',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00396037.html',
-    },
-{
-      brand: 'zotac',
-      model: 'amp holo',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00375625.html',
-    },
-{
-      brand: 'asus',
-      model: 'tuf',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00368844.html',
-    },
-{
-      brand: 'msi',
-      model: 'ventus 2x oc',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00368506.html',
-    },
-{
-      brand: 'gigabyte',
-      model: 'aorus xtreme',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00390466.html',
-    },
-{
-      brand: 'asus',
-      model: 'tuf',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00368789.html',
-    },
-{
-      brand: 'gigabyte',
-      model: 'aorus xtreme waterforce',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00398370.html',
-    },
-{
-      brand: 'msi',
-      model: 'suprim x',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00391682.html',
-    },
-{
-      brand: 'gigabyte',
-      model: 'vision oc',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00376207.html',
-    },
-{
-      brand: 'inno3d',
-      model: 'ichill x3',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00368691.html',
-    },
-{
-      brand: 'gainward',
-      model: 'phoenix gs',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00369158.html',
-    },
-{
-      brand: 'evga',
+    {
       model: 'xc3',
-      series: '3080',
       url: 'https://www.ldlc.com/fr-be/fiche/PB00369268.html',
     },
-{
-      brand: 'inno3d',
-      model: 'ichill frostbite',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00391624.html',
-    },
-{
-      brand: 'evga',
+    {
       model: 'ftw3 ultra hybrid',
-      series: '3080',
       url: 'https://www.ldlc.com/fr-be/fiche/PB00398046.html',
     },
-{
-      brand: 'kfa2',
-      model: 'sg',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00368931.html',
-    },
-{
-      brand: 'palit',
-      model: 'gaming pro',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00375448.html',
-    },
-{
-      brand: 'asus',
-      model: 'strix',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00375431.html',
-    },
-{
-      brand: 'evga',
+    {
       model: 'ftw3',
-      series: '3080',
       url: 'https://www.ldlc.com/fr-be/fiche/PB00369265.html',
     },
-{
-      brand: 'gainward',
-      model: 'phantom gs',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00390727.html',
-    },
-{
-      brand: 'evga',
+    {
       model: 'xc3 ultra hybrid',
-      series: '3080',
       url: 'https://www.ldlc.com/fr-be/fiche/PB00398045.html',
     },
-{
-      brand: 'inno3d',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080', [
+    {
+      model: 'gaming x trio',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00369299.html',
+    },
+    {
+      model: 'ventus 2x oc',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00368506.html',
+    },
+    {
+      model: 'suprim x',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00391682.html',
+    },
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3080', [
+    {
+      model: 'gaming oc',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00369299.html',
+    },
+    {
+      model: 'eagle oc',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00369072.html',
+    },
+    {
+      model: 'aorus',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00376208.html',
+    },
+    {
+      model: 'aorus xtreme',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00390466.html',
+    },
+    {
+      model: 'aorus xtreme waterforce',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00398370.html',
+    },
+    {
+      model: 'vision oc',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00376207.html',
+    },
+    {
+      model: 'aorus xtreme waterforce wb',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00398373.html',
+    },
+  ]),
+
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3080', [
+    {
+      model: 'twin x2',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00368690.html',
+    },
+    {
+      model: 'ichill x3',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00368691.html',
+    },
+    {
+      model: 'ichill frostbite',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00391624.html',
+    },
+    {
       model: 'ichill x4',
-      series: '3080',
       url: 'https://www.ldlc.com/fr-be/fiche/PB00368692.html',
     },
-{
-      brand: 'zotac',
-      model: 'trinity',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00368579.html',
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3080', [
+    {
+      model: 'gaming pro',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00369094.html',
     },
-{
-      brand: 'zotac',
-      model: 'trinity oc',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00375644.html',
-    },
-{
-      brand: 'asus',
-      model: 'strix',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00385535.html',
-    },
-{
-      brand: 'palit',
+    {
       model: 'gamerock',
-      series: '3080',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00386334.html',
+    },
+    {
+      model: 'gaming pro',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00375448.html',
+    },
+    {
+      model: 'gamerock',
       url: 'https://www.ldlc.com/fr-be/fiche/PB00386332.html',
     },
-{
-      brand: 'gigabyte',
-      model: 'aorus xtreme waterforce wb',
-      series: '3080',
-      url: 'https://www.ldlc.com/fr-be/fiche/PB00398373.html',
-    }
+  ]),
+
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3080', [
+    {
+      model: 'phoenix',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00369150.html',
+    },
+    {
+      model: 'phoenix gs',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00369158.html',
+    },
+    {
+      model: 'phantom gs',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00390727.html',
+    },
+  ]),
+
+  // Kfa2 Cards
+  ...createBrandSeriesLinks('kfa2', '3080', [
+    {
+      model: 'sg',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00396037.html',
+    },
+    {
+      model: 'sg',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00368931.html',
+    },
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3080', [
+    {
+      model: 'amp holo',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00375625.html',
+    },
+    {
+      model: 'trinity',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00368579.html',
+    },
+    {
+      model: 'trinity oc',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00375644.html',
+    },
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3080', [
+    {
+      model: 'tuf',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00368844.html',
+    },
+    {
+      model: 'tuf',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00368789.html',
+    },
+    {
+      model: 'strix',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00375431.html',
+    },
+    {
+      model: 'strix',
+      url: 'https://www.ldlc.com/fr-be/fiche/PB00385535.html',
+    },
+  ]),
+
 ];

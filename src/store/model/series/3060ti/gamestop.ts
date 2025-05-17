@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for gamestop 3060ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'evga',
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3060ti', [
+    {
       model: 'ftw3 ultra',
-      series: '3060ti',
       url: 'https://www.gamestop.com/video-games/pc-gaming/components/graphics-cards/products/geforce-rtx-3060-ti-ftw3-ultra-gaming-graphics-card/11121603.html',
-    }
+    },
+  ]),
+
 ];

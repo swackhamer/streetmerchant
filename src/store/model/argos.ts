@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for argos
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const Argos: Store = {
+/**
+ * Argos store
+ */
+export const Argos = createStandardStore({
+  name: 'argos',
+  country: 'UK',
   currency: '£',
   labels: {
     inStock: {
@@ -11,38 +21,5 @@ export const Argos: Store = {
       container: 'li[itemprop="price"]',
     },
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.argos.co.uk/product/5718469',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://www.argos.co.uk/product/8349000',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://www.argos.co.uk/product/8349024',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.argos.co.uk/product/8448262',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series s',
-      series: 'xboxss',
-      url: 'https://www.argos.co.uk/product/8448248',
-    },
-  ],
-  name: 'argos',
-  country: 'UK',
-};
+
+});

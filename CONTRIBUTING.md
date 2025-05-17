@@ -101,7 +101,19 @@ pnpm run test:captcha
 
 ## Adding a New Store
 
-See the [Extension Guide](./docs/extension-guide.md) for detailed instructions on adding new stores.
+Streetmerchant now uses a series-based organization system for product links. When adding a new store, you have two options:
+
+### Option 1: Traditional Store Implementation
+
+Create a store file in `src/store/model/` with all links in one file. This is suitable for stores with a small number of links.
+
+### Option 2: Series-Based Store Implementation (Recommended)
+
+1. Create a minimal store implementation in `src/store/model/` that defines the store properties and labels.
+2. Create series-specific link files in `src/store/model/series/{series-name}/` directories.
+3. The links will be automatically loaded based on the configured series.
+
+See the [Extension Guide](./docs/extension-guide.md) and [Series-Based Links Documentation](./docs/series-based-links.md) for detailed instructions.
 
 ## Questions?
 

@@ -85,15 +85,15 @@ notifierInstance.notify(notification, (error, response, metadata) => {
 });
 
 // Set up event handlers
-notifierInstance.on('click', () => {
+(notifierInstance as any).on('click', () => {
   logger.info('Notification clicked');
 });
 
-notifierInstance.on('timeout', () => {
+(notifierInstance as any).on('timeout', () => {
   logger.info('Notification timed out');
 });
 
-notifierInstance.on('action', (notifierObj, options, index) => {
+(notifierInstance as any).on('action', (notifierObj: any, options: any, index: any) => {
   logger.info(`Action clicked: ${index}`);
 });
 

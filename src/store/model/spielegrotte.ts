@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for spielegrotte
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const Spielegrotte: Store = {
+/**
+ * Spielegrotte store
+ */
+export const Spielegrotte = createEuropeanStore({
+  name: 'spielegrotte',
+  country: 'DE',
   currency: '€',
   labels: {
     inStock: [
@@ -21,26 +31,5 @@ export const Spielegrotte: Store = {
       text: ['Dieses Produkt ist leider neu nicht mehr verfügbar'],
     },
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.spielegrotte.de/index.php?kat=100056&anr=54288',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://www.spielegrotte.de/index.php?kat=100100&anr=56005',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://www.spielegrotte.de/index.php?kat=100100&anr=56006',
-    },
-  ],
-  name: 'spielegrotte',
-  country: 'DE',
-};
+
+});

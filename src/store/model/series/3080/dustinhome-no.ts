@@ -1,52 +1,56 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for dustinhome-no 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080', [
+    {
       model: 'suprim x',
-      series: '3080',
       url: 'https://www.dustinhome.no/product/5011216707/',
     },
-{
-      brand: 'evga',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3080', [
+    {
       model: 'ftw3 ultra',
-      series: '3080',
       url: 'https://www.dustinhome.no/product/5011197759/',
     },
-{
-      brand: 'evga',
+    {
       model: 'ftw3',
-      series: '3080',
       url: 'https://www.dustinhome.no/product/5011197760/',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 ultra',
-      series: '3080',
       url: 'https://www.dustinhome.no/product/5011197756/',
     },
-{
-      brand: 'pny',
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3080', [
+    {
       model: 'xlr8 epic x',
-      series: '3080',
       url: 'https://www.dustinhome.no/product/5011196134/',
     },
-{
-      brand: 'pny',
+    {
       model: 'xlr8 epic x',
-      series: '3080',
       url: 'https://www.dustinhome.no/product/5011196133/',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3080', [
+    {
       model: 'aorus xtreme waterforce wb',
-      series: '3080',
       url: 'https://www.dustinhome.no/product/5011212484/',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus master',
-      series: '3080',
       url: 'https://www.dustinhome.no/product/5011199977/',
-    }
+    },
+  ]),
+
 ];

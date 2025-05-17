@@ -1,0 +1,20 @@
+
+    {
+      brand: 'test:brand',
+      model: 'test:model',
+      series: 'test:series',
+      url: 'https://www.ldlc.com/it-it/scheda/PB00098129.html',
+    },
+    {
+      brand: 'microsoft',
+      model: 'xbox series x',
+      series: 'xboxsx',
+      url: 'https://www.ldlc.com/it-it/scheda/PB00390450.html',
+    },
+    {
+      brand: 'microsoft',
+      model: 'xbox series s',
+      series: 'xboxss',
+      url: 'https://www.ldlc.com/it-it/scheda/PB00390458.html',
+    },
+  

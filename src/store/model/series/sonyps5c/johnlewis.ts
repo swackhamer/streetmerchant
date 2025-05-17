@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for johnlewis sonyps5c series
+ */
 export const links: Link[] = [
-{
-      brand: 'sony',
+  // Sony Cards
+  ...createBrandSeriesLinks('sony', 'sonyps5c', [
+    {
       model: 'ps5 console',
-      series: 'sonyps5c',
       url: 'https://www.johnlewis.com/sony-playstation-5-console-with-dualsense-controller/white/p5115192',
-    }
+    },
+  ]),
+
 ];

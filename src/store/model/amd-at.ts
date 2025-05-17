@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for amd-at
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const AmdAt: Store = {
+/**
+ * AmdAt store
+ */
+export const AmdAt = createEuropeanStore({
+  name: 'amd-at',
+  country: 'AT',
   currency: '€',
   labels: {
     inStock: {
@@ -16,86 +26,5 @@ export const AmdAt: Store = {
       text: ['ausverkauft'],
     },
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.amd.com/en/direct-buy/5450881400/at',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5450881400/at?add-to-cart=true',
-      model: '5950x',
-      series: 'ryzen5950',
-      url: 'https://www.amd.com/en/direct-buy/5450881400/at',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5450881500/at?add-to-cart=true',
-      model: '5900x',
-      series: 'ryzen5900',
-      url: 'https://www.amd.com/en/direct-buy/5450881500/at',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5450881600/at?add-to-cart=true',
-      model: '5800x',
-      series: 'ryzen5800',
-      url: 'https://www.amd.com/en/direct-buy/5450881600/at',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5450881700/at?add-to-cart=true',
-      model: '5600x',
-      series: 'ryzen5600',
-      url: 'https://www.amd.com/en/direct-buy/5450881700/at',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5496921400/at?add-to-cart=true',
-      model: 'amd reference',
-      series: 'rx6700xt',
-      url: 'https://www.amd.com/en/direct-buy/5496921400/at',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5458374000/at?add-to-cart=true',
-      model: 'amd reference',
-      series: 'rx6800',
-      url: 'https://www.amd.com/en/direct-buy/5458374000/at',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5458374100/at?add-to-cart=true',
-      model: 'amd reference',
-      series: 'rx6800xt',
-      url: 'https://www.amd.com/en/direct-buy/5458374100/at',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5496921500/at?add-to-cart=true',
-      model: 'amd reference',
-      series: 'rx6800xt',
-      url: 'https://www.amd.com/en/direct-buy/5496921500/at',
-    },
-    {
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5458374200/at?add-to-cart=true',
-      model: 'amd reference',
-      series: 'rx6900xt',
-      url: 'https://www.amd.com/en/direct-buy/5458374200/at',
-    },
-  ],
-  name: 'amd-at',
-  country: 'AT',
-};
+
+});

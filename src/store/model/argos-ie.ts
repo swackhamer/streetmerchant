@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for argos-ie
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const ArgosIE: Store = {
+/**
+ * ArgosIe store
+ */
+export const ArgosIe = createEuropeanStore({
+  name: 'argos-ie',
+  country: 'IE',
   currency: '€',
   labels: {
     inStock: {
@@ -15,20 +25,5 @@ export const ArgosIE: Store = {
       text: ["We're working hard to get more stock."],
     },
   },
-  links: [
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'http://www.argos.ie/static/Product/partNumber/8448262/Trail/searchtext%3EXBOX+SERIES+X.htm',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'http://www.argos.ie/static/Product/partNumber/8349000/Trail/searchtext%3EPS5+CONSOLE.htm',
-    },
-  ],
-  name: 'argos-ie',
-  country: 'IE',
-};
+
+});

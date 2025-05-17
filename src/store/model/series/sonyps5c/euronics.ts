@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for euronics sonyps5c series
+ */
 export const links: Link[] = [
-{
-      brand: 'sony',
+  // Sony Cards
+  ...createBrandSeriesLinks('sony', 'sonyps5c', [
+    {
       model: 'ps5 console',
-      series: 'sonyps5c',
       url: 'https://www.euronics.it/console/sony-computer/playstation-5/eProd202008906',
-    }
+    },
+  ]),
+
 ];

@@ -1,11 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy xboxsx series
+ */
 export const links: Link[] = [
-{
-      brand: 'microsoft',
-      cartUrl: 'https://api.bestbuy.com/click/-/6428324/cart',
+  // Microsoft Cards
+  ...createBrandSeriesLinks('microsoft', 'xboxsx', [
+    {
       model: 'xbox series x',
-      series: 'xboxsx',
       url: 'https://api.bestbuy.com/click/-/6428324/pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-/6428324/cart',
+    },
+  ]),
+
 ];

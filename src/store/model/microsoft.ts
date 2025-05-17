@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for microsoft
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const Microsoft: Store = {
+/**
+ * Microsoft store
+ */
+export const Microsoft = createStandardStore({
+  name: 'microsoft',
+  country: 'US',
   currency: '$',
   labels: {
     inStock: {
@@ -12,26 +22,5 @@ export const Microsoft: Store = {
       text: ['Out of stock'],
     },
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.xbox.com/en-us/configure/8WJ714N3RBTL',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.xbox.com/en-us/configure/8WJ714N3RBTL',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series s',
-      series: 'xboxss',
-      url: 'https://www.xbox.com/en-us/configure/942J774TP9JN',
-    },
-  ],
-  name: 'microsoft',
-  country: 'US',
-};
+
+});

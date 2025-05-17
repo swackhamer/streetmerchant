@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for microsoft-ca
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const MicrosoftCA: Store = {
+/**
+ * MicrosoftCa store
+ */
+export const MicrosoftCa = createStandardStore({
+  name: 'microsoft-ca',
+  country: 'CA',
   currency: '$',
   labels: {
     inStock: {
@@ -12,26 +22,5 @@ export const MicrosoftCA: Store = {
       text: ['Out of stock'],
     },
   },
-  links: [
-    {
-      brand: 'test:brand',
-      model: 'test:model',
-      series: 'test:series',
-      url: 'https://www.xbox.com/en-ca/configure/8WJ714N3RBTL',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.xbox.com/en-ca/configure/8WJ714N3RBTL',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series s',
-      series: 'xboxss',
-      url: 'https://www.xbox.com/en-ca/configure/942J774TP9JN',
-    },
-  ],
-  name: 'microsoft-ca',
-  country: 'CA',
-};
+
+});

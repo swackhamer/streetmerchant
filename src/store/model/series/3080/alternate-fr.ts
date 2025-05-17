@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for alternate-fr 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080', [
+    {
       model: 'gaming z trio',
-      series: '3080',
       url: 'https://www.alternate.fr/html/product/1758119',
-    }
+    },
+  ]),
+
 ];

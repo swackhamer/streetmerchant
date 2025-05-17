@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for walmart sonyps5c series
+ */
 export const links: Link[] = [
-{
-      brand: 'sony',
+  // Sony Cards
+  ...createBrandSeriesLinks('sony', 'sonyps5c', [
+    {
       model: 'ps5 console',
-      series: 'sonyps5c',
       url: 'https://www.walmart.com/ip/PlayStation5-Console/363472942',
-    }
+    },
+  ]),
+
 ];

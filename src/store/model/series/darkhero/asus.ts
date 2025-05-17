@@ -1,11 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for asus darkhero series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
-      itemNumber: '202011AM200000003',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', 'darkhero', [
+    {
       model: 'crosshair viii',
-      series: 'darkhero',
       url: 'https://store.asus.com/us/item/202011AM200000003',
-    }
+      itemNumber: '202011AM200000003',
+    },
+  ]),
+
 ];

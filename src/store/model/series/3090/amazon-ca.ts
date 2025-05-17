@@ -1,52 +1,54 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for amazon-ca 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'zotac',
-      cartUrl:
-        'https://www.amazon.ca/gp/aws/cart/add.html?ASIN.1=B08HJQ182D&Quantity.1=1',
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3090', [
+    {
       model: 'trinity',
-      series: '3090',
       url: 'https://www.amazon.ca/dp/B08HJQ182D',
+      cartUrl: 'https://www.amazon.ca/gp/aws/cart/add.html?ASIN.1=B08HJQ182D&Quantity.1=1',
     },
-{
-      brand: 'msi',
-      cartUrl:
-        'https://www.amazon.ca/gp/aws/cart/add.html?ASIN.1=B08HR9D2JS&Quantity.1=1',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
       model: 'ventus 3x oc',
-      series: '3090',
       url: 'https://www.amazon.ca/dp/B08HR9D2JS',
+      cartUrl: 'https://www.amazon.ca/gp/aws/cart/add.html?ASIN.1=B08HR9D2JS&Quantity.1=1',
     },
-{
-      brand: 'gigabyte',
-      cartUrl:
-        'https://www.amazon.ca/gp/aws/cart/add.html?ASIN.1=B08HJRF2CN&Quantity.1=1',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
       model: 'gaming oc',
-      series: '3090',
       url: 'https://www.amazon.ca/dp/B08HJRF2CN',
+      cartUrl: 'https://www.amazon.ca/gp/aws/cart/add.html?ASIN.1=B08HJRF2CN&Quantity.1=1',
     },
-{
-      brand: 'gigabyte',
-      cartUrl:
-        'https://www.amazon.ca/gp/aws/cart/add.html?ASIN.1=B08HJPDJTY&Quantity.1=1',
+    {
       model: 'eagle oc',
-      series: '3090',
       url: 'https://www.amazon.ca/dp/B08HJPDJTY',
+      cartUrl: 'https://www.amazon.ca/gp/aws/cart/add.html?ASIN.1=B08HJPDJTY&Quantity.1=1',
     },
-{
-      brand: 'asus',
-      cartUrl:
-        'https://www.amazon.ca/gp/aws/cart/add.html?ASIN.1=B08HJGNJ81&Quantity.1=1',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'tuf',
-      series: '3090',
       url: 'https://www.amazon.ca/dp/B08HJGNJ81',
+      cartUrl: 'https://www.amazon.ca/gp/aws/cart/add.html?ASIN.1=B08HJGNJ81&Quantity.1=1',
     },
-{
-      brand: 'asus',
-      cartUrl:
-        'https://www.amazon.ca/gp/aws/cart/add.html?ASIN.1=B08HJLLF7G&Quantity.1=1',
+    {
       model: 'tuf oc',
-      series: '3090',
       url: 'https://www.amazon.ca/dp/B08HJLLF7G',
-    }
+      cartUrl: 'https://www.amazon.ca/gp/aws/cart/add.html?ASIN.1=B08HJLLF7G&Quantity.1=1',
+    },
+  ]),
+
 ];

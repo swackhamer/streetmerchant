@@ -1,148 +1,136 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for alternate-nl 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3080', [
+    {
       model: 'eagle oc',
-      series: '3080',
       url: 'https://www.alternate.nl/product/1672756',
     },
-{
-      brand: 'msi',
-      model: 'ventus 3x oc',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1672345',
-    },
-{
-      brand: 'asus',
-      model: 'tuf',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1672251',
-    },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3080',
       url: 'https://www.alternate.nl/product/1672753',
     },
-{
-      brand: 'msi',
-      model: 'gaming x trio',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1672343',
-    },
-{
-      brand: 'asus',
-      model: 'tuf oc',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1672634',
-    },
-{
-      brand: 'asus',
-      model: 'strix oc',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1672867',
-    },
-{
-      brand: 'evga',
-      model: 'xc3 black',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1673512',
-    },
-{
-      brand: 'zotac',
-      model: 'trinity',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1672612',
-    },
-{
-      brand: 'evga',
-      model: 'xc3 ultra',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1674164',
-    },
-{
-      brand: 'asus',
-      model: 'strix',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1672868',
-    },
-{
-      brand: 'palit',
-      model: 'gaming pro oc',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1673431',
-    },
-{
-      brand: 'zotac',
-      model: 'trinity oc',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1677989',
-    },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3080',
       url: 'https://www.alternate.nl/product/1681134',
     },
-{
-      brand: 'evga',
-      model: 'xc3',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1673520',
-    },
-{
-      brand: 'gainward',
-      model: 'phoenix gs',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1673442',
-    },
-{
-      brand: 'inno3d',
-      model: 'ichill x3',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1673136',
-    },
-{
-      brand: 'evga',
-      model: 'ftw3 ultra',
-      series: '3080',
-      url: 'https://www.alternate.nl/product/1673524',
-    },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus master',
-      series: '3080',
       url: 'https://www.alternate.nl/product/1680168',
     },
-{
-      brand: 'evga',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080', [
+    {
+      model: 'ventus 3x oc',
+      url: 'https://www.alternate.nl/product/1672345',
+    },
+    {
+      model: 'gaming x trio',
+      url: 'https://www.alternate.nl/product/1672343',
+    },
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3080', [
+    {
+      model: 'tuf',
+      url: 'https://www.alternate.nl/product/1672251',
+    },
+    {
+      model: 'tuf oc',
+      url: 'https://www.alternate.nl/product/1672634',
+    },
+    {
+      model: 'strix oc',
+      url: 'https://www.alternate.nl/product/1672867',
+    },
+    {
+      model: 'strix',
+      url: 'https://www.alternate.nl/product/1672868',
+    },
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3080', [
+    {
+      model: 'xc3 black',
+      url: 'https://www.alternate.nl/product/1673512',
+    },
+    {
+      model: 'xc3 ultra',
+      url: 'https://www.alternate.nl/product/1674164',
+    },
+    {
+      model: 'xc3',
+      url: 'https://www.alternate.nl/product/1673520',
+    },
+    {
+      model: 'ftw3 ultra',
+      url: 'https://www.alternate.nl/product/1673524',
+    },
+    {
       model: 'ftw3',
-      series: '3080',
       url: 'https://www.alternate.nl/product/1673517',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3080', [
+    {
+      model: 'trinity',
+      url: 'https://www.alternate.nl/product/1672612',
+    },
+    {
+      model: 'trinity oc',
+      url: 'https://www.alternate.nl/product/1677989',
+    },
+    {
       model: 'amp holo',
-      series: '3080',
       url: 'https://www.alternate.nl/product/1677985',
     },
-{
-      brand: 'zotac',
+    {
       model: 'amp extreme holo',
-      series: '3080',
       url: 'https://www.alternate.nl/product/1677982',
     },
-{
-      brand: 'inno3d',
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3080', [
+    {
+      model: 'gaming pro oc',
+      url: 'https://www.alternate.nl/product/1673431',
+    },
+  ]),
+
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3080', [
+    {
+      model: 'phoenix gs',
+      url: 'https://www.alternate.nl/product/1673442',
+    },
+  ]),
+
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3080', [
+    {
+      model: 'ichill x3',
+      url: 'https://www.alternate.nl/product/1673136',
+    },
+    {
       model: 'twin x2 oc',
-      series: '3080',
       url: 'https://www.alternate.nl/product/1673137',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'ichill x4',
-      series: '3080',
       url: 'https://www.alternate.nl/product/1673134',
-    }
+    },
+  ]),
+
 ];

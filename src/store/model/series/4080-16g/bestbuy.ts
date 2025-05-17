@@ -1,81 +1,82 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy 4080-16g series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6524517/cart',
-      model: 'gaming oc',
-      series: '4080-16g',
-      url: 'https://api.bestbuy.com/click/-/6524517/pdp',
-    },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6525660/cart',
-      model: 'aero oc',
-      series: '4080-16g',
-      url: 'https://api.bestbuy.com/click/-/6525660/pdp',
-    },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6525662/cart',
-      model: 'eagle',
-      series: '4080-16g',
-      url: 'https://api.bestbuy.com/click/-/6525662/pdp',
-    },
-{
-      brand: 'msi',
-      cartUrl: 'https://api.bestbuy.com/click/-/6524441/cart',
-      model: 'ventus 3x oc',
-      series: '4080-16g',
-      url: 'https://api.bestbuy.com/click/-/6524441/pdp',
-    },
-{
-      brand: 'msi',
-      cartUrl: 'https://api.bestbuy.com/click/-/6524440/cart',
-      model: 'gaming x trio',
-      series: '4080-16g',
-      url: 'https://api.bestbuy.com/click/-/6524440/pdp',
-    },
-{
-      brand: 'asus',
-      cartUrl: 'https://api.bestbuy.com/click/-/6525658/cart',
-      model: 'strix',
-      series: '4080-16g',
-      url: 'https://api.bestbuy.com/click/-/6525658/pdp',
-    },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6525663/cart',
-      model: 'eagle oc',
-      series: '4080-16g',
-      url: 'https://api.bestbuy.com/click/-/6525663/pdp',
-    },
-{
-      brand: 'asus',
-      cartUrl: 'https://api.bestbuy.com/click/-/6525659/cart',
-      model: 'tuf',
-      series: '4080-16g',
-      url: 'https://api.bestbuy.com/click/-/6525659/pdp',
-    },
-{
-      brand: 'gigabyte',
-      cartUrl: 'https://api.bestbuy.com/click/-/6525661/cart',
-      model: 'master',
-      series: '4080-16g',
-      url: 'https://api.bestbuy.com/click/-/6525661/pdp',
-    },
-{
-      brand: 'pny',
-      cartUrl: 'https://api.bestbuy.com/click/-/6522940/cart',
-      model: 'xlr8',
-      series: '4080-16g',
-      url: 'https://api.bestbuy.com/click/-/6522940/pdp',
-    },
-{
-      brand: 'nvidia',
-      cartUrl: 'https://api.bestbuy.com/click/-/6614154/cart',
-      model: 'founders edition',
-      series: '4080-16g',
+  // NVIDIA Founders Edition
+  ...createFoundersEditionLinks('4080-16g', [
+    {
       url: 'https://api.bestbuy.com/click/-/6614154/pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-/6614154/cart',
+    },
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '4080-16g', [
+    {
+      model: 'gaming oc',
+      url: 'https://api.bestbuy.com/click/-/6524517/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6524517/cart',
+    },
+    {
+      model: 'aero oc',
+      url: 'https://api.bestbuy.com/click/-/6525660/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6525660/cart',
+    },
+    {
+      model: 'eagle',
+      url: 'https://api.bestbuy.com/click/-/6525662/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6525662/cart',
+    },
+    {
+      model: 'eagle oc',
+      url: 'https://api.bestbuy.com/click/-/6525663/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6525663/cart',
+    },
+    {
+      model: 'master',
+      url: 'https://api.bestbuy.com/click/-/6525661/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6525661/cart',
+    },
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '4080-16g', [
+    {
+      model: 'ventus 3x oc',
+      url: 'https://api.bestbuy.com/click/-/6524441/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6524441/cart',
+    },
+    {
+      model: 'gaming x trio',
+      url: 'https://api.bestbuy.com/click/-/6524440/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6524440/cart',
+    },
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '4080-16g', [
+    {
+      model: 'strix',
+      url: 'https://api.bestbuy.com/click/-/6525658/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6525658/cart',
+    },
+    {
+      model: 'tuf',
+      url: 'https://api.bestbuy.com/click/-/6525659/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6525659/cart',
+    },
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '4080-16g', [
+    {
+      model: 'xlr8',
+      url: 'https://api.bestbuy.com/click/-/6522940/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6522940/cart',
+    },
+  ]),
+
 ];

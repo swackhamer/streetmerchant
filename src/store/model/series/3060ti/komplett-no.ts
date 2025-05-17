@@ -1,148 +1,128 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for komplett-no 3060ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3060ti', [
+    {
       model: 'strix oc',
-      series: '3060ti',
       url: 'https://www.komplett.no/product/1174210/',
     },
-{
-      brand: 'msi',
-      model: 'gaming x',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1178723/',
-    },
-{
-      brand: 'gainward',
-      model: 'phoenix gs',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1174392/',
-    },
-{
-      brand: 'gigabyte',
-      model: 'aorus master',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1174509/',
-    },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3060ti',
       url: 'https://www.komplett.no/product/1174206/',
     },
-{
-      brand: 'gigabyte',
-      model: 'eagle oc',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1174508/',
-    },
-{
-      brand: 'zotac',
-      model: 'twin edge oc',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1174275/',
-    },
-{
-      brand: 'gigabyte',
-      model: 'gaming oc',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1174511/',
-    },
-{
-      brand: 'zotac',
-      model: 'twin edge',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1174276/',
-    },
-{
-      brand: 'gainward',
-      model: 'ghost oc',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1174403/',
-    },
-{
-      brand: 'asus',
+    {
       model: 'dual oc',
-      series: '3060ti',
       url: 'https://www.komplett.no/product/1174211/',
     },
-{
-      brand: 'palit',
-      model: 'dual',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1174401/',
-    },
-{
-      brand: 'msi',
-      model: 'gaming x trio',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1175541/',
-    },
-{
-      brand: 'asus',
+    {
       model: 'dual oc',
-      series: '3060ti',
       url: 'https://www.komplett.no/product/1177556/',
     },
-{
-      brand: 'msi',
-      model: 'ventus 2x',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1176385/',
-    },
-{
-      brand: 'asus',
+    {
       model: 'dual',
-      series: '3060ti',
       url: 'https://www.komplett.no/product/1177557/',
     },
-{
-      brand: 'palit',
-      model: 'gaming pro',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1174395/',
-    },
-{
-      brand: 'palit',
-      model: 'dual oc',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1174394/',
-    },
-{
-      brand: 'asus',
+    {
       model: 'strix',
-      series: '3060ti',
       url: 'https://www.komplett.no/product/1174208/',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf',
-      series: '3060ti',
       url: 'https://www.komplett.no/product/1174209/',
     },
-{
-      brand: 'gigabyte',
-      model: 'gaming oc pro',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1174510/',
-    },
-{
-      brand: 'gigabyte',
-      model: 'eagle',
-      series: '3060ti',
-      url: 'https://www.komplett.no/product/1174512/',
-    },
-{
-      brand: 'asus',
+    {
       model: 'dual',
-      series: '3060ti',
       url: 'https://www.komplett.no/product/1174207/',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3060ti', [
+    {
+      model: 'gaming x',
+      url: 'https://www.komplett.no/product/1178723/',
+    },
+    {
+      model: 'gaming x trio',
+      url: 'https://www.komplett.no/product/1175541/',
+    },
+    {
+      model: 'ventus 2x',
+      url: 'https://www.komplett.no/product/1176385/',
+    },
+    {
       model: 'ventus 3x oc',
-      series: '3060ti',
       url: 'https://www.komplett.no/product/1175535/',
-    }
+    },
+  ]),
+
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3060ti', [
+    {
+      model: 'phoenix gs',
+      url: 'https://www.komplett.no/product/1174392/',
+    },
+    {
+      model: 'ghost oc',
+      url: 'https://www.komplett.no/product/1174403/',
+    },
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3060ti', [
+    {
+      model: 'aorus master',
+      url: 'https://www.komplett.no/product/1174509/',
+    },
+    {
+      model: 'eagle oc',
+      url: 'https://www.komplett.no/product/1174508/',
+    },
+    {
+      model: 'gaming oc',
+      url: 'https://www.komplett.no/product/1174511/',
+    },
+    {
+      model: 'gaming oc pro',
+      url: 'https://www.komplett.no/product/1174510/',
+    },
+    {
+      model: 'eagle',
+      url: 'https://www.komplett.no/product/1174512/',
+    },
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3060ti', [
+    {
+      model: 'twin edge oc',
+      url: 'https://www.komplett.no/product/1174275/',
+    },
+    {
+      model: 'twin edge',
+      url: 'https://www.komplett.no/product/1174276/',
+    },
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3060ti', [
+    {
+      model: 'dual',
+      url: 'https://www.komplett.no/product/1174401/',
+    },
+    {
+      model: 'gaming pro',
+      url: 'https://www.komplett.no/product/1174395/',
+    },
+    {
+      model: 'dual oc',
+      url: 'https://www.komplett.no/product/1174394/',
+    },
+  ]),
+
 ];

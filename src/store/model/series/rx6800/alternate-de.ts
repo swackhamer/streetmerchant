@@ -1,40 +1,49 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for alternate-de rx6800 series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6800', [
+    {
       model: 'gaming oc',
-      series: 'rx6800',
       url: 'https://www.alternate.de/html/product/1697045',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', 'rx6800', [
+    {
       model: 'gaming x trio',
-      series: 'rx6800',
       url: 'https://www.alternate.de/html/product/1702966',
     },
-{
-      brand: 'sapphire',
+  ]),
+
+  // Sapphire Cards
+  ...createBrandSeriesLinks('sapphire', 'rx6800', [
+    {
       model: 'nitro+ oc',
-      series: 'rx6800',
       url: 'https://www.alternate.de/html/product/1696483',
     },
-{
-      brand: 'sapphire',
+    {
       model: 'pulse oc',
-      series: 'rx6800',
       url: 'https://www.alternate.de/html/product/1702008',
     },
-{
-      brand: 'xfx',
+  ]),
+
+  // Xfx Cards
+  ...createBrandSeriesLinks('xfx', 'rx6800', [
+    {
       model: 'merc',
-      series: 'rx6800',
       url: 'https://www.alternate.de/html/product/1698793',
     },
-{
-      brand: 'xfx',
+    {
       model: 'qick',
-      series: 'rx6800',
       url: 'https://www.alternate.de/html/product/1716091',
-    }
+    },
+  ]),
+
 ];

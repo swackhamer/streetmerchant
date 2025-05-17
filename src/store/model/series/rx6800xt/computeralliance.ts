@@ -1,22 +1,33 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for computeralliance rx6800xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', 'rx6800xt', [
+    {
       model: 'strix lc',
-      series: 'rx6800xt',
       url: 'https://www.computeralliance.com.au/asus-rx6800xt-16gb-rog-strix-liquid-cooled-oc-gaming-pcie-video-card',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6800xt', [
+    {
       model: 'gaming oc',
-      series: 'rx6800xt',
       url: 'https://www.computeralliance.com.au/gigabyte-rx6800xt-16gb-gaming-oc-pcie-video-card-gv-r68xtgaming-oc-16gd',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', 'rx6800xt', [
+    {
       model: 'gaming x trio',
-      series: 'rx6800xt',
       url: 'https://www.computeralliance.com.au/msi-rx6800xt-16gb-gaming-x-trio-pcie-video-card',
-    }
+    },
+  ]),
+
 ];

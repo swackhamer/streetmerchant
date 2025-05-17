@@ -1,226 +1,192 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for ldlc-es 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'tuf',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00369842.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00374911.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'gaming oc',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00369849.html',
     },
-{
-      brand: 'evga',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3090', [
+    {
       model: 'ftw3 ultra',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00374837.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'ftw3',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00374838.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'ftw3 ultra hybrid',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00398037.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'kngpn hybrid',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00398044.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 black',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00374629.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00374628.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 ultra',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00374631.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 ultra hybrid',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00398039.html',
     },
-{
-      brand: 'gainward',
+  ]),
+
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3090', [
+    {
       model: 'phantom',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00390729.html',
     },
-{
-      brand: 'gainward',
+    {
       model: 'phantom gs',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00390227.html',
     },
-{
-      brand: 'gainward',
+    {
       model: 'phoenix',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00370903.html',
     },
-{
-      brand: 'gainward',
+    {
       model: 'phoenix gs',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00370913.html',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
       model: 'aorus master',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00376302.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00390730.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme waterforce wb',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00400756.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00371132.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00371131.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'turbo',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00391621.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00386908.html',
     },
-{
-      brand: 'inno3d',
+  ]),
+
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3090', [
+    {
       model: 'ichill x4',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00374614.html',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'gaming x3',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00371280.html',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'ichill frostbite',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00391541.html',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'ichill x3',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00374606.html',
     },
-{
-      brand: 'kfa2',
+  ]),
+
+  // Kfa2 Cards
+  ...createBrandSeriesLinks('kfa2', '3090', [
+    {
       model: 'sg',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00371133.html',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
       model: 'suprim x',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00391683.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'gaming x trio',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00370065.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x oc',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00370057.html',
     },
-{
-      brand: 'palit',
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3090', [
+    {
       model: 'gamerock',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00389189.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'gamerock oc',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00391625.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'gaming pro',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00374912.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'gaming pro oc',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00374914.html',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3090', [
+    {
       model: 'amp holo',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00431614.html',
     },
-{
-      brand: 'zotac',
+    {
       model: 'trinity oc',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00401472.html',
     },
-{
-      brand: 'zotac',
+    {
       model: 'trinity',
-      series: '3090',
       url: 'https://www.ldlc.com/es-es/ficha/PB00370250.html',
-    }
+    },
+  ]),
+
 ];

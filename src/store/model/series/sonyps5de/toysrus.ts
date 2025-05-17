@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for toysrus sonyps5de series
+ */
 export const links: Link[] = [
-{
-      brand: 'sony',
+  // Sony Cards
+  ...createBrandSeriesLinks('sony', 'sonyps5de', [
+    {
       model: 'ps5 digital',
-      series: 'sonyps5de',
       url: 'https://www.toysrus.ca/en/PlayStation-5-Digital-Edition/E4A019FE.html',
-    }
+    },
+  ]),
+
 ];

@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for walmart xboxss series
+ */
 export const links: Link[] = [
-{
-      brand: 'microsoft',
+  // Microsoft Cards
+  ...createBrandSeriesLinks('microsoft', 'xboxss', [
+    {
       model: 'xbox series s',
-      series: 'xboxss',
       url: 'https://www.walmart.com/ip/Xbox-Series-S/606518560',
-    }
+    },
+  ]),
+
 ];

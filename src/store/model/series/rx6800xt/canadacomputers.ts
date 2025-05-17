@@ -1,34 +1,45 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for canadacomputers rx6800xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', 'rx6800xt', [
+    {
       model: 'gaming x trio',
-      series: 'rx6800xt',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_558&item_id=186526&language=en',
     },
-{
-      brand: 'sapphire',
+  ]),
+
+  // Sapphire Cards
+  ...createBrandSeriesLinks('sapphire', 'rx6800xt', [
+    {
       model: 'nitro+',
-      series: 'rx6800xt',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_558&item_id=185754&language=en',
     },
-{
-      brand: 'sapphire',
+    {
       model: 'nitro+ se',
-      series: 'rx6800xt',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_558&item_id=185753&language=en',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6800xt', [
+    {
       model: 'gaming oc',
-      series: 'rx6800xt',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_558&item_id=185891&language=en',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', 'rx6800xt', [
+    {
       model: 'strix lc',
-      series: 'rx6800xt',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_558&item_id=185458&language=en',
-    }
+    },
+  ]),
+
 ];

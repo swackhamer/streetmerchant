@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for canadacomputers xboxsx series
+ */
 export const links: Link[] = [
-{
-      brand: 'microsoft',
+  // Microsoft Cards
+  ...createBrandSeriesLinks('microsoft', 'xboxsx', [
+    {
       model: 'xbox series x',
-      series: 'xboxsx',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=13_1860_1862&item_id=184244&language=en',
-    }
+    },
+  ]),
+
 ];

@@ -1,22 +1,28 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy-ca 3060 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3060', [
+    {
       model: 'ventus 3x',
-      series: '3060',
       url: 'https://www.bestbuy.ca/en-ca/product/16595219',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3060', [
+    {
       model: 'twin edge oc',
-      series: '3060',
       url: 'https://www.bestbuy.ca/en-ca/product/zotac-nvidia-geforce-rtx-3060-twin-edge-oc-12gb-gddr6-video-card/15309503',
     },
-{
-      brand: 'zotac',
+    {
       model: 'twin edge',
-      series: '3060',
       url: 'https://www.bestbuy.ca/en-ca/product/zotac-nvidia-geforce-rtx-3060-twin-edge-12gb-gddr6-video-card/15309504',
-    }
+    },
+  ]),
+
 ];

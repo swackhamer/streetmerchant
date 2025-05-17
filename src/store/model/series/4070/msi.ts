@@ -1,18 +1,20 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for msi 4070 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '4070', [
+    {
       model: 'ventus 3x oc',
-      series: '4070',
-      // "https://us-store.msi.com/Graphics-Cards/NVIDIA-GPU/GeForce-RTX-40-Series/GeForce-RTX-4070-VENTUS-3X-12G-OC",
       url: 'https://us-store.msi.com/Graphics-Cards/NVIDIA-GPU/GeForce-RTX-40-Series?product_id=1741',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x e1 oc',
-      series: '4070',
-      // "https://us-store.msi.com/Graphics-Cards/NVIDIA-GPU/GeForce-RTX-40-Series/GeForce-RTX-4070-VENTUS-3X-E1-12G-OC",
       url: 'https://us-store.msi.com/Graphics-Cards/NVIDIA-GPU/GeForce-RTX-40-Series?product_id=2361',
-    }
+    },
+  ]),
+
 ];

@@ -1,11 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for newegg-ca ryzen5900 series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
-      itemNumber: '19-113-664',
+  // Amd Cards
+  ...createBrandSeriesLinks('amd', 'ryzen5900', [
+    {
       model: '5900x',
-      series: 'ryzen5900',
       url: 'https://www.newegg.ca/amd-ryzen-9-5900x/p/N82E16819113664',
-    }
+      itemNumber: '19-113-664',
+    },
+  ]),
+
 ];

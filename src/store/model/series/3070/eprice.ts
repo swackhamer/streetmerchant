@@ -1,52 +1,52 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for eprice 3070 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3070', [
+    {
       model: 'ventus 3x oc',
-      series: '3070',
       url: 'https://www.eprice.it/schede-video-MSI/d-14039974',
     },
-{
-      brand: 'asus',
-      model: 'dual',
-      series: '3070',
-      url: 'https://www.eprice.it/schede-video-ASUS/d-14042082',
-    },
-{
-      brand: 'asus',
-      model: 'strix',
-      series: '3070',
-      url: 'https://www.eprice.it/schede-video-ASUS/d-14039878',
-    },
-{
-      brand: 'asus',
-      model: 'tuf',
-      series: '3070',
-      url: 'https://www.eprice.it/schede-video-ASUS/d-14039876',
-    },
-{
-      brand: 'msi',
+    {
       model: 'gaming',
-      series: '3070',
       url: 'https://www.eprice.it/schede-video-MSI/d-14039972',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x oc',
-      series: '3070',
       url: 'https://www.eprice.it/schede-video-MSI/d-14039974',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 2x oc',
-      series: '3070',
       url: 'https://www.eprice.it/schede-video-MSI/d-14039973',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3070', [
+    {
+      model: 'dual',
+      url: 'https://www.eprice.it/schede-video-ASUS/d-14042082',
+    },
+    {
+      model: 'strix',
+      url: 'https://www.eprice.it/schede-video-ASUS/d-14039878',
+    },
+    {
+      model: 'tuf',
+      url: 'https://www.eprice.it/schede-video-ASUS/d-14039876',
+    },
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3070', [
+    {
       model: 'gaming',
-      series: '3070',
       url: 'https://www.eprice.it/schede-video-ZOTAC/d-13979806',
-    }
+    },
+  ]),
+
 ];

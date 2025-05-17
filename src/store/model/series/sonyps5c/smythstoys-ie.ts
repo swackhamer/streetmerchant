@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for smythstoys-ie sonyps5c series
+ */
 export const links: Link[] = [
-{
-      brand: 'sony',
+  // Sony Cards
+  ...createBrandSeriesLinks('sony', 'sonyps5c', [
+    {
       model: 'ps5 console',
-      series: 'sonyps5c',
       url: 'https://www.smythstoys.com/ie/en-ie/video-games-and-tablets/playstation-5/playstation-5-consoles/playstation-5-console/p/191259',
-    }
+    },
+  ]),
+
 ];

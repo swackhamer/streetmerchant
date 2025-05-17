@@ -1,10 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for pbtech rx6800xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'asrock',
+  // Asrock Cards
+  ...createBrandSeriesLinks('asrock', 'rx6800xt', [
+    {
       model: 'taichi',
-      series: 'rx6800xt',
       url: 'https://www.pbtech.com/au/product/VGAASR06810/ASRock-Radeon-RX-6800-XT-Taichi-X-OC-Graphics-Card',
-    }
+    },
+  ]),
+
 ];

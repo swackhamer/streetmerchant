@@ -1,88 +1,80 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for proshop-de 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3080', [
+    {
       model: 'strix',
-      series: '3080',
       url: 'https://www.proshop.de/2876857',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3080',
       url: 'https://www.proshop.de/2876859',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf',
-      series: '3080',
       url: 'https://www.proshop.de/2876763',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3080',
       url: 'https://www.proshop.de/2876861',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3080', [
+    {
       model: 'aorus master',
-      series: '3080',
       url: 'https://www.proshop.de/2876835',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3080',
       url: 'https://www.proshop.de/2876837',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3080',
       url: 'https://www.proshop.de/2876838',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3080',
       url: 'https://www.proshop.de/2878401',
     },
-{
-      brand: 'inno3d',
+  ]),
+
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3080', [
+    {
       model: 'ichill x3',
-      series: '3080',
       url: 'https://www.proshop.de/2878969',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'ichill x4',
-      series: '3080',
       url: 'https://www.proshop.de/2878971',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'twin x2 oc',
-      series: '3080',
       url: 'https://www.proshop.de/2878968',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080', [
+    {
       model: 'gaming x trio',
-      series: '3080',
       url: 'https://www.proshop.de/2876877',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x',
-      series: '3080',
       url: 'https://www.proshop.de/2876878',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x oc',
-      series: '3080',
       url: 'https://www.proshop.de/2876879',
-    }
+    },
+  ]),
+
 ];

@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for thewarehouse
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const TheWarehouse: Store = {
+/**
+ * Thewarehouse store
+ */
+export const Thewarehouse = createStandardStore({
+  name: 'thewarehouse',
+  country: 'NZ',
   currency: '$',
   labels: {
     outOfStock: {
@@ -9,32 +19,5 @@ export const TheWarehouse: Store = {
       text: ['Add to Cart'],
     },
   },
-  links: [
-    {
-      brand: 'sony',
-      model: 'ps5 console',
-      series: 'sonyps5c',
-      url: 'https://www.thewarehouse.co.nz/R2695122.html',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://www.thewarehouse.co.nz/R2695123.html',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.thewarehouse.co.nz/R2708605.html',
-    },
-    {
-      brand: 'microsoft',
-      model: 'xbox series s',
-      series: 'xboxss',
-      url: 'https://www.thewarehouse.co.nz/R2708604.html',
-    },
-  ],
-  name: 'thewarehouse',
-  country: 'NZ',
-};
+
+});

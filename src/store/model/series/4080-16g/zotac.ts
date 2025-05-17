@@ -1,16 +1,20 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for zotac 4080-16g series
+ */
 export const links: Link[] = [
-{
-      brand: 'zotac',
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '4080-16g', [
+    {
       model: 'amp extreme airo',
-      series: '4080-16g',
       url: 'https://www.zotacstore.com/us/zotac-gaming-geforce-rtx-4080-16gb-amp-extreme-airo',
     },
-{
-      brand: 'zotac',
+    {
       model: 'trinity',
-      series: '4080-16g',
       url: 'https://www.zotacstore.com/us/zotac-gaming-geforce-rtx-4080-16gb-trinity',
-    }
+    },
+  ]),
+
 ];

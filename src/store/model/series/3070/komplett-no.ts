@@ -1,172 +1,144 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for komplett-no 3070 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3070', [
+    {
       model: 'dual',
-      series: '3070',
       url: 'https://www.komplett.no/product/1168752/',
     },
-{
-      brand: 'gigabyte',
-      model: 'eagle',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1171368/',
-    },
-{
-      brand: 'palit',
-      model: 'gaming pro',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1177553/',
-    },
-{
-      brand: 'zotac',
-      model: 'twin edge oc white',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1175619/',
-    },
-{
-      brand: 'asus',
+    {
       model: 'strix oc white',
-      series: '3070',
       url: 'https://www.komplett.no/product/1176244/',
     },
-{
-      brand: 'gigabyte',
-      model: 'aorus master',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1173939/',
-    },
-{
-      brand: 'gigabyte',
-      model: 'vision oc',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1173938/',
-    },
-{
-      brand: 'gainward',
-      model: 'phoenix gs',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1171796/',
-    },
-{
-      brand: 'palit',
-      model: 'gaming pro oc',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1172252/',
-    },
-{
-      brand: 'palit',
-      model: 'gaming pro',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1175239/',
-    },
-{
-      brand: 'msi',
-      model: 'suprim',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1176458/',
-    },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3070',
       url: 'https://www.komplett.no/product/1171385/',
     },
-{
-      brand: 'zotac',
-      model: 'amp holo',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1176459/',
-    },
-{
-      brand: 'msi',
-      model: 'ventus 3x oc',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1168375/',
-    },
-{
-      brand: 'msi',
-      model: 'ventus 2x oc',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1168376/',
-    },
-{
-      brand: 'zotac',
-      model: 'twin edge',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1168399/',
-    },
-{
-      brand: 'asus',
+    {
       model: 'strix white',
-      series: '3070',
       url: 'https://www.komplett.no/product/1176246/',
     },
-{
-      brand: 'msi',
-      model: 'suprim x',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1174190/',
-    },
-{
-      brand: 'gigabyte',
-      model: 'eagle oc',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1171367/',
-    },
-{
-      brand: 'gainward',
-      model: 'phantom gs',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1174400/',
-    },
-{
-      brand: 'gigabyte',
-      model: 'gaming oc',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1171366/',
-    },
-{
-      brand: 'asus',
+    {
       model: 'ekwb',
-      series: '3070',
       url: 'https://www.komplett.no/product/1176557/',
     },
-{
-      brand: 'palit',
-      model: 'gamerock oc',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1174399/',
-    },
-{
-      brand: 'gainward',
-      model: 'phantom gs',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1174397/',
-    },
-{
-      brand: 'palit',
-      model: 'gamerock',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1174396/',
-    },
-{
-      brand: 'zotac',
-      model: 'twin edge oc',
-      series: '3070',
-      url: 'https://www.komplett.no/product/1170422/',
-    },
-{
-      brand: 'asus',
+    {
       model: 'strix',
-      series: '3070',
       url: 'https://www.komplett.no/product/1168754/',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3070', [
+    {
+      model: 'eagle',
+      url: 'https://www.komplett.no/product/1171368/',
+    },
+    {
+      model: 'aorus master',
+      url: 'https://www.komplett.no/product/1173939/',
+    },
+    {
+      model: 'vision oc',
+      url: 'https://www.komplett.no/product/1173938/',
+    },
+    {
+      model: 'eagle oc',
+      url: 'https://www.komplett.no/product/1171367/',
+    },
+    {
+      model: 'gaming oc',
+      url: 'https://www.komplett.no/product/1171366/',
+    },
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3070', [
+    {
+      model: 'gaming pro',
+      url: 'https://www.komplett.no/product/1177553/',
+    },
+    {
+      model: 'gaming pro oc',
+      url: 'https://www.komplett.no/product/1172252/',
+    },
+    {
+      model: 'gaming pro',
+      url: 'https://www.komplett.no/product/1175239/',
+    },
+    {
+      model: 'gamerock oc',
+      url: 'https://www.komplett.no/product/1174399/',
+    },
+    {
+      model: 'gamerock',
+      url: 'https://www.komplett.no/product/1174396/',
+    },
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3070', [
+    {
+      model: 'twin edge oc white',
+      url: 'https://www.komplett.no/product/1175619/',
+    },
+    {
+      model: 'amp holo',
+      url: 'https://www.komplett.no/product/1176459/',
+    },
+    {
+      model: 'twin edge',
+      url: 'https://www.komplett.no/product/1168399/',
+    },
+    {
+      model: 'twin edge oc',
+      url: 'https://www.komplett.no/product/1170422/',
+    },
+  ]),
+
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3070', [
+    {
+      model: 'phoenix gs',
+      url: 'https://www.komplett.no/product/1171796/',
+    },
+    {
+      model: 'phantom gs',
+      url: 'https://www.komplett.no/product/1174400/',
+    },
+    {
+      model: 'phantom gs',
+      url: 'https://www.komplett.no/product/1174397/',
+    },
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3070', [
+    {
+      model: 'suprim',
+      url: 'https://www.komplett.no/product/1176458/',
+    },
+    {
+      model: 'ventus 3x oc',
+      url: 'https://www.komplett.no/product/1168375/',
+    },
+    {
+      model: 'ventus 2x oc',
+      url: 'https://www.komplett.no/product/1168376/',
+    },
+    {
+      model: 'suprim x',
+      url: 'https://www.komplett.no/product/1174190/',
+    },
+    {
       model: 'gaming x trio',
-      series: '3070',
       url: 'https://www.komplett.no/product/1168377/',
-    }
+    },
+  ]),
+
 ];

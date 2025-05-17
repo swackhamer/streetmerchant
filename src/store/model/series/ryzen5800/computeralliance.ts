@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for computeralliance ryzen5800 series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
+  // Amd Cards
+  ...createBrandSeriesLinks('amd', 'ryzen5800', [
+    {
       model: '5800x',
-      series: 'ryzen5800',
       url: 'https://www.computeralliance.com.au/amd-am4-ryzen-7-5800x-8-core-4.7ghz-cpu-(no-heatsink)-100-100000063wof',
-    }
+    },
+  ]),
+
 ];

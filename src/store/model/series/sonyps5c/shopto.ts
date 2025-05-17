@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for shopto sonyps5c series
+ */
 export const links: Link[] = [
-{
-      brand: 'sony',
+  // Sony Cards
+  ...createBrandSeriesLinks('sony', 'sonyps5c', [
+    {
       model: 'ps5 console',
-      series: 'sonyps5c',
       url: 'https://www.shopto.net/en/ps5hw01-playstation-5-console-p191472/',
-    }
+    },
+  ]),
+
 ];

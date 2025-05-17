@@ -1,34 +1,45 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for computeruniverse rx6700xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'asrock',
+  // Asrock Cards
+  ...createBrandSeriesLinks('asrock', 'rx6700xt', [
+    {
       model: 'challenger oc',
-      series: 'rx6700xt',
       url: 'https://www.computeruniverse.net/de/p/90829010',
     },
-{
-      brand: 'asrock',
+    {
       model: 'challenger pro oc',
-      series: 'rx6700xt',
       url: 'https://www.computeruniverse.net/de/p/90829011',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', 'rx6700xt', [
+    {
       model: 'tuf oc',
-      series: 'rx6700xt',
       url: 'https://www.computeruniverse.net/de/p/90828759',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', 'rx6700xt', [
+    {
       model: 'aorus elite',
-      series: 'rx6700xt',
       url: 'https://www.computeruniverse.net/de/p/90829454',
     },
-{
-      brand: 'xfx',
+  ]),
+
+  // Xfx Cards
+  ...createBrandSeriesLinks('xfx', 'rx6700xt', [
+    {
       model: 'swft',
-      series: 'rx6700xt',
       url: 'https://www.computeruniverse.net/de/p/90829019',
-    }
+    },
+  ]),
+
 ];

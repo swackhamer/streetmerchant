@@ -1,52 +1,52 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for coolblue 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3080', [
+    {
       model: 'eagle oc',
-      series: '3080',
       url: 'https://www.coolblue.nl/product/868737/',
     },
-{
-      brand: 'msi',
-      model: 'ventus 3x oc',
-      series: '3080',
-      url: 'https://www.coolblue.nl/product/868741/',
-    },
-{
-      brand: 'asus',
-      model: 'tuf',
-      series: '3080',
-      url: 'https://www.coolblue.nl/product/868726/',
-    },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3080',
       url: 'https://www.coolblue.nl/product/868736/',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080', [
+    {
+      model: 'ventus 3x oc',
+      url: 'https://www.coolblue.nl/product/868741/',
+    },
+    {
       model: 'gaming x trio',
-      series: '3080',
       url: 'https://www.coolblue.nl/product/868740/',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3080', [
+    {
+      model: 'tuf',
+      url: 'https://www.coolblue.nl/product/868726/',
+    },
+    {
       model: 'tuf oc',
-      series: '3080',
       url: 'https://www.coolblue.nl/product/868733/',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3080',
       url: 'https://www.coolblue.nl/product/868731/',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix',
-      series: '3080',
       url: 'https://www.coolblue.nl/product/868732/',
-    }
+    },
+  ]),
+
 ];

@@ -1,10 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for pbtech rx6900xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'sapphire',
+  // Sapphire Cards
+  ...createBrandSeriesLinks('sapphire', 'rx6900xt', [
+    {
       model: 'nitro+',
-      series: 'rx6900xt',
       url: 'https://www.pbtech.com/au/product/VGASAP16915/Sapphire-Nitro-AMD-Radeon-RX-6900-XT-OC-Gaming-Gra',
-    }
+    },
+  ]),
+
 ];

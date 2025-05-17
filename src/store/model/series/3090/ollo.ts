@@ -1,40 +1,52 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for ollo 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'palit',
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3090', [
+    {
       model: 'gamerock oc',
-      series: '3090',
       url: 'https://www.ollo.it/palit-rtx3090-game-rock-oc-nvidia-geforce-rtx-3090-24-gb-gddr6x/p_813155',
     },
-{
-      brand: 'pny',
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3090', [
+    {
       model: 'xlr8 uprising',
-      series: '3090',
       url: 'https://www.ollo.it/pny-geforce-rtx-3090-24gb-xlr8-gaming-uprising-epic-x-rgb-triple-fan-edition/p_811356',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3090', [
+    {
       model: 'trinity',
-      series: '3090',
       url: 'https://www.ollo.it/zotac-geforce-rtx-3090-trinity-24gb-gddr6x/p_809667',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
       model: 'ventus 3x oc',
-      series: '3090',
       url: 'https://www.ollo.it/msi-nvidia-geforce-rtx-3090-ventus-3x-24g-oc/p_803924',
     },
-{
-      brand: 'asus',
+    {
+      model: 'gaming x trio',
+      url: 'https://www.ollo.it/msi-nvidia-geforce-rtx-3090-gaming-x-trio-24g/p_803923',
+    },
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'tuf',
-      series: '3090',
       url: 'https://www.ollo.it/asus-nvidia-geforce-rtx-3090-24g-tuf-rtx3090-o24g-gaming/p_805889',
     },
-{
-      brand: 'msi',
-      model: 'gaming x trio',
-      series: '3090',
-      url: 'https://www.ollo.it/msi-nvidia-geforce-rtx-3090-gaming-x-trio-24g/p_803923',
-    }
+  ]),
+
 ];

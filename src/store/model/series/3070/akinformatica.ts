@@ -1,4 +1,5 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
 /**
  * Links for Akinformatica RTX 3070 series

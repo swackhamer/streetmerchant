@@ -1,0 +1,14 @@
+
+    {
+      brand: 'sony',
+      model: 'ps5 console',
+      series: 'sonyps5c',
+      url: 'https://shop.bt.com/mini-sites/gaming',
+    },
+    {
+      brand: 'sony',
+      model: 'ps5 digital',
+      series: 'sonyps5de',
+      url: 'https://shop.bt.com/mini-sites/gaming',
+    },
+  

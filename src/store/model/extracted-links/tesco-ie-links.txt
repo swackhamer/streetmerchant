@@ -1,0 +1,14 @@
+
+    {
+      brand: 'microsoft',
+      model: 'xbox series x',
+      series: 'xboxsx',
+      url: 'https://secure.tesco.ie/groceries/Product/Details/?id=307835209',
+    },
+    {
+      brand: 'sony',
+      model: 'ps5 digital',
+      series: 'sonyps5de',
+      url: 'https://www.tesco.ie/groceries/product/details/?id=307756010',
+    },
+  

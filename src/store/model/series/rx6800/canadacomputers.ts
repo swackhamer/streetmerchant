@@ -1,28 +1,37 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for canadacomputers rx6800 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', 'rx6800', [
+    {
       model: 'gaming x trio',
-      series: 'rx6800',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_558&item_id=186527&language=en',
     },
-{
-      brand: 'sapphire',
+  ]),
+
+  // Sapphire Cards
+  ...createBrandSeriesLinks('sapphire', 'rx6800', [
+    {
       model: 'nitro+',
-      series: 'rx6800',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_558&item_id=185755&language=en',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', 'rx6800', [
+    {
       model: 'strix oc',
-      series: 'rx6800',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_558&item_id=185459&language=en',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: 'rx6800',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_558&item_id=185460&language=en',
-    }
+    },
+  ]),
+
 ];

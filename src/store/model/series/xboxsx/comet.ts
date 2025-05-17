@@ -1,11 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for comet xboxsx series
+ */
 export const links: Link[] = [
-{
-      brand: 'microsoft',
-      cartUrl: 'https://www.comet.it/cart/insert/MIS01077A/online',
+  // Microsoft Cards
+  ...createBrandSeriesLinks('microsoft', 'xboxsx', [
+    {
       model: 'xbox series x',
-      series: 'xboxsx',
       url: 'https://www.comet.it/xbox-serie-x/xbox-series-x',
-    }
+      cartUrl: 'https://www.comet.it/cart/insert/MIS01077A/online',
+    },
+  ]),
+
 ];

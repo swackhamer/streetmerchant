@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "lib": [
       "DOM",
       "ES2023"
@@ -11,6 +12,7 @@
     "outDir": "build",
     "skipLibCheck": true,
     "target": "ES2022",
+    "downlevelIteration": true,
     "typeRoots": [
       "./src/types",
       "./node_modules/@types"

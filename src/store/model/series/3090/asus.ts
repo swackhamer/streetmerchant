@@ -1,25 +1,27 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for asus 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
-      itemNumber: '202009AM150000001',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
       model: 'tuf oc',
-      series: '3090',
       url: 'https://store.asus.com/us/item/202009AM150000001',
+      itemNumber: '202009AM150000001',
     },
-{
-      brand: 'asus',
-      itemNumber: '202009AM150000003',
+    {
       model: 'tuf',
-      series: '3090',
       url: 'https://store.asus.com/us/item/202009AM150000003',
+      itemNumber: '202009AM150000003',
     },
-{
-      brand: 'asus',
-      itemNumber: '202012AM220000001',
+    {
       model: 'strix oc',
-      series: '3090',
       url: 'https://store.asus.com/us/item/202012AM220000001',
-    }
+      itemNumber: '202012AM220000001',
+    },
+  ]),
+
 ];

@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for harveynorman-ie
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const HarveyNormanIE: Store = {
+/**
+ * HarveynormanIe store
+ */
+export const HarveynormanIe = createEuropeanStore({
+  name: 'harveynorman-ie',
+  country: 'IE',
   currency: '€',
   labels: {
     inStock: {
@@ -16,15 +26,5 @@ export const HarveyNormanIE: Store = {
       text: ['SOLD OUT! WATCH THIS SPACE FOR MORE INFORMATION'],
     },
   },
-  links: [
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://www.harveynorman.ie/gaming/xbox-series/microsoft-xbox-series-x-console-1tb.html',
-    },
-  ],
-  name: 'harveynorman-ie',
-  country: 'IE',
-  waitUntil: 'domcontentloaded',
-};
+
+});

@@ -1,12 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for amd-ca rx6800 series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
-      cartUrl:
-        'https://www.amd.com/en/direct-buy/5458373400/ca?add-to-cart=true',
-      model: 'amd reference',
-      series: 'rx6800',
+  // AMD Reference
+  ...createAmdReferenceLinks('rx6800', [
+    {
       url: 'https://www.amd.com/en/direct-buy/5458373400/ca',
-    }
+      cartUrl: 'https://www.amd.com/en/direct-buy/5458373400/ca?add-to-cart=true',
+    },
+  ]),
+
 ];

@@ -1,140 +1,122 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for newegg-ca 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
-      itemNumber: '14-137-595',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
       model: 'gaming x trio',
-      series: '3090',
       url: 'https://www.newegg.ca/msi-geforce-rtx-3090-rtx-3090-gaming-x-trio-24g/p/N82E16814137595',
+      itemNumber: '14-137-595',
     },
-{
-      brand: 'gigabyte',
-      itemNumber: '14-932-327',
-      model: 'gaming oc',
-      series: '3090',
-      url: 'https://www.newegg.ca/gigabyte-geforce-rtx-3090-gv-n3090gaming-oc-24gd/p/N82E16814932327',
-    },
-{
-      brand: 'gigabyte',
-      model: 'aorus master',
-      series: '3090',
-      url: 'https://www.newegg.ca/gigabyte-geforce-rtx-3090-gv-n3090aorus-m-24gd/p/N82E16814932341',
-    },
-{
-      brand: 'msi',
-      itemNumber: '14-137-596',
+    {
       model: 'ventus 3x oc',
-      series: '3090',
       url: 'https://www.newegg.ca/msi-geforce-rtx-3090-rtx-3090-ventus-3x-24g-oc/p/N82E16814137596',
+      itemNumber: '14-137-596',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x',
-      series: '3090',
       url: 'https://www.newegg.ca/msi-geforce-rtx-3090-rtx-3090-ventus-3x-24g/p/N82E16814137599',
     },
-{
-      brand: 'msi',
+    {
       model: 'suprim x',
-      series: '3090',
       url: 'https://www.newegg.ca/msi-geforce-rtx-3090-rtx3090-suprim-x-24g/p/N82E16814137610',
     },
-{
-      brand: 'zotac',
-      itemNumber: '14-500-503',
-      model: 'trinity',
-      series: '3090',
-      url: 'https://www.newegg.ca/zotac-geforce-rtx-3090-zt-a30900d-10p/p/N82E16814500503',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
+      model: 'gaming oc',
+      url: 'https://www.newegg.ca/gigabyte-geforce-rtx-3090-gv-n3090gaming-oc-24gd/p/N82E16814932327',
+      itemNumber: '14-932-327',
     },
-{
-      brand: 'asus',
-      itemNumber: '14-126-454',
-      model: 'tuf oc',
-      series: '3090',
-      url: 'https://www.newegg.ca/asus-geforce-rtx-3090-tuf-rtx3090-o24g-gaming/p/N82E16814126454',
+    {
+      model: 'aorus master',
+      url: 'https://www.newegg.ca/gigabyte-geforce-rtx-3090-gv-n3090aorus-m-24gd/p/N82E16814932341',
     },
-{
-      brand: 'asus',
-      model: 'tuf',
-      series: '3090',
-      url: 'https://www.newegg.ca/asus-geforce-rtx-3090-tuf-rtx3090-24g-gaming/p/N82E16814126455',
-    },
-{
-      brand: 'asus',
-      itemNumber: '14-126-456',
-      model: 'strix oc',
-      series: '3090',
-      url: 'https://www.newegg.ca/asus-geforce-rtx-3090-rog-strix-rtx3090-o24g-gaming/p/N82E16814126456',
-    },
-{
-      brand: 'evga',
-      itemNumber: '14-487-524',
-      model: 'xc3 ultra',
-      series: '3090',
-      url: 'https://www.newegg.ca/evga-geforce-rtx-3090-24g-p5-3975-kr/p/N82E16814487524',
-    },
-{
-      brand: 'evga',
-      itemNumber: '14-487-523',
-      model: 'xc3',
-      series: '3090',
-      url: 'https://www.newegg.ca/evga-geforce-rtx-3090-24g-p5-3973-kr/p/N82E16814487523',
-    },
-{
-      brand: 'evga',
-      itemNumber: '14-487-526',
-      model: 'ftw3 ultra',
-      series: '3090',
-      url: 'https://www.newegg.ca/evga-geforce-rtx-3090-24g-p5-3987-kr/p/N82E16814487526',
-    },
-{
-      brand: 'evga',
-      itemNumber: '14-487-525',
-      model: 'ftw3',
-      series: '3090',
-      url: 'https://www.newegg.ca/evga-geforce-rtx-3090-24g-p5-3985-kr/p/N82E16814487525',
-    },
-{
-      brand: 'asus',
-      model: 'ekwb',
-      series: '3090',
-      url: 'https://www.newegg.ca/asus-geforce-rtx-3090-rtx3090-24g-ek/p/N82E16814126485',
-    },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme waterforce',
-      series: '3090',
       url: 'https://www.newegg.ca/gigabyte-geforce-rtx-3090-gv-n3090aorusx-w-24gd/p/N82E16814932387',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme waterforce wb',
-      series: '3090',
       url: 'https://www.newegg.ca/gigabyte-geforce-rtx-3090-gv-n3090aorusx-wb-24gd/p/N82E16814932386',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus xtreme',
-      series: '3090',
       url: 'https://www.newegg.ca/gigabyte-geforce-rtx-3090-gv-n3090aorus-x-24gd/p/N82E16814932340',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3090',
       url: 'https://www.newegg.ca/gigabyte-geforce-rtx-3090-gv-n3090vision-oc-24gd/p/N82E16814932365',
     },
-{
-      brand: 'asus',
+    {
+      model: 'eagle',
+      url: 'https://www.newegg.ca/gigabyte-geforce-rtx-3090-gv-n3090eagle-24gd/p/N82E16814932366',
+    },
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3090', [
+    {
+      model: 'trinity',
+      url: 'https://www.newegg.ca/zotac-geforce-rtx-3090-zt-a30900d-10p/p/N82E16814500503',
+      itemNumber: '14-500-503',
+    },
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3090', [
+    {
+      model: 'tuf oc',
+      url: 'https://www.newegg.ca/asus-geforce-rtx-3090-tuf-rtx3090-o24g-gaming/p/N82E16814126454',
+      itemNumber: '14-126-454',
+    },
+    {
+      model: 'tuf',
+      url: 'https://www.newegg.ca/asus-geforce-rtx-3090-tuf-rtx3090-24g-gaming/p/N82E16814126455',
+    },
+    {
+      model: 'strix oc',
+      url: 'https://www.newegg.ca/asus-geforce-rtx-3090-rog-strix-rtx3090-o24g-gaming/p/N82E16814126456',
+      itemNumber: '14-126-456',
+    },
+    {
+      model: 'ekwb',
+      url: 'https://www.newegg.ca/asus-geforce-rtx-3090-rtx3090-24g-ek/p/N82E16814126485',
+    },
+    {
       model: 'strix white',
-      series: '3090',
       url: 'https://www.newegg.ca/asus-geforce-rtx-3090-rog-strix-rtx3090-o24g-white/p/N82E16814126482',
     },
-{
-      brand: 'gigabyte',
-      model: 'eagle',
-      series: '3090',
-      url: 'https://www.newegg.ca/gigabyte-geforce-rtx-3090-gv-n3090eagle-24gd/p/N82E16814932366',
-    }
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3090', [
+    {
+      model: 'xc3 ultra',
+      url: 'https://www.newegg.ca/evga-geforce-rtx-3090-24g-p5-3975-kr/p/N82E16814487524',
+      itemNumber: '14-487-524',
+    },
+    {
+      model: 'xc3',
+      url: 'https://www.newegg.ca/evga-geforce-rtx-3090-24g-p5-3973-kr/p/N82E16814487523',
+      itemNumber: '14-487-523',
+    },
+    {
+      model: 'ftw3 ultra',
+      url: 'https://www.newegg.ca/evga-geforce-rtx-3090-24g-p5-3987-kr/p/N82E16814487526',
+      itemNumber: '14-487-526',
+    },
+    {
+      model: 'ftw3',
+      url: 'https://www.newegg.ca/evga-geforce-rtx-3090-24g-p5-3985-kr/p/N82E16814487525',
+      itemNumber: '14-487-525',
+    },
+  ]),
+
 ];

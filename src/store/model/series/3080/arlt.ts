@@ -1,16 +1,24 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for arlt 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3080', [
+    {
       model: 'tuf oc',
-      series: '3080',
       url: 'https://www.arlt.com/Hardware/PC-Komponenten/Grafikkarten/ASUS-TUF-Gaming-GeForce-RTX-3080-OC.html',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080', [
+    {
       model: 'ventus 3x oc',
-      series: '3080',
       url: 'https://www.arlt.com/Hardware/PC-Komponenten/Grafikkarten/NVIDIA/GeForce-RTX/RTX-3080/MSI-GeForce-RTX-3080-Ventus-3X-OC.html',
-    }
+    },
+  ]),
+
 ];

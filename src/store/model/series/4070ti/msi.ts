@@ -1,11 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for msi 4070ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '4070ti', [
+    {
       model: 'expert',
-      series: '4070ti',
-      // "https://us-store.msi.com/Graphics-Cards/NVIDIA-GPU/GeForce-RTX-40-Series/GeForce-RTX-4070-Ti-SUPER-16G-EXPERT",
       url: 'https://us-store.msi.com/Graphics-Cards/NVIDIA-GPU/GeForce-RTX-40-Series?product_id=2174',
-    }
+    },
+  ]),
+
 ];

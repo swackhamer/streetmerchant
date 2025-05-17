@@ -1,28 +1,32 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for equippr 3070 series
+ */
 export const links: Link[] = [
-{
-      brand: 'zotac',
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3070', [
+    {
       model: 'twin edge oc',
-      series: '3070',
       url: 'https://www.equippr.de/zotac-geforce-rtx-3070-twin-edge-oc-8-gb-gddr6-retail-2064130.html',
     },
-{
-      brand: 'zotac',
+    {
       model: 'twin edge',
-      series: '3070',
       url: 'https://www.equippr.de/zotac-geforce-rtx-3070-twin-edge-8-gb-gddr6-retail-2060897.html',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3070', [
+    {
       model: 'eagle',
-      series: '3070',
       url: 'https://www.equippr.de/gigabyte-geforce-rtx-3070-eagle-8-gb-gddr6-retail-2063884.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3070',
       url: 'https://www.equippr.de/gigabyte-geforce-rtx-3070-eagle-oc-8-gb-gddr6-retail-2063882.html',
-    }
+    },
+  ]),
+
 ];

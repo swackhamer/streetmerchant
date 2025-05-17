@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for ubiquiti
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const Ubiquiti: Store = {
+/**
+ * Ubiquiti store
+ */
+export const Ubiquiti = createStandardStore({
+  name: 'ubiquiti',
+  country: 'US',
   currency: '$',
   labels: {
     inStock: [
@@ -20,44 +30,5 @@ export const Ubiquiti: Store = {
       },
     ],
   },
-  links: [
-    {
-      brand: 'ubiquiti',
-      model: 'dream machine',
-      series: 'udm-us',
-      url: 'https://store.ui.com/collections/unifi-network-unifi-os-consoles/products/udm-us',
-    },
-    {
-      brand: 'ubiquiti',
-      model: 'dream machine pro',
-      series: 'udm-pro',
-      url: 'https://store.ui.com/collections/unifi-network-unifi-os-consoles/products/udm-pro',
-    },
-    {
-      brand: 'ubiquiti',
-      model: 'dream router',
-      series: 'udr-us',
-      url: 'https://store.ui.com/collections/unifi-network-unifi-os-consoles/products/dream-router',
-    },
-    {
-      brand: 'ubiquiti',
-      model: 'g4 doorbell pro',
-      series: 'g4-doorbell-pro',
-      url: 'https://store.ui.com/collections/unifi-protect/products/g4-doorbell-pro',
-    },
-    {
-      brand: 'ubiquiti',
-      model: 'network video recorder',
-      series: 'unvr',
-      url: 'https://store.ui.com/collections/unifi-protect/products/unvr',
-    },
-    {
-      brand: 'ubiquiti',
-      model: 'network video recorder pro',
-      series: 'unvr-pro',
-      url: 'https://store.ui.com/collections/unifi-protect/products/unvr-pro',
-    },
-  ],
-  name: 'ubiquiti',
-  country: 'US',
-};
+
+});

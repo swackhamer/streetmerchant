@@ -1,28 +1,28 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for pny 5090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'pny',
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '5090', [
+    {
       model: 'triple fan',
-      series: '5090',
       url: 'https://www.pny.com/geforce-rtx-5090-series?sku=VCG509032TFXPB1',
     },
-{
-      brand: 'pny',
+    {
       model: 'triple fan oc',
-      series: '5090',
       url: 'https://www.pny.com/geforce-rtx-5090-series?sku=VCG509032TFXPB1-O',
     },
-{
-      brand: 'pny',
+    {
       model: 'epic x',
-      series: '5090',
       url: 'https://www.pny.com/geforce-rtx-5090-series?sku=VCG509032TFXXPB1',
     },
-{
-      brand: 'pny',
+    {
       model: 'epic x oc',
-      series: '5090',
       url: 'https://www.pny.com/geforce-rtx-5090-series?sku=VCG509032TFXXPB1-O',
-    }
+    },
+  ]),
+
 ];

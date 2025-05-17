@@ -1,32 +1,40 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy 3060 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
-      cartUrl: 'https://api.bestbuy.com/click/-/6452940/cart',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3060', [
+    {
       model: 'ventus 3x',
-      series: '3060',
       url: 'https://api.bestbuy.com/click/-/6452940/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6452940/cart',
     },
-{
-      brand: 'evga',
-      cartUrl: 'https://api.bestbuy.com/click/-/6454328/cart',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3060', [
+    {
       model: 'xc gaming',
-      series: '3060',
       url: 'https://api.bestbuy.com/click/-/6454328/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6454328/cart',
     },
-{
-      brand: 'pny',
-      cartUrl: 'https://api.bestbuy.com/click/-/6454319/cart',
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3060', [
+    {
       model: 'dual fan',
-      series: '3060',
       url: 'https://api.bestbuy.com/click/-/6454319/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6454319/cart',
     },
-{
-      brand: 'pny',
-      cartUrl: 'https://api.bestbuy.com/click/-/6454318/cart',
+    {
       model: 'single fan',
-      series: '3060',
       url: 'https://api.bestbuy.com/click/-/6454318/pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-/6454318/cart',
+    },
+  ]),
+
 ];

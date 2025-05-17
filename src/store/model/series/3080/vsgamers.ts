@@ -1,106 +1,96 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for vsgamers 3080 series
+ */
 export const links: Link[] = [
-{
-      brand: 'zotac',
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3080', [
+    {
       model: 'amp holo',
-      series: '3080',
       url: 'https://www.vsgamers.es/product/tarjeta-grafica-zotac-gaming-nvidia-geforce-rtxr-3080-10-gb-gddr6x',
     },
-{
-      brand: 'msi',
-      model: 'ventus 3x oc',
-      series: '3080',
-      url: 'https://www.vsgamers.es/product/tarjeta-grafica-msi-geforce-rtx-3080-ventus-3x-10g-oc-10-gb-gddr6x',
-    },
-{
-      brand: 'msi',
-      model: 'gaming x trio',
-      series: '3080',
-      url: 'https://www.vsgamers.es/product/tarjeta-grafica-msi-geforce-rtx-3080-gaming-x-trio-10g-10-gb-gddr6x',
-    },
-{
-      brand: 'msi',
-      model: 'suprim x',
-      series: '3080',
-      url: 'https://www.vsgamers.es/product/tarjeta-grafica-msi-geforce-rtx-3080-suprim-x-10g-gddr6x',
-    },
-{
-      brand: 'asus',
-      model: 'tuf',
-      series: '3080',
-      url: 'https://www.vsgamers.es/product/tarjeta-grafica-asus-tuf-gaming-geforce-rtx-3080-10g-10-gb-gddr6x',
-    },
-{
-      brand: 'asus',
-      model: 'tuf oc',
-      series: '3080',
-      url: 'https://www.vsgamers.es/product/tarjeta-grafica-asus-tuf-gaming-geforce-rtx-3080-oc-10g-10-gb-gddr6x',
-    },
-{
-      brand: 'asus',
-      model: 'strix',
-      series: '3080',
-      url: 'https://www.vsgamers.es/product/tarjeta-grafica-asus-rog-strix-geforce-rtx-3080-gaming-10g-10-gb-gddr6x',
-    },
-{
-      brand: 'asus',
-      model: 'strix white',
-      series: '3080',
-      url: 'https://www.vsgamers.es/product/tarjeta-grafica-asus-rog-strix-nvidia-geforce-rtx-3080-oc-10gb-gddr6x-white',
-    },
-{
-      brand: 'asus',
-      model: 'strix oc',
-      series: '3080',
-      url: 'https://www.vsgamers.es/product/tarjeta-grafica-asus-rog-strix-geforce-rtx-3080-gaming-oc-10g-10-gb-gddr6x',
-    },
-{
-      brand: 'gigabyte',
-      model: 'eagle oc',
-      series: '3080',
-      url: 'https://www.vsgamers.es/product/tarjeta-grafica-gigabyte-geforce-rtx-3080-eagle-oc-10g-10-gb-gddr6x',
-    },
-{
-      brand: 'gigabyte',
-      model: 'gaming oc',
-      series: '3080',
-      url: 'https://www.vsgamers.es/product/tarjeta-grafica-gigabyte-geforce-rtx-3080-gaming-oc-10g-10-gb-gddr6x',
-    },
-{
-      brand: 'gigabyte',
-      model: 'aorus xtreme',
-      series: '3080',
-      url: 'https://www.vsgamers.es/product/tarjeta-grafica-gigabyte-aorus-geforce-rtx-3080-xtreme-10gb-gddr6x',
-    },
-{
-      brand: 'gigabyte',
-      model: 'aorus master',
-      series: '3080',
-      url: 'https://www.vsgamers.es/product/tarjeta-grafica-gigabyte-aorus-geforce-rtx-3080-10-gb-gddr6x',
-    },
-{
-      brand: 'zotac',
+    {
       model: 'trinity',
-      series: '3080',
       url: 'https://www.vsgamers.es/product/tarjeta-grafica-zotac-geforce-rtx-3080-trinity-10-gb-gddr6x',
     },
-{
-      brand: 'zotac',
+    {
       model: 'trinity oc',
-      series: '3080',
       url: 'https://www.vsgamers.es/product/tarjeta-grafica-zotac-gaming-nvidia-geforce-rtxr-3080-trinity-oc-10-gb-gddr6x',
     },
-{
-      brand: 'zotac',
+    {
       model: 'trinity oc lhr',
-      series: '3080',
       url: 'https://www.vsgamers.es/product/tarjeta-grafica-zotac-gaming-geforce-rtx-3080-trinity-oc-lhr-10gb-gddr6x',
     },
-{
-      brand: 'pny',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080', [
+    {
+      model: 'ventus 3x oc',
+      url: 'https://www.vsgamers.es/product/tarjeta-grafica-msi-geforce-rtx-3080-ventus-3x-10g-oc-10-gb-gddr6x',
+    },
+    {
+      model: 'gaming x trio',
+      url: 'https://www.vsgamers.es/product/tarjeta-grafica-msi-geforce-rtx-3080-gaming-x-trio-10g-10-gb-gddr6x',
+    },
+    {
+      model: 'suprim x',
+      url: 'https://www.vsgamers.es/product/tarjeta-grafica-msi-geforce-rtx-3080-suprim-x-10g-gddr6x',
+    },
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3080', [
+    {
+      model: 'tuf',
+      url: 'https://www.vsgamers.es/product/tarjeta-grafica-asus-tuf-gaming-geforce-rtx-3080-10g-10-gb-gddr6x',
+    },
+    {
+      model: 'tuf oc',
+      url: 'https://www.vsgamers.es/product/tarjeta-grafica-asus-tuf-gaming-geforce-rtx-3080-oc-10g-10-gb-gddr6x',
+    },
+    {
+      model: 'strix',
+      url: 'https://www.vsgamers.es/product/tarjeta-grafica-asus-rog-strix-geforce-rtx-3080-gaming-10g-10-gb-gddr6x',
+    },
+    {
+      model: 'strix white',
+      url: 'https://www.vsgamers.es/product/tarjeta-grafica-asus-rog-strix-nvidia-geforce-rtx-3080-oc-10gb-gddr6x-white',
+    },
+    {
+      model: 'strix oc',
+      url: 'https://www.vsgamers.es/product/tarjeta-grafica-asus-rog-strix-geforce-rtx-3080-gaming-oc-10g-10-gb-gddr6x',
+    },
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3080', [
+    {
+      model: 'eagle oc',
+      url: 'https://www.vsgamers.es/product/tarjeta-grafica-gigabyte-geforce-rtx-3080-eagle-oc-10g-10-gb-gddr6x',
+    },
+    {
+      model: 'gaming oc',
+      url: 'https://www.vsgamers.es/product/tarjeta-grafica-gigabyte-geforce-rtx-3080-gaming-oc-10g-10-gb-gddr6x',
+    },
+    {
+      model: 'aorus xtreme',
+      url: 'https://www.vsgamers.es/product/tarjeta-grafica-gigabyte-aorus-geforce-rtx-3080-xtreme-10gb-gddr6x',
+    },
+    {
+      model: 'aorus master',
+      url: 'https://www.vsgamers.es/product/tarjeta-grafica-gigabyte-aorus-geforce-rtx-3080-10-gb-gddr6x',
+    },
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3080', [
+    {
       model: 'xlr8 revel',
-      series: '3080',
       url: 'https://www.vsgamers.es/product/tarjeta-grafica-pny-nvidia-geforce-rtx-3080-10gb-gddrex',
-    }
+    },
+  ]),
+
 ];

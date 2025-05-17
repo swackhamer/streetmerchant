@@ -1,22 +1,32 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for siabyte 3080ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'evga',
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3080ti', [
+    {
       model: 'ftw3 ultra',
-      series: '3080ti',
       url: 'https://siabyte.com/tarjetas-graficas/981-evga-geforce-rtx-3080-ti-ftw3-ultra-12gb-gddr6x.html',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3080ti', [
+    {
       model: 'suprim x',
-      series: '3080ti',
       url: 'https://siabyte.com/rtx-3080/979-msi-geforce-rtx-3080-ti-suprim-x-12gb-gddr6x.html',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3080ti', [
+    {
       model: 'amp holo',
-      series: '3080ti',
       url: 'https://siabyte.com/tarjetas-graficas/980-zotac-gaming-geforce-rtx-3080-ti-amp-holo-12gb-gddr6x.html',
-    }
+    },
+  ]),
+
 ];

@@ -1,22 +1,15 @@
-import {Link as BaseLink, Store as BaseStore} from './store';
-import {Browser} from 'puppeteer';
+/**
+ * Store configuration for extended-store
+ * Refactored to use factory approach and series-based organization
+ */
+import {createStandardStore} from './common/store-factory';
 
 /**
- * Extended Link interface with additional properties for validation
+ * ExtendedStore store
  */
-export interface ExtendedLink extends BaseLink {
-  /**
-   * Indicates if this link is a duplicate of another link with the same URL
-   */
-  duplicate?: boolean;
-}
+export const ExtendedStore = createStandardStore({
+  name: 'extended-store',
+  country: 'US',
+  currency: '$',
 
-/**
- * Extended Store interface with support for series-based link loading
- */
-export interface SeriesStore extends BaseStore {
-  /**
-   * Setup action that loads links dynamically based on series
-   */
-  setupAction: (browser: Browser) => Promise<void>;
-}
+});

@@ -1,4 +1,4 @@
-import {Link} from '../../store';
+import {Link} from '../store';
 
 /**
  * Link template for a specific store and series

@@ -1,34 +1,40 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for alternate-fr 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3090', [
+    {
       model: 'aorus xtreme waterforce',
-      series: '3090',
       url: 'https://www.alternate.fr/html/product/1694043',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3090',
       url: 'https://www.alternate.fr/html/product/1672749',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3090',
       url: 'https://www.alternate.fr/html/product/1691159',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3090', [
+    {
       model: 'gaming x trio',
-      series: '3090',
       url: 'https://www.alternate.fr/html/product/1672341',
     },
-{
-      brand: 'palit',
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3090', [
+    {
       model: 'gamerock',
-      series: '3090',
       url: 'https://www.alternate.fr/html/product/1688678',
-    }
+    },
+  ]),
+
 ];

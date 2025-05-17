@@ -4,9 +4,9 @@ This guide shows you how to extend Streetmerchant with custom stores, notificati
 
 ## Adding a New Store
 
-Adding support for a new online retailer requires creating a new store model file and updating a few existing files.
+Adding support for a new online retailer requires creating a new store model file and (optionally) series-specific link files. Streetmerchant now supports two approaches for adding stores.
 
-### 1. Create a Store Model File
+### Option 1: Traditional Store Implementation
 
 Create a new TypeScript file in `src/store/model/` with a name matching the store (e.g., `new-store.ts`).
 
@@ -25,7 +25,7 @@ export const NewStore: Store = {
       euroFormat: false, // Set to true for European price format
     },
     outOfStock: {
-      container: '.add-to-cart-button[disabled]',
+      container: '.add-to-cart-button[disabled])',
       text: ['out of stock'],
     },
   },
@@ -42,7 +42,69 @@ export const NewStore: Store = {
 };
 ```
 
-### 2. Update Store Index
+### Option 2: Series-Based Store Implementation (Recommended)
+
+1. Create a minimal store implementation in `src/store/model/` using the `createStandardStore` factory:
+
+```typescript
+import {createStandardStore} from './common/store-factory';
+
+export const NewStore = createStandardStore({
+  currency: '$',
+  labels: {
+    inStock: {
+      container: '.add-to-cart-button:not([disabled])',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: '.product-price',
+      euroFormat: false, // Set to true for European price format
+    },
+    outOfStock: {
+      container: '.add-to-cart-button[disabled])',
+      text: ['out of stock'],
+    },
+  },
+  links: [], // Empty array - will be populated by series-specific links
+  name: 'newstore',
+});
+```
+
+2. Create series-specific link files in the appropriate series directories:
+
+```typescript
+// src/store/model/series/3080/newstore.ts
+import {Link, Brand, Series, Model} from '../../store';
+import {createLink} from '../common/link-factory';
+
+export const links: Link[] = [
+  createLink({
+    brand: 'nvidia' as Brand,
+    model: 'founders edition' as Model,
+    series: '3080' as Series,
+    url: 'https://www.newstore.com/nvidia-3080',
+  }),
+  // More 3080 links...
+];
+```
+
+```typescript
+// src/store/model/series/3070/newstore.ts
+import {Link, Brand, Series, Model} from '../../store';
+import {createLink} from '../common/link-factory';
+
+export const links: Link[] = [
+  createLink({
+    brand: 'nvidia' as Brand,
+    model: 'founders edition' as Model,
+    series: '3070' as Series,
+    url: 'https://www.newstore.com/nvidia-3070',
+  }),
+  // More 3070 links...
+];
+```
+
+### 3. Update Store Index
 
 Add your store to `src/store/model/index.ts`:
 
@@ -57,6 +119,8 @@ export const storeList = new Map([
   // ... more stores
 ]);
 ```
+
+The `initializeSeriesLinksLoader` function will automatically load the series-specific links for your store.
 
 ### 3. Identifying CSS Selectors
 

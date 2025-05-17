@@ -1,34 +1,32 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for evga-eu 3090 series
+ */
 export const links: Link[] = [
-{
-      brand: 'evga',
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3090', [
+    {
       model: 'ftw3',
-      series: '3090',
       url: 'https://eu.evga.com/products/product.aspx?pn=24G-P5-3985-KR',
     },
-{
-      brand: 'evga',
+    {
       model: 'ftw3 ultra',
-      series: '3090',
       url: 'https://eu.evga.com/products/product.aspx?pn=24G-P5-3987-KR',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3',
-      series: '3090',
       url: 'https://eu.evga.com/products/product.aspx?pn=24G-P5-3973-KR',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 black',
-      series: '3090',
       url: 'https://eu.evga.com/products/product.aspx?pn=24G-P5-3971-KR',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3 ultra',
-      series: '3090',
       url: 'https://eu.evga.com/products/product.aspx?pn=24G-P5-3975-KR',
-    }
+    },
+  ]),
+
 ];

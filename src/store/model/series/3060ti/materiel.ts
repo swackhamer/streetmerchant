@@ -1,208 +1,184 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for materiel 3060ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'asus',
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3060ti', [
+    {
       model: 'dual',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011060098.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'dual mini',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202012210010.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'dual mini oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202012210009.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'dual oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011040097.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'strix oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011040047.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011060096.html',
     },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011040046.html',
     },
-{
-      brand: 'evga',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3060ti', [
+    {
       model: 'ftw3 ultra',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011240231.html',
     },
-{
-      brand: 'evga',
+    {
       model: 'xc3',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202012070100.html',
     },
-{
-      brand: 'gainward',
+  ]),
+
+  // Gainward Cards
+  ...createBrandSeriesLinks('gainward', '3060ti', [
+    {
       model: 'ghost',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011090107.html',
     },
-{
-      brand: 'gainward',
+    {
       model: 'ghost oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011090108.html',
     },
-{
-      brand: 'gainward',
+    {
       model: 'phoenix',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011090110.html',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3060ti', [
+    {
       model: 'aorus master',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011180019.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202101050071.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011180025.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011180027.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'gaming oc pro',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011180031.html',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202102010018.html',
     },
-{
-      brand: 'inno3d',
+  ]),
+
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3060ti', [
+    {
       model: 'ichill x3',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011160037.html',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'twin x2',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011300117.html',
     },
-{
-      brand: 'inno3d',
+    {
       model: 'twin x2 oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011160036.html',
     },
-{
-      brand: 'kfa2',
+  ]),
+
+  // Kfa2 Cards
+  ...createBrandSeriesLinks('kfa2', '3060ti', [
+    {
       model: 'sg oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011040084.html',
     },
-{
-      brand: 'msi',
+  ]),
+
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3060ti', [
+    {
       model: 'gaming x trio',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202101190017.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 2x oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202012020119.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 2x',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202102220080.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011200140.html',
     },
-{
-      brand: 'palit',
+  ]),
+
+  // Palit Cards
+  ...createBrandSeriesLinks('palit', '3060ti', [
+    {
       model: 'dual',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011090106.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'dual oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011090105.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'gaming pro',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011090099.html',
     },
-{
-      brand: 'palit',
+    {
       model: 'gaming pro oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011090098.html',
     },
-{
-      brand: 'pny',
+  ]),
+
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3060ti', [
+    {
       model: 'uprising',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011090114.html',
     },
-{
-      brand: 'pny',
+    {
       model: 'xlr8 revel',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011090113.html',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3060ti', [
+    {
       model: 'twin edge',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011060034.html',
     },
-{
-      brand: 'zotac',
+    {
       model: 'twin edge oc',
-      series: '3060ti',
       url: 'https://www.materiel.net/produit/202011060033.html',
-    }
+    },
+  ]),
+
 ];

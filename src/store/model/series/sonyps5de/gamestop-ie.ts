@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for gamestop-ie sonyps5de series
+ */
 export const links: Link[] = [
-{
-      brand: 'sony',
+  // Sony Cards
+  ...createBrandSeriesLinks('sony', 'sonyps5de', [
+    {
       model: 'ps5 digital',
-      series: 'sonyps5de',
       url: 'https://www.gamestop.ie/PlayStation%205/Games/72504/playstation-5-console',
-    }
+    },
+  ]),
+
 ];

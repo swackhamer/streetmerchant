@@ -1,16 +1,20 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for pny 3060 series
+ */
 export const links: Link[] = [
-{
-      brand: 'pny',
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3060', [
+    {
       model: 'dual fan',
-      series: '3060',
       url: 'https://www.pny.com/geforce-rtx-3060-12gb-xlr8-gaming-revel-epic-x-rgb-df',
     },
-{
-      brand: 'pny',
+    {
       model: 'single fan',
-      series: '3060',
       url: 'https://www.pny.com/pny-geforce-rtx-3060-12gb-xlr8-gaming-revel-epic-x-rgb-sf',
-    }
+    },
+  ]),
+
 ];

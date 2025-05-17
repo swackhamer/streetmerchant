@@ -1,13 +1,18 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for newegg ryzen5950 series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
-      cartUrl:
-        'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=N82E16819113663',
-      itemNumber: '19-113-663',
+  // Amd Cards
+  ...createBrandSeriesLinks('amd', 'ryzen5950', [
+    {
       model: '5950x',
-      series: 'ryzen5950',
       url: 'https://www.newegg.com/amd-ryzen-9-5950x/p/N82E16819113663',
-    }
+      cartUrl: 'https://secure.newegg.com/Shopping/AddtoCart.aspx?Submit=ADD&ItemList=N82E16819113663',
+      itemNumber: '19-113-663',
+    },
+  ]),
+
 ];

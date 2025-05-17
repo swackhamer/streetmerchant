@@ -1,11 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy ryzen7950x series
+ */
 export const links: Link[] = [
-{
-      brand: 'amd',
+  // Amd Cards
+  ...createBrandSeriesLinks('amd', 'ryzen7950x', [
+    {
       model: '7950x',
-      cartUrl: 'https://api.bestbuy.com/click/-/6519470/cart',
-      series: 'ryzen7950x',
       url: 'https://api.bestbuy.com/click/-/6519470/pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-/6519470/cart',
+    },
+  ]),
+
 ];

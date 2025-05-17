@@ -1,11 +1,17 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for bestbuy sonyps5de series
+ */
 export const links: Link[] = [
-{
-      brand: 'sony',
-      cartUrl: 'https://api.bestbuy.com/click/-/6430161/cart',
+  // Sony Cards
+  ...createBrandSeriesLinks('sony', 'sonyps5de', [
+    {
       model: 'ps5 digital',
-      series: 'sonyps5de',
       url: 'https://api.bestbuy.com/click/-/6430161/pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-/6430161/cart',
+    },
+  ]),
+
 ];

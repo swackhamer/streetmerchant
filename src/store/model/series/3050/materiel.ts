@@ -1,10 +1,16 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for materiel 3050 series
+ */
 export const links: Link[] = [
-{
-      brand: 'inno3d',
+  // Inno3d Cards
+  ...createBrandSeriesLinks('inno3d', '3050', [
+    {
       model: 'twin x2',
-      series: '3050',
       url: 'https://www.materiel.net/produit/202201170090.html',
-    }
+    },
+  ]),
+
 ];

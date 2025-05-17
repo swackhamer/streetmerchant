@@ -1,16 +1,20 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for pny 3070 series
+ */
 export const links: Link[] = [
-{
-      brand: 'pny',
+  // Pny Cards
+  ...createBrandSeriesLinks('pny', '3070', [
+    {
       model: 'dual fan',
-      series: '3070',
       url: 'https://www.pny.com/pny-geforce-rtx-3070-8gb-df',
     },
-{
-      brand: 'pny',
+    {
       model: 'xlr8 revel',
-      series: '3070',
       url: 'https://www.pny.com/geforce-rtx-3070-xlr8-gaming-epic-x-rgb-triple-fan',
-    }
+    },
+  ]),
+
 ];

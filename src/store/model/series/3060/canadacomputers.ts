@@ -1,58 +1,64 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for canadacomputers 3060 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3060', [
+    {
       model: 'ventus 2x',
-      series: '3060',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=188914&language=en',
     },
-{
-      brand: 'msi',
+    {
       model: 'gaming x trio',
-      series: '3060',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=189034&language=en',
     },
-{
-      brand: 'msi',
+    {
       model: 'ventus 3x',
-      series: '3060',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=189035&language=en',
     },
-{
-      brand: 'zotac',
+  ]),
+
+  // Zotac Cards
+  ...createBrandSeriesLinks('zotac', '3060', [
+    {
       model: 'twin edge oc',
-      series: '3060',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=189411&language=en',
     },
-{
-      brand: 'asus',
+  ]),
+
+  // Asus Cards
+  ...createBrandSeriesLinks('asus', '3060', [
+    {
       model: 'strix oc',
-      series: '3060',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=189542&language=en',
     },
-{
-      brand: 'evga',
-      model: 'xc gaming',
-      series: '3060',
-      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=189460&language=en',
-    },
-{
-      brand: 'asus',
+    {
       model: 'tuf oc',
-      series: '3060',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=189615&language=en',
     },
-{
-      brand: 'gigabyte',
+  ]),
+
+  // Evga Cards
+  ...createBrandSeriesLinks('evga', '3060', [
+    {
+      model: 'xc gaming',
+      url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=189460&language=en',
+    },
+  ]),
+
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3060', [
+    {
       model: 'gaming oc',
-      series: '3060',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=189625&language=en',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3060',
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=189626&language=en',
-    }
+    },
+  ]),
+
 ];

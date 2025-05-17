@@ -1,6 +1,16 @@
-import {Store} from './store';
+/**
+ * Store configuration for tesco-ie
+ * Refactored to use factory approach and series-based organization
+ */
+import {createEuropeanStore} from './common/store-factory';
+import {Labels} from './store';
 
-export const TescoIE: Store = {
+/**
+ * TescoIe store
+ */
+export const TescoIe = createEuropeanStore({
+  name: 'tesco-ie',
+  country: 'IE',
   currency: '€',
   labels: {
     inStock: {
@@ -15,20 +25,5 @@ export const TescoIE: Store = {
       text: ['Sorry, this product is currently not available'],
     },
   },
-  links: [
-    {
-      brand: 'microsoft',
-      model: 'xbox series x',
-      series: 'xboxsx',
-      url: 'https://secure.tesco.ie/groceries/Product/Details/?id=307835209',
-    },
-    {
-      brand: 'sony',
-      model: 'ps5 digital',
-      series: 'sonyps5de',
-      url: 'https://www.tesco.ie/groceries/product/details/?id=307756010',
-    },
-  ],
-  name: 'tesco-ie',
-  country: 'IE',
-};
+
+});

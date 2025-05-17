@@ -1,25 +1,32 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
+/**
+ * Links for bestbuy rx6800xt series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
-      cartUrl: 'https://api.bestbuy.com/click/-/6440913/cart',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', 'rx6800xt', [
+    {
       model: 'amd reference',
-      series: 'rx6800xt',
       url: 'https://api.bestbuy.com/click/-/6440913/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6440913/cart',
     },
-{
-      brand: 'xfx',
-      cartUrl: 'https://api.bestbuy.com/click/-/6441226/cart',
+  ]),
+
+  // Xfx Cards
+  ...createBrandSeriesLinks('xfx', 'rx6800xt', [
+    {
       model: 'amd reference',
-      series: 'rx6800xt',
       url: 'https://api.bestbuy.com/click/-/6441226/pdp',
+      cartUrl: 'https://api.bestbuy.com/click/-/6441226/cart',
     },
-{
-      brand: 'xfx',
-      cartUrl: 'https://api.bestbuy.com/click/-/6442585/cart',
+    {
       model: 'merc',
-      series: 'rx6800xt',
       url: 'https://api.bestbuy.com/click/-/6442585/pdp',
-    }
+      cartUrl: 'https://api.bestbuy.com/click/-/6442585/cart',
+    },
+  ]),
+
 ];

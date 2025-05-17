@@ -1,28 +1,28 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for alternate-fr 3070ti series
+ */
 export const links: Link[] = [
-{
-      brand: 'gigabyte',
+  // Gigabyte Cards
+  ...createBrandSeriesLinks('gigabyte', '3070ti', [
+    {
       model: 'gaming oc',
-      series: '3070ti',
       url: 'https://www.alternate.fr/html/product/1756202',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'eagle oc',
-      series: '3070ti',
       url: 'https://www.alternate.fr/html/product/1762622',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'aorus master',
-      series: '3070ti',
       url: 'https://www.alternate.fr/html/product/1759465',
     },
-{
-      brand: 'gigabyte',
+    {
       model: 'vision oc',
-      series: '3070ti',
       url: 'https://www.alternate.fr/html/product/1761662',
-    }
+    },
+  ]),
+
 ];

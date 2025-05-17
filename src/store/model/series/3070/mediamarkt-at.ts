@@ -1,16 +1,20 @@
-import {Link} from '../../store';
+import {Link} from '../store';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
 
+/**
+ * Links for mediamarkt-at 3070 series
+ */
 export const links: Link[] = [
-{
-      brand: 'msi',
+  // Msi Cards
+  ...createBrandSeriesLinks('msi', '3070', [
+    {
       model: 'ventus 2x',
-      series: '3070',
       url: 'https://www.mediamarkt.at/de/product/-1812232.html',
     },
-{
-      brand: 'msi',
+    {
       model: 'gaming x trio',
-      series: '3070',
       url: 'https://www.mediamarkt.at/de/product/-1812223.html',
-    }
+    },
+  ]),
+
 ];
