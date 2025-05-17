@@ -187,9 +187,11 @@ export async function processCookieHandling(
 /**
  * Legacy function using BrowserSession internally
  */
+import { withCdpSession as sessionWithCdpSession } from './browser/session/utils/cdp-session';
+
 export async function withCdpSession<T>(
   browserOrPage: Browser | Page,
   cb: (client: CDPSession) => Promise<T>
 ) {
-  return await BrowserSession['withCdpSession'](browserOrPage, cb);
+  return await sessionWithCdpSession(browserOrPage, cb);
 }

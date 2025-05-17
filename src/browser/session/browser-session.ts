@@ -4,37 +4,27 @@
  * This file implements a class-based approach to browser session management,
  * consolidating the various browser handling functions into a single cohesive API.
  */
-import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
-import {sync as deleteSync} from 'del';
-import {Browser, CDPSession, LaunchOptions, Page} from 'puppeteer';
-import Puppeteer from 'puppeteer';
 import * as abortctl from '../../abortctl';
-import {disableBlockerInPage, enableBlockerInPage} from '../../adblocker';
+import {disableBlockerInPage} from '../../adblocker';
 import {config} from '../../config';
 import {logger} from '../../logger';
-import {onRequest, onResponse} from '../../handlers';
-import {nextStoreProxy, parseProxy, Proxy} from '../../proxy';
+import {nextStoreProxy, parseProxy, Proxy as ProxyConfig} from '../../proxy';
 import {Store} from '../../store/model/store';
-import {getRandomUserAgent, logUnexpectedError} from '../../util';
-
-/**
- * Enum for cookie handling strategies
- */
-enum CookiePolicy {
-  DEFAULT = 'default',
-  KEEP_WHILE_200 = 'keep_while_200',
-}
-
-/**
- * Interface for browser instance tracking
- */
-interface BrowserInstance {
-  browser: Promise<Browser>;
-  proxy?: Proxy;
-  userDataDir: string;
-}
+import {logUnexpectedError} from '../../util';
+import {Browser, Page} from 'puppeteer';
+import {
+  BrowserInstance,
+  CookiePolicy,
+  PageCallback
+} from './types';
+import {
+  clearBrowserCookies,
+  cleanUserDataDir,
+  getCookiePolicy,
+  getDefaultUserAgent,
+  launchBrowser
+} from './utils';
 
 /**
  * BrowserSession class for encapsulating browser lifecycle management
@@ -82,281 +72,32 @@ export class BrowserSession {
   /**
    * Creates a new browser instance
    */
-  private static async createBrowser(store: Store, proxy?: Proxy): Promise<Browser> {
+  private static async createBrowser(store: Store, proxy?: ProxyConfig): Promise<Browser> {
     abortctl.assert('browser');
     
     const userDataDir = path.join(config.browser.profileParentDir, store.name);
-    
-    // Delete Chrome profile to prevent proxy authentication issues
-    const userDataDelGlobs = [
-      userDataDir.replaceAll('\\', '/') + '/Default/*',
-      '!' + userDataDir.replaceAll('\\', '/') + '/Default/Cache',
-    ];
-    deleteSync(userDataDelGlobs, {force: true});
+    cleanUserDataDir(userDataDir);
     
     const userAgent = await this.getDefaultUserAgent();
-    const browserPromise = this.launchBrowser({userDataDir}, proxy, userAgent);
+    const browserPromise = launchBrowser({
+      options: {userDataDir}, 
+      proxy, 
+      userAgent
+    });
+    
     this.instances.set(store, {browser: browserPromise, proxy, userDataDir});
-    
-    const browser = await browserPromise;
-    
-    // Delete cookies on browser start
-    await this.withCdpSession(browser, async client =>
-      client.send('Network.clearBrowserCookies')
-    );
-    
-    return browser;
-  }
-  
-  /**
-   * Launches a browser with appropriate configuration
-   */
-  private static async launchBrowser(
-    options?: LaunchOptions,
-    proxy?: Proxy,
-    userAgent?: string
-  ): Promise<Browser> {
-    const args: string[] = [
-      '--disable-blink-features=AutomationControlled',
-      `--window-size=${config.page.width},${config.page.height}`,
-    ];
-    
-    if (userAgent) {
-      args.push(`--user-agent=${userAgent}`);
-    }
-    
-    // Skip Chromium Linux Sandbox if trusted or in Docker
-    if (config.browser.isTrusted || config.docker) {
-      args.push('--no-sandbox');
-    }
-    
-    if (config.docker) {
-      config.browser.open = false;
-    }
-    
-    // Enable headless (force if docker)
-    if (config.browser.isHeadless || config.docker || options?.headless) {
-      if (options && 'headless' in options) {
-        options = Object.assign({}, options);
-        delete options.headless;
-      }
-      
-      args.push(
-        '--headless=new',
-        '--ozone-platform-hint=auto',
-        `--ozone-override-screen-size=${config.page.width},${config.page.height}`
-      );
-      
-      // Handle GPU acceleration
-      let gpuAcceleration = false;
-      
-      switch (os.platform()) {
-        case 'darwin':
-          args.push('--angle=metal');
-          gpuAcceleration = true;
-          break;
-          
-        case 'linux':
-          if (fs.existsSync('/dev/dri/renderD128')) {
-            args.push(
-              '--disable-vulkan-surface',
-              '--enable-features=Vulkan',
-              '--enable-unsafe-webgpu',
-              '--use-angle=vulkan',
-              '--enable-features=AcceleratedVideoEncoder'
-            );
-            gpuAcceleration = true;
-          }
-          break;
-      }
-      
-      if (!gpuAcceleration) {
-        args.push('--disable-gpu');
-      }
-    }
-    
-    // Add proxy configuration
-    if (proxy) {
-      args.push(`--proxy-server=${proxy.server}`);
-    }
-    
-    if (args.length > 0) {
-      logger.debug('ℹ puppeteer config: ', args.toSorted());
-    }
-    
-    const browser = await Puppeteer.launch({
-      args,
-      defaultViewport: null,
-      handleSIGHUP: false,
-      handleSIGINT: false,
-      handleSIGTERM: false,
-      headless: false, // explicitly specified in args
-      protocolTimeout: config.page.protocolTimeout,
-      ...options,
-    });
-    
-    // Set up page configuration
-    const openPages = new Map<Page, Promise<void>>();
-    await this.setNewPageDefaultOptions(openPages, browser, proxy);
-    
-    return browser;
-  }
-  
-  /**
-   * Configure default options for new pages
-   */
-  private static async setNewPageDefaultOptions(
-    pages: Map<Page, Promise<void>>,
-    browser: Browser,
-    proxy?: Proxy
-  ): Promise<void> {
-    const targetCreated = async (page: Page) => {
-      let promise = pages.get(page);
-      
-      if (promise) {
-        return promise;
-      }
-      
-      // Configure page options
-      promise = new Promise<void>(async resolve => {
-        try {
-          page.setDefaultNavigationTimeout(config.page.timeout);
-          
-          const promises: Promise<void>[] = [
-            page.setRequestInterception(true),
-            enableBlockerInPage(page),
-          ];
-          
-          if (proxy?.credentials) {
-            promises.push(page.authenticate(proxy.credentials));
-          }
-          
-          if (!config.browser.userAgentKeepDefault) {
-            const userAgent = getRandomUserAgent();
-            promises.push(page.setUserAgent(userAgent));
-          }
-          
-          await Promise.all(promises);
-          
-          // Set up event handlers
-          page.on('request', request => onRequest(page, request));
-          page.on('response', response => onResponse(page, response));
-          
-          resolve();
-        } catch (err) {
-          if (!abortctl.available('app.running')) {
-            // Only log non-protocol errors
-            if (
-              !(err instanceof Error) ||
-              !(
-                err.message.includes('Protocol error') ||
-                err.message.includes('Target closed')
-              )
-            ) {
-              logger.error(`✖ error registering new page defaults: ${err}`);
-            }
-          }
-          resolve();
-        }
-      });
-      
-      pages.set(page, promise);
-    };
-    
-    // Apply options to existing pages
-    await Promise.all([...(await browser.pages()).values()].map(targetCreated));
-    
-    // Monitor for new pages
-    browser.on('targetcreated', async target => {
-      const maybePage = await target.page();
-      if (maybePage) {
-        await targetCreated(maybePage);
-      }
-    });
-    
-    browser.on('targetdestroyed', async target => {
-      const maybePage = await target.page();
-      if (maybePage) {
-        pages.delete(maybePage);
-      }
-    });
-    
-    // Override browser.newPage to apply our options
-    const _newPage = browser.newPage;
-    browser.newPage = async () => {
-      const page = await _newPage.bind(browser)();
-      await targetCreated(page);
-      return page;
-    };
-  }
-  
-  /**
-   * Run a callback with a CDP session
-   */
-  private static async withCdpSession<T>(
-    browserOrPage: Browser | Page,
-    cb: (client: CDPSession) => Promise<T>
-  ): Promise<T> {
-    let isNewPage: boolean;
-    let page: Page;
-    
-    if (browserOrPage instanceof Page) {
-      page = browserOrPage;
-      isNewPage = false;
-    } else {
-      const pages = await browserOrPage.pages();
-      isNewPage = pages.length === 0;
-      if (isNewPage) {
-        page = await browserOrPage.newPage();
-      } else {
-        page = pages[0];
-      }
-    }
-    
-    const client = await page.createCDPSession();
-    try {
-      return await cb(client);
-    } finally {
-      if (isNewPage) {
-        await page.close({runBeforeUnload: false}).catch(() => {});
-      }
-    }
+    return await browserPromise;
   }
   
   /**
    * Get the default user agent
    */
   private static async getDefaultUserAgent(): Promise<string | undefined> {
-    if (this.defaultUserAgent || !config.browser.userAgentKeepDefault) {
+    if (this.defaultUserAgent) {
       return this.defaultUserAgent;
     }
     
-    let browser: Browser | undefined;
-    
-    try {
-      browser = await this.launchBrowser({
-        headless: true,
-        userDataDir: path.join(config.browser.profileParentDir, 'default'),
-      });
-      
-      this.defaultUserAgent = await browser.userAgent();
-      
-      // Remove headless from the default user agent
-      if (this.defaultUserAgent.includes('Headless')) {
-        this.defaultUserAgent = this.defaultUserAgent.replaceAll(/headless/gi, '');
-      }
-    } catch {
-      // noop
-    } finally {
-      if (browser) {
-        try {
-          await browser.close();
-        } catch {
-          // noop
-        }
-      }
-    }
-    
+    this.defaultUserAgent = await getDefaultUserAgent();
     return this.defaultUserAgent;
   }
   
@@ -364,23 +105,7 @@ export class BrowserSession {
    * Determine cookie policy based on configuration
    */
   private static getCookiePolicy(): CookiePolicy {
-    let cookiePolicy: CookiePolicy;
-    if (
-      (Object.values(CookiePolicy) as string[]).includes(
-        config.browser.cookiePolicy.toLowerCase()
-      )
-    ) {
-      cookiePolicy = config.browser.cookiePolicy as CookiePolicy;
-    } else if (config.browser.cookiePolicy === '') {
-      cookiePolicy = CookiePolicy.DEFAULT;
-    } else {
-      logger.warn(
-        `✖ invalid value COOKIE_POLICY=${config.browser.cookiePolicy} defaulting to: ${CookiePolicy.DEFAULT}`
-      );
-      cookiePolicy = CookiePolicy.DEFAULT;
-    }
-    logger.debug(`ℹ using cookie policy: ${cookiePolicy}`);
-    return cookiePolicy;
+    return getCookiePolicy();
   }
   
   /**
@@ -394,7 +119,7 @@ export class BrowserSession {
   /**
    * Use a page for processing
    */
-  public async withPage<T>(callback: (page: Page) => Promise<T>): Promise<T> {
+  public async withPage<T>(callback: PageCallback<T>): Promise<T> {
     const page = await this.browser.newPage();
     try {
       if (this.store.disableAdBlocker) {
@@ -409,7 +134,7 @@ export class BrowserSession {
   /**
    * Try to use a page, handling errors gracefully
    */
-  public async tryWithPage<T>(callback: (page: Page) => Promise<T>): Promise<T | undefined> {
+  public async tryWithPage<T>(callback: PageCallback<T>): Promise<T | undefined> {
     try {
       return await this.withPage(callback);
     } catch (error) {
@@ -445,9 +170,7 @@ export class BrowserSession {
     }
     
     if (deleteCookies) {
-      await BrowserSession.withCdpSession(this.browser, async client =>
-        client.send('Network.clearBrowserCookies')
-      );
+      await clearBrowserCookies(this.browser);
     }
   }
   
@@ -458,9 +181,7 @@ export class BrowserSession {
     await page.close({runBeforeUnload: false});
     
     if (BrowserSession.cookiePolicy === CookiePolicy.DEFAULT) {
-      await BrowserSession.withCdpSession(this.browser, async client =>
-        client.send('Network.clearBrowserCookies')
-      );
+      await clearBrowserCookies(this.browser);
     }
   }
   

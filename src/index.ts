@@ -8,6 +8,7 @@ import {abortBrowserContexts, enableBrowserContexts} from './browser';
 import {logger} from './logger';
 import {logTransferStats} from './stats';
 import {tryLookupAndLoop} from './store';
+import {usingBrowser} from './browser';
 import {getStores, Store} from './store/model';
 // Import sample links for testing the centralized link data store
 import {addSampleLinks} from './store/model/sample-links';
@@ -162,7 +163,7 @@ class StreetMerchantApplication {
     );
 
     for (const store of pending) {
-      tryLookupAndLoop(store).finally(() => {
+      usingBrowser(store, browser => tryLookupAndLoop(browser)).finally(() => {
         const i = this.#stores.indexOf(store);
         if (i >= 0) {
           this.#stores.splice(i, 1);
