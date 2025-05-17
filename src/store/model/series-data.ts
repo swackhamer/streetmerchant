@@ -4,7 +4,7 @@
  * This file provides a data-driven approach to storing product links
  * organized by series and store, rather than having separate files for each.
  */
-import {Link, Series, Brand, Model} from './store';
+import {Link, Series} from './store';
 import {config} from '../../config';
 
 /**
@@ -20,10 +20,7 @@ export type SeriesData = {
 /**
  * Central repository for product links organized by series and store
  */
-export const seriesData: SeriesData = {}; 
-
-// Note: This file is prepared to hold all product links from series files.
-// Use extract-links-robust.js to populate this data structure with product links.
+export const seriesData: SeriesData = {};
 
 /**
  * Gets links for a specific series and store
@@ -102,12 +99,12 @@ export function filterSeriesDataLinks(links: Link[]): Link[] {
     // Filter by model is more complex and handled separately
     // This is a simplified version that matches the pattern in store/filter.ts
     if (config.store.showOnlyModels.length > 0) {
-      const sanitizedModel = link.model.replace(/\s/g, '');
-      const sanitizedSeries = link.series.replace(/\s/g, '');
+      const sanitizedModel = link.model.replace(/\\s/g, '');
+      const sanitizedSeries = link.series.replace(/\\s/g, '');
       
       for (const configModelEntry of config.store.showOnlyModels) {
-        const sanitizedConfigModel = configModelEntry.name.replace(/\s/g, '');
-        const sanitizedConfigSeries = configModelEntry.series.replace(/\s/g, '');
+        const sanitizedConfigModel = configModelEntry.name.replace(/\\s/g, '');
+        const sanitizedConfigSeries = configModelEntry.series.replace(/\\s/g, '');
         
         if (sanitizedConfigSeries) {
           if (

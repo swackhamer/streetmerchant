@@ -48,6 +48,9 @@ class StreetMerchantApplication {
     if (this.#running) {
       return;
     }
+    
+    // Add sample links to the centralized data store for testing
+    addSampleLinks();
 
     this.#running = true;
 

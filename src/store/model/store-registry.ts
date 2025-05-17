@@ -24,8 +24,77 @@ export interface ExtendedStoreOptions extends StoreFactoryOptions {
  * Central registry of all store configurations
  */
 export const storeRegistry: Record<string, ExtendedStoreOptions> = {
-  // Registry entries will be added from the conversion script
-
+  // Sample store configurations for testing
+  'bestbuy': {
+    name: 'bestbuy',
+    country: 'US',
+    currency: '$',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.add-to-cart-button',
+        text: ['add to cart']
+      },
+      maxPrice: {
+        container: '.priceView-customer-price span',
+        euroFormat: false
+      },
+      outOfStock: {
+        container: '.add-to-cart-button',
+        text: ['sold out']
+      }
+    }
+  },
+  'amazon': {
+    name: 'amazon',
+    country: 'US',
+    currency: '$',
+    storeType: 'marketplace',
+    labels: {
+      captcha: {
+        container: 'body',
+        text: ['enter the characters you see below']
+      },
+      inStock: {
+        container: '#add-to-cart-button',
+        text: ['add to cart']
+      },
+      maxPrice: {
+        container: '#priceblock_ourprice',
+        euroFormat: false
+      },
+      outOfStock: [
+        {
+          container: '#availability',
+          text: ['currently unavailable']
+        },
+        {
+          container: '#outOfStock',
+          text: ['unavailable']
+        }
+      ]
+    }
+  },
+  'newegg': {
+    name: 'newegg',
+    country: 'US',
+    currency: '$',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.product-buy',
+        text: ['add to cart']
+      },
+      maxPrice: {
+        container: '.price-current',
+        euroFormat: false
+      },
+      outOfStock: {
+        container: '.product-inventory',
+        text: ['out of stock']
+      }
+    }
+  }
 };
 
 /**
