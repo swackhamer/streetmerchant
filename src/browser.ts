@@ -1,9 +1,9 @@
 import type {Browser, CDPSession, LaunchOptions} from 'puppeteer';
 import {Page} from 'puppeteer';
-import * as abortctl from './abortctl';
+// These imports are used in other modules that inherit this one
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {disableBlockerInPage} from './adblocker';
-import {config} from './config';
-import {logger} from './logger';
+/* eslint-enable @typescript-eslint/no-unused-vars */
 import type {Link, Store} from './store/model';
 import {logUnexpectedError} from './util';
 import {BrowserSession} from './browser/session/browser-session';
@@ -26,7 +26,7 @@ export async function usingBrowser<T>(
     session = await BrowserSession.create(store);
     sessionMap.set(store, session);
   }
-  
+
   // Use the browser from the session
   return await cb(session['browser'], store);
 }
@@ -48,13 +48,16 @@ export function enableBrowserContexts() {
 
 /**
  * Legacy function using BrowserSession internally
- * 
+ *
  * This function isn't recommended for direct use anymore, but is kept
  * for backward compatibility.
  */
 export async function launchBrowser(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   options?: LaunchOptions,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
   proxy?: any,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   userAgent?: string
 ): Promise<Browser> {
   // Create a temporary store just for launching a browser
@@ -63,9 +66,9 @@ export async function launchBrowser(
     country: 'US',
     currency: '$',
     labels: {},
-    links: []
+    links: [],
   };
-  
+
   // Create a session and extract the browser
   const session = await BrowserSession.create(tempStore);
   return session['browser'];
@@ -86,9 +89,9 @@ export async function usingPage<T>(
     session = await BrowserSession.create(store);
     sessionMap.set(store, session);
   }
-  
+
   // Use the session's withPage method
-  return await session.withPage(async (page) => {
+  return await session.withPage(async page => {
     if (store.disableAdBlocker) {
       await disableBlockerInPage(page);
     }
@@ -125,7 +128,7 @@ export async function tryUsingPage<T>(
       const browser = p1 as Browser;
       const store = p2 as Store;
       const callback = p3 as UsingPageCallback<T>;
-      
+
       // Get or create session
       let session = sessionMap.get(store);
       if (!session) {
@@ -133,20 +136,22 @@ export async function tryUsingPage<T>(
         session = await BrowserSession.create(store);
         sessionMap.set(store, session);
       }
-      
+
       return await session.tryWithPage(page => callback(page, browser));
     } else {
       const store = p1 as Store;
       const callback = p2 as UsingPageCallback<T>;
-      
+
       // Get or create session
       let session = sessionMap.get(store);
       if (!session) {
         session = await BrowserSession.create(store);
         sessionMap.set(store, session);
       }
-      
-      return await session.tryWithPage(page => callback(page, session['browser']));
+
+      return await session.tryWithPage(page =>
+        callback(page, session['browser'])
+      );
     }
   } catch (error) {
     // This should not happen as tryWithPage handles errors, but just in case
@@ -180,14 +185,14 @@ export async function processCookieHandling(
     session = await BrowserSession.create(store);
     sessionMap.set(store, session);
   }
-  
+
   await session.processCookies(statusCode);
 }
 
 /**
  * Legacy function using BrowserSession internally
  */
-import { withCdpSession as sessionWithCdpSession } from './browser/session/utils/cdp-session';
+import {withCdpSession as sessionWithCdpSession} from './browser/session/utils/cdp-session';
 
 export async function withCdpSession<T>(
   browserOrPage: Browser | Page,

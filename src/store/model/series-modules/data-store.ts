@@ -1,9 +1,10 @@
 /**
  * Data store for series product links
- * 
+ *
  * This file contains the central repository of product links organized by series and store.
  */
-import {Link, Series} from '../store';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type {Link, Series} from '../store';
 import {SeriesData} from './types';
 
 /**
@@ -11,7 +12,7 @@ import {SeriesData} from './types';
  */
 export const seriesData: SeriesData = {
   '3080': {
-    'bestbuy': [
+    bestbuy: [
       {
         brand: 'nvidia',
         model: 'founders edition',
@@ -19,7 +20,7 @@ export const seriesData: SeriesData = {
         url: 'https://api.bestbuy.com/click/-/6429440/pdp',
       },
     ],
-    'amazon': [
+    amazon: [
       {
         brand: 'asus',
         model: 'tuf',
@@ -29,7 +30,7 @@ export const seriesData: SeriesData = {
     ],
   },
   '3070': {
-    'bestbuy': [
+    bestbuy: [
       {
         brand: 'nvidia',
         model: 'founders edition',

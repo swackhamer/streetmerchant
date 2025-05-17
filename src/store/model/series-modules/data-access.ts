@@ -1,6 +1,6 @@
 /**
  * Data access functions for retrieving series links
- * 
+ *
  * This module provides helper functions to access the centralized series data.
  */
 import {Link, Series} from '../store';
@@ -17,14 +17,16 @@ export function getLinksForSeriesAndStore(
   if (!seriesData[series]) {
     return [];
   }
-  
+
   return seriesData[series]?.[storeName] || [];
 }
 
 /**
  * Helper function to retrieve all links for a specific series
  */
-export function getAllLinksForSeries(series: Series): {[store: string]: Link[]} {
+export function getAllLinksForSeries(series: Series): {
+  [store: string]: Link[];
+} {
   return seriesData[series] || {};
 }
 
@@ -38,17 +40,18 @@ export function getAllSeries(): Series[] {
 /**
  * Gets all links for a store from the centralized data by series
  */
-export function getStoreSeriesLinksFromData(
-  storeName: string
-): Link[] {
+export function getStoreSeriesLinksFromData(storeName: string): Link[] {
   const links: Link[] = [];
 
   // Iterate through all series in the centralized data
   for (const series of getAllSeries()) {
-    if (config.store.showOnlySeries.length > 0 && !config.store.showOnlySeries.includes(series as Series)) {
+    if (
+      config.store.showOnlySeries.length > 0 &&
+      !config.store.showOnlySeries.includes(series as Series)
+    ) {
       continue;
     }
-    
+
     // Get links for this store and series
     const seriesLinks = getLinksForSeriesAndStore(series as Series, storeName);
     if (seriesLinks.length > 0) {

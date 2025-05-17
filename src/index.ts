@@ -49,7 +49,7 @@ class StreetMerchantApplication {
     if (this.#running) {
       return;
     }
-    
+
     // Add sample links to the centralized data store for testing
     addSampleLinks();
 
@@ -73,7 +73,7 @@ class StreetMerchantApplication {
 
     // Add sample links to the centralized data store for testing
     addSampleLinks();
-    
+
     this.#statsTimer = timers.addInterval(logTransferStats, 60000);
     this.#stores = [];
 
