@@ -11,7 +11,10 @@ export interface Proxy {
   toString(): string;
 }
 
-export function parseProxy(raw: string): Proxy {
+export function parseProxy(
+  raw: string,
+  config: typeof import('./config').config
+): Proxy {
   const match =
     /^(?:(?<protocol>[a-z0-9]+):\/\/)?(?:(?<auth>.+?)@)?(?<host>[^@:]+)(?::(?<port>[0-9]+))?$/i.exec(
       raw
@@ -58,8 +61,8 @@ export function parseProxy(raw: string): Proxy {
 const parsedProxyList = new Map<string, Proxy>();
 
 export function nextStoreProxy(store: Store): Proxy | undefined {
-  if (!store.proxyList) {
-    return;
+  if (!store.proxyList || store.proxyList.length === 0) {
+    return undefined;
   }
 
   if (store.currentProxyIndex === undefined) {
@@ -83,7 +86,7 @@ export function nextStoreProxy(store: Store): Proxy | undefined {
   let proxy = parsedProxyList.get(cacheKey);
 
   if (!proxy) {
-    proxy = parseProxy(raw);
+    proxy = parseProxy(raw, config);
     parsedProxyList.set(cacheKey, proxy);
   }
 

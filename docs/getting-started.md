@@ -1,191 +1,208 @@
-# Getting started
+# Getting Started with Streetmerchant
 
-You do not need any computer skills, smarts, or anything of that nature. You are very capable as you have made it this far. Some basic understanding how a terminal, git, and or Node.js is a bonus, but that does not limit you to getting streetmerchant running!
+This guide will help you set up and run Streetmerchant to monitor online retailers for product availability.
 
 ## Prerequisites
 
-- [git](https://git-scm.com/)
-- Either [Node.js 16 (LTS)](https://nodejs.org/en/) or [Docker](https://docs.docker.com/get-docker/) (advanced users)
+Before you begin, make sure you have the following installed:
 
-## Using Node.js
+- [Node.js 16 (LTS)](https://nodejs.org/en/) or later
+- [Git](https://git-scm.com/)
+- (Optional) [Docker](https://docs.docker.com/get-docker/) for containerized deployment
 
-| Reference | Note |
-|:---:|---|
-| tag | Example, `v1.0.0`; stable |
-| `main` | Latest HEAD; not tagged, could be unstable |
+## Installation Methods
 
-1. Download [Node.js 16](https://nodejs.org/en/)
-1. Clone this project `git clone https://github.com/jef/streetmerchant.git`.
-    1. To checkout a particular reference, use `git checkout <ref name>` after cloning.
-1. Navigate to this project by entering `cd streetmerchant`.
-1. Run `pnpm install`.
-1. Make a copy of `dotenv-example` and name it `dotenv`.
-1. Edit the `dotenv` file to your liking using a text editor (like [vscode](https://code.visualstudio.com/)).
-1. Run `pnpm run start` to start.
+### Method 1: Using Node.js (Recommended)
 
-At any point you want the program to stop, use ++ctrl+c++.
+1. **Clone the repository**
 
-???+ tip
-    Community based help can also be found on the [wiki](https://github.com/jef/streetmerchant/wiki). Feel free to check that out if you're having problems running. If you're still having problems running, you're probably not the first. Make some searches through the [GitHub issues](https://github.com/jef/streetmerchant/issues) before making one.
+   ```bash
+   git clone https://github.com/jef/streetmerchant.git
+   cd streetmerchant
+   ```
 
-## Using Docker
+2. **Install dependencies**
 
-Available via GitHub Container Registry.
+   ```bash
+   corepack enable  # Enables pnpm
+   pnpm install
+   ```
 
-| Tag | Note |
-|:---:|---|
-| `latest` | Latest release; stable |
-| `nightly` | Latest HEAD each day at midnight UTC; could be unstable |
+3. **Configure the application**
 
-```sh
-# to run docker nightly
-docker run -it --rm \
-  --env-file ./dotenv \
-  ghcr.io/jef/streetmerchant:nightly
+   ```bash
+   cp dotenv-example dotenv
+   ```
 
-# to test notifications
-docker run -it --rm  \
-  --env-file ./dotenv \
-  ghcr.io/jef/streetmerchant:nightly test:notification:production
+   Edit the `dotenv` file with your preferred settings (see Configuration section below).
+
+4. **Start Streetmerchant**
+
+   ```bash
+   pnpm run start
+   ```
+
+   For development with hot reloading:
+
+   ```bash
+   pnpm run start:dev
+   ```
+
+### Method 2: Using Docker
+
+1. **Create configuration file**
+
+   ```bash
+   cp dotenv-example dotenv
+   ```
+
+   Edit the `dotenv` file with your preferred settings.
+
+2. **Run with Docker**
+
+   ```bash
+   docker run -it --rm --env-file ./dotenv ghcr.io/jef/streetmerchant:latest
+   ```
+
+   Or using docker-compose:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+## Basic Configuration
+
+Edit your `dotenv` file to customize Streetmerchant's behavior. Here are the most important settings:
+
+### Store Selection
+
+Specify which stores to monitor:
+
+```
+STORES=amazon,bestbuy,newegg
 ```
 
-See [Developing in docker](#developing-in-docker) for more information
+You can also set store-specific sleep times:
 
-## Customization
-
-To customize streetmerchant, make a copy of `dotenv-example` as `dotenv` and make any changes to your liking. View [Reference](reference/application.md) for more information on variables and their usage.
-
-???+ tip
-    All environment variables are optional.
-
-## For developers
-
-### Developing in Node.js
-
-The command `pnpm run start:dev` can be used instead of `pnpm run start` to automatically restart the project when filesystem changes are detected in the `src/` folder or `dotenv` file.
-
-Use `pnpm run lint` to see any linting uses and `pnpm run fix` to automatically fix the issues it can.
-
-### Developing in Docker
-
-#### Prerequisites
-
-- [Docker (1.13.0+)](https://docs.docker.com/get-docker/)
-- [GNU Make](https://www.gnu.org/software/make/)
-    - Optional, but increases quality of life
-- [Docker Compose](https://docs.docker.com/compose/install/)
-    - Depending on your system, you may already have this. Check before installing.
-
-#### Starting with `docker-compose`
-
-1. Make a copy of `dotenv-example` and name it `dotenv`.
-1. Edit the `dotenv` file to your liking using a text editor (like [vscode](https://code.visualstudio.com/)).
-1. If you're using `make`, you can run `make run` to start and `make stop` to stop.
-    1. There are more options in the `Makefile`, feel free to explore.
-1. If you do not have `make`, you can run `docker-compose` directly:
-
-```shell
-# To start
-# Use `-d` if you want to run in detached mode
-# Use `--build` if you want to build the image before running (default image is latest in GitHub Container Registry).
-docker-compose up
-
-# To break down
-docker-compose down
+```
+STORES=amazon:5000:10000,bestbuy:8000:15000
 ```
 
-???+ note
-    If you are using `WEB_PORT`, then you will need to add the following to docker-compose:
+Format: `storename:min_sleep:max_sleep`
 
-    ```
-    ports:
-      - "<WEB_PORT>:<WEB_PORT>"
-    ```
+### Product Filtering
 
-    Replace `<WEB_PORT>` with the value you gave in your `dotenv`.
+Filter by brands, series, or models:
 
-### Developing in Heroku
-
-#### Prerequisites
-
-- [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
-    - You will need a [Heroku Account](https://signup.heroku.com).
-- [GIT](https://git-scm.com)
-    - Make sure the PATH is set correctly, so you can use it in you command line.
-- [StreetMerchant](https://github.com/jef/streetmerchant)
-    - If you don't already have it.
-
-#### Starting with File correction
-
-1. Make a copy of `dotenv-example` and name it `dotenv`.
-1. Edit the `dotenv` file to your liking using a text editor (like [VSCode](https://code.visualstudio.com/) or even Notepad).
-1. Find the option `OPEN_BROWSER` and set it to `OPEN_BROWSER=false`
-    1. After this, I recommend you setup some form of contacting your directly in the dotenv file as well.
-    2. This can be phone, email, or whatever you'd want. The information won't be public.
-    3. Save and close file.
-1. Locate the `.gitignore` file and open it.
-    1. Remove `build/` and `dotenv`.
-    2. Save and close file.
-1. Locate the `package.json` file and open it.
-    1. Locate the `"posttest"` config.
-       1. Under it, paste:</br>
-       <pre><code>"postinstall": "pnpm run tsc",</br>
-           "tsc": "tsc",</code></pre>
-1. Create a file called `Procfile` with no type declaration(.txt/.doc/.etc.)
-    1. Open it with Notepad
-    2. Paste: `worker: pnpm run start:production`
-    3. Close and save file
-1. Navigate to `src/` and find the file `index.ts`
-    1. Open with IDE or Notepade
-    2. Find `const args: string[]`
-    1. Replace with:
-     <pre><code>  const args: string[] = [
-        '--no-sandbox',
-        '--disable-setuid-sandbox'
-     c];</code></pre>
-#### Setting up Heroku
-```shell
-# To start
-# Open a terminal and navigate to the master street merchant directory
-# From there start this
-heroku login
-# Follow the steps to login
 ```
-1. Leave that terminal up, and go to your [Heroku apps](https://dashboard.heroku.com/apps)
-2. Create a new app:
+SHOW_ONLY_BRANDS=evga,asus
+SHOW_ONLY_SERIES=3080,3090
+SHOW_ONLY_MODELS=ftw3,strix
+```
 
-![IMAGEOFAPP](https://github.com/dev-nolant/streetmerchant/blob/main/docs/assets/images/streetmerchan-herokunewapp.jpg)
+### Price Limits
 
-3. Name it, and then click `Create App`
+Set maximum prices to avoid notifications for overpriced items:
 
-![IMAGEOFCREATE](https://github.com/dev-nolant/streetmerchant/blob/main/docs/assets/images/streetmerchant-herokuapp.jpg)
+```
+MAX_PRICE_SERIES_3080=900
+MAX_PRICE_SERIES_3090=1600
+```
 
-4. Go to `Settings` and add two buildpacks
-    1. `heroku/nodejs`
-    2. `https://github.com/jontewks/puppeteer-heroku-buildpack`
+### Browser Settings
 
-It should look like:
-![IMAGEOFBUILDPACKS](https://github.com/dev-nolant/streetmerchant/blob/main/docs/assets/images/streetmerchant-herokubuildpacks.png)
+Configure browser behavior:
 
-#### Terminal setup
-Back to the terminal that you left open.
-1. Type `git init`
-2. Once that finishes copy and paste: `heroku git:remote -a YOURAPPNAME` but make sure `YOURAPPNAME` is whatever you named your app on Heroku.
-3. Then type `git add .`
-4. Once that finishes paste `git commit -am "COMMITMESSAGE"`, replacing `COMMITMESSAGE` with whatever commit message you'd like. This doesn't matter much.
-5. The last thing to do in the terminal is to push your repo to Heroku
-    1. Paste `git push heroku master`
-        1. This will take a while
-#### Final steps
-1. On your Heroku app, click on the tab `Resources`
+```
+HEADLESS=true
+PAGE_TIMEOUT=30000
+PROTOCOL_TIMEOUT=60000
+PAGE_SLEEP_MIN=5000
+PAGE_SLEEP_MAX=10000
+```
 
-You should see this:
-![IMAGEOFRESOURCES](https://github.com/dev-nolant/streetmerchant/blob/main/docs/assets/images/streetmerchant-herokudynos.jpg)
+### Notifications
 
-2. Click the pen icon on both to edit their states.
-3. Turn off `web pnpm start`
-4. Turn on `worker pnpm run start:production`
-5. Click confirm on both.
-6. Now you're essentially done!
-    1. I recommend you click on the `more` dropdown and click `logs` to make sure everything is running smoothly.
-    2. If you set up notifications, you will be notified when you criterias are met(3060 in stock, etc.), otherwise you'll have to keep your eyes on the `logs` tab
+Enable various notification methods:
+
+```
+# Discord
+DISCORD_NOTIFY=true
+DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
+
+# Email
+EMAIL_NOTIFY=true
+EMAIL_SMTP_ADDRESS=smtp.gmail.com
+EMAIL_SMTP_PORT=587
+EMAIL_ADDRESS=your-email@gmail.com
+EMAIL_PASSWORD=your-app-password
+```
+
+## Testing Your Setup
+
+### Test Notifications
+
+Verify your notification settings are working correctly:
+
+```bash
+pnpm run test:notification
+```
+
+### Test Captcha Handler
+
+If you've configured the captcha handler:
+
+```bash
+pnpm run test:captcha
+```
+
+## Running Multiple Instances
+
+You can run multiple instances of Streetmerchant to distribute the load:
+
+1. Create separate configuration files (e.g., `dotenv.nvidia` and `dotenv.amd`)
+2. Start each instance with its own configuration:
+
+   ```bash
+   DOTENV_FILE=dotenv.nvidia pnpm run start
+   DOTENV_FILE=dotenv.amd pnpm run start
+   ```
+
+## Deployment Considerations
+
+### Memory Usage
+
+Streetmerchant can consume significant memory, especially when monitoring many stores. Consider:
+
+- Setting `BROWSER_TRUSTED=true` in containerized environments
+- Setting `RESTART_TIME=3600000` to restart the browser every hour
+- Using the `LOW_BANDWIDTH=true` option to reduce resource usage
+
+### Network Considerations
+
+- Retailers may rate-limit or block IP addresses that make too many requests
+- Consider using proxy rotation (see [Proxy Configuration](configuration-reference.md#proxy-configuration))
+- Be respectful of retailer servers by increasing sleep times between checks
+
+### Security
+
+- Never share your `dotenv` file as it may contain sensitive information
+- For notification services, use tokens with minimal permissions
+- If running in a shared environment, ensure proper access controls
+
+## Troubleshooting
+
+If you encounter issues:
+
+- Check the [Troubleshooting Guide](troubleshooting.md)
+- Increase log verbosity with `LOG_LEVEL=debug`
+- Check for recent issues in the [GitHub repository](https://github.com/jef/streetmerchant/issues)
+
+## Next Steps
+
+Once you have Streetmerchant running, you might want to:
+
+- Set up additional [notification channels](configuration-reference.md#notification-service-configuration)
+- Customize the [web interface](usage.md#web-interface)
+- Learn how to [extend Streetmerchant](extension-guide.md) with custom stores or notification methods
+- Contribute to the project by fixing bugs or adding features

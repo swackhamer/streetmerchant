@@ -1,0 +1,7 @@
+memory_bank:
+  strategy: project_aware
+  auto_summarize: true
+  key_files:
+    - README.md
+    - CHANGELOG.md
+    - src/**

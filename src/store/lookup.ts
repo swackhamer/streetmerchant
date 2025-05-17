@@ -31,7 +31,7 @@ const inStock: Record<string, boolean> = {};
  * @param browser Puppeteer browser.
  * @param store Vendor of items.
  */
-async function lookup(browser: Browser, store: Store) {
+async function lookup(browser: Browser, store: Store): Promise<void> {
   if (!storeShouldRun(store)) {
     // store has been disabled or main application loop is stopping
     return;
@@ -388,6 +388,8 @@ async function runCaptchaDeterrent(browser: Browser, store: Store, page: Page) {
     }
   }
 }
+
+export {lookup};
 
 export async function tryLookupAndLoop(store: Store) {
   // delay starting the loop to reduce the amount of simultaneous requests

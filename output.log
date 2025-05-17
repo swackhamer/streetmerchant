@@ -1,0 +1,21 @@
+
+> streetmerchant@3.11.0 start:dev /Users/allen/Documents/git/streetmerchant-andrewmackrodt
+> ts-node-dev --respawn --transpile-only --watch ./dotenv ./src/index.ts
+
+[INFO] 08:34:55 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.7.3)
+ＳＴＲＥＥＴＭＥＲＣＨＡＮＴ
+3.11.0
+[8:34:55 AM] [33mwarn[39m :: evga is deprecated since they only support queuing
+[8:34:55 AM] [33mwarn[39m :: No store named hardware, skipping.
+[8:34:55 AM] [32minfo[39m :: ℹ selected series: 5090
+[8:34:55 AM] [32minfo[39m :: ℹ selected stores: acompc, adorama, akinformatica, allneeds, amazon, antonline, ao, argos, argos-ie, aria, arlt, asus, azerty, bandh, bestbuy, bpctech, bpm-power, bt, canadacomputers, caseking, centrecom, comet, computeralliance, computeruniverse, coolblue, coolmod, corsair, cpl, currys, cyberport, dcomp, drako, dustinhome-no, ebuyer, elcorteingles, eletronicamente, elkjop, eprice, equippr, euronics, evatech, evga, game, gamestop, globaldata, hardware, harristechnology, harveynorman-ie, igame-computer, johnlewis, kabum, komplett-no, landmark-computers, ldlc, ldlc-es, ldlc-it, mediamarkt, mediamarkt-at, medimax, megekko, memoryexpress, materiel, microcenter, microsoft, mightyape, mindfactory, msy, multicom, mwave, neobyte, netonnet-no, noelleeming, notebooksbilliger, novoatalho, officedepot, ollo, opirata, otto, pbtech, pcbyte, pccg, pccomponentes, pcdiga, pcking, playstation, pny, rosman, saveonit, scorptec, shopto, siabyte, smythstoys, smythstoys-ie, spielegrotte, storm-computer, target, thewarehouse, topachat, toysrus, ultimainformatica, umart, unieuro, very, vsgamers, vuugo, walmart, wellstechnology, wipoid, xbox, xtremmedia, zotac
+[8:34:55 AM] [33mwarn[39m :: ℹ some of the selected stores (grayed out) dont have what you are looking for
+(node:90119) TimeoutNaNWarning: NaN is not a number.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[8:35:08 AM] [33mwarn[39m :: ✖ [bandh] [msi (5090)] gaming trio oc :: CLOUDFLARE, WAITING
+[8:35:18 AM] [32minfo[39m :: ✖ [microcenter] [gigabyte (5090)] gaming oc :: OUT OF STOCK
+[8:35:30 AM] [31merror[39m :: ✖ [bandh] msi 5090 gaming trio oc - Navigating frame was detached
+[8:35:31 AM] [31merror[39m :: ✖ [bestbuy] nvidia 5090 founders edition - Navigating frame was detached
+[8:35:31 AM] [31merror[39m :: ✖ [microcenter] asus 5090 astral oc - Navigating frame was detached
+[8:35:32 AM] [31merror[39m :: ✖ [zotac] zotac 5090 solid - Navigating frame was detached

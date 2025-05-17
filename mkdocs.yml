@@ -10,7 +10,7 @@ repo_url: https://github.com/jef/streetmerchant
 edit_uri: edit/main/docs/
 
 # Copyright
-copyright: Copyright &copy; 2016 - 2020 Jef LeCompte
+copyright: Copyright &copy; 2016 - 2025 Jef LeCompte
 
 # Configuration
 theme:
@@ -83,7 +83,16 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
-  - Getting started: getting-started.md
+  - Getting Started: getting-started.md
+  - User Guide:
+    - Usage: usage.md
+    - Configuration Reference: configuration-reference.md
+    - Troubleshooting: troubleshooting.md
+    - Extension Guide: extension-guide.md
+  - Technical:
+    - Architecture: architecture.md
+    - Memory Bank: memory-bank.md
+    - Future Plans: future-plans.md
   - Reference:
     - Application: reference/application.md
     - Captcha: reference/captcha.md
@@ -91,9 +100,6 @@ nav:
     - Notification: reference/notification.md
     - Proxy: reference/proxy.md
     - Terraform: reference/terraform.md
-  - Help:
-      - General: help/general.md
-      - Troubleshoot: help/troubleshoot.md
   - FAQ: faq.md
   - Changelog: changelog.md
   - About: about.md

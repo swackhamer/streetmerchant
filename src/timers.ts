@@ -49,7 +49,6 @@ export function addInterval<T extends unknown[]>(
   abortctl.assert('timers.interval');
   const id = setInterval(
     () => {
-      intervalIds.delete(id);
       cb(...args);
     },
     interval,

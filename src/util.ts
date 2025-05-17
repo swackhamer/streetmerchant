@@ -79,6 +79,9 @@ const IGNORE_ERRORS_REGEXP = new RegExp(
     'Requesting main frame too early',
     'Target\\.(attachToTarget|createTarget|(create|dispose)BrowserContext)',
     'TargetCloseError',
+    'Protocol error',
+    'Network\\.enable timed out',
+    'Target closed',
   ].join('|')
 );
 

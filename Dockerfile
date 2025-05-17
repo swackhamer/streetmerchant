@@ -64,12 +64,9 @@ FROM corepack
 
 USER root
 
-# install google-chrome-stable
+# install chromium-browser
 RUN apt update -qq \
- && apt install -qqy wget \
- && wget -qO /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
- && apt install -qqy /tmp/google-chrome-stable_current_amd64.deb \
- && rm /tmp/google-chrome-stable_current_amd64.deb \
+ && apt install -qqy chromium \
  && rm -rf /var/lib/apt/lists/*
 
 USER node
@@ -83,7 +80,7 @@ COPY --chown=node:node web/ web/
 COPY --chown=node:node LICENSE LICENSE
 COPY --chown=node:node README.md README.md
 
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome \
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium \
     DOCKER=true
 
 ENTRYPOINT ["pnpm", "run", "start"]

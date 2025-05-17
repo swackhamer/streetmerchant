@@ -27,7 +27,7 @@ interface BrowserInstance {
 
 const instances = new Map<Store, BrowserInstance>();
 const cookiePolicy = getCookiePolicy();
-const defaultProxy = parseProxy(config.proxy.address);
+const defaultProxy = parseProxy(config.proxy.address, config);
 
 export async function usingBrowser<T>(
   store: Store,
@@ -197,6 +197,7 @@ export async function launchBrowser(
     handleSIGINT: false,
     handleSIGTERM: false,
     headless: false, // explicitly specified in args
+    protocolTimeout: config.page.protocolTimeout, // Use configurable protocol timeout to avoid Network.enable timeout
     ...options,
   });
 
@@ -268,7 +269,17 @@ export async function tryUsingPage<T>(
       );
     }
   } catch (error) {
-    logUnexpectedError(error);
+    // Don't log protocol errors as they're expected when closing pages/browser
+    if (
+      !(error instanceof Error) ||
+      !(
+        error.message.includes('Protocol error') ||
+        error.message.includes('Target closed') ||
+        error.message.includes('frame was detached')
+      )
+    ) {
+      logUnexpectedError(error);
+    }
   }
   return result;
 }
@@ -349,7 +360,16 @@ async function setNewPageDefaultOptions(
         resolve();
       } catch (err) {
         if (!abortctl.available('app.running')) {
-          logger.error(`✖ error registering new page defaults: ${err}`);
+          // Protocol errors are expected when closing pages/browser, only log other errors
+          if (
+            !(err instanceof Error) ||
+            !(
+              err.message.includes('Protocol error') ||
+              err.message.includes('Target closed')
+            )
+          ) {
+            logger.error(`✖ error registering new page defaults: ${err}`);
+          }
         }
         resolve();
       }
