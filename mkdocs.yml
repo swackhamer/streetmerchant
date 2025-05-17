@@ -83,14 +83,15 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
   - User Guide:
+    - Getting Started: getting-started.md
     - Usage: usage.md
     - Configuration Reference: configuration-reference.md
     - Troubleshooting: troubleshooting.md
+  - Developer Guide:
     - Extension Guide: extension-guide.md
-  - Technical:
     - Architecture: architecture.md
     - Memory Bank: memory-bank.md
+  - Project:
     - Future Plans: future-plans.md
-  - Changelog: changelog.md
+    - Changelog: changelog.md

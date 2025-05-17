@@ -36,14 +36,22 @@ pnpm run start
 
 ## Documentation
 
-Detailed documentation is available in the [docs folder](./docs):
+Detailed documentation is available in the docs folder:
 
+### User Documentation
 - [Getting Started](./docs/getting-started.md) - Installation and initial setup
 - [Usage Guide](./docs/usage.md) - How to use Streetmerchant effectively
 - [Configuration Reference](./docs/configuration-reference.md) - All configuration options
-- [Architecture Overview](./docs/architecture.md) - Technical architecture
 - [Troubleshooting](./docs/troubleshooting.md) - Solutions for common issues
+
+### Developer Documentation
+- [Architecture Overview](./docs/architecture.md) - Technical architecture and system components
+- [Memory Bank](./docs/memory-bank.md) - Quick reference for project components and concepts
 - [Extension Guide](./docs/extension-guide.md) - How to add new retailers or features
+
+### Project Information
+- [Future Plans](./docs/future-plans.md) - Roadmap and planned improvements
+- [Changelog](./docs/changelog.md) - History of changes and improvements
 
 ## Docker Support
 
