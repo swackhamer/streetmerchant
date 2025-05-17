@@ -1,30 +1,10 @@
 /**
  * Store configuration for siabyte
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Siabyte store
  */
-export const Siabyte = createEuropeanStore({
-  name: 'siabyte',
-  country: 'ES',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '#availability_value',
-      text: ['Disponibilidad inmediata', 'Disponibilidad estimada'],
-    },
-    maxPrice: {
-      container: '#our_price_display',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '#availability_value',
-      text: ['Este producto ya no está disponible'],
-    },
-  },
-
-});
+export const Siabyte = createStoreFromRegistry('siabyte');

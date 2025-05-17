@@ -1,26 +1,10 @@
 /**
  * Store configuration for amd-ca
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * AmdCa store
+ * Amd-ca store
  */
-export const AmdCa = createStandardStore({
-  name: 'amd-ca',
-  country: 'CA',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '.btn-shopping-cart',
-      text: ['add to cart'],
-    },
-    maxPrice: {
-      container: '.product-page-description h4',
-      euroFormat: false,
-    },
-  },
-
-});
+export const AmdCa = createStoreFromRegistry('amd-ca');

@@ -1,29 +1,10 @@
 /**
  * Store configuration for vuugo
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Vuugo store
  */
-export const Vuugo = createStandardStore({
-  name: 'vuugo',
-  country: 'CA',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '.green',
-      text: ['In Stock'],
-    },
-    maxPrice: {
-      container: 'div.price:nth-child(12)',
-    },
-    outOfStock: {
-      container: '.description .red',
-      text: ['Back Order'],
-    },
-  },
-
-});
+export const Vuugo = createStoreFromRegistry('vuugo');

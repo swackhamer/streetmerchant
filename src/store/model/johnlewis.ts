@@ -1,22 +1,10 @@
 /**
  * Store configuration for johnlewis
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Johnlewis store
  */
-export const Johnlewis = createStandardStore({
-  name: 'johnlewis',
-  country: 'UK',
-  currency: '£',
-  labels: {
-    inStock: {
-      container: '#button--add-to-basket',
-      text: ['Add to your basket'],
-    },
-  },
-
-});
+export const Johnlewis = createStoreFromRegistry('johnlewis');

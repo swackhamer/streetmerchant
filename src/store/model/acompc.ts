@@ -1,32 +1,10 @@
 /**
  * Store configuration for acompc
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Acompc store
  */
-export const Acompc = createEuropeanStore({
-  name: 'acompc',
-  country: 'DE',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.filial_stock',
-      text: ['lagernd', 'im Zulauf'],
-    },
-    maxPrice: {
-      container: '.price',
-      euroFormat: true,
-    },
-    outOfStock: [
-      {
-        container: '.filial_stock',
-        text: ['nicht lieferbar'],
-      },
-    ],
-  },
-
-});
+export const Acompc = createStoreFromRegistry('acompc');

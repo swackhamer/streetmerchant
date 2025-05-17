@@ -1,25 +1,10 @@
 /**
  * Store configuration for toysrus
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Toysrus store
  */
-export const Toysrus = createStandardStore({
-  name: 'toysrus',
-  country: 'US',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: 'li.b-product_status',
-      text: ['in stock'],
-    },
-    maxPrice: {
-      container: '.b-price-value',
-    },
-  },
-
-});
+export const Toysrus = createStoreFromRegistry('toysrus');

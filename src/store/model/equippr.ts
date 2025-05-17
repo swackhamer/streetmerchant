@@ -1,30 +1,10 @@
 /**
  * Store configuration for equippr
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Equippr store
  */
-export const Equippr = createEuropeanStore({
-  name: 'equippr',
-  country: 'DE',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: 'buybox--button-container',
-      text: ['in den warenkorb'],
-    },
-    maxPrice: {
-      container: '.product--price',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '.product--buybox',
-      text: ['bald verfügbar'],
-    },
-  },
-
-});
+export const Equippr = createStoreFromRegistry('equippr');

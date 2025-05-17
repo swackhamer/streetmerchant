@@ -1,22 +1,10 @@
 /**
  * Store configuration for ao
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Ao store
  */
-export const Ao = createStandardStore({
-  name: 'ao',
-  country: 'UK',
-  currency: '£',
-  labels: {
-    outOfStock: {
-      container: 'section.centred-heading-copy strong',
-      text: ['currently unavailable'],
-    },
-  },
-
-});
+export const Ao = createStoreFromRegistry('ao');

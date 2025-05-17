@@ -1,33 +1,10 @@
 /**
  * Store configuration for rosman-melb
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * RosmanMelb store
+ * Rosman-melb store
  */
-export const RosmanMelb = createStandardStore({
-  name: 'rosman-melb',
-  country: 'AU',
-  currency: '$',
-  labels: {
-    inStock: {
-      container:
-        '#Availability > div > table > tbody > tr:nth-child(2) > td:nth-child(1)',
-      text: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-    },
-    maxPrice: {
-      container: 'span.price.price--withTax.price--main',
-      euroFormat: false,
-    },
-    outOfStock: {
-      container:
-        '#Availability > div > table > tbody > tr:nth-child(2) > td:nth-child(1)',
-      text: ['ETA', 'Call Us'],
-    },
-  },
-  backoffStatusCodes: [403, 429],
-
-});
+export const RosmanMelb = createStoreFromRegistry('rosman-melb');

@@ -1,30 +1,10 @@
 /**
  * Store configuration for coolmod
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Coolmod store
  */
-export const Coolmod = createEuropeanStore({
-  name: 'coolmod',
-  country: 'ES',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '#productBuyButtons',
-      text: ['COMPRAR'],
-    },
-    maxPrice: {
-      container: '#normalpricenumber',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '#productBuyButtons',
-      text: ['NO DISPONIBLE'],
-    },
-  },
-
-});
+export const Coolmod = createStoreFromRegistry('coolmod');

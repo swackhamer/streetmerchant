@@ -1,30 +1,10 @@
 /**
  * Store configuration for awd
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Awd store
  */
-export const Awd = createStandardStore({
-  name: 'awd',
-  country: 'UK',
-  currency: '£',
-  labels: {
-    inStock: {
-      container: '.product-info-stock-sku .stock-status',
-      text: ['in stock'],
-    },
-    maxPrice: {
-      container: '.product-info-details .price',
-      euroFormat: false, // Note: Awd uses non-euroFromat as price seperator
-    },
-    outOfStock: {
-      container: '.product-info-stock-sku .stock-status',
-      text: ['out of stock', 'coming soon'],
-    },
-  },
-
-});
+export const Awd = createStoreFromRegistry('awd');

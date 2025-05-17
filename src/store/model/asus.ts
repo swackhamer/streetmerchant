@@ -1,28 +1,10 @@
 /**
  * Store configuration for asus
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Asus store
  */
-export const Asus = createStandardStore({
-  name: 'asus',
-  country: 'US',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '#item_add_cart',
-      text: ['add to cart'],
-    },
-    outOfStock: {
-      container: '#off_sale',
-      text: ['sold out'],
-    },
-  },
-  successStatusCodes: [[0, 399]],
-  backoffStatusCodes: [403, 429, 503]
-
-});
+export const Asus = createStoreFromRegistry('asus');

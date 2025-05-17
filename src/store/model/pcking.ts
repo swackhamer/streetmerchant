@@ -1,32 +1,10 @@
 /**
  * Store configuration for pcking
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Pcking store
  */
-export const Pcking = createEuropeanStore({
-  name: 'pcking',
-  country: 'DE',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.es_order_box-article_detail',
-      text: ['sofort lieferbar [Versand]', 'abholbereit [PC-KING]'],
-    },
-    maxPrice: {
-      container: 'div.es_product_price-article_detail > b',
-      euroFormat: true,
-    },
-    outOfStock: [
-      {
-        container: '.es_order_box-article_detail',
-        text: ['nicht lieferbar'],
-      },
-    ],
-  },
-
-});
+export const Pcking = createStoreFromRegistry('pcking');

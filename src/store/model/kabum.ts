@@ -1,26 +1,10 @@
 /**
  * Store configuration for kabum
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Kabum store
  */
-export const Kabum = createStandardStore({
-  name: 'kabum',
-  country: 'BR',
-  currency: 'R$',
-  labels: {
-    inStock: {
-      container: '.botao-comprar',
-      text: ['comprar'],
-    },
-    outOfStock: {
-      container: '.bot_comprar',
-      text: ['indisponível'],
-    },
-  },
-
-});
+export const Kabum = createStoreFromRegistry('kabum');

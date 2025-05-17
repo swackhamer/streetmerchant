@@ -1,40 +1,10 @@
 /**
  * Store configuration for newegg-ca
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createMarketplaceStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * NeweggCa store
  */
-export const NeweggCa = createMarketplaceStore({
-  name: 'newegg-ca',
-  country: 'CA',
-  currency: '$',
-  labels: {
-    captcha: {
-      container: 'body',
-      text: ['are you a human?'],
-    },
-    inStock: {
-      container: 'div#ProductBuy .btn-primary',
-      text: ['add to cart'],
-    },
-    maxPrice: {
-      container: 'div#app div.product-price > ul > li.price-current > strong',
-      euroFormat: false,
-    },
-    outOfStock: [
-      {
-        container: '.product-inventory',
-        text: [' out of stock.'],
-      },
-      {
-        container: '.product-flag',
-        text: ['out of stock '],
-      },
-    ],
-  },
-
-});
+export const NeweggCa = createStoreFromRegistry('newegg-ca');

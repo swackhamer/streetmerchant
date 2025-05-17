@@ -1,22 +1,10 @@
 /**
  * Store configuration for comet
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Comet store
  */
-export const Comet = createEuropeanStore({
-  name: 'comet',
-  country: 'IT',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.caption',
-      text: ['Aggiungi al carrello'],
-    },
-  },
-
-});
+export const Comet = createStoreFromRegistry('comet');

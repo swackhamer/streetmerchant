@@ -1,27 +1,10 @@
 /**
  * Store configuration for bpctech
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Bpctech store
  */
-export const Bpctech = createStandardStore({
-  name: 'bpctech',
-  country: 'AU',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '.productStockStatus',
-      text: ['in stock'],
-    },
-    maxPrice: {
-      container: 'div.price-box.price-final_price > span > span',
-      euroFormat: false,
-    },
-  },
-  backoffStatusCodes: [403, 429],
-
-});
+export const Bpctech = createStoreFromRegistry('bpctech');

@@ -1,25 +1,10 @@
 /**
  * Store configuration for topachat
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Topachat store
  */
-export const Topachat = createEuropeanStore({
-  name: 'topachat',
-  country: 'GR',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: 'input.cart.button[value="Ajouter au panier"]',
-      text: [''],
-    },
-    maxPrice: {
-      container: 'span.priceFinal.fp44',
-    },
-  },
-
-});
+export const Topachat = createStoreFromRegistry('topachat');

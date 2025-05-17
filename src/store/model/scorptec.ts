@@ -1,27 +1,10 @@
 /**
  * Store configuration for scorptec
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Scorptec store
  */
-export const Scorptec = createStandardStore({
-  name: 'scorptec',
-  country: 'AU',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '#delivery-wrapper > div.product-stock-text',
-      text: ['in stock'],
-    },
-    outOfStock: {
-      container: '#delivery-wrapper > div.product-stock-text',
-      text: ['sold out'],
-    },
-  },
-  backoffStatusCodes: [403, 429],
-
-});
+export const Scorptec = createStoreFromRegistry('scorptec');

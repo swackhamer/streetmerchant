@@ -1,53 +1,10 @@
 /**
  * Store configuration for saturn
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Saturn store
  */
-export const Saturn = createEuropeanStore({
-  name: 'saturn',
-  country: 'DE',
-  currency: '€',
-  labels: {
-    captcha: {
-      container: 'p',
-      text: ['Das ging uns leider zu schnell.'],
-    },
-    maxPrice: {
-      container: 'span[font-family="price"]',
-      euroFormat: false,
-    },
-    outOfStock: [
-      {
-        container: '#root',
-        text: ['Dieser Artikel ist aktuell nicht verfügbar.'],
-      },
-      {
-        container: '#root',
-        text: ['Leider keine Lieferung möglich'],
-      },
-      {
-        container: '#root',
-        text: ['Nicht verfügbar'],
-      },
-      {
-        container: '#root',
-        text: ['Dieser Artikel ist dauerhaft ausverkauft'],
-      },
-      {
-        container: '#root',
-        text: ['Dieser Artikel ist bald wieder für Sie verfügbar'],
-      },
-      {
-        container: '#root',
-        text: ['Dieser Artikel ist bald wieder verfügbar'],
-      },
-    ],
-  },
-  backoffStatusCodes: [403, 429, 503],
-
-});
+export const Saturn = createStoreFromRegistry('saturn');

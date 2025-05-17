@@ -1,30 +1,10 @@
 /**
  * Store configuration for ldlc-italy
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * LdlcItaly store
+ * Ldlc-italy store
  */
-export const LdlcItaly = createEuropeanStore({
-  name: 'ldlc-italy',
-  country: 'IT',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.stock',
-      text: ['Disponibile'],
-    },
-    maxPrice: {
-      container: '.price',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '.stock',
-      text: ['Rottura'],
-    },
-  },
-
-});
+export const LdlcItaly = createStoreFromRegistry('ldlc-italy');

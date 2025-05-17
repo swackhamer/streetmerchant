@@ -1,30 +1,10 @@
 /**
  * Store configuration for smythstoys
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Smythstoys store
  */
-export const Smythstoys = createStandardStore({
-  name: 'smythstoys',
-  country: 'UK',
-  currency: '£',
-  labels: {
-    inStock: {
-      container: '#addToCartButton',
-      text: ['add to basket'],
-    },
-    maxPrice: {
-      container: '.price_tag',
-      euroFormat: false,
-    },
-    outOfStock: {
-      container: '.instoreMessage',
-      text: ['out of stock'],
-    },
-  },
-
-});
+export const Smythstoys = createStoreFromRegistry('smythstoys');

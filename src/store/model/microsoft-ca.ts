@@ -1,26 +1,10 @@
 /**
  * Store configuration for microsoft-ca
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * MicrosoftCa store
+ * Microsoft-ca store
  */
-export const MicrosoftCa = createStandardStore({
-  name: 'microsoft-ca',
-  country: 'CA',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: 'button[aria-label="Checkout bundle"]',
-      text: ['Checkout'],
-    },
-    outOfStock: {
-      container: 'button[aria-label="Checkout bundle"]',
-      text: ['Out of stock'],
-    },
-  },
-
-});
+export const MicrosoftCa = createStoreFromRegistry('microsoft-ca');

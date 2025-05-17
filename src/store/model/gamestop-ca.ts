@@ -1,25 +1,10 @@
 /**
  * Store configuration for gamestop-ca
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * GamestopCa store
+ * Gamestop-ca store
  */
-export const GamestopCa = createStandardStore({
-  name: 'gamestop-ca',
-  country: 'CA',
-  currency: '$',
-  labels: {
-    maxPrice: {
-      container: '.singleVariantText .prodPriceCont',
-    },
-    outOfStock: {
-      container: '#btnAddToCart[style*="display:none;"] ',
-      text: ['add to cart'],
-    },
-  },
-
-});
+export const GamestopCa = createStoreFromRegistry('gamestop-ca');

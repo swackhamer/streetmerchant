@@ -1,30 +1,10 @@
 /**
  * Store configuration for neobyte
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Neobyte store
  */
-export const Neobyte = createEuropeanStore({
-  name: 'neobyte',
-  country: 'ES',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '#add_to_cart > button',
-      text: ['Añadir al carrito'],
-    },
-    maxPrice: {
-      container: '#our_price_display',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '#availability_value',
-      text: ['No Disponible'],
-    },
-  },
-
-});
+export const Neobyte = createStoreFromRegistry('neobyte');

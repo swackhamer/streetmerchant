@@ -1,25 +1,10 @@
 /**
  * Store configuration for microcenter
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Microcenter store
  */
-export const Microcenter = createStandardStore({
-  name: 'microcenter',
-  country: 'US',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '#inventory-qty',
-      text: ['IN STOCK']
-    },
-    outOfStock: {
-      container: '#inventory-qty',
-      text: ['SOLD OUT']
-    }
-  }
-});
+export const Microcenter = createStoreFromRegistry('microcenter');

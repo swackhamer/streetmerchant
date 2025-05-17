@@ -1,26 +1,10 @@
 /**
  * Store configuration for nvidia-fr
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * NvidiaFr store
+ * Nvidia-fr store
  */
-export const NvidiaFr = createEuropeanStore({
-  name: 'nvidia-fr',
-  country: 'FR',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.buy',
-      text: ['ajouter au panier', 'acheter maintenant'],
-    },
-    outOfStock: {
-      container: '.buy',
-      text: ['RUPTURE DE STOCK'],
-    },
-  },
-
-});
+export const NvidiaFr = createStoreFromRegistry('nvidia-fr');

@@ -1,30 +1,10 @@
 /**
  * Store configuration for alternate-nl
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * AlternateNl store
+ * Alternate-nl store
  */
-export const AlternateNl = createEuropeanStore({
-  name: 'alternate-nl',
-  country: 'NL',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.stockStatus',
-      text: ['Direct leverbaar'],
-    },
-    maxPrice: {
-      container: 'div.price > span',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '.stockStatus',
-      text: ['Levertermijn onbekend', 'pre-order'],
-    },
-  },
-
-});
+export const AlternateNl = createStoreFromRegistry('alternate-nl');

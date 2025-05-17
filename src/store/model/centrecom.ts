@@ -1,31 +1,10 @@
 /**
  * Store configuration for centrecom
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Centrecom store
  */
-export const Centrecom = createStandardStore({
-  name: 'centrecom',
-  country: 'AU',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '.prod_stores_stock > li:nth-child(1) > span:nth-child(2)',
-      text: ['In Stock'],
-    },
-    maxPrice: {
-      container: 'div.prod_price_current.product-price > span',
-      euroFormat: false,
-    },
-    outOfStock: {
-      container: '.prod_stores_stock > li:nth-child(1) > span:nth-child(2)',
-      text: ['Sold Out'],
-    },
-  },
-  backoffStatusCodes: [403, 429],
-
-});
+export const Centrecom = createStoreFromRegistry('centrecom');

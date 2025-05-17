@@ -1,30 +1,10 @@
 /**
  * Store configuration for gamestop-it
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * GamestopIt store
+ * Gamestop-it store
  */
-export const GamestopIt = createEuropeanStore({
-  name: 'gamestop-it',
-  country: 'IT',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '#btnAddToCart',
-      text: ['Aggiungi al Carrello'],
-    },
-    maxPrice: {
-      container: '.buySection .prodPriceCont',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '.megaButton .buyDisabled',
-      text: ['Esaurito'],
-    },
-  },
-
-});
+export const GamestopIt = createStoreFromRegistry('gamestop-it');

@@ -1,32 +1,10 @@
 /**
  * Store configuration for futurex
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Futurex store
  */
-export const Futurex = createEuropeanStore({
-  name: 'futurex',
-  country: 'DE',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.productPriceInner',
-      text: ['Auf Lager'],
-    },
-    maxPrice: {
-      container: '.price',
-      euroFormat: true,
-    },
-    outOfStock: [
-      {
-        container: '.notavail',
-        text: ['Aktuell nicht verfügbar'],
-      },
-    ],
-  },
-
-});
+export const Futurex = createStoreFromRegistry('futurex');

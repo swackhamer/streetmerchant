@@ -1,31 +1,10 @@
 /**
  * Store configuration for box
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Box store
  */
-export const Box = createStandardStore({
-  name: 'box',
-  country: 'UK',
-  currency: '£',
-  labels: {
-    inStock: {
-      container: '.flex-col button',
-      text: ['add to basket'],
-    },
-    maxPrice: {
-      container: '.flex-col span.heading_primary',
-      euroFormat: false, // Note: Box uses non-euroFromat as price seperator
-    },
-    outOfStock: {
-      container: '.flex-col button',
-      text: ['request stock alert', 'coming soon', 'notify me'],
-    },
-  },
-  backoffStatusCodes: [403, 429, 503],
-
-});
+export const Box = createStoreFromRegistry('box');

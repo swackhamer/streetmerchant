@@ -1,25 +1,10 @@
 /**
  * Store configuration for walmart-ca
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createMarketplaceStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * WalmartCa store
+ * Walmart-ca store
  */
-export const WalmartCa = createMarketplaceStore({
-  name: 'walmart-ca',
-  country: 'CA',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '[data-automation="cta-button"]',
-      text: ['add to cart'],
-    },
-    maxPrice: {
-      container: '[data-automation="buybox-price"]',
-    },
-  },
-
-});
+export const WalmartCa = createStoreFromRegistry('walmart-ca');

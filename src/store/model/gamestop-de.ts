@@ -1,37 +1,10 @@
 /**
  * Store configuration for gamestop-de
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * GamestopDe store
+ * Gamestop-de store
  */
-export const GamestopDe = createEuropeanStore({
-  name: 'gamestop-de',
-  country: 'DE',
-  currency: '€',
-  labels: {
-    inStock: [
-      {
-        container: '#btnAddToCart',
-        text: ['In den Warenkorb'],
-      },
-      {
-        container: '#btnAddToCart',
-        text: ['Vorbestellen'],
-      },
-    ],
-    maxPrice: {
-      container: '.buySection .prodPriceCont',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '.megaButton',
-      text: ['Nicht verfügbar'],
-    },
-  },
-  successStatusCodes: [[0, 399]]
-
-});
+export const GamestopDe = createStoreFromRegistry('gamestop-de');

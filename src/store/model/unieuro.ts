@@ -1,26 +1,10 @@
 /**
  * Store configuration for unieuro
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Unieuro store
  */
-export const Unieuro = createEuropeanStore({
-  name: 'unieuro',
-  country: 'IT',
-  currency: '€',
-  labels: {
-    captcha: {
-      container: 'body',
-      text: ['Too Many Requests.'],
-    },
-    inStock: {
-      container: '.price-container',
-      text: ['Aggiungi al carrello'],
-    },
-  },
-
-});
+export const Unieuro = createStoreFromRegistry('unieuro');

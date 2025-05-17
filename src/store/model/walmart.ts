@@ -1,25 +1,10 @@
 /**
  * Store configuration for walmart
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createMarketplaceStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Walmart store
  */
-export const Walmart = createMarketplaceStore({
-  name: 'walmart',
-  country: 'US',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '.button.spin-button.prod-ProductCTA--primary.button--primary',
-      text: ['add to cart'],
-    },
-    maxPrice: {
-      container: 'span[class*="price-characteristic"]',
-    },
-  },
-
-});
+export const Walmart = createStoreFromRegistry('walmart');

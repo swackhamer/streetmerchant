@@ -1,29 +1,10 @@
 /**
  * Store configuration for netonnet-no
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * NetonnetNo store
+ * Netonnet-no store
  */
-export const NetonnetNo = createStandardStore({
-  name: 'netonnet-no',
-  country: 'NO',
-  currency: 'kr.',
-  labels: {
-    inStock: {
-      container: '[id^="BuyButton_ProductPageStandard_"]',
-      text: ['Legg i handlevogn'],
-    },
-    maxPrice: {
-      container: '.price-big',
-    },
-    outOfStock: {
-      container: '[id^="BuyButton_ProductPageStandard_"]',
-      text: ['Overvåk produktet'],
-    },
-  },
-
-});
+export const NetonnetNo = createStoreFromRegistry('netonnet-no');

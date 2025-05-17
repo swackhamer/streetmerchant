@@ -1,31 +1,10 @@
 /**
  * Store configuration for ldlc-es
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * LdlcEs store
+ * Ldlc-es store
  */
-export const LdlcEs = createEuropeanStore({
-  name: 'ldlc-es',
-  country: 'ES',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '#product-page-stock > div > div.content > div > span',
-      text: ['stock'],
-    },
-    maxPrice: {
-      container:
-        '#activeOffer > div.product-info > div.wrap-aside > aside > div.price > div',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '#product-page-stock > div > div.content > div > span',
-      text: ['agotado'],
-    },
-  },
-
-});
+export const LdlcEs = createStoreFromRegistry('ldlc-es');

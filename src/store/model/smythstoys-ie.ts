@@ -1,31 +1,10 @@
 /**
  * Store configuration for smythstoys-ie
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * SmythstoysIe store
+ * Smythstoys-ie store
  */
-export const SmythstoysIe = createEuropeanStore({
-  name: 'smythstoys-ie',
-  country: 'IE',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '#addToCartButton',
-      text: ['add to basket'],
-    },
-    maxPrice: {
-      container: '.price_tag',
-      euroFormat: false,
-    },
-    outOfStock: {
-      container: '.instoreMessage',
-      text: ['out of stock'],
-    },
-  },
-  disableAdBlocker: true,
-
-});
+export const SmythstoysIe = createStoreFromRegistry('smythstoys-ie');

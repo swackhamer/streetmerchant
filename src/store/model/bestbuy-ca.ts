@@ -1,26 +1,10 @@
 /**
  * Store configuration for bestbuy-ca
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * BestbuyCa store
+ * Bestbuy-ca store
  */
-export const BestbuyCa = createStandardStore({
-  name: 'bestbuy-ca',
-  country: 'CA',
-  currency: '$',
-  labels: {
-    maxPrice: {
-      container: 'div[class*="pricingContainer"]',
-      euroFormat: false,
-    },
-    inStock: {
-      container: '.addToCartButton:not(:disabled)',
-      text: ['add to cart'],
-    },
-  },
-
-});
+export const BestbuyCa = createStoreFromRegistry('bestbuy-ca');

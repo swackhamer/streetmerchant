@@ -1,30 +1,10 @@
 /**
  * Store configuration for pccomponentes
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Pccomponentes store
  */
-export const Pccomponentes = createEuropeanStore({
-  name: 'pccomponentes',
-  country: 'ES',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '#btnsWishAddBuy',
-      text: ['Comprar'],
-    },
-    maxPrice: {
-      container: '#precio-main',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '#btnsWishAddBuy',
-      text: ['Avísame'],
-    },
-  },
-
-});
+export const Pccomponentes = createStoreFromRegistry('pccomponentes');

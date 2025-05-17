@@ -1,26 +1,10 @@
 /**
  * Store configuration for microsoft
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Microsoft store
  */
-export const Microsoft = createStandardStore({
-  name: 'microsoft',
-  country: 'US',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: 'button[aria-label="Checkout bundle"]',
-      text: ['Checkout'],
-    },
-    outOfStock: {
-      container: 'button[aria-label="Checkout bundle"]',
-      text: ['Out of stock'],
-    },
-  },
-
-});
+export const Microsoft = createStoreFromRegistry('microsoft');

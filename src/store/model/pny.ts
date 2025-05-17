@@ -1,26 +1,10 @@
 /**
  * Store configuration for pny
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Pny store
  */
-export const Pny = createStandardStore({
-  name: 'pny',
-  country: 'US',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '#ctl01_lbtnAddToCart',
-      text: ['add to cart'],
-    },
-    maxPrice: {
-      container: 'span[itemprop="price"]',
-      euroFormat: false,
-    },
-  },
-
-});
+export const Pny = createStoreFromRegistry('pny');

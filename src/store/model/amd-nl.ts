@@ -1,30 +1,10 @@
 /**
  * Store configuration for amd-nl
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * AmdNl store
+ * Amd-nl store
  */
-export const AmdNl = createEuropeanStore({
-  name: 'amd-nl',
-  country: 'NL',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.btn-shopping-cart',
-      text: ['add to cart'],
-    },
-    maxPrice: {
-      container: '.product-page-description h4',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '.btn-radeon',
-      text: ['out of stock'],
-    },
-  },
-
-});
+export const AmdNl = createStoreFromRegistry('amd-nl');

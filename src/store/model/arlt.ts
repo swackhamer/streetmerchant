@@ -1,30 +1,10 @@
 /**
  * Store configuration for arlt
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Arlt store
  */
-export const Arlt = createEuropeanStore({
-  name: 'arlt',
-  country: 'DE',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.articleDesc .shippingtext',
-      text: ['auf Lager', 'Lieferzeit 2-3 Werktage', 'Ware im Zulauf'],
-    },
-    maxPrice: {
-      container: '.articleprice .price',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '.articleDesc .shippingtext',
-      text: ['Neuer Artikel in Kürze verfügbar', 'Liefertermin unbekannt'],
-    },
-  },
-
-});
+export const Arlt = createStoreFromRegistry('arlt');

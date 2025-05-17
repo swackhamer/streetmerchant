@@ -1,36 +1,10 @@
 /**
  * Store configuration for medimax
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Medimax store
  */
-export const Medimax = createEuropeanStore({
-  name: 'medimax',
-  country: 'DE',
-  currency: '€',
-  labels: {
-    inStock: [
-      {
-        container: '.product-cart-add-to-cart-button',
-        text: ['In den Warenkorb'],
-      },
-      {
-        container: '.stock-message',
-        text: ['Lieferung in'],
-      },
-    ],
-    maxPrice: {
-      container: '.priceOfProduct',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '.content .large',
-      text: ['Ihr MEDIMAX Team'],
-    },
-  },
-
-});
+export const Medimax = createStoreFromRegistry('medimax');

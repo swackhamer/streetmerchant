@@ -1,31 +1,10 @@
 /**
  * Store configuration for bandh
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Bandh store
  */
-export const Bandh = createStandardStore({
-  name: 'bandh',
-  country: 'US',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: 'div[data-selenium="addToCartSection"]',
-      text: ['add to cart'],
-    },
-    maxPrice: {
-      container: 'div[data-selenium="pricingPrice"]',
-      euroFormat: false,
-    },
-    outOfStock: {
-      container: 'button[data-selenium="notifyAvailabilityButton"]',
-      text: ['notify when available'],
-    },
-  },
-  backoffStatusCodes: [403, 429],
-
-});
+export const Bandh = createStoreFromRegistry('bandh');

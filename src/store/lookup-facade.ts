@@ -5,14 +5,14 @@
  * to provide the same functionality as the original lookup but with
  * a more modular and maintainable approach.
  */
-import {Link, Store} from '../model/store';
-import {BrowserSession} from '../../browser/refactored/browser-session';
-import {RequestHandler} from '../../network/refactored/request-handler';
-import {logger} from '../../logger';
-import {config} from '../../config';
-import {generateLinks} from '../model/refactored/link-generator';
-import {sendNotification} from '../../messaging';
-import {getSleepTime, delay} from '../../util';
+import {Link, Store} from './model/store';
+import {BrowserSession} from '../browser/session/browser-session';
+import {RequestHandler} from '../network/handlers/request-handler';
+import {logger} from '../logger';
+import {config} from '../config';
+import {generateLinks} from './model/link-generator';
+import {sendNotification} from '../messaging/notification';
+import {getSleepTime, delay} from '../util';
 
 /**
  * Main lookup function that checks a store for product availability
@@ -49,10 +49,7 @@ export async function lookup(store: Store): Promise<boolean> {
     }
     
     // Add delay between links to avoid rate limiting
-    await delay(getSleepTime(
-      store.minPageSleep || config.browser.minSleep,
-      store.maxPageSleep || config.browser.maxSleep
-    ));
+    await delay(getSleepTime(store));
   }
   
   // Close the browser session when done
@@ -88,10 +85,7 @@ async function checkLink(browserSession: BrowserSession, store: Store, link: Lin
     logger.info(`🚀 [${store.name}] product in stock: ${link.url}`);
     
     // Send notification with product details
-    const notificationResult = await sendNotification('stock', {
-      link,
-      store,
-    });
+    sendNotification(link, store);
     
     // Handle cart addition if configured
     if (config.store.autoAddToCart) {

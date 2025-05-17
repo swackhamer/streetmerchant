@@ -1,29 +1,10 @@
 /**
  * Store configuration for msi
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Msi store
  */
-export const Msi = createStandardStore({
-  name: 'msi',
-  country: 'US',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '#button-cart',
-      text: ['ADD TO CART'],
-    },
-    outOfStock: {
-      container: '#product_qty > button.btn.add-cart-button-3',
-      text: ['Notify Me'],
-    },
-    maxPrice: {
-      container: '#prices-new',
-    },
-  },
-
-});
+export const Msi = createStoreFromRegistry('msi');

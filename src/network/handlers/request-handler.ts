@@ -10,8 +10,8 @@ import {Store, Link} from '../../store/model/store';
 import {getSleepTime, delay, isStatusCodeInRange, logUnexpectedError} from '../../util';
 import {config} from '../../config';
 import {includesLabels} from '../../store/includes-labels';
-import {sendNotification} from '../../messaging/index';
-import {BrowserSession} from '../../browser/refactored/browser-session';
+import {sendNotification} from '../../messaging/notification';
+import {BrowserSession} from '../../browser/session/browser-session';
 
 /**
  * Options for making requests
@@ -94,7 +94,7 @@ export class RequestHandler {
             
             if (attempt <= retries) {
               // Simple delay between retries
-              await delay(getSleepTime(config.browser.minSleep, config.browser.maxSleep));
+              await delay(getSleepTime(this.store));
               continue;
             }
           } else if (this.shouldBackoff(lastStatusCode, options.backoffOn)) {
@@ -144,7 +144,7 @@ export class RequestHandler {
         attempt++;
         
         if (attempt <= retries) {
-          await delay(getSleepTime(config.browser.minSleep, config.browser.maxSleep));
+          await delay(getSleepTime(this.store));
         }
       }
     }
@@ -221,11 +221,35 @@ export class RequestHandler {
    * Check if the page content has a captcha
    */
   private hasCaptcha(pageContent: string): boolean {
-    if (!this.store.labels.captcha) {
+    // If no captcha labels defined, assume there's no captcha
+    const captchaLabels = this.store.labels.captcha;
+    if (!captchaLabels) {
       return false;
     }
     
-    return includesLabels(pageContent, [this.store.labels.captcha]);
+    // Helper function to convert LabelQuery to string[]
+    const getLabelStrings = (label: any): string[] => {
+      if (typeof label === 'string') {
+        return [label];
+      } else if (Array.isArray(label)) {
+        if (typeof label[0] === 'string') {
+          return label as string[];
+        } else {
+          // Element[]
+          return label.flatMap(elem => 
+            typeof elem === 'object' && Array.isArray(elem.text) ? elem.text : []
+          );
+        }
+      } else if (typeof label === 'object' && Array.isArray(label.text)) {
+        // Single Element
+        return label.text;
+      }
+      return [];
+    };
+    
+    // Convert captcha labels to string[] and check if any of them are in the page content
+    const captchaStrings = getLabelStrings(captchaLabels);
+    return includesLabels(pageContent, captchaStrings);
   }
   
   /**
@@ -243,10 +267,13 @@ export class RequestHandler {
         );
         
         // Send notification about captcha
-        await sendNotification('captcha', {
-          store: this.store,
+        const captchaLink: Link = {
+          brand: 'captcha-deterrent',
+          model: 'captcha-deterrent',
+          series: 'captcha-deterrent',
           url: 'captcha'
-        });
+        };
+        sendNotification(captchaLink, this.store);
         
         // Wait for the timeout
         await delay(config.captchaHandler.responseTimeout * 1000);
@@ -283,23 +310,38 @@ export class RequestHandler {
       return false;
     }
     
+    // Helper function to convert LabelQuery to string[]
+    const getLabelStrings = (label: any): string[] => {
+      if (typeof label === 'string') {
+        return [label];
+      } else if (Array.isArray(label)) {
+        if (typeof label[0] === 'string') {
+          return label as string[];
+        } else {
+          // Element[]
+          return label.flatMap(elem => 
+            typeof elem === 'object' && Array.isArray(elem.text) ? elem.text : []
+          );
+        }
+      } else if (typeof label === 'object' && Array.isArray(label.text)) {
+        // Single Element
+        return label.text;
+      }
+      return [];
+    };
+    
     // Check if page content includes in-stock indicators
-    const hasInStockLabels = includesLabels(pageContent, Array.isArray(labels.inStock) 
-      ? labels.inStock
-      : [labels.inStock]);
+    const inStockLabels = getLabelStrings(labels.inStock);
+    const hasInStockLabels = includesLabels(pageContent, inStockLabels);
     
     // If out-of-stock labels are defined, make sure they're not present
     const hasOutOfStockLabels = labels.outOfStock
-      ? includesLabels(pageContent, Array.isArray(labels.outOfStock)
-          ? labels.outOfStock
-          : [labels.outOfStock])
+      ? includesLabels(pageContent, getLabelStrings(labels.outOfStock))
       : false;
     
     // Check for banned seller labels if defined
     const hasBannedSeller = labels.bannedSeller
-      ? includesLabels(pageContent, Array.isArray(labels.bannedSeller)
-          ? labels.bannedSeller
-          : [labels.bannedSeller])
+      ? includesLabels(pageContent, getLabelStrings(labels.bannedSeller))
       : false;
     
     // Product is in stock if it has in-stock labels, doesn't have out-of-stock labels,

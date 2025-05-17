@@ -1,33 +1,10 @@
 /**
  * Store configuration for novoatalho
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Novoatalho store
  */
-export const Novoatalho = createEuropeanStore({
-  name: 'novoatalho',
-  country: 'PT',
-  currency: '€',
-  labels: {
-    inStock: {
-      container:
-        'div.line > div.pull-left > div.stockpadding > span.stock > b > a',
-      text: ['DISPONÍVEL', 'POUCAS UNIDADES'],
-    },
-    outOfStock: {
-      container:
-        'div.line > div.pull-left > div.stockpadding > span.stock > b > a',
-      text: ['INDISPONÍVEL'],
-    },
-    maxPrice: {
-      container:
-        'div.line > div.pull-right > div.text-right > span.product-price',
-      euroFormat: true,
-    },
-  },
-
-});
+export const Novoatalho = createStoreFromRegistry('novoatalho');

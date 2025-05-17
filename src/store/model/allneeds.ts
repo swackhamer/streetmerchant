@@ -1,31 +1,10 @@
 /**
  * Store configuration for allneeds
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Allneeds store
  */
-export const Allneeds = createStandardStore({
-  name: 'allneeds',
-  country: 'AU',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '.amstockstatus',
-      text: ['In Stock'],
-    },
-    maxPrice: {
-      container: 'span.price',
-      euroFormat: false,
-    },
-    outOfStock: {
-      container: '.amstockstatus',
-      text: ['sold out'],
-    },
-  },
-  backoffStatusCodes: [403, 429],
-
-});
+export const Allneeds = createStoreFromRegistry('allneeds');

@@ -1,22 +1,10 @@
 /**
  * Store configuration for evga
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Evga store
  */
-export const Evga = createStandardStore({
-  name: 'evga',
-  country: 'US',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '.product-buy-specs',
-      text: ['add to cart'],
-    },
-  },
-
-});
+export const Evga = createStoreFromRegistry('evga');

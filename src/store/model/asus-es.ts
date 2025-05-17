@@ -1,22 +1,10 @@
 /**
  * Store configuration for asus-es
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * AsusEs store
+ * Asus-es store
  */
-export const AsusEs = createEuropeanStore({
-  name: 'asus-es',
-  country: 'ES',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '#product-addtocart-button > span',
-      text: ['Añadir a la cesta'],
-    },
-  },
-
-});
+export const AsusEs = createStoreFromRegistry('asus-es');

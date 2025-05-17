@@ -1,30 +1,10 @@
 /**
  * Store configuration for materiel
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Materiel store
  */
-export const Materiel = createEuropeanStore({
-  name: 'materiel',
-  country: 'FR',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.product-availability',
-      text: ['EN STOCK'],
-    },
-    maxPrice: {
-      container: '.o-product__price',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '.product-availability',
-      text: ['RUPTURE'],
-    },
-  },
-
-});
+export const Materiel = createStoreFromRegistry('materiel');

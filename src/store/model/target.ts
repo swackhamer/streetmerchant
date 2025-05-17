@@ -1,31 +1,10 @@
 /**
  * Store configuration for target
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Target store
  */
-export const Target = createStandardStore({
-  name: 'target',
-  country: 'US',
-  currency: '$',
-  labels: {
-    inStock: [
-      {
-        container: '[data-test="preorderButton"]',
-        text: ['Preorder now'],
-      },
-      {
-        container: '[data-test="shipItButton"]',
-        text: ['Ship it'],
-      },
-    ],
-    maxPrice: {
-      container: '[data-test="product-price"]',
-    },
-  },
-
-});
+export const Target = createStoreFromRegistry('target');

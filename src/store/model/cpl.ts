@@ -1,29 +1,10 @@
 /**
  * Store configuration for cpl
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Cpl store
  */
-export const Cpl = createStandardStore({
-  name: 'cpl',
-  country: 'AU',
-  currency: '$',
-  labels: {
-    inStock: {
-      container:
-        'div.product-stock > table > tbody > tr:nth-child(1) > td.stock-value',
-      text: ['In Stock'],
-    },
-    outOfStock: {
-      container:
-        'div.product-stock > table > tbody > tr:nth-child(1) > td.stock-value',
-      text: ['Pre Order'],
-    },
-  },
-  backoffStatusCodes: [403, 429],
-
-});
+export const Cpl = createStoreFromRegistry('cpl');

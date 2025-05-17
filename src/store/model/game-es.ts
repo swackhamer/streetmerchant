@@ -1,33 +1,10 @@
 /**
  * Store configuration for game-es
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * GameEs store
+ * Game-es store
  */
-export const GameEs = createEuropeanStore({
-  name: 'game-es',
-  country: 'ES',
-  currency: '€',
-  labels: {
-    inStock: {
-      container:
-        '#body > div.main.container > div > div > section.right-side.product-quick-actions > div > h4 > span',
-      text: ['Comprar'],
-    },
-    maxPrice: {
-      container:
-        '#body > div.main.container > div > div > section.right-side.product-quick-actions > div > div',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container:
-        '#body > div.main.container > div > div > section.right-side.product-quick-actions > div > h4 > span',
-      text: ['Agotado'],
-    },
-  },
-
-});
+export const GameEs = createStoreFromRegistry('game-es');

@@ -1,30 +1,10 @@
 /**
  * Store configuration for wipoid
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Wipoid store
  */
-export const Wipoid = createStandardStore({
-  name: 'wipoid',
-  country: 'ES',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '#add_to_cart',
-      text: ['COMPRAR'],
-    },
-    maxPrice: {
-      container: '#our_price_display',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '.buttons_bottom_block no-print',
-      text: ['Avísame cuando esté disponible!'],
-    },
-  },
-
-});
+export const Wipoid = createStoreFromRegistry('wipoid');

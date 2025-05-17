@@ -1,30 +1,10 @@
 /**
  * Store configuration for mightyape
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Mightyape store
  */
-export const Mightyape = createStandardStore({
-  name: 'mightyape',
-  country: 'NZ',
-  currency: '$',
-  labels: {
-    inStock: [
-      {
-        container: 'div.status',
-        text: [' In stock at '],
-      },
-    ],
-    outOfStock: [
-      {
-        container: 'div.status',
-        text: [' Unavailable '],
-      },
-    ],
-  },
-
-});
+export const Mightyape = createStoreFromRegistry('mightyape');

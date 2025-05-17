@@ -1,30 +1,10 @@
 /**
  * Store configuration for cyberport-at
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * CyberportAt store
+ * Cyberport-at store
  */
-export const CyberportAt = createEuropeanStore({
-  name: 'cyberport-at',
-  country: 'AT',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.tooltipAvailabilityParent',
-      text: ['sofort verfügbar'],
-    },
-    maxPrice: {
-      container: '#productDetailOverview .price',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '.tooltipAvailabilityParent',
-      text: ['noch nicht verfügbar'],
-    },
-  },
-
-});
+export const CyberportAt = createStoreFromRegistry('cyberport-at');

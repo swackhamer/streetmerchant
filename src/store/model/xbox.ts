@@ -1,23 +1,10 @@
 /**
  * Store configuration for xbox
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Xbox store
  */
-export const Xbox = createStandardStore({
-  name: 'xbox',
-  country: 'US',
-  currency: '$',
-  labels: {
-    outOfStock: {
-      container:
-        '[class="BundleBuilderHeader-module__checkoutButton___3UyEq w-100 bg-light-green btn btn-primary"]',
-      text: ['Out of stock'],
-    },
-  },
-
-});
+export const Xbox = createStoreFromRegistry('xbox');

@@ -1,31 +1,10 @@
 /**
  * Store configuration for ccl
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Ccl store
  */
-export const Ccl = createStandardStore({
-  name: 'ccl',
-  country: 'UK',
-  currency: '£',
-  labels: {
-    inStock: {
-      container: '#pnlAddToBasket',
-      text: ['add to basket'],
-    },
-    maxPrice: {
-      container: '#pnlPriceText > p',
-      euroFormat: false, // Note: CCL uses non-euroFromat as price seperator
-    },
-    outOfStock: {
-      container: '#pnlSoldOut',
-      text: ['sold out', 'coming soon'],
-    },
-  },
-  backoffStatusCodes: [403, 429, 503],
-
-});
+export const Ccl = createStoreFromRegistry('ccl');

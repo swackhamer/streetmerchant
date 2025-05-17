@@ -1,34 +1,10 @@
 /**
  * Store configuration for eletronicamente
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Eletronicamente store
  */
-export const Eletronicamente = createEuropeanStore({
-  name: 'eletronicamente',
-  country: 'ES',
-  currency: '€',
-  labels: {
-    inStock: [
-      {
-        container: '.sistock',
-        text: ['en stock'],
-      },
-    ],
-    maxPrice: {
-      container: '.our_price_display',
-      euroFormat: true,
-    },
-    outOfStock: [
-      {
-        container: '.nostock',
-        text: ['Producto sujeto a disponibilidad de fabricante'],
-      },
-    ],
-  },
-
-});
+export const Eletronicamente = createStoreFromRegistry('eletronicamente');

@@ -1,38 +1,10 @@
 /**
  * Store configuration for scan
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Scan store
  */
-export const Scan = createStandardStore({
-  name: 'scan',
-  country: 'UK',
-  currency: '£',
-  labels: {
-    captcha: [
-      {
-        container: '#challenge-form',
-        text: ['hcaptcha_submit'],
-      },
-    ],
-    inStock: {
-      container: '.product-details .buyButton',
-      text: ['add to basket', 'in stock'],
-    },
-    maxPrice: {
-      container: '.product-details .price',
-      euroFormat: false, // Note: Scan uses non-euroFromat as price seperator
-    },
-    outOfStock: {
-      container:
-        '.product-details .buyButton, .product-details .notification-panel',
-      text: ['pre order'],
-    },
-  },
-  disableAdBlocker: true,
-
-});
+export const Scan = createStoreFromRegistry('scan');

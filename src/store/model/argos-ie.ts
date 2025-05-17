@@ -1,29 +1,10 @@
 /**
  * Store configuration for argos-ie
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * ArgosIe store
+ * Argos-ie store
  */
-export const ArgosIe = createEuropeanStore({
-  name: 'argos-ie',
-  country: 'IE',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.btnbuyreserve',
-      text: ['buy or reserve'],
-    },
-    maxPrice: {
-      container: '.price',
-    },
-    outOfStock: {
-      container: '#subCopy',
-      text: ["We're working hard to get more stock."],
-    },
-  },
-
-});
+export const ArgosIe = createStoreFromRegistry('argos-ie');

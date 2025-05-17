@@ -1,26 +1,10 @@
 /**
  * Store configuration for amd-it
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * AmdIt store
+ * Amd-it store
  */
-export const AmdIt = createEuropeanStore({
-  name: 'amd-it',
-  country: 'IT',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.btn-shopping-cart',
-      text: ['add to cart'],
-    },
-    maxPrice: {
-      container: '.product-page-description h4',
-      euroFormat: true,
-    },
-  },
-
-});
+export const AmdIt = createStoreFromRegistry('amd-it');
