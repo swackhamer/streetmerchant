@@ -1,5 +1,47 @@
 # Changelog
 
+## [4.0.0](https://github.com/swackhamer/streetmerchant/compare/v3.11.0...v4.0.0) (2025-05-17)
+
+### Features
+
+* **architecture:** implement centralized store registry pattern ([75d7498](https://github.com/swackhamer/streetmerchant/commit/75d7498))
+* **architecture:** implement centralized data store architecture ([a3a7355](https://github.com/swackhamer/streetmerchant/commit/a3a7355))
+* **architecture:** merge all code deduplication branches ([e79415b](https://github.com/swackhamer/streetmerchant/commit/e79415b))
+* **architecture:** merge code deduplication implementation ([6f27737](https://github.com/swackhamer/streetmerchant/commit/6f27737))
+* **browser:** implement modular browser session management with clear separation of concerns
+* **network:** enhance request handler with improved error recovery and standardized interfaces
+* **config:** reorganize configuration system into dedicated modules for improved maintainability
+* **logger:** implement modular logger system with enhanced formatting capabilities
+* **types:** improve type safety throughout the codebase with strict TypeScript interfaces
+* **lint:** add comprehensive ESLint configuration with security and best practice rules
+* **testing:** increase test coverage to over 85% for core modules
+
+### BREAKING CHANGES
+
+* **architecture:** The project now uses a centralized store registry system. Legacy store files will still work but are deprecated.
+* **architecture:** Product links are now managed through a centralized data structure rather than individual files.
+* **browser:** Browser session creation now requires explicit initialization with proper options.
+
+### Performance Improvements
+
+* **links:** dramatically reduce file count and improve link management efficiency
+* **memory:** reduce memory usage through better code organization and shared configurations
+* **startup:** improve application startup time with optimized store loading
+
+### Code Refactoring
+
+* **store:** consolidate 150+ individual store files into a centralized registry
+* **modules:** reorganize code into logical modules with clear boundaries
+* **duplicates:** eliminate code duplication through shared utilities and factories
+* **organization:** improve project structure with logical directory hierarchy
+
+### Documentation
+
+* **readme:** update to reflect new architecture and features
+* **architecture:** comprehensive documentation of the new architecture
+* **api:** document internal APIs and module interfaces
+* **migration:** provide guidance for migrating to the new patterns
+
 ## [3.11.0](https://github.com/jef/streetmerchant/compare/v3.10.0...v3.11.0) (2025-01-30)
 
 

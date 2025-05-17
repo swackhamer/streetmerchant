@@ -6,6 +6,22 @@ This document explains how the series-based links organization works in the stre
 
 The series-based organization system structures product links by series (e.g., 3080, 3070, rx6800) rather than by store. This approach provides better organization, improved maintainability, and more efficient link management.
 
+## Implementation Status
+
+The series-based organization system is implemented with the following core components:
+
+1. Core Components:
+   - `src/store/model/series-links.ts` - Core utility for dynamically loading series-specific links
+   - `src/store/model/link-validator.ts` - Validates link structure to ensure data quality
+   - `src/store/model/auto-load-series.ts` - Automatically detects and configures stores with series links
+   - `src/store/model/extended-store.ts` - Extended interfaces for the new system
+   - `src/store/model/series/` - Directory structure organized by series
+
+2. Documentation:
+   - This document (`docs/series-based-links.md`) - Detailed documentation for the series-based organization system
+   - `docs/architecture.md` - Includes information about the new system
+   - `README.md` - Highlights the series-based organization feature
+
 ## Directory Structure
 
 The series-based organization uses the following directory structure:
@@ -111,6 +127,42 @@ export function getAllSeriesNames(): string[] {
     });
 }
 ```
+
+## Standard Store File Pattern
+
+When implementing a store with series-based links, use this pattern:
+
+```typescript
+import {Store} from './store';
+import {getSeriesLinks} from './series-links';
+import {Browser} from 'puppeteer';
+
+export const StoreName: Store = {
+  currency: '$', // Use appropriate currency symbol
+  labels: {
+    inStock: {
+      container: '.selector',
+      text: ['in stock', 'available'],
+    },
+    // other label configurations...
+  }, // <-- Note the closing brace and comma here
+  links: [], // Empty initial links array
+  name: 'store-name',
+  country: 'US', // Use appropriate country code
+  
+  // Function to load links for active series
+  setupAction: async (browser: Browser) => {
+    StoreName.links = await getSeriesLinks('store-name');
+  }
+};
+```
+
+Key points when implementing store files:
+
+1. The `links` property must be at the top level of the Store object, not inside `labels`
+2. The `setupAction` function should load links using `getSeriesLinks`
+3. All required fields (currency, labels, links, name, country) must be present
+4. Ensure proper TypeScript syntax with correct braces and commas
 
 ## Dynamic Loading
 
@@ -256,15 +308,22 @@ To add a new series or links:
 
 To test series-based links:
 
-1. Run the unit tests:
+1. Run the TypeScript compilation:
+   ```bash
+   pnpm run compile
+   ```
+
+2. Run the unit tests:
    ```bash
    pnpm test
    ```
 
-2. Specifically test the series links functionality:
+3. Specifically test the series links functionality:
    ```bash
    npx jest test/unit/series-links.test.ts
+   npx jest test/unit/link-validator.test.ts
    npx jest test/unit/auto-load-series-links.test.ts
+   npx jest test/unit/series-links-filter.test.ts
    ```
 
 ## Tools

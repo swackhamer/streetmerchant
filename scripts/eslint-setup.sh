@@ -1,9 +1,6 @@
 #!/bin/bash
 # This script installs the ESLint dependencies required for the configuration
 
-# Make the script executable
-chmod +x eslint-setup.sh
-
 # Install eslint and related plugins
 pnpm add -D eslint@^8.57.0 \
   @typescript-eslint/eslint-plugin@^7.10.0 \

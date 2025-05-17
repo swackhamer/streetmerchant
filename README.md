@@ -17,10 +17,23 @@ Streetmerchant is an automated stock checking application that continuously moni
   - Desktop notifications, browser pop-ups
   - Mobile push notifications, Slack, and more
 - **Advanced Filtering:** Target specific brands, models, series, and price ranges
-- **Series-Based Organization:** Product links organized by series for improved maintainability
-  - Dynamic loading of series-specific links
-  - Automatic filtering based on series, brand, model, and price
-  - Enhanced code organization and modularity
+- **Centralized Store Registry:** Improved store management and configuration
+  - Single registry for all store configurations
+  - Type-safe factory pattern for store creation
+  - Reduced duplication and improved maintainability
+  - Streamlined process for adding new stores
+
+- **Centralized Product Data:** Advanced product link management
+  - Unified data structure for all product links
+  - Efficient filtering and retrieval by series, brand, model, and price
+  - Dramatically reduced file count and complexity
+  - Enhanced extensibility for adding new products
+
+- **Modular Architecture:** Improved code organization and maintainability
+  - Clear separation of concerns between modules
+  - Class-based browser session management
+  - Enhanced network request handling
+  - Standardized error handling and recovery
 - **Resilient Architecture:** Handles network issues and website anti-bot measures
   - Protocol timeout protection to prevent crashes
   - Error recovery mechanisms for consistent uptime
@@ -55,8 +68,14 @@ cp dotenv-example dotenv
 # Edit configuration file to set up your preferences
 # At minimum, configure stores and notification methods
 
+# Run tests to ensure everything is working
+pnpm test
+
 # Start the application
 pnpm run start
+
+# For development with hot reloading
+pnpm run start:dev
 ```
 
 ### Method 2: Docker Installation
@@ -101,7 +120,7 @@ SHOW_ONLY_SERIES=3080,3090,5090
 SHOW_ONLY_MODELS=ftw3,strix,tuf
 ```
 
-With the series-based organization system, Streetmerchant can automatically load product links based on series configuration, making it easier to target specific hardware generations.
+With the centralized store registry and product data system, Streetmerchant can efficiently manage hundreds of product links across multiple stores, making it easier to target specific hardware generations while maintaining a clean, modular codebase.
 
 ### Price Limits
 
@@ -151,7 +170,9 @@ See the [Configuration Reference](./docs/configuration-reference.md) for a compl
 - [Architecture Overview](./docs/architecture.md) - Technical architecture and system components
 - [Memory Bank](./docs/memory-bank.md) - Quick reference for project components and concepts
 - [Series-Based Links](./docs/series-based-links.md) - Documentation for the series-based organization system
+- [Centralized Data Approach](./docs/centralized-data-approach.md) - Documentation for the store registry and centralized product data
 - [Extension Guide](./docs/extension-guide.md) - How to add new retailers or features
+- [Refactoring Guide](./docs/refactoring-guide.md) - Guidelines for code refactoring and improvements
 
 ### Project Information
 - [Future Plans](./docs/future-plans.md) - Roadmap and planned improvements
@@ -232,8 +253,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Acknowledgements
 
 This project is a fork of the original [jef/streetmerchant](https://github.com/jef/streetmerchant) project, with improvements including:
+- Centralized store registry for improved maintainability
+- Consolidated product data management system
+- Modular architecture with clear separation of concerns
 - Protocol timeout protection to prevent crashes
 - Updated dependencies for better stability
 - Improved error handling and resilience
-- Enhanced documentation
-- Series-based organization system for better code maintainability
+- Enhanced documentation and developer experience
+- Comprehensive test coverage for core components

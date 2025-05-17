@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "sourceMap": true,
+    "inlineSourceMap": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ],
+  "ts-node": {
+    "swc": true,
+    "transpileOnly": true
+  }
+}

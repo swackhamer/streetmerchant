@@ -17,19 +17,36 @@ Streetmerchant is a stock checking application that leverages browser automation
 
 The Store module is responsible for defining how stock is checked across different retailers:
 
-- **Store Models (`src/store/model/`)**: Each file represents a specific retailer and implements the `Store` interface
-- **Series-Based Organization (`src/store/model/series/`)**: Product links organized by series (e.g., 3080, 3070) for better maintainability
+- **Store Registry (`src/store/model/registry/`)**: Centralized registry for all store configurations
+  - Type-safe store creation through factory functions
+  - Organized by region (US, EU, UK, CA, etc.)
+  - Dramatically reduced duplication across store definitions
+- **Store Models (`src/store/model/`)**: Legacy store files that are gradually being migrated to the registry
+- **Series Data (`src/store/model/series-data.ts`)**: Centralized product link management system
+- **Series-Based Organization (`src/store/model/series/`)**: Alternative product link organization by series
 - **Labels**: CSS selectors used to identify elements on the page that indicate stock status
+  - Modular label organization in `src/store/model/common/labels/`
+  - Standardized label sets for common patterns (stock, price, captcha, etc.)
 - **Links**: Product URLs to check for each store
 - **Link Validation**: Validates link structure to ensure proper formatting
-- **Lookup (`src/store/lookup.ts`)**: Orchestrates the stock checking process across configured stores
+- **Lookup Modules (`src/store/lookup-modules/`)**: Modular approach to stock checking logic
+  - Stock checking, captcha handling, response processing, etc.
+- **Lookup Facade (`src/store/lookup-facade.ts`)**: Simplified interface for the lookup process
 
-### 2. Browser Management (`src/browser.ts`)
+### 2. Browser Management (`src/browser/`)
 
-Responsible for managing Puppeteer browser instances:
+A modular approach to managing Puppeteer browser instances:
 
-- **Instance Management**: Creates and reuses browser instances for different stores
-- **Page Configuration**: Sets up user agents, request interception, and cookie handling
+- **Browser Session (`src/browser/session/`)**: Class-based approach to browser session management
+  - Clear separation between browser creation and page operations
+  - Better encapsulation of browser state and operations
+  - Simplified interface for interacting with browser instances
+- **Session Types (`src/browser/session/types/`)**: TypeScript interfaces for browser session operations
+- **Session Utilities (`src/browser/session/utils/`)**: Helper functions for browser operations
+  - Browser configuration
+  - Page setup
+  - Protocol error handling
+  - CDP session management
 - **Proxy Integration**: Applies proxy settings to browser instances
 - **Error Handling**: Manages browser errors, including protocol timeouts
 - **Resource Optimization**: Controls browser resource usage
@@ -60,76 +77,115 @@ Manages proxy configuration and rotation:
 - **Rotation Logic**: Implements proxy rotation to avoid detection
 - **Store-Specific Proxies**: Supports different proxies for different stores
 
-### 6. Request Handling (`src/handlers.ts`)
+### 6. Network Management (`src/network/`)
 
-Intercepts and modifies network requests:
+Improved network request handling and management:
 
+- **Request Handler (`src/network/handlers/request-handler.ts`)**: Class-based approach to request handling
+  - Consistent API for different request types
+  - Improved error handling and retry logic
+  - Better separation of concerns
+- **Handler Types (`src/network/handlers/types/`)**: TypeScript interfaces for request operations
+- **Handler Utilities (`src/network/handlers/utils/`)**: Helper functions for network operations
+  - Captcha detection and handling
+  - Response status processing
+  - Label matching utilities
+  - Screenshot management
 - **Resource Blocking**: Implements low-bandwidth mode by blocking certain resource types
 - **Request Modification**: Adds necessary headers and cookies
 - **Response Handling**: Processes and analyzes responses
 
-### 7. Error Handling (`src/util.ts`)
+### 7. Error Handling and Utilities
 
-Provides utilities for error management:
+Improved error handling and utility functions:
 
-- **Error Filtering**: Determines which errors to log vs. ignore
+- **Error Filtering (`src/util.ts`)**: Determines which errors to log vs. ignore
+- **Logger System (`src/logger/`)**: Enhanced logging system
+  - Modular organization of logging functionality
+  - Message formatting utilities
+  - Support for different log levels and formats
 - **Retry Logic**: Implements backoff strategies for failed requests
 - **Protocol Error Handling**: Special handling for Chrome DevTools Protocol errors
+- **Configuration System (`src/config/`)**: Modular configuration management
+  - Browser configuration
+  - Page settings
+  - Store options
+  - Notification preferences
+  - Proxy configuration
 
-## Series-Based Link Organization
+## Centralized Data Management
 
-The application uses a series-based organization system for product links:
+The application has transitioned to a centralized data management approach for store configurations and product links:
 
-- **Directory Structure**: Links are organized by product series (e.g., 3080, 3070) in dedicated directories
-- **Dynamic Loading**: Store implementations load links dynamically based on active series
-- **Selective Loading**: Only links for configured series are loaded, improving performance
-- **Link Validation**: Validates link format and required fields to ensure data quality
-- **Link Filtering**: Supports filtering by brand, model, and price
+- **Store Registry**: All store configurations are managed in a central registry
+  - Organized by region for easier management
+  - Factory functions for creating different store types
+  - Consistent type checking and validation
+  - Simplified process for adding new stores
+
+- **Centralized Product Data**: Product links are managed in a unified data structure
+  - Single source of truth for all product information
+  - Efficient filtering and retrieval mechanisms
+  - Dramatically reduced file count and complexity
+  - Easier programmatic manipulation
+
+- **Incremental Migration**: Support for both legacy and new approaches
+  - Gradual transition path for existing code
+  - Compatibility layers for different data formats
+  - Series-based organization still supported as an alternative
 
 This approach improves code maintainability by:
-1. Reducing the size of store files
-2. Making it easier to add or update links for specific series
-3. Providing better organization for large numbers of links
-4. Enabling series-specific optimizations
+1. Consolidating duplicate configurations and logic
+2. Providing a single, consistent interface for store and product data
+3. Enabling more powerful filtering and search capabilities
+4. Simplifying the overall architecture and reducing file count
+5. Making it easier to add new stores or products
+6. Improving type safety and reducing errors
+7. Facilitating better testing and validation
 
 ### Implementation Details
 
-The series-based organization is implemented as follows:
+The centralized data management is implemented as follows:
 
-1. **Directory Structure**:
+1. **Store Registry Structure**:
    ```
-   src/store/model/series/
-   ├── 3050/              # RTX 3050 series links
-   │   ├── amazon.ts
-   │   ├── bestbuy.ts
-   │   └── ...
-   ├── 3060/              # RTX 3060 series links
-   │   ├── amazon.ts
-   │   └── ...
-   ├── 3070/              # RTX 3070 series links
-   │   └── ...
-   ├── common/            # Shared utilities
-   │   ├── link-factory.ts
-   │   ├── store-factory.ts
-   │   └── label-sets.ts
-   ├── series-names.ts    # Utility to discover available series
-   └── store.ts           # Re-export of Store interface
+   src/store/model/registry/
+   ├── index.ts           # Main entry point for the registry
+   ├── store-factory.ts   # Factory functions for creating stores
+   ├── types.ts           # TypeScript interfaces for store registry
+   ├── us-stores.ts       # US store configurations
+   ├── eu-stores.ts       # European store configurations
+   ├── uk-stores.ts       # UK store configurations
+   ├── ca-stores.ts       # Canadian store configurations
+   └── other-stores.ts    # Other store configurations
    ```
 
-2. **Dynamic Loading**:
-   - Implemented via the `auto-load-series.ts` module that hooks into store initialization
-   - Each store automatically loads relevant links based on configured series
-   - The `setupAction` hook injects series links into the store's links collection
+2. **Centralized Product Data**:
+   - `src/store/model/series-data.ts` contains all product links
+   - Structured as a nested object with series, brand, and model hierarchies
+   - Includes essential product information (URL, price, etc.)
+   - Functions for filtering and retrieving links based on various criteria
 
-3. **Helper Files**:
-   - Common utilities like `link-factory.ts` are re-exported from the series directory
-   - The `store.ts` file re-exports the Store interface for easier importing
-   - The `series-names.ts` module provides utility functions to discover available series
+3. **Series-Based Modules**:
+   ```
+   src/store/model/series-modules/
+   ├── index.ts           # Main entry point for series modules
+   ├── data-access.ts     # Data access layer for series data
+   ├── data-store.ts      # Storage and retrieval of series data
+   ├── file-loader.ts     # File loading utilities
+   ├── link-cache.ts      # Caching layer for link data
+   ├── link-fetcher.ts    # Link retrieval functions
+   ├── link-filter.ts     # Filtering mechanisms
+   ├── link-filters.ts    # Predefined filters
+   ├── link-types.ts      # TypeScript interfaces for links
+   ├── series-api.ts      # Public API for series data
+   └── types.ts           # Shared type definitions
+   ```
 
-4. **Link Management**:
-   - Links are loaded and cached by the `series-links.ts` module
-   - The `filterLinks` function applies filtering based on brand, model, and price
-   - Link validation ensures all links have required properties and valid formats
+4. **Legacy Support**:
+   - The `auto-load-series.ts` module provides backwards compatibility
+   - Series-based organization still supported as an alternative
+   - Gradual migration path for transitioning to the new system
 
 See the [Series-Based Links Documentation](series-based-links.md) for more details.
 
@@ -188,45 +244,75 @@ Series-specific links are loaded dynamically based on configuration, improving p
 
 ## Recent Improvements
 
-### Series-Based Link Organization
+### Centralized Store Registry
 
-The new series-based organization system structures product links by series:
+The new store registry system consolidates store configurations and improves maintainability:
 
 ```typescript
-// Series-specific link file (src/store/model/series/3080/amazon.ts)
-import {Link, Brand, Series, Model} from '../../store';
-import {createLink} from '../common/link-factory';
+// Store registry implementation (src/store/model/registry/us-stores.ts)
+import {createStore, createCommonLabels} from './store-factory';
+import {StoreRegistry} from './types';
 
-export const links: Link[] = [
-  // Using type assertions for better type safety
-  createLink({
-    brand: 'nvidia' as Brand,
-    model: 'founders edition' as Model,
-    series: '3080' as Series,
-    url: 'https://www.amazon.com/nvidia-rtx-3080',
-  }),
-  // More links...
-];
-
-// Store implementation with automatic link loading
-import {createStandardStore} from './common/store-factory';
-
-export const Amazon = createStandardStore({
-  name: 'amazon',
-  country: 'us',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '.a-button-input[name="submit.add-to-cart"]',
-      text: ['add to cart'],
-    },
-    outOfStock: {
-      container: '#outOfStock',
-      text: ['currently unavailable'],
-    },
+// Common label set for Amazon-style stores
+const amazonLabels = createCommonLabels({
+  inStock: {
+    container: '.a-button-input[name="submit.add-to-cart"]',
+    text: ['add to cart'],
   },
-  links: [], // Empty initial array - will be populated by auto-load-series
+  outOfStock: {
+    container: '#outOfStock',
+    text: ['currently unavailable'],
+  },
 });
+
+// Registry of US stores
+export const usStores: StoreRegistry = {
+  amazon: createStore({
+    name: 'amazon',
+    country: 'us',
+    currency: '$',
+    labels: amazonLabels,
+  }),
+  bestbuy: createStore({
+    name: 'bestbuy',
+    country: 'us',
+    currency: '$',
+    labels: createCommonLabels({
+      inStock: {
+        container: '.add-to-cart-button',
+        text: ['add to cart'],
+      },
+      outOfStock: {
+        container: '.add-to-cart-button',
+        text: ['sold out'],
+      },
+    }),
+  }),
+  // More stores...
+};
+
+// Centralized product data (src/store/model/series-data.ts)
+export const seriesData = {
+  '3080': {
+    'nvidia': {
+      'founders edition': [
+        {
+          store: 'amazon',
+          url: 'https://www.amazon.com/nvidia-rtx-3080',
+          price: 699.99,
+        },
+        {
+          store: 'bestbuy',
+          url: 'https://www.bestbuy.com/nvidia-rtx-3080',
+          price: 699.99,
+        },
+        // More links...
+      ],
+    },
+    // More brands and models...
+  },
+  // More series...
+};
 ```
 
 This approach improves organization, performance, and maintainability.
