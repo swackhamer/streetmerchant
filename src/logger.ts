@@ -1,12 +1,12 @@
 import chalk from 'chalk';
-import winston from 'winston';
+import * as winston from 'winston';
 import {config} from './config';
 import {Link, Store} from './store/model';
 
 const prettyJson = winston.format.printf(info => {
   const timestamp = new Date().toLocaleTimeString();
 
-  let out = `${chalk.grey(`[${timestamp}]`)} ${info.level} ${chalk.grey(
+  let out = `${chalk.gray(`[${timestamp}]`)} ${info.level} ${chalk.gray(
     '::'
   )} ${info.message}`;
 
@@ -247,9 +247,9 @@ function buildSetupString(
 
   if (color) {
     return (
-      chalk.grey(proxy) +
+      chalk.gray(proxy) +
       chalk.cyan(`[${store.name}]`) +
-      chalk.grey(` [setup (${topic})]`)
+      chalk.gray(` [setup (${topic})]`)
     );
   }
 
@@ -263,12 +263,12 @@ function buildProductString(link: Link, store: Store, color?: boolean): string {
       return (
         chalk.gray(`[${proxy}]`) +
         chalk.cyan(` [${store.name}]`) +
-        chalk.grey(` [${link.brand} (${link.series})] ${link.model}`)
+        chalk.gray(` [${link.brand} (${link.series})] ${link.model}`)
       );
     } else {
       return (
         chalk.cyan(`[${store.name}]`) +
-        chalk.grey(` [${link.brand} (${link.series})] ${link.model}`)
+        chalk.gray(` [${link.brand} (${link.series})] ${link.model}`)
       );
     }
   }

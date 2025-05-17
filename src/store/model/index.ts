@@ -12,6 +12,9 @@ import './common/store-factory';
 import './common/link-factory';
 import './common/label-sets';
 
+// Import the store registry
+import {storeRegistry, createStoreFromRegistry} from './store-registry';
+
 // Sample store using series links
 import {SampleStoreSeries} from './sample-store-series';
 
@@ -26,8 +29,18 @@ export {storeList};
 
 // Function to dynamically load all stores
 function loadAllStores() {
-  // Note: require.context is webpack-specific and not available in TypeScript
-  // For a pure Node.js solution, we use fs
+  // Add registry-based stores first
+  for (const storeName of Object.keys(storeRegistry)) {
+    try {
+      const store = createStoreFromRegistry(storeName);
+      storeList.set(storeName, store);
+      logger.debug(`Loaded store from registry: ${storeName}`);
+    } catch (error) {
+      logger.error(`Error loading store from registry: ${storeName}`, error);
+    }
+  }
+  
+  // Legacy approach: load remaining stores from files
   const fs = require('fs');
   const path = require('path');
   
@@ -35,14 +48,16 @@ function loadAllStores() {
   const storeFiles = fs.readdirSync(__dirname)
     .filter((file: string) => file.endsWith('.ts'))
     .filter((file: string) => {
-      // Exclude utility files and non-store files
+      // Exclude utility files, non-store files, and stores already loaded from registry
       return !file.includes('store.ts') &&
              !file.includes('index.ts') &&
              !file.includes('sample-') &&
              !file.includes('series-') &&
              !file.includes('auto-load-') &&
              !file.includes('link-validator') &&
-             !file.includes('timestamp-');
+             !file.includes('store-registry') &&
+             !file.includes('timestamp-') &&
+             !storeRegistry[file.replace('.ts', '')];
     });
 
   for (const file of storeFiles) {
@@ -93,7 +108,7 @@ function filterBrandsSeriesModels() {
   series.clear();
   models.clear();
 
-  for (const store of storeList.values()) {
+  for (const store of Array.from(storeList.values())) {
     for (const link of store.links) {
       brands.add(link.brand);
       series.add(link.series);
@@ -158,8 +173,8 @@ function darkenEmptyStores(): {names: string[]; anyExcluded: boolean} {
     const hasAny =
       storeConfig?.links.some(
         l =>
-          (config.store.showOnlySeries?.includes(l.series) ?? false) ||
-          config.store.showOnlyBrands?.includes(l.brand ?? false) ||
+          (config.store.showOnlySeries?.includes(l.series as string) ?? false) ||
+          config.store.showOnlyBrands?.includes(l.brand as string) ||
           (config.store.showOnlyModels?.map(m => m.name).includes(l.model) ??
             false)
       ) ?? true;
@@ -176,27 +191,27 @@ function darkenEmptyStores(): {names: string[]; anyExcluded: boolean} {
 }
 
 export function getAllBrands() {
-  return [...brands];
+  return Array.from(brands);
 }
 
 export function getAllSeries() {
-  return [...series];
+  return Array.from(series);
 }
 
 export function getAllModels() {
-  return [...models];
+  return Array.from(models);
 }
 
 export function getAllCountries() {
   const countries = new Set();
-  for (const store of storeList.values()) {
+  for (const store of Array.from(storeList.values())) {
     countries.add(store.country);
   }
-  return [...countries];
+  return Array.from(countries);
 }
 
 export function getStores() {
-  return [...storeList.values()];
+  return Array.from(storeList.values());
 }
 
 export function updateStores() {
