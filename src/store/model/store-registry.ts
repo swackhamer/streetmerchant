@@ -24,7 +24,7 @@ export interface ExtendedStoreOptions extends StoreFactoryOptions {
  * Central registry of all store configurations
  */
 export const storeRegistry: Record<string, ExtendedStoreOptions> = {
-  // Sample store configurations for testing
+  // Core store configurations
   'bestbuy': {
     name: 'bestbuy',
     country: 'US',
@@ -94,6 +94,114 @@ export const storeRegistry: Record<string, ExtendedStoreOptions> = {
         text: ['out of stock']
       }
     }
+  },
+  
+  // Additional stores
+  'alternate-de': {
+    name: 'alternate-de',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+      inStock: {
+        container: '#add-to-cart button[disabled]',
+        text: ['in den warenkorb'],
+      },
+      outOfStock: {
+        container: '.stockStatus',
+        text: ['ausverkauft'],
+      },
+      maxPrice: {
+        container: '.price',
+        euroFormat: true,
+      },
+    },
+  },
+  
+  'amd': {
+    name: 'amd',
+    country: 'US',
+    currency: '$',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.btn-shopping-cart',
+        text: ['add to cart'],
+      },
+      outOfStock: {
+        container: '.product-out-of-stock',
+        text: ['out of stock'],
+      },
+      maxPrice: {
+        container: '.product-page-description h4',
+        euroFormat: false,
+      },
+    },
+    minPageSleep: 15000,
+    maxPageSleep: 30000,
+  },
+  
+  'antonline': {
+    name: 'antonline',
+    country: 'US',
+    currency: '$',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.add-to-cart-form',
+        text: ['add to cart'],
+      },
+      outOfStock: {
+        container: '.product-form-buttons',
+        text: ['sold out'],
+      },
+      maxPrice: {
+        container: '.price-value',
+        euroFormat: false,
+      },
+    },
+  },
+  
+  'corsair': {
+    name: 'corsair',
+    country: 'US',
+    currency: '$',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.c-btn--primary.js-btn-add-to-cart',
+        text: ['add to cart'],
+      },
+      outOfStock: {
+        container: '.c-btn--disabled.js-btn-add-to-cart',
+        text: ['out of stock'],
+      },
+      maxPrice: {
+        container: '.c-product-price__main',
+        euroFormat: false,
+      },
+    },
+  },
+  
+  'currys': {
+    name: 'currys',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.add-to-basket-btn',
+        text: ['add to basket'],
+      },
+      outOfStock: {
+        container: '.out-of-stock-message',
+        text: ['out of stock'],
+      },
+      maxPrice: {
+        container: '.current-price',
+        euroFormat: false,
+      },
+    },
   }
 };
 
