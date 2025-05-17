@@ -23,9 +23,9 @@ export function buildSetupString(
 
   if (color) {
     return (
-      chalk.gray(proxy) +
+      chalk.grey(proxy) +
       chalk.cyan(`[${store.name}]`) +
-      chalk.gray(` [setup (${topic})]`)
+      chalk.grey(` [setup (${topic})]`)
     );
   }
 
@@ -40,14 +40,14 @@ export function buildProductString(link: Link, store: Store, color?: boolean): s
     if (store.currentProxyIndex !== undefined && store.proxyList) {
       const proxy = `${store.currentProxyIndex + 1}/${store.proxyList.length}`;
       return (
-        chalk.gray(`[${proxy}]`) +
+        chalk.grey(`[${proxy}]`) +
         chalk.cyan(` [${store.name}]`) +
-        chalk.gray(` [${link.brand} (${link.series})] ${link.model}`)
+        chalk.grey(` [${link.brand} (${link.series})] ${link.model}`)
       );
     } else {
       return (
         chalk.cyan(`[${store.name}]`) +
-        chalk.gray(` [${link.brand} (${link.series})] ${link.model}`)
+        chalk.grey(` [${link.brand} (${link.series})] ${link.model}`)
       );
     }
   }

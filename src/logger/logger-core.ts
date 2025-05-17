@@ -11,12 +11,12 @@ import {config} from '../config';
 const prettyJson = winston.format.printf(info => {
   const timestamp = new Date().toLocaleTimeString();
 
-  let out = `${chalk.gray(`[${timestamp}]`)} ${info.level} ${chalk.gray(
+  let out = `${chalk.grey(`[${timestamp}]`)} ${info.level} ${chalk.grey(
     '::'
   )} ${info.message}`;
 
   if (Object.keys(info.metadata as object).length > 0) {
-    out = `${out} ${chalk.magenta(JSON.stringify(info.metadata, null, 2))}`;
+    out = `${out} ${chalk.magentaBright(JSON.stringify(info.metadata, null, 2))}`;
   }
 
   return out;

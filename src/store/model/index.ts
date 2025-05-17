@@ -50,25 +50,26 @@ function discoverAndLoadRemainingStores() {
   const path = require('path');
   
   // List all store files in the directory
+  const fileExtension = __filename.endsWith('.js') ? '.js' : '.ts';
   const storeFiles = fs.readdirSync(__dirname)
-    .filter((file: string) => file.endsWith('.ts'))
+    .filter((file: string) => file.endsWith(fileExtension))
     .filter((file: string) => {
       // Exclude utility files, non-store files, and stores already loaded from registry
-      return !file.includes('store.ts') &&
-             !file.includes('index.ts') &&
+      return !file.includes(`store${fileExtension}`) &&
+             !file.includes(`index${fileExtension}`) &&
              !file.includes('sample-') &&
              !file.includes('series-') &&
              !file.includes('auto-load-') &&
              !file.includes('link-validator') &&
              !file.includes('store-registry') &&
              !file.includes('timestamp-') &&
-             !storeRegistry[file.replace('.ts', '')];
+             !storeRegistry[file.replace(fileExtension, '')];
     });
 
   for (const file of storeFiles) {
     try {
       // Convert from filename to PascalCase store name
-      const storeName = file.replace('.ts', '');
+      const storeName = file.replace(fileExtension, '');
       const pascalStoreName = storeName
         .split('-')
         .map((part: string) => part.charAt(0).toUpperCase() + part.slice(1))
@@ -199,7 +200,7 @@ function darkenEmptyStores(): {names: string[]; anyExcluded: boolean} {
 
     if (!hasAny) {
       anyExcluded = true;
-      return chalk.gray(selected);
+      return chalk.grey(selected);
     }
 
     return selected;
