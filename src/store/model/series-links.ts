@@ -4,6 +4,7 @@ import {logger} from '../../logger';
 import * as fs from 'fs';
 import * as path from 'path';
 import {validateLinks} from './link-validator';
+import {getStoreSeriesLinksFromData, getAllSeriesNamesFromData, filterSeriesDataLinks} from './series-data';
 
 // Cache for loaded link modules
 const linkCache: Record<string, Link[]> = {};
@@ -18,6 +19,8 @@ export interface LinkFilterOptions {
   models?: string[];
   // Filter by maximum price (per series)
   maxPrice?: Record<Series, number>;
+  // Whether to use the centralized data approach
+  useCentralizedData?: boolean;
 }
 
 /**
@@ -37,14 +40,25 @@ function getAllSeriesNames(): string[] {
 }
 
 /**
- * Gets links for a specific store and series
+ * Gets all available series names from both directory and data
+ */
+function getAllSeriesNamesCombined(): string[] {
+  const seriesFromDir = getAllSeriesNames();
+  const seriesFromData = getAllSeriesNamesFromData();
+  
+  // Combine and deduplicate
+  return [...new Set([...seriesFromDir, ...seriesFromData])];
+}
+
+/**
+ * Gets links for a specific store and series from file-based approach
  * 
  * @param storeName The name of the store
  * @param series The series to get links for
  * @returns Links for the specified store and series
  */
-async function getStoreSeriesLinks(storeName: string, series: Series): Promise<Link[]> {
-  const cacheKey = `${storeName}_${series}`;
+async function getStoreSeriesLinksFromFiles(storeName: string, series: Series): Promise<Link[]> {
+  const cacheKey = `file_${storeName}_${series}`;
   
   // Return cached links if available
   if (linkCache[cacheKey]) {
@@ -87,6 +101,32 @@ async function getStoreSeriesLinks(storeName: string, series: Series): Promise<L
 }
 
 /**
+ * Gets links for a specific store and series
+ * Checks both file-based and data-driven approaches
+ * 
+ * @param storeName The name of the store
+ * @param series The series to get links for
+ * @param useCentralizedData Whether to use the data-driven approach
+ * @returns Links for the specified store and series
+ */
+async function getStoreSeriesLinks(
+  storeName: string, 
+  series: Series,
+  useCentralizedData = false
+): Promise<Link[]> {
+  // First try to get links from the centralized data if enabled
+  if (useCentralizedData) {
+    const dataLinks = getStoreSeriesLinksFromData(storeName, series);
+    if (dataLinks.length > 0) {
+      return dataLinks;
+    }
+  }
+  
+  // Fall back to file-based approach
+  return getStoreSeriesLinksFromFiles(storeName, series);
+}
+
+/**
  * Filters links based on provided options
  * 
  * @param links The links to filter
@@ -96,6 +136,15 @@ async function getStoreSeriesLinks(storeName: string, series: Series): Promise<L
 function filterLinks(links: Link[], options?: LinkFilterOptions): Link[] {
   if (!options) {
     return links;
+  }
+  
+  // Use the centralized filtering function if available
+  if (options.useCentralizedData) {
+    return filterSeriesDataLinks(links, {
+      brands: options.brands,
+      models: options.models,
+      maxPrice: options.maxPrice
+    });
   }
   
   let filteredLinks = links;
@@ -143,17 +192,23 @@ export async function getSeriesLinks(
   storeName: string, 
   filterOptions?: LinkFilterOptions
 ): Promise<Link[]> {
+  const useCentralizedData = filterOptions?.useCentralizedData ?? false;
+  
   // Determine which series to load links for
   const activeSeriesList = config.store.showOnlySeries.length > 0 
     ? config.store.showOnlySeries 
-    : getAllSeriesNames();
+    : (useCentralizedData ? getAllSeriesNamesCombined() : getAllSeriesNames());
   
   let allLinks: Link[] = [];
   
   // Load links for each active series
   for (const series of activeSeriesList) {
     try {
-      const seriesLinks = await getStoreSeriesLinks(storeName, series as Series);
+      const seriesLinks = await getStoreSeriesLinks(
+        storeName, 
+        series as Series,
+        useCentralizedData
+      );
       allLinks = allLinks.concat(seriesLinks);
     } catch (error) {
       logger.debug(`No links found for store ${storeName}, series ${series}`);
