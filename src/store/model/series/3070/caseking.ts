@@ -1,0 +1,178 @@
+import {Link} from '../../store';
+
+export const links: Link[] = [
+{
+      brand: 'asus',
+      model: 'dual',
+      series: '3070',
+      url: 'https://www.caseking.de/asus-geforce-rtx-3070-dual-8g-8192-mb-gddr6-gcas-404.html',
+    },
+{
+      brand: 'asus',
+      model: 'tuf oc',
+      series: '3070',
+      url: 'https://www.caseking.de/asus-geforce-rtx-3070-tuf-o8g-8192-mb-gddr6-gcas-406.html',
+    },
+{
+      brand: 'asus',
+      model: 'strix oc',
+      series: '3070',
+      url: 'https://www.caseking.de/asus-geforce-rtx-3070-rog-strix-o8g-8192-mb-gddr6-gcas-403.html',
+    },
+{
+      brand: 'asus',
+      model: 'dual oc',
+      series: '3070',
+      url: 'https://www.caseking.de/asus-geforce-rtx-3070-dual-o8g-8192-mb-gddr6-gcas-405.html',
+    },
+{
+      brand: 'asus',
+      model: 'strix',
+      series: '3070',
+      url: 'https://www.caseking.de/asus-geforce-rtx-3070-rog-strix-8g-8192-mb-gddr6-gcas-415.html',
+    },
+{
+      brand: 'evga',
+      model: 'xc3 black',
+      series: '3070',
+      url: 'https://www.caseking.de/evga-geforce-rtx-3070-xc3-black-gaming-8192-mb-gddr6-gcev-424.html',
+    },
+{
+      brand: 'evga',
+      model: 'xc3 ultra',
+      series: '3070',
+      url: 'https://www.caseking.de/evga-geforce-rtx-3070-xc3-ultra-gaming-8192-mb-gddr6-gcev-426.html',
+    },
+{
+      brand: 'evga',
+      model: 'ftw3 ultra',
+      series: '3070',
+      url: 'https://www.caseking.de/evga-geforce-rtx-3070-ftw3-ultra-8192-mb-gddr6-gcev-428.html',
+    },
+{
+      brand: 'evga',
+      model: 'xc3',
+      series: '3070',
+      url: 'https://www.caseking.de/evga-geforce-rtx-3070-xc3-8192-mb-gddr6-gcev-425.html',
+    },
+{
+      brand: 'evga',
+      model: 'ftw3',
+      series: '3070',
+      url: 'https://www.caseking.de/evga-geforce-rtx-3070-ftw3-8192-mb-gddr6-gcev-427.html',
+    },
+{
+      brand: 'gigabyte',
+      model: 'gaming oc',
+      series: '3070',
+      url: 'https://www.caseking.de/gigabyte-geforce-rtx-3070-gaming-oc-8g-8192-mb-gddr6-gcgb-338.html',
+    },
+{
+      brand: 'gigabyte',
+      model: 'aorus master',
+      series: '3070',
+      url: 'https://www.caseking.de/gigabyte-aorus-geforce-rtx-3070-master-8g-8192-mb-gddr6-gcgb-343.html',
+    },
+{
+      brand: 'gigabyte',
+      model: 'vision oc',
+      series: '3070',
+      url: 'https://www.caseking.de/gigabyte-geforce-rtx-3070-vision-oc-8g-8192-mb-gddr6-gcgb-344.html',
+    },
+{
+      brand: 'gigabyte',
+      model: 'eagle',
+      series: '3070',
+      url: 'https://www.caseking.de/gigabyte-geforce-rtx-3070-eagle-8g-8192-mb-gddr6-gcgb-340.html',
+    },
+{
+      brand: 'gigabyte',
+      model: 'eagle oc',
+      series: '3070',
+      url: 'https://www.caseking.de/gigabyte-geforce-rtx-3070-eagle-oc-8g-8192-mb-gddr6-gcgb-339.html',
+    },
+{
+      brand: 'inno3d',
+      model: 'twin x2',
+      series: '3070',
+      url: 'https://www.caseking.de/inno3d-geforce-rtx-3070-twin-x2-8192-mb-gddr6-gci3-176.html',
+    },
+{
+      brand: 'inno3d',
+      model: 'ichill x3',
+      series: '3070',
+      url: 'https://www.caseking.de/inno3d-geforce-rtx-3070-ichill-x3-8192-mb-gddr6-gci3-174.html',
+    },
+{
+      brand: 'inno3d',
+      model: 'ichill x4',
+      series: '3070',
+      url: 'https://www.caseking.de/inno3d-geforce-rtx-3070-ichill-x4-8192-mb-gddr6-gci3-173.html',
+    },
+{
+      brand: 'inno3d',
+      model: 'twin x2 oc',
+      series: '3070',
+      url: 'https://www.caseking.de/inno3d-geforce-rtx-3070-twin-x2-oc-8192-mb-gddr6-gci3-175.html',
+    },
+{
+      brand: 'msi',
+      model: 'gaming x trio',
+      series: '3070',
+      url: 'https://www.caseking.de/msi-geforce-rtx-3070-gaming-x-trio-8192-mb-gddr6-gcmc-250.html',
+    },
+{
+      brand: 'msi',
+      model: 'suprim',
+      series: '3070',
+      url: 'https://www.caseking.de/msi-geforce-rtx-3070-suprim-8g-8192-mb-gddr6-gcmc-256.html',
+    },
+{
+      brand: 'msi',
+      model: 'ventus 2x oc',
+      series: '3070',
+      url: 'https://www.caseking.de/msi-geforce-rtx-3070-ventus-2x-oc-8192-mb-gddr6-gcmc-249.html',
+    },
+{
+      brand: 'msi',
+      model: 'ventus 3x oc',
+      series: '3070',
+      url: 'https://www.caseking.de/msi-geforce-rtx-3070-ventus-3x-oc-8192-mb-gddr6-gcmc-251.html',
+    },
+{
+      brand: 'msi',
+      model: 'suprim x',
+      series: '3070',
+      url: 'https://www.caseking.de/msi-geforce-rtx-3070-suprim-x-8g-8192-mb-gddr6-gcmc-254.html',
+    },
+{
+      brand: 'pny',
+      model: 'xlr8 epic x',
+      series: '3070',
+      url: 'https://www.caseking.de/pny-geforce-rtx-3070-xlr8-gaming-revel-epic-x-rgb-8192-mb-gddr6-gcpn-078.html',
+    },
+{
+      brand: 'pny',
+      model: 'dual fan',
+      series: '3070',
+      url: 'https://www.caseking.de/pny-geforce-rtx-3070-dual-fan-8192-mb-gddr6-gcpn-077.html',
+    },
+{
+      brand: 'zotac',
+      model: 'twin edge',
+      series: '3070',
+      url: 'https://www.caseking.de/zotac-gaming-geforce-rtx-3070-twin-edge-8192-mb-gddr6-gczt-164.html',
+    },
+{
+      brand: 'zotac',
+      model: 'twin edge oc',
+      series: '3070',
+      url: 'https://www.caseking.de/zotac-gaming-geforce-rtx-3070-twin-edge-oc-8192-mb-gddr6-gczt-168.html',
+    },
+{
+      brand: 'zotac',
+      model: 'twin edge oc white',
+      series: '3070',
+      url: 'https://www.caseking.de/zotac-gaming-geforce-rtx-3070-twin-edge-oc-white-8192-mb-gddr6-gczt-171.html',
+    }
+];

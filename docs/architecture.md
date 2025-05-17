@@ -18,8 +18,10 @@ Streetmerchant is a stock checking application that leverages browser automation
 The Store module is responsible for defining how stock is checked across different retailers:
 
 - **Store Models (`src/store/model/`)**: Each file represents a specific retailer and implements the `Store` interface
+- **Series-Based Organization (`src/store/model/series/`)**: Product links organized by series (e.g., 3080, 3070) for better maintainability
 - **Labels**: CSS selectors used to identify elements on the page that indicate stock status
 - **Links**: Product URLs to check for each store
+- **Link Validation**: Validates link structure to ensure proper formatting
 - **Lookup (`src/store/lookup.ts`)**: Orchestrates the stock checking process across configured stores
 
 ### 2. Browser Management (`src/browser.ts`)
@@ -74,6 +76,24 @@ Provides utilities for error management:
 - **Retry Logic**: Implements backoff strategies for failed requests
 - **Protocol Error Handling**: Special handling for Chrome DevTools Protocol errors
 
+## Series-Based Link Organization
+
+The application uses a series-based organization system for product links:
+
+- **Directory Structure**: Links are organized by product series (e.g., 3080, 3070) in dedicated directories
+- **Dynamic Loading**: Store implementations load links dynamically based on active series
+- **Selective Loading**: Only links for configured series are loaded, improving performance
+- **Link Validation**: Validates link format and required fields to ensure data quality
+- **Link Filtering**: Supports filtering by brand, model, and price
+
+This approach improves code maintainability by:
+1. Reducing the size of store files
+2. Making it easier to add or update links for specific series
+3. Providing better organization for large numbers of links
+4. Enabling series-specific optimizations
+
+See the [Series-Based Links Documentation](series-based-links.md) for more details.
+
 ## Data Flow
 
 ```mermaid
@@ -87,7 +107,10 @@ graph TD
     E --> G[Request Handlers]
     
     D --> H[Store-specific Logic]
-    H --> I[Page Navigation]
+    H --> H1[Dynamic Link Loading]
+    H1 --> H2[Series-based Links]
+    H2 --> H3[Link Validation]
+    H3 --> I[Page Navigation]
     I --> J[Element Evaluation]
     
     J --> K{In Stock?}
@@ -120,7 +143,40 @@ Browser and page creation follows a factory method pattern, encapsulating the co
 
 Network requests implement retry logic with increasing delays to handle transient failures and avoid rate limiting.
 
+### 6. Dynamic Module Loading
+
+Series-specific links are loaded dynamically based on configuration, improving performance and modularity.
+
 ## Recent Improvements
+
+### Series-Based Link Organization
+
+The new series-based organization system structures product links by series:
+
+```typescript
+// Series-specific link file (src/store/model/series/3080/amazon.ts)
+export const links: Link[] = [
+  {
+    brand: 'nvidia',
+    model: 'founders edition',
+    series: '3080',
+    url: 'https://www.amazon.com/nvidia-rtx-3080',
+  },
+  // More links...
+];
+
+// Store implementation with dynamic link loading
+export const Amazon: Store = {
+  // Store configuration...
+  links: [], // Empty initial array
+  setupAction: async (browser: Browser) => {
+    // Load links for active series
+    Amazon.links = await getSeriesLinks('amazon');
+  },
+};
+```
+
+This approach improves organization, performance, and maintainability.
 
 ### Protocol Timeout Enhancement
 
@@ -170,3 +226,4 @@ As the application evolves, some architectural considerations for the future inc
 3. **Serverless Functions**: Moving certain components to serverless for cost optimization
 4. **Worker Threads**: Using worker threads for parallel processing of store checks
 5. **WebSocket Integration**: Real-time updates to clients via WebSocket connections
+6. **Series-Based Extension**: Extending the series-based architecture to other parts of the application

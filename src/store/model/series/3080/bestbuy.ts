@@ -1,0 +1,102 @@
+import {Link} from '../../store';
+
+export const links: Link[] = [
+{
+      brand: 'nvidia',
+      cartUrl: 'https://api.bestbuy.com/click/-/6429440/cart',
+      model: 'founders edition',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6429440/pdp',
+    },
+{
+      brand: 'asus',
+      cartUrl: 'https://api.bestbuy.com/click/-/6432445/cart',
+      model: 'strix',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6432445/pdp',
+    },
+{
+      brand: 'evga',
+      cartUrl: 'https://api.bestbuy.com/click/-/6432399/cart',
+      model: 'xc3 black',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6432399/pdp',
+    },
+{
+      brand: 'evga',
+      cartUrl: 'https://api.bestbuy.com/click/-/6436194/cart',
+      model: 'xc3',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6436194/pdp',
+    },
+{
+      brand: 'evga',
+      cartUrl: 'https://api.bestbuy.com/click/-/6432400/cart',
+      model: 'xc3 ultra',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6432400/pdp',
+    },
+{
+      brand: 'evga',
+      cartUrl: 'https://api.bestbuy.com/click/-/6436196/cart',
+      model: 'ftw3 ultra',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6436196/pdp',
+    },
+{
+      brand: 'evga',
+      cartUrl: 'https://api.bestbuy.com/click/-/6436191/cart',
+      model: 'ftw3',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6436191/pdp',
+    },
+{
+      brand: 'gigabyte',
+      cartUrl: 'https://api.bestbuy.com/click/-/6430620/cart',
+      model: 'gaming oc',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6430620/pdp',
+    },
+{
+      brand: 'gigabyte',
+      cartUrl: 'https://api.bestbuy.com/click/-/6430621/cart',
+      model: 'eagle oc',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6430621/pdp',
+    },
+{
+      brand: 'gigabyte',
+      cartUrl: 'https://api.bestbuy.com/click/-/6436219/cart',
+      model: 'vision oc',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6436219/pdp',
+    },
+{
+      brand: 'gigabyte',
+      cartUrl: 'https://api.bestbuy.com/click/-/6436223/cart',
+      model: 'aorus master',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6436223/pdp',
+    },
+{
+      brand: 'msi',
+      cartUrl: 'https://api.bestbuy.com/click/-/6430175/cart',
+      model: 'ventus 3x oc',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6430175/pdp',
+    },
+{
+      brand: 'pny',
+      cartUrl: 'https://api.bestbuy.com/click/-/6432655/cart',
+      model: 'xlr8 revel',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6432655/pdp',
+    },
+{
+      brand: 'pny',
+      cartUrl: 'https://api.bestbuy.com/click/-/6432658/cart',
+      model: 'xlr8 revel',
+      series: '3080',
+      url: 'https://api.bestbuy.com/click/-/6432658/pdp',
+    }
+];

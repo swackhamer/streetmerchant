@@ -17,6 +17,10 @@ Streetmerchant is an automated stock checking application that continuously moni
   - Desktop notifications, browser pop-ups
   - Mobile push notifications, Slack, and more
 - **Advanced Filtering:** Target specific brands, models, series, and price ranges
+- **Series-Based Organization:** Product links organized by series for improved maintainability
+  - Dynamic loading of series-specific links
+  - Automatic filtering based on series, brand, model, and price
+  - Enhanced code organization and modularity
 - **Resilient Architecture:** Handles network issues and website anti-bot measures
   - Protocol timeout protection to prevent crashes
   - Error recovery mechanisms for consistent uptime
@@ -97,6 +101,8 @@ SHOW_ONLY_SERIES=3080,3090,5090
 SHOW_ONLY_MODELS=ftw3,strix,tuf
 ```
 
+With the series-based organization system, Streetmerchant can automatically load product links based on series configuration, making it easier to target specific hardware generations.
+
 ### Price Limits
 
 ```
@@ -144,6 +150,7 @@ See the [Configuration Reference](./docs/configuration-reference.md) for a compl
 ### Developer Documentation
 - [Architecture Overview](./docs/architecture.md) - Technical architecture and system components
 - [Memory Bank](./docs/memory-bank.md) - Quick reference for project components and concepts
+- [Series-Based Links](./docs/series-based-links.md) - Documentation for the series-based organization system
 - [Extension Guide](./docs/extension-guide.md) - How to add new retailers or features
 
 ### Project Information
@@ -229,3 +236,4 @@ This project is a fork of the original [jef/streetmerchant](https://github.com/j
 - Updated dependencies for better stability
 - Improved error handling and resilience
 - Enhanced documentation
+- Series-based organization system for better code maintainability

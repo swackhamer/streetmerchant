@@ -1,0 +1,40 @@
+import {Link} from '../../store';
+
+export const links: Link[] = [
+{
+      brand: 'evga',
+      model: 'xc3 black',
+      series: '3080',
+      url: 'https://www.evga.com/products/product.aspx?pn=10G-P5-3881-KR',
+    },
+{
+      brand: 'evga',
+      model: 'ftw3 ultra',
+      series: '3080',
+      url: 'https://www.evga.com/products/product.aspx?pn=10G-P5-3897-KR',
+    },
+{
+      brand: 'evga',
+      model: 'ftw3 ultra hydro copper',
+      series: '3080',
+      url: 'https://www.evga.com/products/product.aspx?pn=10G-P5-3897-KR',
+    },
+{
+      brand: 'evga',
+      model: 'ftw3',
+      series: '3080',
+      url: 'https://www.evga.com/products/product.aspx?pn=10G-P5-3895-KR',
+    },
+{
+      brand: 'evga',
+      model: 'xc3',
+      series: '3080',
+      url: 'https://www.evga.com/products/product.aspx?pn=10G-P5-3883-KR',
+    },
+{
+      brand: 'evga',
+      model: 'xc3 ultra',
+      series: '3080',
+      url: 'https://www.evga.com/products/product.aspx?pn=10G-P5-3885-KR',
+    }
+];

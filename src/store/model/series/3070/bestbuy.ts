@@ -1,0 +1,95 @@
+import {Link} from '../../store';
+
+export const links: Link[] = [
+{
+      brand: 'nvidia',
+      cartUrl: 'https://api.bestbuy.com/click/-/6429442/cart',
+      model: 'founders edition',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6429442/pdp',
+    },
+{
+      brand: 'evga',
+      cartUrl: 'https://api.bestbuy.com/click/-/6439300/cart',
+      model: 'xc3 black',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6439300/pdp',
+    },
+{
+      brand: 'gigabyte',
+      cartUrl: 'https://api.bestbuy.com/click/-/6437912/cart',
+      model: 'eagle',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6437912/pdp',
+    },
+{
+      brand: 'gigabyte',
+      cartUrl: 'https://api.bestbuy.com/click/-/6437909/cart',
+      model: 'gaming oc',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6437909/pdp',
+    },
+{
+      brand: 'pny',
+      cartUrl: 'https://api.bestbuy.com/click/-/6432654/cart',
+      model: 'dual fan',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6432654/pdp',
+    },
+{
+      brand: 'pny',
+      cartUrl: 'https://api.bestbuy.com/click/-/6432653/cart',
+      model: 'xlr8 revel',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6432653/pdp',
+    },
+{
+      brand: 'gigabyte',
+      cartUrl: 'https://api.bestbuy.com/click/-/6439384/cart',
+      model: 'aorus',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6439384/pdp',
+    },
+{
+      brand: 'gigabyte',
+      cartUrl: 'https://api.bestbuy.com/click/-/6439385/cart',
+      model: 'vision',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6439385/pdp',
+    },
+{
+      brand: 'asus',
+      cartUrl: 'https://api.bestbuy.com/click/-/6439128/cart',
+      model: 'tuf',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6439128/pdp',
+    },
+{
+      brand: 'msi',
+      cartUrl: 'https://api.bestbuy.com/click/-/6438278/cart',
+      model: 'ventus 3x oc',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6438278/pdp',
+    },
+{
+      brand: 'asus',
+      cartUrl: 'https://api.bestbuy.com/click/-/6439127/cart',
+      model: 'strix',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6439127/pdp',
+    },
+{
+      brand: 'evga',
+      cartUrl: 'https://api.bestbuy.com/click/-/6439301/cart',
+      model: 'ftw3 ultra',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6439301/pdp',
+    },
+{
+      brand: 'evga',
+      cartUrl: 'https://api.bestbuy.com/click/-/6439299/cart',
+      model: 'xc3 ultra',
+      series: '3070',
+      url: 'https://api.bestbuy.com/click/-/6439299/pdp',
+    }
+];

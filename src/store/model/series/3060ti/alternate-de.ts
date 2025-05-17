@@ -1,0 +1,166 @@
+import {Link} from '../../store';
+
+export const links: Link[] = [
+{
+      brand: 'asus',
+      model: 'tuf oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1693462',
+    },
+{
+      brand: 'evga',
+      model: 'ftw3 ultra',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1698594',
+    },
+{
+      brand: 'gainward',
+      model: 'ghost',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1698655',
+    },
+{
+      brand: 'gainward',
+      model: 'ghost oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1694300',
+    },
+{
+      brand: 'gainward',
+      model: 'phoenix',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1698654',
+    },
+{
+      brand: 'gainward',
+      model: 'phoenix gs',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1694299',
+    },
+{
+      brand: 'gigabyte',
+      model: 'gaming oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1694048',
+    },
+{
+      brand: 'inno3d',
+      model: 'ichill x3 red',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1696931',
+    },
+{
+      brand: 'inno3d',
+      model: 'twin x2',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1709206',
+    },
+{
+      brand: 'inno3d',
+      model: 'twin x2 oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1696932',
+    },
+{
+      brand: 'msi',
+      model: 'gaming x',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1714488',
+    },
+{
+      brand: 'palit',
+      model: 'dual',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1698653',
+    },
+{
+      brand: 'palit',
+      model: 'dual oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1694308',
+    },
+{
+      brand: 'palit',
+      model: 'gaming pro',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1698650',
+    },
+{
+      brand: 'palit',
+      model: 'gaming pro oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1694305',
+    },
+{
+      brand: 'zotac',
+      model: 'twin edge oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1694335',
+    },
+{
+      brand: 'zotac',
+      model: 'twin edge oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1758204',
+    },
+{
+      brand: 'gigabyte',
+      model: 'aorus elite',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1769551',
+    },
+{
+      brand: 'asus',
+      model: 'tuf oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1758690',
+    },
+{
+      brand: 'asus',
+      model: 'dual mini oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1758702',
+    },
+{
+      brand: 'msi',
+      model: 'gaming x',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1758136',
+    },
+{
+      brand: 'msi',
+      model: 'gaming z trio',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1758139',
+    },
+{
+      brand: 'msi',
+      model: 'ventus 2x oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1758141',
+    },
+{
+      brand: 'palit',
+      model: 'dual',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1780517',
+    },
+{
+      brand: 'gigabyte',
+      model: 'gaming pro oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1762625',
+    },
+{
+      brand: 'inno3d',
+      model: 'twin x2 oc',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1753819',
+    },
+{
+      brand: 'asus',
+      model: 'dual mini',
+      series: '3060ti',
+      url: 'https://www.alternate.de/html/product/1758703',
+    }
+];

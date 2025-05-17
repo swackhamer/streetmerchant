@@ -1,5 +1,13 @@
 import {config, defaultStoreData} from '../../config';
 
+// Import core
+import {Store} from './store';
+import {getSingleStoreSeriesName} from './store-mapper';
+import {clearLinkCache} from './series-links';
+import {logger} from '../../logger';
+import {initializeSeriesLinksLoader} from './auto-load-series';
+
+// Multi-series stores
 import {AComPC} from './acompc';
 import {Adorama} from './adorama';
 import {Akinformatica} from './akinformatica';
@@ -40,13 +48,11 @@ import {BAndH} from './bandh';
 import {BestBuy} from './bestbuy';
 import {BestBuyCa} from './bestbuy-ca';
 import {Box} from './box';
-import {Bpctech} from './bpctech';
 import {BpmPower} from './bpmpower';
 import {BT} from './bt';
 import {CanadaComputers} from './canadacomputers';
 import {Caseking} from './caseking';
 import {Ccl} from './ccl';
-import {Centrecom} from './centrecom';
 import {Comet} from './comet';
 import {ComputerAlliance} from './computeralliance';
 import {Computeruniverse} from './computeruniverse';
@@ -54,7 +60,6 @@ import {Coolblue} from './coolblue';
 import {Coolmod} from './coolmod';
 import {Corsair} from './corsair';
 import {CorsairUK} from './corsair-uk';
-import {Cpl} from './cpl';
 import {Currys} from './currys';
 import {Cyberport} from './cyberport';
 import {CyberportAt} from './cyberport-at';
@@ -85,7 +90,6 @@ import {GamestopIT} from './gamestop-it';
 import {Globaldata} from './globaldata';
 import {HardwarePlanet} from './hardware-planet';
 import {HarrisTechnology} from './harristechnology';
-import {HarveyNormanIE} from './harveynorman-ie';
 import {Igamecomputer} from './igame';
 import {JohnLewis} from './johnlewis';
 import {Kabum} from './kabum';
@@ -93,7 +97,6 @@ import {KomplettNO} from './komplett-no';
 import {Ldlc} from './ldlc';
 import {LdlcEs} from './ldlc-es';
 import {LDLCItaly} from './ldlc-italy';
-import {LandmarkComputers} from './lmc';
 import {Materiel} from './materiel';
 import {Mediamarkt} from './mediamarkt';
 import {MediamarktAt} from './mediamarkt-at';
@@ -108,7 +111,6 @@ import {Mindfactory} from './mindfactory';
 import {MSI} from './msi';
 import {Msy} from './msy';
 import {Multicom} from './multicom';
-import {Mwave} from './mwave';
 import {NeoByte} from './neobyte';
 import {NetonnetNO} from './netonnet-no';
 import {Newegg} from './newegg';
@@ -129,7 +131,6 @@ import {Otto} from './otto';
 import {Overclockers} from './overclockers';
 import {PBTech} from './pbtech';
 import {PCByte} from './pcbyte';
-import {Pccg} from './pccg';
 import {PCComponentes} from './pccomponentes';
 import {PCDiga} from './pcdiga';
 import {PCKing} from './pcking';
@@ -144,13 +145,11 @@ import {RosmanMelb} from './rosman-melb';
 import {Saturn} from './saturn';
 import {SaveOnIt} from './saveonit';
 import {Scan} from './scan';
-import {Scorptec} from './scorptec';
 import {ShopTo} from './shopto';
 import {Siabyte} from './siabyte';
 import {SmythsToys} from './smythstoys';
 import {SmythsToysIE} from './smythstoys-ie';
 import {Spielegrotte} from './spielegrotte';
-import {Store} from './store';
 import {StormComputers} from './storm';
 import {Target} from './target';
 import {TescoIE} from './tesco-ie';
@@ -158,9 +157,8 @@ import {TheWarehouse} from './thewarehouse';
 import {TopAchat} from './topachat';
 import {ToysRUs} from './toysrus';
 import {Ubiquiti} from './ubiquiti';
-import {Umart} from './umart';
-import {Unieuro} from './unieuro';
 import {UltimaInformatica} from './utlimainformatica';
+import {Unieuro} from './unieuro';
 import {Very} from './very';
 import {VsGamers} from './vsgamers';
 import {Vuugo} from './vuugo';
@@ -168,14 +166,21 @@ import {Walmart} from './walmart';
 import {WalmartCa} from './walmart-ca';
 import {WellsTechnology} from './wellstechnology';
 import {Wipoid} from './wipoid';
-import {Xbox} from './xbox';
 import {XtremMedia} from './xtremmedia';
 import {Zotac} from './zotac';
 
+// Import the sample store using series links system
+import {SampleStoreSeries} from './sample-store-series';
+
 import chalk from 'chalk';
-import {logger} from '../../logger';
+
+// Series link loading is handled in auto-load-series.ts
 
 export const storeList = new Map([
+  // Series-based sample store
+  [SampleStoreSeries.name, SampleStoreSeries],
+  
+  // Multi-series stores
   [AComPC.name, AComPC],
   [Adorama.name, Adorama],
   [Akinformatica.name, Akinformatica],
@@ -216,13 +221,11 @@ export const storeList = new Map([
   [BestBuy.name, BestBuy],
   [BestBuyCa.name, BestBuyCa],
   [Box.name, Box],
-  [Bpctech.name, Bpctech],
   [BpmPower.name, BpmPower],
   [BT.name, BT],
   [CanadaComputers.name, CanadaComputers],
   [Caseking.name, Caseking],
   [Ccl.name, Ccl],
-  [Centrecom.name, Centrecom],
   [Comet.name, Comet],
   [ComputerAlliance.name, ComputerAlliance],
   [Computeruniverse.name, Computeruniverse],
@@ -230,7 +233,6 @@ export const storeList = new Map([
   [Coolmod.name, Coolmod],
   [Corsair.name, Corsair],
   [CorsairUK.name, CorsairUK],
-  [Cpl.name, Cpl],
   [Currys.name, Currys],
   [Cyberport.name, Cyberport],
   [CyberportAt.name, CyberportAt],
@@ -261,12 +263,10 @@ export const storeList = new Map([
   [Globaldata.name, Globaldata],
   [HardwarePlanet.name, HardwarePlanet],
   [HarrisTechnology.name, HarrisTechnology],
-  [HarveyNormanIE.name, HarveyNormanIE],
   [Igamecomputer.name, Igamecomputer],
   [JohnLewis.name, JohnLewis],
   [Kabum.name, Kabum],
   [KomplettNO.name, KomplettNO],
-  [LandmarkComputers.name, LandmarkComputers],
   [Ldlc.name, Ldlc],
   [LdlcEs.name, LdlcEs],
   [LDLCItaly.name, LDLCItaly],
@@ -284,7 +284,6 @@ export const storeList = new Map([
   [MSI.name, MSI],
   [Msy.name, Msy],
   [Multicom.name, Multicom],
-  [Mwave.name, Mwave],
   [NeoByte.name, NeoByte],
   [NetonnetNO.name, NetonnetNO],
   [Newegg.name, Newegg],
@@ -305,7 +304,6 @@ export const storeList = new Map([
   [Overclockers.name, Overclockers],
   [PBTech.name, PBTech],
   [PCByte.name, PCByte],
-  [Pccg.name, Pccg],
   [PCComponentes.name, PCComponentes],
   [PCDiga.name, PCDiga],
   [PCKing.name, PCKing],
@@ -320,7 +318,6 @@ export const storeList = new Map([
   [Saturn.name, Saturn],
   [SaveOnIt.name, SaveOnIt],
   [Scan.name, Scan],
-  [Scorptec.name, Scorptec],
   [ShopTo.name, ShopTo],
   [Siabyte.name, Siabyte],
   [SmythsToys.name, SmythsToys],
@@ -334,7 +331,6 @@ export const storeList = new Map([
   [ToysRUs.name, ToysRUs],
   [Ubiquiti.name, Ubiquiti],
   [UltimaInformatica.name, UltimaInformatica],
-  [Umart.name, Umart],
   [Unieuro.name, Unieuro],
   [Very.name, Very],
   [VsGamers.name, VsGamers],
@@ -343,10 +339,14 @@ export const storeList = new Map([
   [WalmartCa.name, WalmartCa],
   [WellsTechnology.name, WellsTechnology],
   [Wipoid.name, Wipoid],
-  [Xbox.name, Xbox],
   [XtremMedia.name, XtremMedia],
   [Zotac.name, Zotac],
 ]);
+
+// Initialize series links loaders for all stores
+for (const [_, store] of storeList.entries()) {
+  initializeSeriesLinksLoader(store);
+}
 
 const brands = new Set();
 const models = new Set();
@@ -442,6 +442,9 @@ function warnIfStoreDeprecated(store: Store) {
 
 export function updateStores() {
   stores.clear();
+  
+  // Clear the series links cache when updating stores
+  clearLinkCache();
 
   for (const storeData of config.store.stores) {
     const store = storeList.get(storeData.name);

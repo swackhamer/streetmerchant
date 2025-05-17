@@ -1,0 +1,160 @@
+import {Link} from '../../store';
+
+export const links: Link[] = [
+{
+      brand: 'asus',
+      model: 'strix oc',
+      series: '3060ti',
+      url: 'https://www.caseking.de/asus-geforce-rtx-3060-ti-rog-strix-o8g-8192-mb-gddr6-gcas-407.html',
+    },
+{
+      brand: 'asus',
+      model: 'dual oc',
+      series: '3060ti',
+      url: 'https://www.caseking.de/asus-geforce-rtx-3060-ti-dual-o8g-8192-mb-gddr6-gcas-410.html',
+    },
+{
+      brand: 'asus',
+      model: 'tuf oc',
+      series: '3060ti',
+      url: 'https://www.caseking.de/asus-geforce-rtx-3060-ti-tuf-o8g-8192-mb-gddr6-gcas-412.html',
+    },
+{
+      brand: 'asus',
+      model: 'dual',
+      series: '3060ti',
+      url: 'https://www.caseking.de/asus-geforce-rtx-3060-ti-dual-8g-8192-mb-gddr6-gcas-411.html',
+    },
+{
+      brand: 'asus',
+      model: 'tuf',
+      series: '3060ti',
+      url: 'https://www.caseking.de/asus-geforce-rtx-3060-ti-tuf-8g-8192-mb-gddr6-gcas-408.html',
+    },
+{
+      brand: 'asus',
+      model: 'strix',
+      series: '3060ti',
+      url: 'https://www.caseking.de/asus-geforce-rtx-3060-ti-rog-strix-8g-8192-mb-gddr6-gcas-409.html',
+    },
+{
+      brand: 'evga',
+      model: 'xc gaming',
+      series: '3060ti',
+      url: 'https://www.caseking.de/evga-geforce-rtx-3060-ti-xc-gaming-8192-mb-gddr6-gcev-431.html',
+    },
+{
+      brand: 'evga',
+      model: 'ftw3 ultra',
+      series: '3060ti',
+      url: 'https://www.caseking.de/evga-geforce-rtx-3060-ti-ftw3-ultra-gaming-8192-mb-gddr6-gcev-403.html',
+    },
+{
+      brand: 'evga',
+      model: 'ftw3 black',
+      series: '3060ti',
+      url: 'https://www.caseking.de/evga-geforce-rtx-3060-ti-ftw3-black-gaming-8192-mb-gddr6-gcev-430.html',
+    },
+{
+      brand: 'evga',
+      model: 'xc black',
+      series: '3060ti',
+      url: 'https://www.caseking.de/evga-geforce-rtx-3060-ti-xc-black-gaming-8192-mb-gddr6-gcev-432.html',
+    },
+{
+      brand: 'evga',
+      model: 'ftw3',
+      series: '3060ti',
+      url: 'https://www.caseking.de/evga-geforce-rtx-3060-ti-ftw3-gaming-8192-mb-gddr6-gcev-429.html',
+    },
+{
+      brand: 'gigabyte',
+      model: 'eagle oc',
+      series: '3060ti',
+      url: 'https://www.caseking.de/gigabyte-geforce-rtx-3060-ti-eagle-oc-8g-8192-mb-gddr6-gcgb-349.html',
+    },
+{
+      brand: 'gigabyte',
+      model: 'aorus master',
+      series: '3060ti',
+      url: 'https://www.caseking.de/gigabyte-aorus-geforce-rtx-3060-ti-master-8g-8192-mb-gddr6-gcgb-346.html',
+    },
+{
+      brand: 'gigabyte',
+      model: 'gaming oc pro',
+      series: '3060ti',
+      url: 'https://www.caseking.de/gigabyte-geforce-rtx-3060-ti-gaming-oc-pro-8g-8192-mb-gddr6-gcgb-347.html',
+    },
+{
+      brand: 'gigabyte',
+      model: 'gaming oc',
+      series: '3060ti',
+      url: 'https://www.caseking.de/gigabyte-geforce-rtx-3060-ti-gaming-oc-8g-8192-mb-gddr6-gcgb-348.html',
+    },
+{
+      brand: 'gigabyte',
+      model: 'eagle',
+      series: '3060ti',
+      url: 'https://www.caseking.de/gigabyte-geforce-rtx-3060-ti-eagle-8g-8192-mb-gddr6-gcgb-350.html',
+    },
+{
+      brand: 'inno3d',
+      model: 'twin x2 oc',
+      series: '3060ti',
+      url: 'https://www.caseking.de/inno3d-geforce-rtx-3060-ti-twin-x2-oc-8192-mb-gddr6-gci3-180.html',
+    },
+{
+      brand: 'inno3d',
+      model: 'ichill x3',
+      series: '3060ti',
+      url: 'https://www.caseking.de/inno3d-geforce-rtx-3060-ti-ichill-x3-8192-mb-gddr6-gci3-179.html',
+    },
+{
+      brand: 'inno3d',
+      model: 'twin x2',
+      series: '3060ti',
+      url: 'https://www.caseking.de/inno3d-geforce-rtx-3060-ti-twin-x2-8192-mb-gddr6-gci3-181.html',
+    },
+{
+      brand: 'msi',
+      model: 'gaming x trio',
+      series: '3060ti',
+      url: 'https://www.caseking.de/msi-geforce-rtx-3060-ti-gaming-x-trio-8192-mb-gddr6-gcmc-255.html',
+    },
+{
+      brand: 'msi',
+      model: 'ventus 2x oc',
+      series: '3060ti',
+      url: 'https://www.caseking.de/msi-geforce-rtx-3060-ti-ventus-2x-oc-8192-mb-gddr6-gcmc-246.html',
+    },
+{
+      brand: 'msi',
+      model: 'ventus 3x oc',
+      series: '3060ti',
+      url: 'https://www.caseking.de/msi-geforce-rtx-3060-ti-ventus-3x-oc-8192-mb-gddr6-gcmc-245.html',
+    },
+{
+      brand: 'pny',
+      model: 'xlr8 epic x',
+      series: '3060ti',
+      url: 'https://www.caseking.de/pny-geforce-rtx-3060-ti-xlr8-gaming-revel-epic-x-8192-mb-gddr6-gcpn-080.html',
+    },
+{
+      brand: 'pny',
+      model: 'xlr8 uprising',
+      series: '3060ti',
+      url: 'https://www.caseking.de/pny-geforce-rtx-3060-ti-uprising-8g-8192-mb-gddr6-gcpn-079.html',
+    },
+{
+      brand: 'zotac',
+      model: 'twin edge',
+      series: '3060ti',
+      url: 'https://www.caseking.de/zotac-gaming-geforce-rtx-3060-ti-twin-edge-8192-mb-gddr6-gczt-169.html',
+    },
+{
+      brand: 'zotac',
+      model: 'twin edge oc',
+      series: '3060ti',
+      url: 'https://www.caseking.de/zotac-gaming-geforce-rtx-3060-ti-twin-edge-oc-8192-mb-gddr6-gczt-170.html',
+    }
+];
