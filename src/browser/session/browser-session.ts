@@ -40,7 +40,7 @@ export class BrowserSession {
    */
   public static async create(store: Store): Promise<BrowserSession> {
     const browser = await this.getBrowserForStore(store);
-    return new BrowserSession(browser, store);
+    return new BrowserSession(store, {browser});
   }
   
   /**
@@ -109,12 +109,28 @@ export class BrowserSession {
   }
   
   /**
-   * Constructor - private to enforce factory pattern
+   * Options for manual creation of a BrowserSession
    */
-  private constructor(
-    private readonly browser: Browser,
-    private readonly store: Store
-  ) {}
+  interface BrowserSessionOptions {
+    browser: Browser;
+  }
+
+  /**
+   * Constructor - can be created directly with options or via factory method
+   */
+  // Declare browser as a property
+  private browser!: Browser;
+
+  constructor(
+    private readonly store: Store,
+    options?: BrowserSessionOptions
+  ) {
+    if (options?.browser) {
+      this.browser = options.browser;
+    } else {
+      throw new Error('Browser must be provided');
+    }
+  }
   
   /**
    * Use a page for processing
