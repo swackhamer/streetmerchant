@@ -1,26 +1,10 @@
 /**
  * Store configuration for nvidia-es
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * NvidiaEs store
+ * Nvidia-es store
  */
-export const NvidiaEs = createEuropeanStore({
-  name: 'nvidia-es',
-  country: 'ES',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.buy',
-      text: ['Añadir al carrito', 'COMPRAR AHORA'],
-    },
-    outOfStock: {
-      container: '.buy',
-      text: ['AGOTADO'],
-    },
-  },
-
-});
+export const NvidiaEs = createStoreFromRegistry('nvidia-es');

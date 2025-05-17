@@ -1,30 +1,10 @@
 /**
  * Store configuration for eprice
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Eprice store
  */
-export const Eprice = createEuropeanStore({
-  name: 'eprice',
-  country: 'IT',
-  currency: '€',
-  labels: {
-    inStock: {
-      container: '.topSideDx',
-      text: ['disponibile', 'pochi pezzi'],
-    },
-    maxPrice: {
-      container: '#PrezzoClasic span[class*="big"]',
-      euroFormat: true,
-    },
-    outOfStock: {
-      container: '.dispo',
-      text: ['ESAURITO O FUORI PROD.'],
-    },
-  },
-
-});
+export const Eprice = createStoreFromRegistry('eprice');

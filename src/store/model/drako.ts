@@ -1,29 +1,10 @@
 /**
  * Store configuration for drako
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createEuropeanStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Drako store
  */
-export const Drako = createEuropeanStore({
-  name: 'drako',
-  country: 'IT',
-  currency: '€',
-  labels: {
-    inStock: [
-      {
-        container: '#bottom_left_panel > div:nth-child(9) > div:nth-child(2)',
-        text: ['ordinabile'],
-      },
-    ],
-    maxPrice: {
-      container: '.price',
-      euroFormat: true,
-    },
-  },
-  successStatusCodes: [[0, 399]]
-
-});
+export const Drako = createStoreFromRegistry('drako');

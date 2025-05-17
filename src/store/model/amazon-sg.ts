@@ -1,41 +1,10 @@
 /**
  * Store configuration for amazon-sg
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createMarketplaceStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
- * AmazonSg store
+ * Amazon-sg store
  */
-export const AmazonSg = createMarketplaceStore({
-  name: 'amazon-sg',
-  country: 'SG',
-  currency: '$',
-  labels: {
-    captcha: {
-      container: 'body',
-      text: ['enter the characters you see below'],
-    },
-    captchaHandler: {
-      challenge: '.a-row > img',
-      input: '#captchacharacters',
-      submit: 'button[type="submit"]',
-    },
-    inStock: [
-      {
-        container: '#add-to-cart-button',
-        text: ['add to cart'],
-      },
-      {
-        container: '#buy-now-button',
-        text: ['buy now'],
-      },
-    ],
-    maxPrice: {
-      container: '.a-text-price',
-    },
-  },
-  backoffStatusCodes: [403, 429, 503],
-
-});
+export const AmazonSg = createStoreFromRegistry('amazon-sg');

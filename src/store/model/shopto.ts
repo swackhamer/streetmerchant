@@ -1,22 +1,10 @@
 /**
  * Store configuration for shopto
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Shopto store
  */
-export const Shopto = createStandardStore({
-  name: 'shopto',
-  country: 'UK',
-  currency: '£',
-  labels: {
-    inStock: {
-      container: '.orderbox_inventory',
-      text: ['In Stock'],
-    },
-  },
-
-});
+export const Shopto = createStoreFromRegistry('shopto');

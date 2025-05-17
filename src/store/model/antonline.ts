@@ -1,30 +1,10 @@
 /**
  * Store configuration for antonline
- * Refactored to use factory approach and series-based organization
+ * Refactored to use store registry and centralized data approach
  */
-import {createStandardStore} from './common/store-factory';
-import {Labels} from './store';
+import {createStoreFromRegistry} from './store-registry';
 
 /**
  * Antonline store
  */
-export const Antonline = createStandardStore({
-  name: 'antonline',
-  country: 'US',
-  currency: '$',
-  labels: {
-    inStock: {
-      container: '.uk-button',
-      text: ['Add to Cart'],
-    },
-    maxPrice: {
-      container: '.cPrice',
-      euroFormat: false,
-    },
-    outOfStock: {
-      container: '.priceView-price .priceView-hero-price span',
-      text: ['Sold Out'],
-    },
-  },
-
-});
+export const Antonline = createStoreFromRegistry('antonline');
