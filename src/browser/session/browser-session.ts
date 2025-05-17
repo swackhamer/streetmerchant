@@ -109,23 +109,15 @@ export class BrowserSession {
   }
   
   /**
-   * Options for manual creation of a BrowserSession
-   */
-  interface BrowserSessionOptions {
-    browser: Browser;
-  }
-
-  /**
    * Constructor - can be created directly with options or via factory method
    */
-  // Declare browser as a property
-  private browser!: Browser;
+  private browser: Browser;
 
   constructor(
     private readonly store: Store,
-    options?: BrowserSessionOptions
+    options: { browser: Browser }
   ) {
-    if (options?.browser) {
+    if (options.browser) {
       this.browser = options.browser;
     } else {
       throw new Error('Browser must be provided');

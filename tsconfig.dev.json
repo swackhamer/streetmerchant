@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "inlineSourceMap": true
   },
   "include": [
