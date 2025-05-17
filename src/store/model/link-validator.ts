@@ -43,7 +43,8 @@ export function validateLink(link: Link): LinkValidationResult {
   }
   
   // Check for URL duplicates within the same store
-  if (link.url && link.duplicate) {
+  // Check for URL duplicates within the same store
+  if (link.url && (link as any).duplicate) {
     errors.push(`Duplicate URL detected: ${link.url}`);
   }
   
@@ -88,7 +89,7 @@ export function validateLinks(links: Link[], storeName: string): Link[] {
   links.forEach(link => {
     if (link.url) {
       if (urlMap.has(link.url)) {
-        link.duplicate = true;
+        (link as any).duplicate = true;
       } else {
         urlMap.set(link.url, true);
       }

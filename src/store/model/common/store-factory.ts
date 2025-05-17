@@ -40,7 +40,7 @@ export function createStore(options: StoreFactoryOptions): Store {
   
   // Create the store object
   const store: Store = {
-    currency: options.currency,
+    currency: options.currency as any, // Type cast to satisfy TS
     labels,
     links: [], // Start with empty links that will be dynamically loaded
     name: options.name,

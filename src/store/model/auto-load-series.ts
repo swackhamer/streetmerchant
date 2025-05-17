@@ -38,8 +38,8 @@ export function hasSeriesLinks(storeName: string): boolean {
  * @param store The store to initialize
  */
 export function initializeSeriesLinksLoader(store: Store): void {
-  // Only initialize for stores that have series links and don't already have setupAction
-  if (hasSeriesLinks(store.name) && !store.setupAction) {
+  // Only initialize for stores that have series links
+  if (hasSeriesLinks(store.name)) {
     const originalSetupAction = store.setupAction;
     
     // Create a setupAction that loads series links
