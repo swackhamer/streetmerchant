@@ -9,7 +9,7 @@ import {Link, Brand, Series, Model} from '../store';
  */
 export interface LinkOptions {
   brand: Brand;
-  model: Model;
+  model: Model | string;
   series: Series;
   url: string;
   cartUrl?: string;
@@ -39,7 +39,7 @@ export function createBrandSeriesLinks(
   brand: Brand,
   series: Series,
   configs: Array<{
-    model: Model;
+    model: Model | string;
     url: string;
     cartUrl?: string;
     itemNumber?: string;

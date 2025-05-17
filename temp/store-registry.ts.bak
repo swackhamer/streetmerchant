@@ -1,0 +1,8027 @@
+/**
+ * Store Registry - Centralized store configuration management
+ * 
+ * This file implements a data-driven approach to store configuration
+ * instead of having separate files for each store. This significantly
+ * reduces code duplication and makes maintenance easier.
+ */
+import {Store} from './store';
+import {
+  createStandardStore,
+  createEuropeanStore,
+  createMarketplaceStore,
+  StoreFactoryOptions
+} from './common/store-factory';
+
+/**
+ * Extended options to help with store categorization
+ */
+export interface ExtendedStoreOptions extends StoreFactoryOptions {
+  storeType: 'standard' | 'european' | 'marketplace';
+}
+
+/**
+ * Store registry containing all store configurations
+ */
+export const storeRegistry: Record<string, ExtendedStoreOptions> = export const storeRegistry: Record<string, ExtendedStoreOptions> = {: Record<string, ExtendedStoreOptions> = {
+  'amazon': {
+    name: 'amazon',
+    country: 'US',
+    currency: '$',
+    storeType: 'marketplace',
+    labels: {
+      captcha: {
+        container: 'body',
+        text: ['enter the characters you see below'],
+      },
+      captchaHandler: {
+        challenge: '.a-row > img',
+        input: '#captchacharacters',
+        submit: 'button[type="submit"]',
+      },
+      inStock: [
+        {
+          container: '#add-to-cart-button',
+          text: ['add to cart'],
+        },
+        {
+          container: '#buy-now-button',
+          text: ['buy now'],
+        },
+      ],
+      maxPrice: {
+        container: '.a-offscreen',
+      },
+    },
+    backoffStatusCodes: [403, 429, 503],
+  },
+  
+  'bestbuy': {
+    name: 'bestbuy',
+    country: 'US',
+    currency: '$',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.fulfillment-add-to-cart-button',
+        text: ['add to cart'],
+      },
+      outOfStock: {
+        container: 'button.c-button.c-button-disabled[data-button-state="SOLD_OUT"]',
+        text: ['sold out', 'coming soon'],
+      },
+      maxPrice: {
+        container: '.priceView-customer-price span',
+      },
+    },
+  },
+  
+  'newegg': {
+    name: 'newegg',
+    country: 'US',
+    currency: '$',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.product-buy-box:not(.product-buy-box-retired)',
+        text: ['add to cart'],
+      },
+      maxPrice: {
+        container: '.price-current',
+      },
+    },
+  },
+  
+  'alternate-de': {
+    name: 'alternate-de',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+      inStock: {
+        container: '#add-to-cart button',
+        text: ['in den warenkorb'],
+      },
+      outOfStock: {
+        container: '.stockStatus',
+        text: ['ausverkauft'],
+      },
+      maxPrice: {
+        container: '.price',
+        euroFormat: true,
+      },
+    },
+  },
+  
+  'nvidia-de': {
+    name: 'nvidia-de',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+      inStock: {
+        container: '.buy',
+        text: ['In den Einkaufswagen', 'JETZT KAUFEN'],
+      },
+      outOfStock: {
+        container: '.buy',
+        text: ['DERZEIT NICHT VERFÜGBAR'],
+      },
+    },
+  },
+  
+  'amd': {
+    name: 'amd',
+    country: 'US',
+    currency: '$',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.btn-shopping-cart',
+        text: ['add to cart'],
+      },
+      maxPrice: {
+        container: '.product-page-description h4',
+        euroFormat: false,
+      },
+    },
+  },
+  
+  'nvidia-gb': {
+    name: 'nvidia-gb',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+      inStock: {
+        container: '.productView-options button',
+        text: ['add to cart', 'buy now'],
+      },
+      outOfStock: {
+        container: '.productView-options button',
+        text: ['out of stock'],
+      },
+    },
+  },
+  
+  'newegg-ca': {
+    name: 'newegg-ca',
+    country: 'CA',
+    currency: '$',
+    storeType: 'marketplace',
+    labels: {
+      captcha: {
+        container: 'body',
+        text: ['are you a human?'],
+      },
+      inStock: {
+        container: 'div#ProductBuy .btn-primary',
+        text: ['add to cart'],
+      },
+      maxPrice: {
+        container: 'div#app div.product-price > ul > li.price-current > strong',
+        euroFormat: false,
+      },
+      outOfStock: [
+        {
+          container: '.product-inventory',
+          text: [' out of stock.'],
+        },
+        {
+          container: '.product-flag',
+          text: ['out of stock '],
+        },
+      ],
+    },
+  },
+  
+
+  'acompc': {
+    name: 'acompc',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.filial_stock',
+      text: ['lagernd', 'im Zulauf'],
+    },
+    maxPrice: {
+      container: '.price',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '.filial_stock',
+        text: ['nicht lieferbar'],
+      },
+    ],
+  }
+
+  },
+
+  'adorama': {
+    name: 'adorama',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+
+
+// Helper functions to work with the registry
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: ['please verify you are a human'],
+    },
+    inStock: {
+      container: '.buy-section.purchase',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: '.your-price',
+      euroFormat: false,
+    },
+  }
+
+  },
+
+  'akinformatica': {
+    name: 'akinformatica',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: [
+      {
+        container: '#dispOnLine .available',
+        text: ['Disponibile Online'],
+      },
+      {
+        container: '#addCartLinkButton',
+        text: ['Aggiungi al carrello'],
+      },
+    ],
+    maxPrice: {
+      container: '#PrezzoListinoIvatoLabel',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '#dispOnLine .available .disabled',
+        text: ['Disponibile Online'],
+      },
+      {
+        container: '#preOrderPanel > label',
+        text: ['PRE-ORDINI APERTI'],
+      },
+    ],
+  },
+    successStatusCodes: [[0
+  },
+
+  'allneeds': {
+    name: 'allneeds',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.amstockstatus',
+      text: ['In Stock'],
+    },
+    maxPrice: {
+      container: 'span.price',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.amstockstatus',
+      text: ['sold out'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'alternate-fr': {
+    name: 'alternate-fr',
+    country: 'FR',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#add-to-cart-form > div:nth-child(2) > div > span > b',
+      text: ['En stock'],
+    },
+    maxPrice: {
+      container: '.price > span:nth-child(1)',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '#product-top-right > div:nth-child(4) > div > div',
+        text: ['Momentanément indisponible'],
+      },
+      {
+        container: '#content > div:nth-child(1) > div > h1',
+        text: ["L'article·n'est·pas·disponible·pour·le·moment."],
+      },
+    ],
+  }
+
+  },
+
+  'alternate-nl': {
+    name: 'alternate-nl',
+    country: 'NL',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.stockStatus',
+      text: ['Direct leverbaar'],
+    },
+    maxPrice: {
+      container: 'div.price > span',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.stockStatus',
+      text: ['Levertermijn onbekend', 'pre-order'],
+    },
+  }
+
+  },
+
+  'amazon-ca': {
+    name: 'amazon-ca',
+    country: 'CA',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'marketplace',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: ['enter the characters you see below'],
+    },
+    captchaHandler: {
+      challenge: 'img',
+      input: '#captchacharacters',
+      submit: 'button[type="submit"]',
+    },
+    inStock: {
+      container: '#desktop_buybox',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: '.a-color-price',
+    },
+    outOfStock: {
+      container: '.a-color-price',
+      text: ['currently unavailable.'],
+    },
+  }
+
+  },
+
+  'amazon-de-warehouse': {
+    name: 'amazon-de-warehouse',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: [
+        'geben sie die unten angezeigten zeichen ein',
+        'geben sie die zeichen unten ein',
+      ],
+    },
+    captchaHandler: {
+      challenge: '.a-row > img',
+      input: '#captchacharacters',
+      submit: 'button[type="submit"]',
+    },
+    inStock: {
+      container: '#a-autoid-0-announce',
+      text: ['In den Einkaufswagen'],
+    },
+    maxPrice: {
+      container: '.olpOfferPrice',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '.a-size-medium',
+        text: [
+          'Derzeit gibt es keine Verkäufer, die diesen Artikel an Ihren Standort liefern können',
+        ],
+      },
+    ],
+  },
+    backoffStatusCodes: [403
+  },
+
+  'amazon-de': {
+    name: 'amazon-de',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: [
+        'geben sie die unten angezeigten zeichen ein',
+        'geben sie die zeichen unten ein',
+      ],
+    },
+    captchaHandler: {
+      challenge: '.a-row > img',
+      input: '#captchacharacters',
+      submit: 'button[type="submit"]',
+    },
+    inStock: {
+      container: '#add-to-cart-button',
+      text: ['in den einkaufswagen'],
+    },
+    maxPrice: {
+      container: '.a-text-price',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '#availability',
+        text: ['Derzeit nicht verfügbar'],
+      },
+    ],
+  },
+    backoffStatusCodes: [403
+  },
+
+  'amazon-es': {
+    name: 'amazon-es',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: ['introduzca los caracteres que ve a continuación'],
+    },
+    captchaHandler: {
+      challenge: '.a-row > img',
+      input: '#captchacharacters',
+      submit: 'button[type="submit"]',
+    },
+    inStock: {
+      container: '#desktop_buybox',
+      text: ['añadir a la cesta'],
+    },
+    maxPrice: {
+      container: '.a-text-price',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '#availability',
+        text: ['No disponible'],
+      },
+    ],
+  },
+    backoffStatusCodes: [403
+  },
+
+  'amazon-fr': {
+    name: 'amazon-fr',
+    country: 'FR',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: ['entrez les caractères que vous voyez ci-dessous'],
+    },
+    captchaHandler: {
+      challenge: '.a-row > img',
+      input: '#captchacharacters',
+      submit: 'button[type="submit"]',
+    },
+    inStock: {
+      container: '#desktop_buybox',
+      text: ['ajouter au panier'],
+    },
+    maxPrice: {
+      container: '.a-text-price',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '#availability',
+        text: ['Actuellement indisponible'],
+      },
+    ],
+  },
+    backoffStatusCodes: [403
+  },
+
+  'amazon-it': {
+    name: 'amazon-it',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: ['Inserisci i caratteri visualizzati nello spazio sottostante'],
+    },
+    captchaHandler: {
+      challenge: 'img',
+      input: '#captchacharacters',
+      submit: 'button[type="submit"]',
+    },
+    inStock: {
+      container: '#desktop_buybox',
+      text: ['Aggiungi al carrello'],
+    },
+    maxPrice: {
+      container: '.a-text-price',
+      euroFormat: true,
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'amazon-nl': {
+    name: 'amazon-nl',
+    country: 'NL',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: ['voer de karakters in die u hieronder ziet'],
+    },
+    captchaHandler: {
+      challenge: '.a-row > img',
+      input: '#captchacharacters',
+      submit: 'button[type="submit"]',
+    },
+    inStock: [
+      {
+        container: '#add-to-cart-button',
+        text: ['in winkelwagen'],
+      },
+      {
+        container: '#buy-now-button',
+        text: ['nu kopen'],
+      },
+    ],
+    maxPrice: {
+      container: '.a-text-price',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '#availability',
+        text: ['tijdelijk niet'],
+      },
+      {
+        container: '#outOfStock',
+        text: ['we weten niet of en wanneer dit item weer op voorraad is'],
+      },
+    ],
+  }
+
+  },
+
+  'amazon-sg': {
+    name: 'amazon-sg',
+    country: 'SG',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'marketplace',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: ['enter the characters you see below'],
+    },
+    captchaHandler: {
+      challenge: '.a-row > img',
+      input: '#captchacharacters',
+      submit: 'button[type="submit"]',
+    },
+    inStock: [
+      {
+        container: '#add-to-cart-button',
+        text: ['add to cart'],
+      },
+      {
+        container: '#buy-now-button',
+        text: ['buy now'],
+      },
+    ],
+    maxPrice: {
+      container: '.a-text-price',
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'amazon-uk': {
+    name: 'amazon-uk',
+    country: 'UK',
+    currency: '£',
+    storeType: 'marketplace',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: ['enter the characters you see below'],
+    },
+    captchaHandler: {
+      challenge: '.a-row > img',
+      input: '#captchacharacters',
+      submit: 'button[type="submit"]',
+    },
+    inStock: {
+      container: '#availability',
+      text: ['in stock'],
+    },
+    maxPrice: {
+      container: '.a-text-price',
+    },
+    outOfStock: [
+      {
+        container: '#availability',
+        text: ['out of stock', 'unavailable'],
+      },
+      {
+        container: '#backInStock',
+        text: ['unavailable'],
+      },
+    ],
+  },
+    backoffStatusCodes: [403
+  },
+
+  'amd-at': {
+    name: 'amd-at',
+    country: 'AT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.btn-shopping-cart',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: '.product-page-description h4',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.btn-radeon',
+      text: ['ausverkauft'],
+    },
+  }
+
+  },
+
+  'amd-be': {
+    name: 'amd-be',
+    country: 'BE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.btn-shopping-cart',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: '.product-page-description h4',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.btn-radeon',
+      text: ['ausverkauft'],
+    },
+  }
+
+  },
+
+  'amd-ca': {
+    name: 'amd-ca',
+    country: 'CA',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.btn-shopping-cart',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: '.product-page-description h4',
+      euroFormat: false,
+    },
+  }
+
+  },
+
+  'amd-de': {
+    name: 'amd-de',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.btn-shopping-cart',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: '.product-page-description h4',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.btn-radeon',
+      text: ['ausverkauft'],
+    },
+  }
+
+  },
+
+  'amd-it': {
+    name: 'amd-it',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.btn-shopping-cart',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: '.product-page-description h4',
+      euroFormat: true,
+    },
+  }
+
+  },
+
+  'amd-nl': {
+    name: 'amd-nl',
+    country: 'NL',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.btn-shopping-cart',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: '.product-page-description h4',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.btn-radeon',
+      text: ['out of stock'],
+    },
+  }
+
+  },
+
+  'amd-uk': {
+    name: 'amd-uk',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: [
+      {
+        container: '.btn-shopping-cart',
+        text: ['add to cart'],
+      },
+      {
+        container: '.btn-radeon',
+        text: ['add to cart'],
+      },
+    ],
+    maxPrice: {
+      container: '.product-page-description h4',
+      euroFormat: false,
+    },
+    outOfStock: [
+      {
+        container: '.product-out-of-stock',
+        text: ['out of stock'],
+      },
+      {
+        container: '.btn-radeon',
+        text: ['sold out'],
+      },
+    ],
+  }
+
+  },
+
+  'antonline': {
+    name: 'antonline',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.uk-button',
+      text: ['Add to Cart'],
+    },
+    maxPrice: {
+      container: '.cPrice',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.priceView-price .priceView-hero-price span',
+      text: ['Sold Out'],
+    },
+  }
+
+  },
+
+  'ao': {
+    name: 'ao',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    outOfStock: {
+      container: 'section.centred-heading-copy strong',
+      text: ['currently unavailable'],
+    },
+  }
+
+  },
+
+  'argos-ie': {
+    name: 'argos-ie',
+    country: 'IE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.btnbuyreserve',
+      text: ['buy or reserve'],
+    },
+    maxPrice: {
+      container: '.price',
+    },
+    outOfStock: {
+      container: '#subCopy',
+      text: ["We're working hard to get more stock."],
+    },
+  }
+
+  },
+
+  'argos': {
+    name: 'argos',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: 'button[data-test="add-to-trolley-button-button"',
+      text: ['to trolley'],
+    },
+    maxPrice: {
+      container: 'li[itemprop="price"]',
+    },
+  }
+
+  },
+
+  'aria': {
+    name: 'aria',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#addQuantity',
+      text: ['add to shopping basket'],
+    },
+    maxPrice: {
+      container: '.priceBig',
+      euroFormat: false, // Note: Aria uses non-euroFromat as price seperator
+    },
+    outOfStock: {
+      container: '.fBox',
+      text: ['out of stock', 'there is currently no stock of this item'],
+    },
+  }
+
+  },
+
+  'arlt': {
+    name: 'arlt',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.articleDesc .shippingtext',
+      text: ['auf Lager', 'Lieferzeit 2-3 Werktage', 'Ware im Zulauf'],
+    },
+    maxPrice: {
+      container: '.articleprice .price',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.articleDesc .shippingtext',
+      text: ['Neuer Artikel in Kürze verfügbar', 'Liefertermin unbekannt'],
+    },
+  }
+
+  },
+
+  'asus-de': {
+    name: 'asus-de',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.buybox--button',
+      text: ['in den warenkorb'],
+    },
+  }
+
+  },
+
+  'asus-es': {
+    name: 'asus-es',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#product-addtocart-button > span',
+      text: ['Añadir a la cesta'],
+    },
+  }
+
+  },
+
+  'asus': {
+    name: 'asus',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#item_add_cart',
+      text: ['add to cart'],
+    },
+    outOfStock: {
+      container: '#off_sale',
+      text: ['sold out'],
+    },
+  },
+    backoffStatusCodes: [403,
+    successStatusCodes: [[0
+  },
+
+  'awd': {
+    name: 'awd',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.product-info-stock-sku .stock-status',
+      text: ['in stock'],
+    },
+    maxPrice: {
+      container: '.product-info-details .price',
+      euroFormat: false, // Note: Awd uses non-euroFromat as price seperator
+    },
+    outOfStock: {
+      container: '.product-info-stock-sku .stock-status',
+      text: ['out of stock', 'coming soon'],
+    },
+  }
+
+  },
+
+  'azerty': {
+    name: 'azerty',
+    country: 'NL',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.orderdelay',
+      text: ['Volgende werkdag in huis', '1 werkdag', '2-3 werkdagen'],
+    },
+    maxPrice: {
+      container: '.mod_article .price',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.orderdelay',
+      text: ['Onbekend', 'meer dan 10 werkdagen', 'Pre-order'],
+    },
+  }
+
+  },
+
+  'bandh': {
+    name: 'bandh',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: 'div[data-selenium="addToCartSection"]',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: 'div[data-selenium="pricingPrice"]',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: 'button[data-selenium="notifyAvailabilityButton"]',
+      text: ['notify when available'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'bestbuy-ca': {
+    name: 'bestbuy-ca',
+    country: 'CA',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    maxPrice: {
+      container: 'div[class*="pricingContainer"]',
+      euroFormat: false,
+    },
+    inStock: {
+      container: '.addToCartButton:not(:disabled)',
+      text: ['add to cart'],
+    },
+  }
+
+  },
+
+  'box': {
+    name: 'box',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.flex-col button',
+      text: ['add to basket'],
+    },
+    maxPrice: {
+      container: '.flex-col span.heading_primary',
+      euroFormat: false, // Note: Box uses non-euroFromat as price seperator
+    },
+    outOfStock: {
+      container: '.flex-col button',
+      text: ['request stock alert', 'coming soon', 'notify me'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'bpctech': {
+    name: 'bpctech',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.productStockStatus',
+      text: ['in stock'],
+    },
+    maxPrice: {
+      container: 'div.price-box.price-final_price > span > span',
+      euroFormat: false,
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'bpmpower': {
+    name: 'bpmpower',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.dispoSiProd >span',
+      text: ['Disponibile'],
+    },
+    maxPrice: {
+      container: 'p.prezzoScheda:nth-child(1)',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.dispoSiProd >span',
+      text: ['Esaurito'],
+    },
+  }
+
+  },
+
+  'bt': {
+    name: 'bt',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    outOfStock: {
+      container: '#cms-component-content-panel-200124986 p',
+      text: ["We've sold out of our current allocation of PlayStation 5"],
+    },
+  }
+
+  },
+
+  'canadacomputers': {
+    name: 'canadacomputers',
+    country: 'CA',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: 'div[class="pi-prod-availability"]',
+      text: ['Online In Stock'],
+    },
+    maxPrice: {
+      container: '.h2-big > strong:nth-child(1)',
+      euroFormat: false,
+    },
+  }
+
+  },
+
+  'caseking': {
+    name: 'caseking',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.delivery_container',
+      text: ['lagernd', 'im zulauf', 'ab'],
+    },
+    maxPrice: {
+      container: '#buybox .article_details_price',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.delivery_container',
+      text: ['unbekannt'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'ccl': {
+    name: 'ccl',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#pnlAddToBasket',
+      text: ['add to basket'],
+    },
+    maxPrice: {
+      container: '#pnlPriceText > p',
+      euroFormat: false, // Note: CCL uses non-euroFromat as price seperator
+    },
+    outOfStock: {
+      container: '#pnlSoldOut',
+      text: ['sold out', 'coming soon'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'centrecom': {
+    name: 'centrecom',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.prod_stores_stock > li:nth-child(1) > span:nth-child(2)',
+      text: ['In Stock'],
+    },
+    maxPrice: {
+      container: 'div.prod_price_current.product-price > span',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.prod_stores_stock > li:nth-child(1) > span:nth-child(2)',
+      text: ['Sold Out'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'comet': {
+    name: 'comet',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.caption',
+      text: ['Aggiungi al carrello'],
+    },
+  }
+
+  },
+
+  'computeralliance': {
+    name: 'computeralliance',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        '#main > div.col-md-12 > div:nth-child(1) > div.col-sm-7.product-information > div:nth-child(5) > div > ul > li:nth-child(1) > a',
+      text: ['In Stock'],
+    },
+    maxPrice: {
+      container: 'span.price',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container:
+        '#main > div.col-md-12 > div:nth-child(1) > div.col-sm-7.product-information > div:nth-child(5) > div > ul > li:nth-child(1) > a',
+      text: ['Out of Stock'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'computeruniverse': {
+    name: 'computeruniverse',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.availability',
+      text: [
+        'bestellartikel',
+        'auf lager und sofort lieferbar',
+        'kurzfristig verfügbar',
+      ],
+    },
+    maxPrice: {
+      container: '.product-price',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.availability',
+      text: ['nicht verfügbar', 'liefertermin hat erhebliche schwankungen'],
+    },
+  },
+    backoffStatusCodes: [503]
+  },
+
+  'coolblue': {
+    name: 'coolblue',
+    country: 'NL',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.product-order',
+      text: ['bestel snel', 'morgen in huis'],
+    },
+    maxPrice: {
+      container: '.js-order-block .sales-price__current',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.product-order',
+      text: ['binnenkort leverbaar', 'tijdelijk uitverkocht'],
+    },
+  }
+
+  },
+
+  'coolmod': {
+    name: 'coolmod',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#productBuyButtons',
+      text: ['COMPRAR'],
+    },
+    maxPrice: {
+      container: '#normalpricenumber',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '#productBuyButtons',
+      text: ['NO DISPONIBLE'],
+    },
+  }
+
+  },
+
+  'corsair-uk': {
+    name: 'corsair-uk',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#addToCartForm',
+      text: ['add to cart'],
+    },
+    outOfStock: {
+      container: '#addToCartForm',
+      text: ['notify me when in stock'],
+    },
+  }
+
+  },
+
+  'corsair': {
+    name: 'corsair',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.add_to_cart_form',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: '.product-price',
+      euroFormat: false,
+    },
+  }
+
+  },
+
+  'cpl': {
+    name: 'cpl',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        'div.product-stock > table > tbody > tr:nth-child(1) > td.stock-value',
+      text: ['In Stock'],
+    },
+    outOfStock: {
+      container:
+        'div.product-stock > table > tbody > tr:nth-child(1) > td.stock-value',
+      text: ['Pre Order'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'currys': {
+    name: 'currys',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.prices-add-to-cart-actions button.add-to-cart',
+      text: ['add to basket'],
+    },
+    maxPrice: {
+      container: '.prices-add-to-cart-actions .price',
+      euroFormat: false, // Note: Currys uses non-euroFromat as price seperator
+    },
+    outOfStock: {
+      container: '.prices-add-to-cart-actions button.oos-submit-button',
+      text: ['not available for delivery'],
+    },
+  }
+
+  },
+
+  'cyberport-at': {
+    name: 'cyberport-at',
+    country: 'AT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.tooltipAvailabilityParent',
+      text: ['sofort verfügbar'],
+    },
+    maxPrice: {
+      container: '#productDetailOverview .price',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.tooltipAvailabilityParent',
+      text: ['noch nicht verfügbar'],
+    },
+  }
+
+  },
+
+  'cyberport': {
+    name: 'cyberport',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.tooltipAvailabilityParent',
+      text: ['sofort verfügbar'],
+    },
+    maxPrice: {
+      container: '#productDetailOverview .price',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.tooltipAvailabilityParent',
+      text: ['noch nicht verfügbar'],
+    },
+  }
+
+  },
+
+  'dcomp': {
+    name: 'dcomp',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#cart-info > button.btn.addToCart',
+      text: ['Add to', ''],
+    },
+    maxPrice: {
+      container: '#prodprice',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '#cart-info > button.btn.notifyMe',
+      text: ['Notify Me'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'drako': {
+    name: 'drako',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: [
+      {
+        container: '#bottom_left_panel > div:nth-child(9) > div:nth-child(2)',
+        text: ['ordinabile'],
+      },
+    ],
+    maxPrice: {
+      container: '.price',
+      euroFormat: true,
+    },
+  },
+    successStatusCodes: [[0
+  },
+
+  'dustinhome-no': {
+    name: 'dustinhome-no',
+    country: 'NO',
+    currency: 'kr.',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        'div.c-product-main-info > div.c-product-buy-wrapper > div.u-pt-16.u-relative.d-flex > div > span',
+      text: ['Kan sendes omgående'],
+    },
+    outOfStock: {
+      container:
+        'div.c-product-main-info > div.c-product-buy-wrapper > div.u-pt-16.u-relative.d-flex > div > span',
+      text: [
+        'Vi venter produktet til lager, men har foreløpig ingen bekreftet leveringsdato. Vi sender produktet så snart det er på lager.',
+      ],
+    },
+  }
+
+  },
+
+  'ebuyer': {
+    name: 'ebuyer',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.purchase-info__cta',
+      text: ['add to basket', 'pre-order'],
+    },
+    maxPrice: {
+      container: '.purchase-info__price .price',
+      euroFormat: false, // Note: ebuyer uses non-euroFromat as price seperator
+    },
+    outOfStock: {
+      container: '.purchase-info',
+      text: ['coming soon'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'elcorteingles': {
+    name: 'elcorteingles',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    // Captcha: {
+    // 	container: 'body',
+    // 	text: [
+    // 		'geben sie die unten angezeigten zeichen ein',
+    // 		'geben sie die zeichen unten ein'
+    // 	]
+    // },
+    inStock: [
+      {
+        container: '.product_detail-purchase.mb-2.c12 .js-add-cart-text',
+        text: ['a la cesta'],
+      },
+    ],
+    maxPrice: {
+      container: '.product_detail-buy-price-container .price._big',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container:
+          '.c12.mt-2.product_detail-add_to_cart.one_click_enabled .c12.button._normal.js-buy-button._sold_out.view-page._disabled',
+        text: ['Agotado'],
+      },
+      {
+        container:
+          '.product_detail-purchase.mb-2.c12 .c12.button._normal.js-buy-button._sold_out.view-page._disabled',
+        text: ['No disponible'],
+      },
+    ],
+  },
+    backoffStatusCodes: [403
+  },
+
+  'eletronicamente': {
+    name: 'eletronicamente',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: [
+      {
+        container: '.sistock',
+        text: ['en stock'],
+      },
+    ],
+    maxPrice: {
+      container: '.our_price_display',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '.nostock',
+        text: ['Producto sujeto a disponibilidad de fabricante'],
+      },
+    ],
+  }
+
+  },
+
+  'elkjop': {
+    name: 'elkjop',
+    country: 'NO',
+    currency: 'kr.',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        '#product-detail-wrapper > div.col.any-5-12.M-2-5.information > div.buy-button-container.align-left.any-1-1.table-btn > div > div > div.product-price-button-wrap > div > div > span > span',
+      text: ['Legg i handlevogn'],
+    },
+    maxPrice: {
+      container: '.product-price-container > span:nth-child(1)',
+    },
+    outOfStock: {
+      container:
+        '#product-detail-wrapper > div.col.any-5-12.M-2-5.information > div.buy-button-container.align-left.any-1-1.table-btn > div > div > div.product-price-button-wrap > div > div > span > span',
+      text: ['Ikke tilgjengelig'],
+    },
+  }
+
+  },
+
+  'eprice': {
+    name: 'eprice',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.topSideDx',
+      text: ['disponibile', 'pochi pezzi'],
+    },
+    maxPrice: {
+      container: '#PrezzoClasic span[class*="big"]',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.dispo',
+      text: ['ESAURITO O FUORI PROD.'],
+    },
+  }
+
+  },
+
+  'equippr': {
+    name: 'equippr',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: 'buybox--button-container',
+      text: ['in den warenkorb'],
+    },
+    maxPrice: {
+      container: '.product--price',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.product--buybox',
+      text: ['bald verfügbar'],
+    },
+  }
+
+  },
+
+  'euronics-de': {
+    name: 'euronics-de',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.buy-btn--cart-text',
+      text: ['Warenkorb'],
+    },
+    maxPrice: {
+      container: '.price--content',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container:
+        '.product--buybox .alert.is--error.is--rounded .alert--content',
+      text: [
+        'Artikel steht derzeit nicht zur Verfügung',
+        'Morgen im Laufe des Morgens und nur online unter',
+      ],
+    },
+  }
+
+  },
+
+  'euronics': {
+    name: 'euronics',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.purchaseButtonsWidth',
+      text: ['Aggiungi al carrello'],
+    },
+  }
+
+  },
+
+  'evatech': {
+    name: 'evatech',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.product_detail_add_to_cart > span:nth-child(2)',
+      text: ['ADD TO CART'],
+    },
+    maxPrice: {
+      container: '.product_detail_price',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.product_detail_add_to_cart > div:nth-child(2)',
+      text: ['SOLD OUT'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'evga-eu': {
+    name: 'evga-eu',
+    country: 'EU',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.product-buy-specs',
+      text: ['add to cart'],
+    },
+  }
+
+  },
+
+  'evga': {
+    name: 'evga',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.product-buy-specs',
+      text: ['add to cart'],
+    },
+  }
+
+  },
+
+  'expert': {
+    name: 'expert',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: [
+      {
+        container: 'span.widget-ArticleStatus-buttonText',
+        text: ['In den Warenkorb'],
+      },
+    ],
+    maxPrice: {
+      container: '.widget-Container-subContent .widget-ArticlePrice-price',
+      euroFormat: false,
+    },
+    outOfStock: [
+      {
+        container:
+          'span[style="font-size: 14pt;"] > span[style="color: #ff5e19;"]',
+        text: ['Das von Ihnen ausgewählte Produkt ist ausverkauft'],
+      },
+      {
+        container: 'span.widget-ArticleStatus-statusPointText',
+        text: ['Artikel ist derzeit nicht verfügbar'],
+      },
+    ],
+  },
+    backoffStatusCodes: [403
+  },
+
+  'futurex': {
+    name: 'futurex',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.productPriceInner',
+      text: ['Auf Lager'],
+    },
+    maxPrice: {
+      container: '.price',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '.notavail',
+        text: ['Aktuell nicht verfügbar'],
+      },
+    ],
+  }
+
+  },
+
+  'galaxus': {
+    name: 'galaxus',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#addToCartButton:enabled',
+      text: ['In den Warenkorb'],
+    },
+    maxPrice: {
+      container: '.productDetail .Z1c8',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '.availabilityText',
+        text: ['aktuell nicht lieferbar und kein liefertermin vorhanden'],
+      },
+      {
+        container: '.availabilityText',
+        text: [
+          'der liefertermin ist beim lieferanten in abklärung und wird aktualisiert.',
+        ],
+      },
+    ],
+  }
+
+  },
+
+  'game-es': {
+    name: 'game-es',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container:
+        '#body > div.main.container > div > div > section.right-side.product-quick-actions > div > h4 > span',
+      text: ['Comprar'],
+    },
+    maxPrice: {
+      container:
+        '#body > div.main.container > div > div > section.right-side.product-quick-actions > div > div',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container:
+        '#body > div.main.container > div > div > section.right-side.product-quick-actions > div > h4 > span',
+      text: ['Agotado'],
+    },
+  }
+
+  },
+
+  'game': {
+    name: 'game',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.buyingOptions',
+      text: ['Pre-order Now', 'Buy New'],
+    },
+    maxPrice: {
+      container: '.buyingOptions .btnPrice',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.buyingOptions',
+      text: ['out of stock'],
+    },
+  }
+
+  },
+
+  'gamestop-ca': {
+    name: 'gamestop-ca',
+    country: 'CA',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    maxPrice: {
+      container: '.singleVariantText .prodPriceCont',
+    },
+    outOfStock: {
+      container: '#btnAddToCart[style*="display:none;"] ',
+      text: ['add to cart'],
+    },
+  }
+
+  },
+
+  'gamestop-de': {
+    name: 'gamestop-de',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: [
+      {
+        container: '#btnAddToCart',
+        text: ['In den Warenkorb'],
+      },
+      {
+        container: '#btnAddToCart',
+        text: ['Vorbestellen'],
+      },
+    ],
+    maxPrice: {
+      container: '.buySection .prodPriceCont',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.megaButton',
+      text: ['Nicht verfügbar'],
+    },
+  },
+    successStatusCodes: [[0
+  },
+
+  'gamestop-ie': {
+    name: 'gamestop-ie',
+    country: 'IE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#btnAddToCart',
+      text: ['add to cart!'],
+    },
+    maxPrice: {
+      container: 'span.pricetext',
+    },
+  }
+
+  },
+
+  'gamestop-it': {
+    name: 'gamestop-it',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#btnAddToCart',
+      text: ['Aggiungi al Carrello'],
+    },
+    maxPrice: {
+      container: '.buySection .prodPriceCont',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.megaButton .buyDisabled',
+      text: ['Esaurito'],
+    },
+  }
+
+  },
+
+  'gamestop': {
+    name: 'gamestop',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: [
+      {
+        container: '.add-to-cart',
+        text: ['add to cart'],
+      },
+      {
+        container: '.add-to-cart',
+        text: ['Pre-Order'],
+      },
+    ],
+    maxPrice: {
+      container: '.primary-details-row .actual-price',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.add-to-cart',
+      text: ['not available'],
+    },
+  },
+    successStatusCodes: [[0
+  },
+
+  'globaldata': {
+    name: 'globaldata',
+    country: 'PT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container:
+        'body > main > div.main-container > div.container.mb-5 > div.row.align-items-lg-start.z-above-pattern > ck-product-cta-box > div > div.d-flex.mt-4 > div.w-100 > ck-addto-cart-wrapper > form > div > div.w-100.pl-3 > button > span',
+      text: ['Adicionar ao carrinho'],
+    },
+    outOfStock: {
+      container:
+        'body > main > div.main-container > div.container.mb-5 > div.row.align-items-lg-start.z-above-pattern > ck-product-cta-box > div > div.d-flex.mt-4 > div.w-100 > button',
+      text: ['Notifique-me quando estiver em stock'],
+    },
+  }
+
+  },
+
+  'hardware-planet': {
+    name: 'hardware-planet',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.add >button.add-to-cart',
+      text: ['Aggiungi al carrello'],
+    },
+    maxPrice: {
+      container: '..current-price > span',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '#product-availability',
+      text: ['Non disponibile'],
+    },
+  },
+    backoffStatusCodes: [404
+  },
+
+  'harristechnology': {
+    name: 'harristechnology',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        '#content_tab-description > div.desc2 > p.product-availability',
+      text: ['in stock'],
+    },
+    outOfStock: {
+      container:
+        '#content_tab-description > div.desc2 > p.product-availability',
+      text: ['Please call or e-mail us for availability'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'harveynorman-ie': {
+    name: 'harveynorman-ie',
+    country: 'IE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: 'input.btn-action',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: '.price',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.product-highlight-text',
+      text: ['SOLD OUT! WATCH THIS SPACE FOR MORE INFORMATION'],
+    },
+  }
+
+  },
+
+  'igame': {
+    name: 'igame',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        'div.product-form__controls-group.product-form__controls-group--submit > div > button',
+      text: ['ADD TO CART'],
+    },
+    maxPrice: {
+      container: 'div.price__pricing-group > div.price__regular > dd > span',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container:
+        '#product_form_6084255350971 > div.product-form__controls-group.product-form__controls-group--submit > div > button',
+      text: ['SOLD OUT'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'johnlewis': {
+    name: 'johnlewis',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#button--add-to-basket',
+      text: ['Add to your basket'],
+    },
+  }
+
+  },
+
+  'kabum': {
+    name: 'kabum',
+    country: 'BR',
+    currency: 'R
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.botao-comprar',
+      text: ['comprar'],
+    },
+    outOfStock: {
+      container: '.bot_comprar',
+      text: ['indisponível'],
+    },
+  }
+
+  },
+
+  'komplett-no': {
+    name: 'komplett-no',
+    country: 'NO',
+    currency: 'kr.',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        '#MainContent > div.no-bs-center.maincontent-container.container.main-body.ignore-gutter-xs.product-page-boxes > div.responsive-content-wrapper > div.product-page > section > div > section > div.product-main-info__body > div.product-main-info__buy-and-more > div.buy-button-section > div > div > div.product-main-info-buy-button > div.buy-button > button',
+      text: ['LEGG I HANDLEVOGN'],
+    },
+    outOfStock: {
+      container:
+        '#MainContent > div.no-bs-center.maincontent-container.container.main-body.ignore-gutter-xs.product-page-boxes > div.responsive-content-wrapper > div.product-page > section > div > section > div.product-main-info__body > div.product-main-info__buy-and-more > div.buy-button-section > div > div > div.subscribe-product-container > div > div > button',
+      text: ['MOTTA VARSEL'],
+    },
+  }
+
+  },
+
+  'ldlc-es': {
+    name: 'ldlc-es',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#product-page-stock > div > div.content > div > span',
+      text: ['stock'],
+    },
+    maxPrice: {
+      container:
+        '#activeOffer > div.product-info > div.wrap-aside > aside > div.price > div',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '#product-page-stock > div > div.content > div > span',
+      text: ['agotado'],
+    },
+  }
+
+  },
+
+  'ldlc-italy': {
+    name: 'ldlc-italy',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.stock',
+      text: ['Disponibile'],
+    },
+    maxPrice: {
+      container: '.price',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.stock',
+      text: ['Rottura'],
+    },
+  }
+
+  },
+
+  'ldlc': {
+    name: 'ldlc',
+    country: 'FR',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.stock',
+      text: ['stock'],
+    },
+    maxPrice: {
+      container: '.price .price',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.stock',
+      text: ['rupture'],
+    },
+  }
+
+  },
+
+  'lmc': {
+    name: 'lmc',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.stock-info-message',
+      text: ['In Stock', 'Low In Stock', 'Stock in warehouse'],
+    },
+    maxPrice: {
+      container: '.product-views-price-lead',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.stock-info-message',
+      text: ['Pre-order', 'Call for ETA'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'materiel': {
+    name: 'materiel',
+    country: 'FR',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.product-availability',
+      text: ['EN STOCK'],
+    },
+    maxPrice: {
+      container: '.o-product__price',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.product-availability',
+      text: ['RUPTURE'],
+    },
+  }
+
+  },
+
+  'mediamarkt-at': {
+    name: 'mediamarkt-at',
+    country: 'AT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    captcha: {
+      container: 'p',
+      text: ['Das ging uns leider zu schnell.'],
+    },
+    maxPrice: {
+      container: 'span[font-family="price"]',
+      euroFormat: false,
+    },
+    outOfStock: [
+      {
+        container: '#root',
+        text: ['Dieser Artikel ist aktuell nicht verfügbar.'],
+      },
+      {
+        container: '#root',
+        text: ['Leider keine Lieferung möglich'],
+      },
+      {
+        container: '#root',
+        text: ['Nicht verfügbar'],
+      },
+      {
+        container: '#root',
+        text: ['Dieser Artikel ist dauerhaft ausverkauft'],
+      },
+      {
+        container: '#root',
+        text: ['Dieser Artikel ist bald wieder für Sie verfügbar'],
+      },
+      {
+        container: '#root',
+        text: ['Dieser Artikel ist bald wieder verfügbar'],
+      },
+    ],
+  },
+    backoffStatusCodes: [403
+  },
+
+  'mediamarkt': {
+    name: 'mediamarkt',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: ['Das ging uns leider zu schnell.'],
+    },
+    maxPrice: {
+      container: 'span[font-family="price"]',
+      euroFormat: false,
+    },
+    outOfStock: [
+      {
+        container: '#root',
+        text: ['Dieser Artikel ist aktuell nicht verfügbar.'],
+      },
+      {
+        container: '#root',
+        text: ['Leider keine Lieferung möglich'],
+      },
+      {
+        container: '#root',
+        text: ['Nicht verfügbar'],
+      },
+      {
+        container: '#root',
+        text: ['Dieser Artikel ist dauerhaft ausverkauft'],
+      },
+      {
+        container: '#root',
+        text: ['Dieser Artikel ist bald wieder für Sie verfügbar'],
+      },
+      {
+        container: '#root',
+        text: ['Dieser Artikel ist bald wieder verfügbar'],
+      },
+    ],
+  },
+    backoffStatusCodes: [403
+  },
+
+  'medimax': {
+    name: 'medimax',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: [
+      {
+        container: '.product-cart-add-to-cart-button',
+        text: ['In den Warenkorb'],
+      },
+      {
+        container: '.stock-message',
+        text: ['Lieferung in'],
+      },
+    ],
+    maxPrice: {
+      container: '.priceOfProduct',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.content .large',
+      text: ['Ihr MEDIMAX Team'],
+    },
+  }
+
+  },
+
+  'megekko': {
+    name: 'megekko',
+    country: 'NL',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.product-order .text_green',
+      text: ['dag', 'werkdag'],
+    },
+    maxPrice: {
+      container: '.col_right_container .euro',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.product_detail .text_red',
+      text: ['minimaal 10 dagen'],
+    },
+  }
+
+  },
+
+  'memoryexpress': {
+    name: 'memoryexpress',
+    country: 'CA',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    maxPrice: {
+      container:
+        '#ProductPricing .GrandTotal.c-capr-pricing__grand-total > div',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container:
+        '.c-capr-inventory-selector__details-online .c-capr-inventory-store__availability',
+      text: ['Out of Stock', 'Backorder'],
+    },
+  }
+
+  },
+
+  'microcenter': {
+    name: 'microcenter',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#inventory-qty',
+      text: ['IN STOCK']
+    },
+    outOfStock: {
+      container: '#inventory-qty',
+      text: ['SOLD OUT']
+    }
+  }
+
+  },
+
+  'microsoft-ca': {
+    name: 'microsoft-ca',
+    country: 'CA',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: 'button[aria-label="Checkout bundle"]',
+      text: ['Checkout'],
+    },
+    outOfStock: {
+      container: 'button[aria-label="Checkout bundle"]',
+      text: ['Out of stock'],
+    },
+  }
+
+  },
+
+  'microsoft': {
+    name: 'microsoft',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: 'button[aria-label="Checkout bundle"]',
+      text: ['Checkout'],
+    },
+    outOfStock: {
+      container: 'button[aria-label="Checkout bundle"]',
+      text: ['Out of stock'],
+    },
+  }
+
+  },
+
+  'mightyape': {
+    name: 'mightyape',
+    country: 'NZ',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: [
+      {
+        container: 'div.status',
+        text: [' In stock at '],
+      },
+    ],
+    outOfStock: [
+      {
+        container: 'div.status',
+        text: [' Unavailable '],
+      },
+    ],
+  }
+
+  },
+
+  'mindfactory': {
+    name: 'mindfactory',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.pshipping',
+      text: ['lagernd', 'verfügbar'],
+    },
+    maxPrice: {
+      container: 'div[class="pprice"]',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.pshipping',
+      text: ['ohne liefertermin'],
+    },
+  }
+
+  },
+
+  'msi': {
+    name: 'msi',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#button-cart',
+      text: ['ADD TO CART'],
+    },
+    outOfStock: {
+      container: '#product_qty > button.btn.add-cart-button-3',
+      text: ['Notify Me'],
+    },
+    maxPrice: {
+      container: '#prices-new',
+    },
+  }
+
+  },
+
+  'msy': {
+    name: 'msy',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        '.product-collateral > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > b:nth-child(1)',
+      text: ['In Stock'],
+    },
+    maxPrice: {
+      container:
+        '#product-details-form > div > div.product-essential > div.overview > div.prices > div > span',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: 'td.spec-name:nth-child(2)',
+      text: ['Out of Stock'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'multicom': {
+    name: 'multicom',
+    country: 'NO',
+    currency: 'kr.',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        '#ctl00_ContentMain_skPC_ctl00_ctl53_ctl02_btnBuy > div:nth-child(1) > span:nth-child(1)',
+      text: ['LEGG I HANDLEVOGN'],
+    },
+    maxPrice: {
+      container: '.b-product-price_',
+    },
+    outOfStock: {
+      container: '.stock-notification-btn',
+      text: ['MOTTA VARSEL!'],
+    },
+  }
+
+  },
+
+  'mwave': {
+    name: 'mwave',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    maxPrice: {
+      container: 'div.divPriceNormal > div',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.stockAndDelivery > li:nth-child(1) > dl > dd',
+      text: ['Currently No Stock'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'neobyte': {
+    name: 'neobyte',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#add_to_cart > button',
+      text: ['Añadir al carrito'],
+    },
+    maxPrice: {
+      container: '#our_price_display',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '#availability_value',
+      text: ['No Disponible'],
+    },
+  }
+
+  },
+
+  'netonnet-no': {
+    name: 'netonnet-no',
+    country: 'NO',
+    currency: 'kr.',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '[id^="BuyButton_ProductPageStandard_"]',
+      text: ['Legg i handlevogn'],
+    },
+    maxPrice: {
+      container: '.price-big',
+    },
+    outOfStock: {
+      container: '[id^="BuyButton_ProductPageStandard_"]',
+      text: ['Overvåk produktet'],
+    },
+  }
+
+  },
+
+  'newegg-sg': {
+    name: 'newegg-sg',
+    country: 'SG',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'marketplace',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: ['are you a human?'],
+    },
+    inStock: [
+      {
+        container: '.product-buy',
+        text: ['add to cart'],
+      },
+      {
+        container: '.loading-text',
+        text: ['add to cart'],
+      },
+    ],
+    maxPrice: {
+      container: '.price-current',
+    },
+    outOfStock: [
+      {
+        container: '.product-inventory',
+        text: [' out of stock.'],
+      },
+      {
+        container: '.product-flag',
+        text: ['out of stock '],
+      },
+    ],
+  }
+
+  },
+
+  'noelleeming': {
+    name: 'noelleeming',
+    country: 'NZ',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: [
+      {
+        container:
+          '#bd > div.product__hero > div > div.columns.product__info.medium-6.small-12 > div.product__price-cart.mbs.row > div:nth-child(3) > div > div.product__cta-buttons.columns.small-12 > form > button > strong',
+        text: ['Buy Now'],
+      },
+    ],
+  }
+
+  },
+
+  'notebooksbilliger': {
+    name: 'notebooksbilliger',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.warehouse',
+      text: [
+        'sofort ab lager',
+        'verfügbarkeit: ca. 2-4 werktage',
+        'verfügbarkeit: ca. 5-10 werktage',
+      ],
+    },
+    maxPrice: {
+      container:
+        'form[name="cart_quantity"]  span[class*="product-price__regular"]',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '.warehouse',
+        text: ['liefertermin noch unbestimmt'],
+      },
+      {
+        container: '.soldOut',
+        text: ['dieses produkt ist leider ausverkauft.'],
+      },
+      {
+        container: '.just_inStore',
+        text: [
+          'dieses Produkt kann nur in unseren unten genannten Stores gekauft werden.',
+        ],
+      },
+      {
+        container: '#product_error_text',
+        text: ['leider ist dieser artikel nicht mehr verfügbar.'],
+      },
+    ],
+  }
+
+  },
+
+  'novatech': {
+    name: 'novatech',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.newspec-specprice',
+      text: ['add to basket'],
+    },
+    maxPrice: {
+      container: 'p[class="newspec-price"]',
+      euroFormat: false, // Note: Novatech uses non-euroFromat as price seperator
+    },
+    outOfStock: {
+      container: '.newspec-pricesection',
+      text: [
+        'very short supply, no confirmed date',
+        'this product is only available to buy when in stock',
+        'ordered upon request',
+        'price to be confirmed',
+      ],
+    },
+  }
+
+  },
+
+  'novoatalho': {
+    name: 'novoatalho',
+    country: 'PT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container:
+        'div.line > div.pull-left > div.stockpadding > span.stock > b > a',
+      text: ['DISPONÍVEL', 'POUCAS UNIDADES'],
+    },
+    outOfStock: {
+      container:
+        'div.line > div.pull-left > div.stockpadding > span.stock > b > a',
+      text: ['INDISPONÍVEL'],
+    },
+    maxPrice: {
+      container:
+        'div.line > div.pull-right > div.text-right > span.product-price',
+      euroFormat: true,
+    },
+  }
+
+  },
+
+  'nvidia-es': {
+    name: 'nvidia-es',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.buy',
+      text: ['Añadir al carrito', 'COMPRAR AHORA'],
+    },
+    outOfStock: {
+      container: '.buy',
+      text: ['AGOTADO'],
+    },
+  }
+
+  },
+
+  'nvidia-fr': {
+    name: 'nvidia-fr',
+    country: 'FR',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.buy',
+      text: ['ajouter au panier', 'acheter maintenant'],
+    },
+    outOfStock: {
+      container: '.buy',
+      text: ['RUPTURE DE STOCK'],
+    },
+  }
+
+  },
+
+  'officedepot': {
+    name: 'officedepot',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: ['please verify you are a human'],
+    },
+    inStock: {
+      container: '#productPurchase',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: 'span[class^="price_column right"]',
+      euroFormat: false,
+    },
+  }
+
+  },
+
+  'ollo': {
+    name: 'ollo',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: [
+      {
+        container:
+          'div.product-availability:nth-child(2) > div:nth-child(1) > span:nth-child(1)',
+        text: ['Disponibile'],
+      },
+    ],
+    maxPrice: {
+      container: '.main-product-price',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container:
+        'div.product-availability:nth-child(2) > div:nth-child(1) > span:nth-child(1)',
+      text: ['Attualmente non disponibile', 'In Pre-ordine'],
+    },
+  }
+
+  },
+
+  'opirata': {
+    name: 'opirata',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container:
+        '#app > div.wrapper-container.full > div.container.list > div.row.less-gutters > div:nth-child(2) > div > div:nth-child(2) > div > form > div:nth-child(4) > div.col-12.text-right > button',
+      text: ['Comprar'],
+    },
+    maxPrice: {
+      container:
+        '#app > div.wrapper-container.full > div.container.list > div.row.less-gutters > div:nth-child(2) > div > div:nth-child(2) > div > form > div.row.info-details-buy > div.col-12.col-md-6.product-price.text-right > div:nth-child(1) > div > h3',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container:
+        '#app > div.wrapper-container.full > div.container.list > div.row.less-gutters > div:nth-child(2) > div > div:nth-child(2) > div > form > div:nth-child(4) > div.col-12.text-right > button',
+      text: ['Avísame'],
+    },
+  }
+
+  },
+
+  'otto': {
+    name: 'otto',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: [
+      {
+        container:
+          'button.prd_ordering__button.p_btn150--1st.js_product_addToBasket',
+        text: ['In den Warenkorb'],
+      },
+    ],
+    maxPrice: {
+      container: '#normalPriceAmount',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: 'div.p_message.p_message--hint > strong',
+      text: ['Deinen gewünschten Artikel können wir leider nicht mehr liefern'],
+    },
+  }
+
+  },
+
+  'overclockers': {
+    name: 'overclockers',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: 'ck-addto-cart-wrapper',
+      text: ['add to basket', 'in stock'],
+    },
+    maxPrice: {
+      container: 'ck-product-cta-box .price__amount',
+      euroFormat: false, // Note: Overclockers uses non-euroFromat as price seperator
+    },
+    outOfStock: {
+      container: 'ck-addto-cart-wrapper',
+      text: ['out of stock', 'pre order', 'bought to order'],
+    },
+  }
+
+  },
+
+  'pbtech': {
+    name: 'pbtech',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: [
+      {
+        container:
+          '#product_right_column > div.product_bgWrap > div.p_ov_stock_summary_dd > div > div',
+        text: ['In stock'],
+      },
+      {
+        container: '.p_stock_title_dd',
+        text: ['In stock'],
+      },
+    ],
+    maxPrice: {
+      container: 'div.p_price_dd > div.p_price > span.ginc',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container:
+        '#product_right_column > div.product_bgWrap > div.p_ov_stock_summary_dd > div > div',
+      text: ['Available on order', 'Unavailable', 'Out of stock'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'pcbyte': {
+    name: 'pcbyte',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.in-stock-label',
+      text: ['in stock'],
+    },
+    maxPrice: {
+      container: 'div.price-line.d-flex.mb-3 > div:nth-child(1) > span > span',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: 'a.btn:nth-child(3)',
+      text: ['Pre Order', 'Pre-Order'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'pccg': {
+    name: 'pccg',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: 'div.price-box > div.stock-label',
+      text: ['IN STOCK'],
+    },
+    outOfStock: {
+      container: 'div.price-box > div.stock-label',
+      text: ['CHECK BACK LATER!'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'pccomponentes': {
+    name: 'pccomponentes',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#btnsWishAddBuy',
+      text: ['Comprar'],
+    },
+    maxPrice: {
+      container: '#precio-main',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '#btnsWishAddBuy',
+      text: ['Avísame'],
+    },
+  }
+
+  },
+
+  'pcdiga': {
+    name: 'pcdiga',
+    country: 'PT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#product-addtocart-button > span',
+      text: ['Adicionar ao carrinho'],
+    },
+    outOfStock: {
+      container: 'div[id="skrey_estimate_date_product_page_wrapper"]',
+      text: ['Sem stock'],
+    },
+    maxPrice: {
+      container: '.price-container.price-final_price > .price-wrapper > span',
+      euroFormat: true,
+    },
+  }
+
+  },
+
+  'pcking': {
+    name: 'pcking',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '.es_order_box-article_detail',
+      text: ['sofort lieferbar [Versand]', 'abholbereit [PC-KING]'],
+    },
+    maxPrice: {
+      container: 'div.es_product_price-article_detail > b',
+      euroFormat: true,
+    },
+    outOfStock: [
+      {
+        container: '.es_order_box-article_detail',
+        text: ['nicht lieferbar'],
+      },
+    ],
+  }
+
+  },
+
+  'playstation': {
+    name: 'playstation',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: [
+      {
+        container: '.productHero-desc .add-to-cart:not(.hide)',
+        text: ['Add'],
+      },
+      {
+        container: '.bulleted-info.queue',
+        text: ['queue'],
+      },
+    ],
+    outOfStock: {
+      container: '.productHero-info .out-stock-wrpr:not(.hide)',
+      text: ['Out of Stock'],
+    },
+  }
+
+  },
+
+  'pny': {
+    name: 'pny',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#ctl01_lbtnAddToCart',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: 'span[itemprop="price"]',
+      euroFormat: false,
+    },
+  }
+
+  },
+
+  'power-no': {
+    name: 'power-no',
+    country: 'NO',
+    currency: 'kr.',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        '#product-intro > div.container.old-product-page.ng-star-inserted > div > div > div.col-md-7 > div > div.product-control > div.buy-area.ng-star-inserted > div.buy-area__webshop > button',
+      text: ['Legg til handlekurv'],
+    },
+    outOfStock: {
+      container:
+        '#product-intro > div.container.old-product-page.ng-star-inserted > div > div > div.col-md-7 > div > div.product-control > div.buy-area.ng-star-inserted > div > button',
+      text: ['Ikke på lager'],
+    },
+  }
+
+  },
+
+  'proshop-de': {
+    name: 'proshop-de',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: 'button[data-form-action="addToBasket"]',
+      text: ['bestellen'],
+    },
+    maxPrice: {
+      container:
+        '.site-currency-wrapper > span[class="site-currency-attention"]',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.site-currency-attention',
+      text: ['Die Ware ist leider nicht mehr verfügbar.'],
+    },
+  }
+
+  },
+
+  'proshop-dk': {
+    name: 'proshop-dk',
+    country: 'DK',
+    currency: 'kr.',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.site-stock',
+      text: ['1-2 dages levering', 'fjernlager'],
+    },
+    maxPrice: {
+      container:
+        '.site-currency-wrapper > span[class="site-currency-attention"]',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.site-stock',
+      text: ['bestilt'],
+    },
+  }
+
+  },
+
+  'proshop-no': {
+    name: 'proshop-no',
+    country: 'NO',
+    currency: 'kr.',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        '#siteContainer > div.site-container-fullwidth > div > div.row.site-content-table > div.col-sm-9.pull-right > div > div > div > div:nth-child(2) > div.col-xs-12.col-sm-7 > div.row.site-row-margin-top-small > div.col-md-5 > form > button',
+      text: ['Kjøp'],
+    },
+    outOfStock: {
+      container: '.site-stock',
+      text: ['Bestilt'],
+    },
+  }
+
+  },
+
+  'rosman-melb': {
+    name: 'rosman-melb',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        '#Availability > div > table > tbody > tr:nth-child(2) > td:nth-child(1)',
+      text: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    },
+    maxPrice: {
+      container: 'span.price.price--withTax.price--main',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container:
+        '#Availability > div > table > tbody > tr:nth-child(2) > td:nth-child(1)',
+      text: ['ETA', 'Call Us'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'rosman': {
+    name: 'rosman',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        '#Availability > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(4)',
+      text: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    },
+    maxPrice: {
+      container: 'span.price.price--withTax.price--main',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container:
+        '#Availability > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(4)',
+      text: ['ETA', 'Call Us'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'saturn': {
+    name: 'saturn',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    captcha: {
+      container: 'p',
+      text: ['Das ging uns leider zu schnell.'],
+    },
+    maxPrice: {
+      container: 'span[font-family="price"]',
+      euroFormat: false,
+    },
+    outOfStock: [
+      {
+        container: '#root',
+        text: ['Dieser Artikel ist aktuell nicht verfügbar.'],
+      },
+      {
+        container: '#root',
+        text: ['Leider keine Lieferung möglich'],
+      },
+      {
+        container: '#root',
+        text: ['Nicht verfügbar'],
+      },
+      {
+        container: '#root',
+        text: ['Dieser Artikel ist dauerhaft ausverkauft'],
+      },
+      {
+        container: '#root',
+        text: ['Dieser Artikel ist bald wieder für Sie verfügbar'],
+      },
+      {
+        container: '#root',
+        text: ['Dieser Artikel ist bald wieder verfügbar'],
+      },
+    ],
+  },
+    backoffStatusCodes: [403
+  },
+
+  'saveonit': {
+    name: 'saveonit',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.supplier',
+      text: ['In Stock', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    },
+    maxPrice: {
+      container: '.money',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.supplier',
+      text: ['Pre-Order', 'On Order'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'scan': {
+    name: 'scan',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    captcha: [
+      {
+        container: '#challenge-form',
+        text: ['hcaptcha_submit'],
+      },
+    ],
+    inStock: {
+      container: '.product-details .buyButton',
+      text: ['add to basket', 'in stock'],
+    },
+    maxPrice: {
+      container: '.product-details .price',
+      euroFormat: false, // Note: Scan uses non-euroFromat as price seperator
+    },
+    outOfStock: {
+      container:
+        '.product-details .buyButton, .product-details .notification-panel',
+      text: ['pre order'],
+    },
+  },
+    disableAdBlocker: true
+  },
+
+  'scorptec': {
+    name: 'scorptec',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#delivery-wrapper > div.product-stock-text',
+      text: ['in stock'],
+    },
+    outOfStock: {
+      container: '#delivery-wrapper > div.product-stock-text',
+      text: ['sold out'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'shopto': {
+    name: 'shopto',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.orderbox_inventory',
+      text: ['In Stock'],
+    },
+  }
+
+  },
+
+  'siabyte': {
+    name: 'siabyte',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#availability_value',
+      text: ['Disponibilidad inmediata', 'Disponibilidad estimada'],
+    },
+    maxPrice: {
+      container: '#our_price_display',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '#availability_value',
+      text: ['Este producto ya no está disponible'],
+    },
+  }
+
+  },
+
+  'smythstoys-ie': {
+    name: 'smythstoys-ie',
+    country: 'IE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#addToCartButton',
+      text: ['add to basket'],
+    },
+    maxPrice: {
+      container: '.price_tag',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.instoreMessage',
+      text: ['out of stock'],
+    },
+  },
+    disableAdBlocker: true
+  },
+
+  'smythstoys': {
+    name: 'smythstoys',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#addToCartButton',
+      text: ['add to basket'],
+    },
+    maxPrice: {
+      container: '.price_tag',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '.instoreMessage',
+      text: ['out of stock'],
+    },
+  }
+
+  },
+
+  'spielegrotte': {
+    name: 'spielegrotte',
+    country: 'DE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: [
+      {
+        container:
+          'html > body > table > tbody > tr > td > div > table > tbody > tr > td > center > table > tbody > tr > td > a.klein > img',
+        text: [''],
+      },
+    ],
+    maxPrice: {
+      container:
+        'html > body > table > tbody > tr > td > div > table > tbody > tr > td > center > table > tbody > tr > td > font > b',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container:
+        'html > body > table > tbody > tr > td > div > table > tbody > tr > td > center > font > b',
+      text: ['Dieses Produkt ist leider neu nicht mehr verfügbar'],
+    },
+  }
+
+  },
+
+  'storm': {
+    name: 'storm',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: 'div.summary.entry-summary > form > button',
+      text: ['ADD TO CART'],
+    },
+    maxPrice: {
+      container: '.price',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: 'div.summary.entry-summary > p.stock.out-of-stock',
+      text: ['Out of stock', 'pre-order', 'preorder'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'target': {
+    name: 'target',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: [
+      {
+        container: '[data-test="preorderButton"]',
+        text: ['Preorder now'],
+      },
+      {
+        container: '[data-test="shipItButton"]',
+        text: ['Ship it'],
+      },
+    ],
+    maxPrice: {
+      container: '[data-test="product-price"]',
+    },
+  }
+
+  },
+
+  'tesco-ie': {
+    name: 'tesco-ie',
+    country: 'IE',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: 'input.submit:nth-child(5)',
+      text: ['add'],
+    },
+    maxPrice: {
+      container: '.linePriceAbbr',
+    },
+    outOfStock: {
+      container: '.noStockTxtCentered > strong:nth-child(1)',
+      text: ['Sorry, this product is currently not available'],
+    },
+  }
+
+  },
+
+  'thewarehouse': {
+    name: 'thewarehouse',
+    country: 'NZ',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    outOfStock: {
+      container:
+        '#maincontent > div.container.product-detail.product-wrapper.pb-xl.pb-lg-xxxl > div > div:nth-child(2) > div.col-12.col-md-6.col-lg-5 > div > div.product-buying-box > div.cart-and-ipay.mt-md > div > div > button:disabled',
+      text: ['Add to Cart'],
+    },
+  }
+
+  },
+
+  'topachat': {
+    name: 'topachat',
+    country: 'GR',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: 'input.cart.button[value="Ajouter au panier"]',
+      text: [''],
+    },
+    maxPrice: {
+      container: 'span.priceFinal.fp44',
+    },
+  }
+
+  },
+
+  'toysrus': {
+    name: 'toysrus',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: 'li.b-product_status',
+      text: ['in stock'],
+    },
+    maxPrice: {
+      container: '.b-price-value',
+    },
+  }
+
+  },
+
+  'ubiquiti': {
+    name: 'ubiquiti',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: [
+      {
+        container: '#titleInStockBadge',
+        text: ['In Stock'],
+      },
+    ],
+    outOfStock: [
+      {
+        container: '.titleSoldOutBadge',
+        text: ['Sold Out'],
+      },
+      {
+        container: '#titleSoldOutBadge',
+        text: ['Sold Out'],
+      },
+    ],
+  }
+
+  },
+
+  'umart': {
+    name: 'umart',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#youhuo_delivery',
+      text: ['in stock'],
+    },
+    maxPrice: {
+      container: '.goods-price',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: 'div.price-box > div.stock-label',
+      text: ['out of stock'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'unieuro': {
+    name: 'unieuro',
+    country: 'IT',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    captcha: {
+      container: 'body',
+      text: ['Too Many Requests.'],
+    },
+    inStock: {
+      container: '.price-container',
+      text: ['Aggiungi al carrello'],
+    },
+  }
+
+  },
+
+  'utlimainformatica': {
+    name: 'utlimainformatica',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container:
+        '#add-to-cart-or-refresh > div.product_header_container.pt-3 > div.product-prices > div:nth-child(2) > div > div.p-add-to-cart > div.product-add-to-cart > div > div.col.col-12.col-sm-auto.addMobileFixed > div > button',
+      text: ['Añadir al carrito'],
+    },
+    maxPrice: {
+      container:
+        '#add-to-cart-or-refresh > div.product_header_container.pt-3 > div.product-prices > div:nth-child(2) > div > span',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container:
+        '#add-to-cart-or-refresh > div.product_header_container.pt-3 > div.product-prices > div:nth-child(2) > div > div.p-add-to-cart > div.product-add-to-cart > div > div.col.col-12.col-sm-auto.addMobileFixed > div > button',
+      text: ['Avísame cuando esté disponible de nuevo'],
+    },
+  }
+
+  },
+
+  'very': {
+    name: 'very',
+    country: 'UK',
+    currency: '£',
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.stockMessaging .indicator',
+      text: ['available', 'low stock'],
+    },
+    maxPrice: {
+      container: '.priceNow',
+      euroFormat: false, // Note: Very uses non-euroFromat as price seperator
+    },
+    outOfStock: {
+      container: '.stockMessaging .indicator',
+      text: ['pre-order'],
+    },
+  }
+
+  },
+
+  'vsgamers': {
+    name: 'vsgamers',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#vs-product-sheet-dashboard',
+      text: ['COMPRAR', 'RESERVAR'],
+    },
+    maxPrice: {
+      container: 'div[class="current ng-binding"]',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '#vs-product-sheet-dashboard',
+      text: ['Avísame'],
+    },
+  }
+
+  },
+
+  'vuugo': {
+    name: 'vuugo',
+    country: 'CA',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.green',
+      text: ['In Stock'],
+    },
+    maxPrice: {
+      container: 'div.price:nth-child(12)',
+    },
+    outOfStock: {
+      container: '.description .red',
+      text: ['Back Order'],
+    },
+  }
+
+  },
+
+  'walmart-ca': {
+    name: 'walmart-ca',
+    country: 'CA',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'marketplace',
+    labels: {
+    inStock: {
+      container: '[data-automation="cta-button"]',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: '[data-automation="buybox-price"]',
+    },
+  }
+
+  },
+
+  'walmart': {
+    name: 'walmart',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'marketplace',
+    labels: {
+    inStock: {
+      container: '.button.spin-button.prod-ProductCTA--primary.button--primary',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: 'span[class*="price-characteristic"]',
+    },
+  }
+
+  },
+
+  'wellstechnology': {
+    name: 'wellstechnology',
+    country: 'AU',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container:
+        '#addToCartForm-product-template > div.payment-buttons.payment-buttons--small > div > div > div > div',
+      text: ['Buy it now'],
+    },
+    maxPrice: {
+      container: '#productPrice-product-template *',
+      euroFormat: false,
+    },
+    outOfStock: {
+      container: '#addToCartText-product-template',
+      text: ['Sold Out'],
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  'wipoid': {
+    name: 'wipoid',
+    country: 'ES',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '#add_to_cart',
+      text: ['COMPRAR'],
+    },
+    maxPrice: {
+      container: '#our_price_display',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '.buttons_bottom_block no-print',
+      text: ['Avísame cuando esté disponible!'],
+    },
+  }
+
+  },
+
+  'xbox': {
+    name: 'xbox',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    outOfStock: {
+      container:
+        '[class="BundleBuilderHeader-module__checkoutButton___3UyEq w-100 bg-light-green btn btn-primary"]',
+      text: ['Out of stock'],
+    },
+  }
+
+  },
+
+  'xtremmedia': {
+    name: 'xtremmedia',
+    country: 'ES',
+    currency: '€',
+    storeType: 'european',
+    labels: {
+    inStock: {
+      container: '#detail > div.article-list-con_stock > a',
+      text: ['DISPONIBLE'],
+    },
+    maxPrice: {
+      container: '#detail > div.offerDetails.article-list-pvp',
+      euroFormat: true,
+    },
+    outOfStock: {
+      container: '#detail > div.article-list-sin_stock',
+      text: ['AGOTADO'],
+    },
+  }
+
+  },
+
+  'zotac': {
+    name: 'zotac',
+    country: 'US',
+    currency: '
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+},
+    storeType: 'standard',
+    labels: {
+    inStock: {
+      container: '.add-to-cart-wrapper',
+      text: ['add to cart'],
+    },
+    maxPrice: {
+      container: 'div[class="product-shop"] span[class="price"]',
+      euroFormat: false,
+    },
+  },
+    backoffStatusCodes: [403
+  },
+
+  // Additional stores can be added here...
+};
+
+/**
+ * Creates a store instance from the registry
+ */
+export function createStoreFromRegistry(storeName: string): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(config);
+    case 'european':
+      return createEuropeanStore(config);
+    case 'standard':
+    default:
+      return createStandardStore(config);
+  }
+}
+
+/**
+ * Gets all configured store names
+ */
+export function getAllStoreNames(): string[] {
+  return Object.keys(storeRegistry);
+}
+
+/**
+ * Gets stores by country
+ */
+export function getStoresByCountry(country: string): string[] {
+  return Object.entries(storeRegistry)
+    .filter(([_, config]) => config.country === country)
+    .map(([name, _]) => name);
+}
+
+/**
+ * Creates a store instance with all options but overriding some fields
+ */
+export function createStoreWithOverrides(
+  storeName: string, 
+  overrides: Partial<StoreFactoryOptions>
+): Store {
+  const config = storeRegistry[storeName];
+  if (!config) {
+    throw new Error(`Store "${storeName}" not found in registry`);
+  }
+  
+  const mergedConfig = {
+    ...config,
+    ...overrides,
+    // Special handling for nested objects like labels
+    labels: overrides.labels 
+      ? {...config.labels, ...overrides.labels} 
+      : config.labels
+  };
+  
+  // Choose the correct factory based on store type
+  switch (config.storeType) {
+    case 'marketplace':
+      return createMarketplaceStore(mergedConfig);
+    case 'european':
+      return createEuropeanStore(mergedConfig);
+    case 'standard':
+    default:
+      return createStandardStore(mergedConfig);
+  }
+}

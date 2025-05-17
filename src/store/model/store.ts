@@ -320,7 +320,7 @@ export type Link = {
   cartUrl?: string;
   itemNumber?: string;
   labels?: Labels;
-  model: Model;
+  model: Model | string; // Allow string for backward compatibility
   openCartAction?: (browser: Browser) => Promise<string>;
   price?: number | null;
   series: Series;

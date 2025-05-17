@@ -82,7 +82,8 @@ export async function usingPage<T>(
   // Get the session for this store/browser or create a new one
   let session = sessionMap.get(store);
   if (!session) {
-    session = new BrowserSession(browser, store); 
+    // Create a new session using the factory method
+    session = await BrowserSession.create(store);
     sessionMap.set(store, session);
   }
   
@@ -128,7 +129,8 @@ export async function tryUsingPage<T>(
       // Get or create session
       let session = sessionMap.get(store);
       if (!session) {
-        session = new BrowserSession(browser, store);
+        // Create a new session using the factory method
+        session = await BrowserSession.create(store);
         sessionMap.set(store, session);
       }
       
@@ -174,7 +176,8 @@ export async function processCookieHandling(
   // Get or create session
   let session = sessionMap.get(store);
   if (!session) {
-    session = new BrowserSession(browser, store);
+    // Create a new session using the factory method
+    session = await BrowserSession.create(store);
     sessionMap.set(store, session);
   }
   

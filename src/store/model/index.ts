@@ -240,3 +240,4 @@ export function updateStores() {
 }
 
 export * from './store';
+export {seriesData} from './series-data';

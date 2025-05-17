@@ -2,7 +2,7 @@
  * Sample links for testing the centralized data store
  */
 import {seriesData} from './series-data';
-import {Link} from './store';
+import {Link, Brand, Model, Series} from './store';
 
 // Sample NVIDIA RTX 3080 links for BestBuy
 const bestbuy3080Links: Link[] = [
@@ -48,16 +48,16 @@ const amdRyzenLinks: Link[] = [
 // Sample PlayStation 5 links
 const ps5Links: Link[] = [
   {
-    brand: 'sony',
-    model: 'ps5 digital', // This is a valid model from the enum at line 245
-    series: 'sonyps5de',
+    brand: 'sony' as Brand,
+    model: 'playstation 5 digital edition' as Model,
+    series: 'sonyps5de' as Series,
     url: 'https://api.bestbuy.com/click/-/6430161/pdp',
     cartUrl: 'https://api.bestbuy.com/click/-/6430161/cart',
   },
   {
-    brand: 'sony',
-    model: 'ps5 console', // This is a valid model from the enum at line 244
-    series: 'sonyps5c',
+    brand: 'sony' as Brand,
+    model: 'playstation 5 console' as Model,
+    series: 'sonyps5c' as Series,
     url: 'https://api.bestbuy.com/click/-/6426149/pdp',
     cartUrl: 'https://api.bestbuy.com/click/-/6426149/cart',
   }

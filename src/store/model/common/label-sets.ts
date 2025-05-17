@@ -160,16 +160,23 @@ export const captchaLabels = {
  * Creates a complete label set using common configurations
  */
 export function createLabelSet(options: {
-  inStock?: LabelQuery | LabelQuery[];
-  outOfStock?: LabelQuery | LabelQuery[];
+  inStock?: LabelQuery;
+  outOfStock?: LabelQuery;
   maxPrice?: {
     container: string;
     euroFormat?: boolean;
   };
-  bannedSeller?: LabelQuery | LabelQuery[];
-  captcha?: LabelQuery | LabelQuery[];
+  bannedSeller?: LabelQuery;
+  captcha?: LabelQuery;
+  container?: string;
+  captchaHandler?: {
+    challenge: string;
+    input: string;
+    submit: string;
+    captureType?: string;
+  };
 }): Labels {
-  return options;
+  return options as Labels;
 }
 
 /**

@@ -28,9 +28,14 @@ export async function makeRequest(
   // Get or create a BrowserSession
   let session: BrowserSession;
   try {
-    // Accessing private browser property to get the session
-    // This is a hack for compatibility
-    session = new BrowserSession(browser, store);
+    // We'll use a fake session since we just need a valid session object
+    // and we already have the browser and page
+    // This is a hack for compatibility 
+    const fakeSession = Object.create(BrowserSession.prototype);
+    // Use type assertion to set properties (normally private)
+    (fakeSession as any).browser = browser;
+    (fakeSession as any).store = store;
+    session = fakeSession as BrowserSession;
   } catch (error) {
     logger.error(`✖ [${store.name}] error creating browser session: ${error}`);
     throw error;

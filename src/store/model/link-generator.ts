@@ -141,7 +141,7 @@ function formatForUrl(str: string): string {
  */
 function getItemId(
   brand: Brand,
-  model: Model,
+  model: Model | string,
   series: string,
   itemIds: Record<string, string>
 ): string | undefined {
@@ -174,12 +174,12 @@ function getItemId(
 /**
  * Get all product combinations (brand, model) for a series
  */
-function getAllProductCombinations(series: Series): Array<{brand: Brand; model: Model}> {
+function getAllProductCombinations(series: Series): Array<{brand: Brand; model: Model | string}> {
   const seriesLinks = getAllLinksForSeries(series);
-  const combinations: Array<{brand: Brand; model: Model}> = [];
+  const combinations: Array<{brand: Brand; model: Model | string}> = [];
   
   // Map to avoid duplicates
-  const combinationMap = new Map<string, {brand: Brand; model: Model}>();
+  const combinationMap = new Map<string, {brand: Brand; model: Model | string}>();
   
   for (const storeName in seriesLinks) {
     for (const link of seriesLinks[storeName]) {
