@@ -21,99 +21,11 @@ export interface ExtendedStoreOptions extends StoreFactoryOptions {
 }
 
 /**
- * Store registry containing all store configurations
+ * Central registry of all store configurations
  */
 export const storeRegistry: Record<string, ExtendedStoreOptions> = {
-  'amazon': {
-    name: 'amazon',
-    country: 'US',
-    currency: '$',
-    storeType: 'marketplace',
-    labels: {
-      captcha: {
-        container: 'body',
-        text: ['enter the characters you see below'],
-      },
-      captchaHandler: {
-        challenge: '.a-row > img',
-        input: '#captchacharacters',
-        submit: 'button[type="submit"]',
-      },
-      inStock: [
-        {
-          container: '#add-to-cart-button',
-          text: ['add to cart'],
-        },
-        {
-          container: '#buy-now-button',
-          text: ['buy now'],
-        },
-      ],
-      maxPrice: {
-        container: '.a-offscreen',
-      },
-    },
-    backoffStatusCodes: [403, 429, 503],
-  },
-  
-  'bestbuy': {
-    name: 'bestbuy',
-    country: 'US',
-    currency: '$',
-    storeType: 'standard',
-    labels: {
-      inStock: {
-        container: '.fulfillment-add-to-cart-button',
-        text: ['add to cart'],
-      },
-      outOfStock: {
-        container: 'button.c-button.c-button-disabled[data-button-state="SOLD_OUT"]',
-        text: ['sold out', 'coming soon'],
-      },
-      maxPrice: {
-        container: '.priceView-customer-price span',
-      },
-    },
-  },
-  
-  'newegg': {
-    name: 'newegg',
-    country: 'US',
-    currency: '$',
-    storeType: 'standard',
-    labels: {
-      inStock: {
-        container: '.product-buy-box:not(.product-buy-box-retired)',
-        text: ['add to cart'],
-      },
-      maxPrice: {
-        container: '.price-current',
-      },
-    },
-  },
-  
-  'alternate-de': {
-    name: 'alternate-de',
-    country: 'DE',
-    currency: '€',
-    storeType: 'european',
-    labels: {
-      inStock: {
-        container: '#add-to-cart button',
-        text: ['in den warenkorb'],
-      },
-      outOfStock: {
-        container: '.stockStatus',
-        text: ['ausverkauft'],
-      },
-      maxPrice: {
-        container: '.price',
-        euroFormat: true,
-      },
-    },
-  },
-  
-  // Additional stores can be added here...
+  // Registry entries will be added from the conversion script
+
 };
 
 /**
@@ -138,7 +50,7 @@ export function createStoreFromRegistry(storeName: string): Store {
 }
 
 /**
- * Gets all configured store names
+ * Gets all store names from the registry
  */
 export function getAllStoreNames(): string[] {
   return Object.keys(storeRegistry);

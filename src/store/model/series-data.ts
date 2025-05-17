@@ -5,6 +5,7 @@
  * organized by series and store, rather than having separate files for each.
  */
 import {Link, Series, Brand, Model} from './store';
+import {config} from '../../config';
 
 /**
  * Type definition for series data structure
@@ -19,165 +20,109 @@ export type SeriesData = {
 /**
  * Central repository for product links organized by series and store
  */
-export const seriesData: SeriesData = {
-  // 3080 Series
-  '3080': {
-    'amazon': [
-      {
-        brand: 'pny',
-        model: 'xlr8 revel',
-        series: '3080',
-        url: 'https://www.amazon.com/dp/B08HBR7QBM',
-        cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HBR7QBM&Quantity.1=1',
-      },
-      {
-        brand: 'pny',
-        model: 'xlr8 revel',
-        series: '3080',
-        url: 'https://www.amazon.com/dp/B08HBTJMLJ',
-        cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HBTJMLJ&Quantity.1=1',
-      },
-      {
-        brand: 'msi',
-        model: 'gaming x trio',
-        series: '3080',
-        url: 'https://www.amazon.com/dp/B08HR7SV3M',
-        cartUrl: 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=B08HR7SV3M&Quantity.1=1',
-      },
-    ],
-    'bestbuy': [
-      {
-        brand: 'nvidia',
-        model: 'founders edition',
-        series: '3080',
-        url: 'https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p',
-      },
-      {
-        brand: 'evga',
-        model: 'xc3 ultra',
-        series: '3080',
-        url: 'https://www.bestbuy.com/site/evga-geforce-rtx-3080-10gb-xc3-ultra-gaming-gddr6-pci-express-4-0-graphics-card/6432400.p',
-      },
-    ],
-  },
-  
-  // 5080 Series
-  '5080': {
-    'newegg': [
-      {
-        brand: 'nvidia',
-        model: 'founders edition',
-        series: '5080',
-        url: 'https://www.newegg.com/nvidia-geforce-rtx-5080/p/N82E16814998015',
-      },
-    ],
-    'bestbuy': [
-      {
-        brand: 'nvidia',
-        model: 'founders edition',
-        series: '5080',
-        url: 'https://www.bestbuy.com/site/nvidia-geforce-rtx-5080-16gb-gddr7-pci-express-4-0-graphics-card/6598532.p',
-      },
-    ],
-  },
-  
-  // ryzen9950x3d Series
-  'ryzen9950x3d': {
-    'amazon': [
-      {
-        brand: 'amd',
-        model: '9950x3d',
-        series: 'ryzen9950x3d',
-        url: 'https://www.amazon.com/AMD-9950X3D-24-Core-Desktop-Processor/dp/B0D2W41RQM',
-      },
-    ],
-  },
-};
+export const seriesData: SeriesData = {}; 
+
+// Note: This file is prepared to hold all product links from series files.
+// Use extract-links-robust.js to populate this data structure with product links.
 
 /**
- * Gets links for a specific store and series from the centralized data
- * 
- * @param storeName The name of the store
- * @param seriesName The series to get links for
- * @returns Array of links or empty array if none found
+ * Gets links for a specific series and store
  */
-export function getStoreSeriesLinksFromData(
-  storeName: string,
-  seriesName: Series
+export function getLinksForSeriesAndStore(
+  series: Series,
+  storeName: string
 ): Link[] {
-  // Check if the series exists in the data
-  if (!seriesData[seriesName]) {
+  if (!seriesData[series]) {
     return [];
   }
   
-  // Check if the store exists for this series
-  if (!seriesData[seriesName]?.[storeName]) {
-    return [];
-  }
-  
-  // Return the links for this store and series
-  return seriesData[seriesName]?.[storeName] || [];
+  return seriesData[series]?.[storeName] || [];
 }
 
 /**
- * Gets all series names that have data
+ * Helper function to retrieve all links for a specific series
  */
-export function getAllSeriesNamesFromData(): Series[] {
+export function getAllLinksForSeries(series: Series): {[store: string]: Link[]} {
+  return seriesData[series] || {};
+}
+
+/**
+ * Helper function to get all available series
+ */
+export function getAllSeries(): Series[] {
   return Object.keys(seriesData) as Series[];
 }
 
 /**
- * Gets all store names that have data for a given series
+ * Gets all links for a store from the centralized data by series
  */
-export function getStoreNamesForSeries(seriesName: Series): string[] {
-  if (!seriesData[seriesName]) {
-    return [];
+export function getStoreSeriesLinksFromData(
+  storeName: string
+): Link[] {
+  const links: Link[] = [];
+
+  // Iterate through all series in the centralized data
+  for (const series of getAllSeries()) {
+    if (config.store.showOnlySeries.length > 0 && !config.store.showOnlySeries.includes(series as Series)) {
+      continue;
+    }
+    
+    // Get links for this store and series
+    const seriesLinks = getLinksForSeriesAndStore(series as Series, storeName);
+    if (seriesLinks.length > 0) {
+      links.push(...seriesLinks);
+    }
   }
-  
-  return Object.keys(seriesData[seriesName] || {});
+
+  return links;
 }
 
 /**
- * Filters links by brand, model, and price
+ * Gets all series names from data
  */
-export function filterSeriesDataLinks(
-  links: Link[],
-  options: {
-    brands?: string[];
-    models?: string[];
-    maxPrice?: Record<Series, number>;
-  }
-): Link[] {
-  let filteredLinks = [...links];
-  
-  // Filter by brand
-  if (options.brands && options.brands.length > 0) {
-    filteredLinks = filteredLinks.filter(link => 
-      options.brands!.some(brand => 
-        link.brand.toLowerCase().includes(brand.toLowerCase())
-      )
-    );
-  }
-  
-  // Filter by model
-  if (options.models && options.models.length > 0) {
-    filteredLinks = filteredLinks.filter(link => 
-      options.models!.some(model => 
-        link.model.toLowerCase().includes(model.toLowerCase())
-      )
-    );
-  }
-  
-  // Filter by price
-  if (options.maxPrice) {
-    filteredLinks = filteredLinks.filter(link => {
-      const maxPrice = options.maxPrice![link.series as Series];
-      if (maxPrice && link.price) {
-        return link.price <= maxPrice;
+export function getAllSeriesNamesFromData(): Series[] {
+  return getAllSeries();
+}
+
+/**
+ * Filters links from series data based on config
+ */
+export function filterSeriesDataLinks(links: Link[]): Link[] {
+  return links.filter(link => {
+    // Filter by series
+    if (config.store.showOnlySeries.length > 0 && !config.store.showOnlySeries.includes(link.series)) {
+      return false;
+    }
+    
+    // Filter by brand
+    if (config.store.showOnlyBrands.length > 0 && !config.store.showOnlyBrands.includes(link.brand)) {
+      return false;
+    }
+    
+    // Filter by model is more complex and handled separately
+    // This is a simplified version that matches the pattern in store/filter.ts
+    if (config.store.showOnlyModels.length > 0) {
+      const sanitizedModel = link.model.replace(/\s/g, '');
+      const sanitizedSeries = link.series.replace(/\s/g, '');
+      
+      for (const configModelEntry of config.store.showOnlyModels) {
+        const sanitizedConfigModel = configModelEntry.name.replace(/\s/g, '');
+        const sanitizedConfigSeries = configModelEntry.series.replace(/\s/g, '');
+        
+        if (sanitizedConfigSeries) {
+          if (
+            sanitizedSeries === sanitizedConfigSeries &&
+            sanitizedModel === sanitizedConfigModel
+          ) {
+            return true;
+          }
+        } else if (sanitizedModel === sanitizedConfigModel) {
+          return true;
+        }
       }
-      return true;
-    });
-  }
-  
-  return filteredLinks;
+      return false;
+    }
+    
+    return true;
+  });
 }

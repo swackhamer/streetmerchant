@@ -9,6 +9,7 @@
     "clean": "gts clean",
     "compile": "tsc",
     "compile:production": "tsc -p tsconfig.prod.json",
+    "compile:deduplication": "tsc -p tsconfig.deduplication.json",
     "pretest": "pnpm run compile",
     "posttest": "pnpm run lint",
     "prestart": "pnpm run compile",
