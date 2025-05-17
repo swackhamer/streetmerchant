@@ -4,7 +4,7 @@ import {logger} from '../../logger';
 import * as fs from 'fs';
 import * as path from 'path';
 import {validateLinks} from './link-validator';
-import {getStoreSeriesLinksFromData, getAllSeriesNamesFromData, filterSeriesDataLinks} from './series-data';
+import {getStoreSeriesLinksFromData, getAllSeries, filterSeriesDataLinks} from './series-data';
 
 // Cache for loaded link modules
 const linkCache: Record<string, Link[]> = {};
@@ -44,7 +44,7 @@ function getAllSeriesNames(): string[] {
  */
 function getAllSeriesNamesCombined(): string[] {
   const seriesFromDir = getAllSeriesNames();
-  const seriesFromData = getAllSeriesNamesFromData();
+  const seriesFromData = getAllSeries();
   
   // Combine and deduplicate
   return [...new Set([...seriesFromDir, ...seriesFromData])];
@@ -116,9 +116,10 @@ async function getStoreSeriesLinks(
 ): Promise<Link[]> {
   // First try to get links from the centralized data if enabled
   if (useCentralizedData) {
-    const dataLinks = getStoreSeriesLinksFromData(storeName, series);
-    if (dataLinks.length > 0) {
-      return dataLinks;
+    const allDataLinks = getStoreSeriesLinksFromData(storeName);
+    const seriesLinks = allDataLinks.filter(link => link.series === series);
+    if (seriesLinks.length > 0) {
+      return seriesLinks;
     }
   }
   
@@ -140,11 +141,8 @@ function filterLinks(links: Link[], options?: LinkFilterOptions): Link[] {
   
   // Use the centralized filtering function if available
   if (options.useCentralizedData) {
-    return filterSeriesDataLinks(links, {
-      brands: options.brands,
-      models: options.models,
-      maxPrice: options.maxPrice
-    });
+    // The centralized filtering function now uses config directly
+    return filterSeriesDataLinks(links);
   }
   
   let filteredLinks = links;
