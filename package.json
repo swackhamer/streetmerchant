@@ -18,6 +18,8 @@
     "test": "c8 jest",
     "test:notification": "pnpm run compile && node build/test/functional/test-notification.js",
     "test:notification:production": "node build/test/functional/test-notification.js",
+    "test:desktop-notification": "pnpm run compile && node build/test/functional/test-desktop-notification.js",
+    "test:notification-tests": "node test/functional/notification-tests/run-all-tests.js",
     "test:captcha": "pnpm run compile && node build/test/functional/test-captcha.js",
     "test:captcha:production": "node build/test/functional/test-captcha.js"
   },
