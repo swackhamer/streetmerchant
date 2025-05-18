@@ -14,10 +14,10 @@ export function filterSeriesDataLinks(links: Link[]): Link[] {
   // Debug all link series before filtering
   if (links.length > 0) {
     console.log(
-      chalk.blue(`[DEBUG]`),
+      chalk.blue('[DEBUG]'),
       `Processing ${chalk.bold.green(links.length)} links for filtering`
     );
-      
+
     // Count links by series
     const seriesCounts = new Map<string, number>();
     for (const link of links) {
@@ -30,7 +30,7 @@ export function filterSeriesDataLinks(links: Link[]): Link[] {
     console.log(chalk.blue('[DEBUG]'), 'Links by series before filtering:');
     for (const [series, count] of seriesCounts.entries()) {
       console.log(
-        chalk.blue(`[DEBUG]`),
+        chalk.blue('[DEBUG]'),
         `  - ${chalk.yellow(series)}: ${chalk.bold.green(count)} links`
       );
     }
@@ -42,7 +42,7 @@ export function filterSeriesDataLinks(links: Link[]): Link[] {
           const included = config.store.showOnlySeries.includes(link.series);
           if (!included) {
             console.log(
-              chalk.blue(`[DEBUG]`),
+              chalk.blue('[DEBUG]'),
               `Filtering out link with series ${chalk.yellow(
                 link.series
               )}, not in showOnlySeries ${chalk.cyan(JSON.stringify(config.store.showOnlySeries))}`
@@ -56,13 +56,13 @@ export function filterSeriesDataLinks(links: Link[]): Link[] {
   if (config.store.showOnlySeries.includes('5090')) {
     const fiveNinetyLinks = filteredByShowOnly.filter(link => link.series === '5090');
     console.log(
-      chalk.blue(`[DEBUG]`),
+      chalk.blue('[DEBUG]'),
       `Found ${chalk.bold.green(fiveNinetyLinks.length)} links for ${chalk.yellow('5090')} series`
     );
 
     for (const link of fiveNinetyLinks) {
       console.log(
-        chalk.blue(`[DEBUG]`),
+        chalk.blue('[DEBUG]'),
         `5090 link: ${chalk.cyan(link.url)}, brand: ${chalk.yellow(
           link.brand
         )}, model: ${chalk.magenta(link.model)}`

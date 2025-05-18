@@ -1,9 +1,5 @@
 import {Link} from '../store';
-import {
-  createLink,
-  createBrandSeriesLinks,
-  createFoundersEditionLinks,
-} from '../common';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common';
 
 /**
  * Links for amazon 3090 series

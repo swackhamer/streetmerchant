@@ -52,14 +52,14 @@ export class BrowserSession {
         logger.debug(`ℹ [${store.name}] restarting browser instance with proxy: ${proxy?.server}`);
         await browser.close();
         this.instances.delete(store);
-        return await this.createBrowser(store, proxy);
+        return this.createBrowser(store, proxy);
       } else {
         logger.debug(`ℹ [${store.name}] reusing browser instance`);
         return browser;
       }
     } else {
       logger.debug(`ℹ [${store.name}] creating new browser instance`);
-      return await this.createBrowser(store, proxy);
+      return this.createBrowser(store, proxy);
     }
   }
 
@@ -101,7 +101,7 @@ export class BrowserSession {
         });
 
         this.instances.set(store, {browser: browserPromise, proxy, userDataDir});
-        return await browserPromise;
+        return browserPromise;
       }
       throw error;
     }
@@ -134,8 +134,8 @@ export class BrowserSession {
   constructor(private readonly store: Store, options: {browser: Browser | Promise<Browser>}) {
     if (options.browser) {
       // For test compatibility, accept either a Browser or a Promise<Browser>
-      this.browser = options.browser instanceof Promise 
-        ? options.browser as unknown as Browser 
+      this.browser = options.browser instanceof Promise
+        ? (options.browser as unknown as Browser)
         : options.browser;
     } else {
       throw new Error('Browser must be provided');
@@ -151,7 +151,7 @@ export class BrowserSession {
       if (this.store.disableAdBlocker) {
         await disableBlockerInPage(page);
       }
-      return await callback(page);
+      return callback(page);
     } finally {
       await this.cleanupPage(page);
     }

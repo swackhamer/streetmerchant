@@ -1,8 +1,8 @@
 # RTX 5090 Series Support
 
-Streetmerchant includes full support for monitoring the latest NVIDIA GeForce RTX 5090 graphics cards across multiple retailers.
+Streetmerchant includes comprehensive support for monitoring the latest NVIDIA GeForce RTX 5090 graphics cards across multiple retailers using a modular architecture that makes it easy to maintain and expand.
 
-> **Update**: We've implemented significant improvements to the store configuration and series filtering system. The application now properly loads and filters RTX 5090 series links from all configured stores.
+> **Update**: We've implemented significant improvements to the store configuration and series filtering system. The application now efficiently loads and filters RTX 5090 series links, with optimized browser session management for improved performance.
 
 ## Supported Retailers for RTX 5090
 
@@ -37,7 +37,7 @@ MAX_PRICE_SERIES_5090=2500
 STORES=amazon:10000:30000,bestbuy,newegg:50000:80000,asus:10000:30000,bandh:10000:30000,msi:10000:30000,nvidia-gb:10000:30000,pny:10000:30000,zotac:10000:30000
 ```
 
-The store format uses `:` to separate the store name from the minimum and maximum sleep times between checks (in milliseconds). This helps prevent rate limiting. If no sleep times are specified (e.g., `bestbuy`), default values will be used.
+The store format uses `:` to separate the store name from the minimum and maximum sleep times between checks (in milliseconds). This helps prevent rate limiting and reduces the chance of IP bans. If no sleep times are specified (e.g., `bestbuy`), default values will be used.
 
 ## Available Models
 
@@ -72,7 +72,9 @@ Streetmerchant currently tracks the following RTX 5090 models:
 
 When configuring `MAX_PRICE_SERIES_5090`, set a realistic limit based on current market prices. For the RTX 5090, a reasonable price cap is typically between $2000-2500 USD.
 
-## Discord Notifications
+## Advanced Configuration
+
+### Discord Notifications
 
 For Discord notification setup with specific RTX 5090 alerts:
 
@@ -82,6 +84,36 @@ DISCORD_NOTIFY_GROUP_5090=@rtx5090alerts
 
 This will tag the specified role or user when an RTX 5090 card is found.
 
+### Browser Settings
+
+For optimal performance when tracking RTX 5090 stock:
+
+```
+# Use headless browser mode to reduce resource usage
+HEADLESS=true
+
+# Use a low-bandwidth mode to speed up page loads
+LOW_BANDWIDTH=true
+
+# Configure browser launch timeout (milliseconds)
+BROWSER_TIMEOUT=120000
+```
+
+## Technical Implementation
+
+The RTX 5090 support is implemented using:
+
+1. Dedicated series files in `src/store/model/series/5090/` for each retailer
+2. Automated series detection via `getAllSeriesNames()` in `series-names.ts`
+3. Optimized browser session management with improved cookie handling
+4. Link filtering system for brand/model selection
+
 ## Adding More Retailers
 
-The modular architecture of Streetmerchant makes it easy to add more retailers as they begin stocking RTX 5090 cards. Check the [Adding a New Store](adding-a-new-store.md) documentation for details on how to contribute additional retailer support.
+The modular architecture of Streetmerchant makes it easy to add more retailers as they begin stocking RTX 5090 cards:
+
+1. Create a new file in `src/store/model/series/5090/` for the retailer
+2. Use helper functions like `createBrandSeriesLinks` to define product URLs
+3. The system will automatically detect and include the new retailer
+
+Check the [Adding a New Store](adding-a-new-store.md) documentation for more details on contributing additional retailer support.

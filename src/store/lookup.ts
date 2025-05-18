@@ -1,18 +1,13 @@
 /**
  * Store lookup functionality
- * 
+ *
  * Responsible for looking up information about each product within stores.
  */
 import {Browser, HTTPResponse, Page} from 'puppeteer';
 import * as abortctl from '../abortctl';
 import {getStores, Link, Store} from './model';
 import {Print, logger} from '../logger';
-import {
-  delay,
-  getSleepTime,
-  isStatusCodeInRange,
-  logUnexpectedError,
-} from '../util';
+import {delay, getSleepTime, isStatusCodeInRange, logUnexpectedError} from '../util';
 import {config} from '../config';
 import {refreshLinksBuilder} from './fetch-links';
 import {filterStoreLink} from './filter';
@@ -21,12 +16,7 @@ import {processBackoffDelay} from './model/helpers/backoff';
 import {sendNotification} from '../messaging';
 import {processCookieHandling, tryUsingPage, usingBrowser} from '../browser';
 import {addTimeout} from '../timers';
-import {
-  runCaptchaDeterrent,
-  handleResponse,
-  isItemInStock,
-  takeScreenshot
-} from './lookup-modules';
+import {runCaptchaDeterrent, handleResponse, isItemInStock, takeScreenshot} from './lookup-modules';
 import chalk from 'chalk';
 
 // Track in-stock status to prevent repeated notifications
@@ -45,7 +35,7 @@ function storeShouldRun(store: Store): boolean {
 
 /**
  * Responsible for looking up information about each product within a `Store`.
- * 
+ *
  * @param browser Puppeteer browser.
  * @param store Vendor of items.
  */
@@ -76,21 +66,14 @@ export async function lookup(browser: Browser, store: Store): Promise<void> {
       continue;
     }
 
-    await tryUsingPage(browser, store, page =>
-      lookupItem(browser, store, page, link)
-    );
+    await tryUsingPage(browser, store, page => lookupItem(browser, store, page, link));
   }
 }
 
 /**
  * Look up a single item
  */
-async function lookupItem(
-  browser: Browser,
-  store: Store,
-  page: Page,
-  link: Link
-): Promise<void> {
+async function lookupItem(browser: Browser, store: Store, page: Page, link: Link): Promise<void> {
   let statusCode = 0;
 
   try {
@@ -169,8 +152,8 @@ async function handleInStockItem(
   link: Link
 ): Promise<void> {
   // Determine the URL to use (cart URL if auto-add is enabled)
-  const givenUrl = link.cartUrl && config.store.autoAddToCart 
-    ? link.cartUrl 
+  const givenUrl = link.cartUrl && config.store.autoAddToCart
+    ? link.cartUrl
     : link.url;
 
   // Log the in-stock item
@@ -178,9 +161,7 @@ async function handleInStockItem(
 
   // Open browser if configured
   if (config.browser.open) {
-    await (link.openCartAction === undefined
-      ? open(givenUrl)
-      : link.openCartAction(browser));
+    await (link.openCartAction === undefined ? open(givenUrl) : link.openCartAction(browser));
   }
 
   // Send notification
@@ -213,15 +194,15 @@ export async function lookupAllStores(browser: Browser): Promise<void> {
         return storeName;
       })
     : [];
-  
+
   console.log(chalk.cyan('Parsed store names:'), chalk.green(configuredStoreNames.join(', ')));
-  
+
   // Log which stores are being processed
   logger.info(`Using stores from .env: ${chalk.green(configuredStoreNames.join(', '))}`);
-  
+
   // Get all available stores
   const allStores = getStores();
-  
+
   // Use case-insensitive matching to find the right stores
   const configuredStores = allStores.filter(store => {
     for (const configName of configuredStoreNames) {
@@ -231,42 +212,75 @@ export async function lookupAllStores(browser: Browser): Promise<void> {
     }
     return false;
   });
-  
+
   // Log the matching stores
-  console.log(chalk.cyan('Matched store names:'), chalk.green(configuredStores.map(s => s.name).join(', ')));
-  
+  console.log(
+    chalk.cyan('Matched store names:'),
+    chalk.green(configuredStores.map(s => s.name).join(', '))
+  );
+
   // Apply store-specific sleep times from config
   for (const store of configuredStores) {
     // Find matching store config from environment variable
-    const storeConfig = config.store.stores.find(sc => sc.name.toLowerCase() === store.name.toLowerCase());
-    
+    const storeConfig = config.store.stores.find(
+      sc => sc.name.toLowerCase() === store.name.toLowerCase()
+
     // Apply min/max page sleep if specified in config
     if (storeConfig) {
       if (storeConfig.minPageSleep) {
         store.minPageSleep = Number(storeConfig.minPageSleep);
-        console.log(chalk.cyan(`Sleep config:`), chalk.yellow(store.name), chalk.green(`minPageSleep =`), chalk.bold.green(`${store.minPageSleep}ms`));
+        console.log(
+          chalk.cyan(`Sleep config:`),
+          chalk.yellow(store.name),
+          chalk.green(`minPageSleep =`),
+          chalk.bold.green(`${store.minPageSleep}ms`)
+        );
       } else if (process.env.PAGE_SLEEP_MIN) {
         store.minPageSleep = Number(process.env.PAGE_SLEEP_MIN);
-        console.log(chalk.cyan(`Sleep config:`), chalk.yellow(store.name), chalk.blue(`global minPageSleep =`), chalk.bold.blue(`${store.minPageSleep}ms`));
+        console.log(
+          chalk.cyan(`Sleep config:`),
+          chalk.yellow(store.name),
+          chalk.blue(`global minPageSleep =`),
+          chalk.bold.blue(`${store.minPageSleep}ms`)
+        );
       }
-      
+
       if (storeConfig.maxPageSleep) {
         store.maxPageSleep = Number(storeConfig.maxPageSleep);
-        console.log(chalk.cyan(`Sleep config:`), chalk.yellow(store.name), chalk.green(`maxPageSleep =`), chalk.bold.green(`${store.maxPageSleep}ms`));
+        console.log(
+          chalk.cyan(`Sleep config:`),
+          chalk.yellow(store.name),
+          chalk.green(`maxPageSleep =`),
+          chalk.bold.green(`${store.maxPageSleep}ms`)
+        );
       } else if (process.env.PAGE_SLEEP_MAX) {
         store.maxPageSleep = Number(process.env.PAGE_SLEEP_MAX);
-        console.log(chalk.cyan(`Sleep config:`), chalk.yellow(store.name), chalk.blue(`global maxPageSleep =`), chalk.bold.blue(`${store.maxPageSleep}ms`));
+        console.log(
+          chalk.cyan(`Sleep config:`),
+          chalk.yellow(store.name),
+          chalk.blue(`global maxPageSleep =`),
+          chalk.bold.blue(`${store.maxPageSleep}ms`)
+        );
       }
     } else if (process.env.PAGE_SLEEP_MIN || process.env.PAGE_SLEEP_MAX) {
       // Apply global page sleep values
       if (process.env.PAGE_SLEEP_MIN) {
         store.minPageSleep = Number(process.env.PAGE_SLEEP_MIN);
-        console.log(chalk.cyan(`Sleep config:`), chalk.yellow(store.name), chalk.blue(`global minPageSleep =`), chalk.bold.blue(`${store.minPageSleep}ms`));
-      }
-      
+        console.log(
+          chalk.cyan(`Sleep config:`),
+          chalk.yellow(store.name),
+          chalk.blue(`global minPageSleep =`),
+          chalk.bold.blue(`${store.minPageSleep}ms`)
+        );
+
       if (process.env.PAGE_SLEEP_MAX) {
         store.maxPageSleep = Number(process.env.PAGE_SLEEP_MAX);
-        console.log(chalk.cyan(`Sleep config:`), chalk.yellow(store.name), chalk.blue(`global maxPageSleep =`), chalk.bold.blue(`${store.maxPageSleep}ms`));
+        console.log(
+          chalk.cyan(`Sleep config:`),
+          chalk.yellow(store.name),
+          chalk.blue(`global maxPageSleep =`),
+          chalk.bold.blue(`${store.maxPageSleep}ms`)
+        );
       }
     }
   }
@@ -277,7 +291,7 @@ export async function lookupAllStores(browser: Browser): Promise<void> {
       try {
         await store.setupAction(browser);
         logger.info(`Loaded ${store.links.length} links for ${store.name}`);
-        
+
         // Debug information about links
         if (store.links.length > 0) {
           // Count links by series
@@ -286,14 +300,14 @@ export async function lookupAllStores(browser: Browser): Promise<void> {
             const count = seriesCounts.get(link.series as string) || 0;
             seriesCounts.set(link.series as string, count + 1);
           }
-          
+
           // Log series breakdown
           for (const [series, count] of seriesCounts.entries()) {
             console.log(
-              chalk.yellow(store.name), 
-              chalk.cyan('-'), 
-              chalk.magenta(series || 'unknown'), 
-              chalk.cyan(':'), 
+              chalk.yellow(store.name),
+              chalk.cyan('-'),
+              chalk.magenta(series || 'unknown'),
+              chalk.cyan(':'),
               chalk.bold.green(`${count} links`)
             );
           }
@@ -303,10 +317,10 @@ export async function lookupAllStores(browser: Browser): Promise<void> {
       }
     }
   }
-  
+
   // Log the final count of stores being processed
   logger.info(`Processing ${configuredStores.length} configured stores`);
-  
+
   // Process all stores in parallel
   const lookups = configuredStores.map(store =>
     usingBrowser(store, browser => lookup(browser, store))

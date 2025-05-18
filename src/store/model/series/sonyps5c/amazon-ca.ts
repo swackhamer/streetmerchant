@@ -1,9 +1,5 @@
 import {Link} from '../store';
-import {
-  createLink,
-  createBrandSeriesLinks,
-  createFoundersEditionLinks,
-} from '../common';
+import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common';
 
 /**
  * Links for amazon-ca sonyps5c series

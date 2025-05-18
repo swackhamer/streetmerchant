@@ -57,10 +57,7 @@ function loadEnvironmentVariables() {
           result.error
         );
       } else {
-        console.error(
-          `Error loading environment variables from ${configPath}:`,
-          result.error
-        );
+        console.error(`Error loading environment variables from ${configPath}:`, result.error);
       }
     } else {
       if (process.env.NODE_ENV !== 'test') {
@@ -95,7 +92,9 @@ function loadEnvironmentVariables() {
         )
       );
     } else {
-      console.info('No .env or dotenv file found in current working directory, using environment variables');
+      console.info(
+        'No .env or dotenv file found in current working directory, using environment variables'
+      );
     }
   }
 }
@@ -112,7 +111,9 @@ console.info(
 function checkDeprecatedConfig() {
   if (process.env.MAX_PRICE) {
     if (process.env.NODE_ENV !== 'test') {
-      console.warn(chalk.yellow('ℹ MAX_PRICE is deprecated, please use MAX_PRICE_SERIES_{{series}}'));
+      console.warn(
+        chalk.yellow('ℹ MAX_PRICE is deprecated, please use MAX_PRICE_SERIES_{{series}}')
+      );
     } else {
       console.warn('ℹ MAX_PRICE is deprecated, please use MAX_PRICE_SERIES_{{series}}');
     }
@@ -162,7 +163,9 @@ if (process.env.SHOW_ONLY_SERIES !== undefined) {
 } else if (store.showOnlySeries.length > 0) {
   // Keep what was already populated from env var in store-config.ts
   if (process.env.NODE_ENV !== 'test') {
-    console.log(chalk.green(`Using series filter from config: ${chalk.cyan(store.showOnlySeries)}`));
+    console.log(
+      chalk.green(`Using series filter from config: ${chalk.cyan(store.showOnlySeries)}`)
+    );
   } else {
     console.log(`Using series filter from config: ${store.showOnlySeries}`);
   }
@@ -173,7 +176,9 @@ if (process.env.SHOW_ONLY_SERIES !== undefined) {
   );
   if (process.env.NODE_ENV !== 'test') {
     console.log(
-      chalk.green(`Using default series list: ${chalk.bold.cyan(store.showOnlySeries.length)} series`)
+      chalk.green(
+        `Using default series list: ${chalk.bold.cyan(store.showOnlySeries.length)} series`
+      )
     );
   } else {
     console.log(`Using default series list: ${store.showOnlySeries.length} series`);

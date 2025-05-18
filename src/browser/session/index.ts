@@ -7,7 +7,6 @@
 
 import {Browser, CDPSession, LaunchOptions, Page} from 'puppeteer';
 import {Proxy as ProxyConfig} from '../../proxy';
-import {Store} from '../../store/model/store';
 
 /**
  * Enum for cookie handling strategies

@@ -1,8 +1,6 @@
 import fs from 'node:fs';
 import os from 'node:os';
-import path from 'node:path';
-import {Browser, LaunchOptions, Page} from 'puppeteer';
-import Puppeteer from 'puppeteer';
+import {LaunchOptions, Page} from 'puppeteer';
 import {config} from '../../../config';
 import {logger} from '../../../logger';
 import {Proxy as ProxyConfig} from '../../../proxy';
@@ -109,6 +107,6 @@ export async function getUserAgent(page: Page): Promise<string> {
   if (!config.browser.userAgentKeepDefault) {
     return getRandomUserAgent();
   } else {
-    return await page.browser().userAgent();
+    return page.browser().userAgent();
   }
 }

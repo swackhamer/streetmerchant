@@ -32,7 +32,6 @@ jest.mock('../../src/browser/session/utils', () => ({
   clearBrowserCookies: jest.fn().mockResolvedValue(undefined),
 }));
 
-
 describe('BrowserSession', () => {
   // Mock store for testing
   const mockStore: Store = {

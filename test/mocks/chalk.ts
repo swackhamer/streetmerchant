@@ -27,7 +27,7 @@ const chalk = {
   cyan: createColorFn(),
   white: createColorFn(),
   gray: createColorFn(),
-  grey: createColorFn()
+  grey: createColorFn(),
 };
 
 export default chalk;
