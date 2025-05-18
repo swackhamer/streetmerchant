@@ -6,7 +6,7 @@
 
 <p align="center"><strong>The world's most powerful stock checker for online retailers</strong></p>
 
-Streetmerchant is an automated stock checking application that continuously monitors various online retailers for product availability and sends notifications when items become available. It's designed for users who want to find hard-to-get products like graphics cards, consoles, or other high-demand items.
+Streetmerchant is an automated stock checking application that continuously monitors various online retailers for product availability and sends notifications when items become available. It's designed for users who want to find hard-to-get products like graphics cards (including the latest RTX 5090 series), consoles, or other high-demand items.
 
 ## Key Features
 

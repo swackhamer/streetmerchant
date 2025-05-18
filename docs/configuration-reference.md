@@ -55,7 +55,7 @@ Maximum prices for different product series (whole numbers only, no currency sym
 | `MAX_PRICE_SERIES_4090` | Max price for RTX 4090 cards |
 | `MAX_PRICE_SERIES_5070` | Max price for RTX 5070 cards |
 | `MAX_PRICE_SERIES_5080` | Max price for RTX 5080 cards |
-| `MAX_PRICE_SERIES_5090` | Max price for RTX 5090 cards |
+| `MAX_PRICE_SERIES_5090` | Max price for RTX 5090 cards - Latest generation GeForce RTX 5090 |
 | `MAX_PRICE_SERIES_RX6700XT` | Max price for AMD RX 6700 XT cards |
 | `MAX_PRICE_SERIES_RX6800` | Max price for AMD RX 6800 cards |
 | `MAX_PRICE_SERIES_RX6800XT` | Max price for AMD RX 6800 XT cards |

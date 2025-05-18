@@ -100,7 +100,19 @@ pnpm run compile:production
 
 ## Configuration
 
-The application is heavily driven by environment variables, which can be set in a file named `dotenv` (copied from `dotenv-example`).
+The application is heavily driven by environment variables, which can be set in a file named `.env` or `dotenv` (copied from `dotenv-example`).
+
+### Environment Variable Handling
+
+The application uses the following priority order when loading environment variables:
+1. Custom config file specified with npm_config_conf
+2. `.env` file in project root directory
+3. `dotenv` file in project root directory (legacy)
+4. `.env` file in parent directory
+5. `dotenv` file in parent directory (legacy)
+6. System environment variables
+
+Variables defined in configuration files take precedence over system environment variables. Any environment variables not defined in the configuration files are preserved.
 
 Important configuration options:
 - `STORES`: Comma-separated list of stores to check

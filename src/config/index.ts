@@ -11,22 +11,76 @@ import { nvidia } from './nvidia-config';
 
 // Load environment variables from dotenv file
 function loadEnvironmentVariables() {
+  // Store original env vars
+  const originalEnv = { ...process.env };
+  
+  // Priority for environment file:
+  // 1. Custom config file specified with npm_config_conf
+  // 2. .env file in project root
+  // 3. dotenv file in project root (legacy)
+  // 4. .env file in parent directory
+  // 5. dotenv file in parent directory (legacy)
+  
+  let configPath: string | undefined;
+  
   if (process.env.npm_config_conf) {
-    if (
-      existsSync(path.join(__dirname, '../../' + process.env.npm_config_conf))
-    ) {
-      dotenv.config({
-        path: path.join(__dirname, '../../' + process.env.npm_config_conf),
-      });
-    } else {
-      dotenv.config({path: path.join(__dirname, '../../.env')});
+    // Custom config specified
+    const customPath = path.join(__dirname, '../../' + process.env.npm_config_conf);
+    if (existsSync(customPath)) {
+      configPath = customPath;
     }
-  } else if (existsSync(path.join(__dirname, '../../dotenv'))) {
-    dotenv.config({path: path.join(__dirname, '../../dotenv')});
-  } else if (existsSync(path.join(__dirname, '../dotenv'))) {
-    dotenv.config({path: path.join(__dirname, '../dotenv')});
+  }
+  
+  if (!configPath) {
+    // Check .env in project root first
+    const dotEnvPath = path.join(__dirname, '../../.env');
+    if (existsSync(dotEnvPath)) {
+      configPath = dotEnvPath;
+    }
+  }
+  
+  if (!configPath) {
+    // Check legacy 'dotenv' in project root
+    const legacyDotenvPath = path.join(__dirname, '../../dotenv');
+    if (existsSync(legacyDotenvPath)) {
+      configPath = legacyDotenvPath;
+    }
+  }
+  
+  if (!configPath) {
+    // Check .env in parent directory
+    const parentDotEnvPath = path.join(__dirname, '../.env');
+    if (existsSync(parentDotEnvPath)) {
+      configPath = parentDotEnvPath;
+    }
+  }
+  
+  if (!configPath) {
+    // Check legacy 'dotenv' in parent directory
+    const parentLegacyPath = path.join(__dirname, '../dotenv');
+    if (existsSync(parentLegacyPath)) {
+      configPath = parentLegacyPath;
+    }
+  }
+  
+  // Load the config file if found
+  if (configPath) {
+    const result = dotenv.config({ path: configPath });
+    if (result.error) {
+      console.error(`Error loading environment variables from ${configPath}:`, result.error);
+    } else {
+      console.info(`Loaded environment variables from ${configPath}`);
+      
+      // Restore original env vars for any values not in the env file
+      // This preserves environment variables not specified in the file
+      for (const key in originalEnv) {
+        if (!(key in result.parsed || {})) {
+          process.env[key] = originalEnv[key];
+        }
+      }
+    }
   } else {
-    dotenv.config({path: path.join(__dirname, '../../.env')});
+    console.info('No .env or dotenv file found, using environment variables');
   }
 }
 
