@@ -73,20 +73,44 @@ export class BrowserSession {
    * Creates a new browser instance
    */
   private static async createBrowser(store: Store, proxy?: ProxyConfig): Promise<Browser> {
-    abortctl.assert('browser');
-    
-    const userDataDir = path.join(config.browser.profileParentDir, store.name);
-    cleanUserDataDir(userDataDir);
-    
-    const userAgent = await this.getDefaultUserAgent();
-    const browserPromise = launchBrowser({
-      options: {userDataDir}, 
-      proxy, 
-      userAgent
-    });
-    
-    this.instances.set(store, {browser: browserPromise, proxy, userDataDir});
-    return await browserPromise;
+    try {
+      // Make sure browser context is available
+      abortctl.assert('browser');
+      
+      const userDataDir = path.join(config.browser.profileParentDir, store.name);
+      cleanUserDataDir(userDataDir);
+      
+      const userAgent = await this.getDefaultUserAgent();
+      const browserPromise = launchBrowser({
+        options: {userDataDir}, 
+        proxy, 
+        userAgent
+      });
+      
+      this.instances.set(store, {browser: browserPromise, proxy, userDataDir});
+      return await browserPromise;
+    } catch (error) {
+      // If we get an AsyncContextError, try re-enabling the browser context
+      if (error instanceof abortctl.AsyncContextError) {
+        logger.warn(`ℹ [${store.name}] browser context not available, re-enabling`);
+        abortctl.create('browser');
+        
+        // Try again after enabling the context
+        const userDataDir = path.join(config.browser.profileParentDir, store.name);
+        cleanUserDataDir(userDataDir);
+        
+        const userAgent = await this.getDefaultUserAgent();
+        const browserPromise = launchBrowser({
+          options: {userDataDir}, 
+          proxy, 
+          userAgent
+        });
+        
+        this.instances.set(store, {browser: browserPromise, proxy, userDataDir});
+        return await browserPromise;
+      }
+      throw error;
+    }
   }
   
   /**

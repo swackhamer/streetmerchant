@@ -58,8 +58,9 @@ class StreetMerchantApplication {
     this.#registerListeners();
 
     abortctl.create('app.running');
-    timers.enable();
+    // Ensure browser context is enabled before timers
     enableBrowserContexts();
+    timers.enable();
 
     // register restart handler
     if (config.restartTime > 0) {
