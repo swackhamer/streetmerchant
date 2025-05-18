@@ -1,7 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
-import { jest } from '@jest/globals';
 
 /**
  * Mock implementation of the loadEnvironmentVariables function from src/config/index.ts
@@ -79,8 +78,8 @@ const test = (name: string, fn: () => void) => {
   try {
     fn();
     console.log('    ✓ PASS');
-  } catch (error) {
-    console.log(`    ✗ FAIL: ${error.message}`);
+  } catch (error: any) {
+    console.log(`    ✗ FAIL: ${error?.message || 'Unknown error'}`);
   }
 };
 
