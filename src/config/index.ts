@@ -16,71 +16,54 @@ function loadEnvironmentVariables() {
   
   // Priority for environment file:
   // 1. Custom config file specified with npm_config_conf
-  // 2. .env file in project root
-  // 3. dotenv file in project root (legacy)
-  // 4. .env file in parent directory
-  // 5. dotenv file in parent directory (legacy)
+  // 2. .env file in current working directory
+  // 3. dotenv file in current working directory (legacy)
   
   let configPath: string | undefined;
   
   if (process.env.npm_config_conf) {
     // Custom config specified
-    const customPath = path.join(__dirname, '../../' + process.env.npm_config_conf);
+    const customPath = path.resolve(process.cwd(), process.env.npm_config_conf);
     if (existsSync(customPath)) {
       configPath = customPath;
     }
   }
   
   if (!configPath) {
-    // Check .env in project root first
-    const dotEnvPath = path.join(__dirname, '../../.env');
+    // Check .env in current working directory
+    const dotEnvPath = path.resolve(process.cwd(), '.env');
     if (existsSync(dotEnvPath)) {
       configPath = dotEnvPath;
     }
   }
   
   if (!configPath) {
-    // Check legacy 'dotenv' in project root
-    const legacyDotenvPath = path.join(__dirname, '../../dotenv');
+    // Check legacy 'dotenv' in current working directory
+    const legacyDotenvPath = path.resolve(process.cwd(), 'dotenv');
     if (existsSync(legacyDotenvPath)) {
       configPath = legacyDotenvPath;
     }
   }
   
-  if (!configPath) {
-    // Check .env in parent directory
-    const parentDotEnvPath = path.join(__dirname, '../.env');
-    if (existsSync(parentDotEnvPath)) {
-      configPath = parentDotEnvPath;
-    }
-  }
-  
-  if (!configPath) {
-    // Check legacy 'dotenv' in parent directory
-    const parentLegacyPath = path.join(__dirname, '../dotenv');
-    if (existsSync(parentLegacyPath)) {
-      configPath = parentLegacyPath;
-    }
-  }
-  
   // Load the config file if found
   if (configPath) {
-    const result = dotenv.config({ path: configPath });
+    // Load with overwrite option to ensure variables from .env override system variables
+    const result = dotenv.config({ path: configPath, override: true });
     if (result.error) {
       console.error(`Error loading environment variables from ${configPath}:`, result.error);
     } else {
       console.info(`Loaded environment variables from ${configPath}`);
       
-      // Restore original env vars for any values not in the env file
-      // This preserves environment variables not specified in the file
-      for (const key in originalEnv) {
-        if (!(key in (result.parsed || {}))) {
-          process.env[key] = originalEnv[key];
-        }
+      // Log key environment variables for debugging
+      if (process.env.SHOW_ONLY_SERIES) {
+        console.info(`SHOW_ONLY_SERIES set to: ${process.env.SHOW_ONLY_SERIES}`);
+      }
+      if (process.env.STORES) {
+        console.info(`STORES set to: ${process.env.STORES}`);
       }
     }
   } else {
-    console.info('No .env or dotenv file found, using environment variables');
+    console.info('No .env or dotenv file found in current working directory, using environment variables');
   }
 }
 
@@ -119,11 +102,31 @@ function checkDeprecatedConfig() {
 checkDeprecatedConfig();
 
 // Initialize showOnlySeries with appropriate default
-store.showOnlySeries = store.showOnlySeries.length > 0 
-  ? store.showOnlySeries 
-  : Object.keys(notifications.discord.notifyGroupSeries).filter(
-      series => !['test:series', 'captcha-deterrent'].includes(series)
-    );
+// If SHOW_ONLY_SERIES is provided in env vars or store.showOnlySeries already has values,
+// use those. Otherwise, use all available series from discord notifications.
+// 
+// Note: We need to check both process.env.SHOW_ONLY_SERIES and store.showOnlySeries.length
+// because sometimes the environment variable isn't directly accessible, but it was already
+// processed by store-config.ts into the store.showOnlySeries array.
+const hasUserConfiguredSeries = process.env.SHOW_ONLY_SERIES !== undefined || 
+                                store.showOnlySeries.length > 0;
+
+// If SHOW_ONLY_SERIES is explicitly set in env vars, always use that value directly
+// This ensures environment variables properly override any defaults
+if (process.env.SHOW_ONLY_SERIES !== undefined) {
+  // Parse the environment variable directly rather than using the already processed value
+  store.showOnlySeries = process.env.SHOW_ONLY_SERIES.split(',').map(s => s.trim());
+  console.log(`Using series filter from environment: ${store.showOnlySeries}`);
+} else if (store.showOnlySeries.length > 0) {
+  // Keep what was already populated from env var in store-config.ts
+  console.log(`Using series filter from config: ${store.showOnlySeries}`);
+} else {
+  // No user configuration, use all available series from discord notifications
+  store.showOnlySeries = Object.keys(notifications.discord.notifyGroupSeries).filter(
+    series => !['test:series', 'captcha-deterrent'].includes(series)
+  );
+  console.log(`Using default series list: ${store.showOnlySeries.length} series`);
+}
 
 // Set default browser values for store configurations
 store.stores = store.stores.map(storeConfig => ({

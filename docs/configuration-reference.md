@@ -2,6 +2,16 @@
 
 This document provides a comprehensive reference for all Streetmerchant configuration options. All settings are configured through environment variables in your `dotenv` file.
 
+## Environment File Priority
+
+The application uses the following priority order when loading environment variables:
+1. Custom config file specified with npm_config_conf
+2. `.env` file in current working directory
+3. `dotenv` file in current working directory (legacy)
+4. System environment variables
+
+Variables defined in the `.env` file take precedence over system environment variables. **The application now ensures variables from the `.env` file override any system variables with the same name.**
+
 ## Core Application Settings
 
 | Variable | Description | Default |
@@ -35,8 +45,23 @@ This document provides a comprehensive reference for all Streetmerchant configur
 | `STORES` | Comma-separated list of [stores](#supported-stores) to check | `amazon,bestbuy` |
 | `SHOW_ONLY_BRANDS` | Filter to show only specific brands (comma-separated) | All brands |
 | `SHOW_ONLY_MODELS` | Filter to show only specific models (comma-separated) | All models |
-| `SHOW_ONLY_SERIES` | Filter to show only specific series (comma-separated) | All series |
+| `SHOW_ONLY_SERIES` | Filter to show only specific series (comma-separated). Example: `SHOW_ONLY_SERIES=5090` to only check RTX 5090 cards | All series |
 | `MICROCENTER_LOCATION` | Specific MicroCenter location(s) to search | `web` |
+
+### Important Note on STORES Variable
+
+The application now strictly only processes stores that are explicitly listed in the `STORES` variable from your `.env` file. This means:
+
+- Browsers will only be launched for stores listed in `STORES`
+- No resources will be wasted checking stores you're not interested in
+- Setting `STORES=bestbuy` will only check Best Buy and ignore all other stores
+- Format for store entries: `storename[:min_sleep:max_sleep]` (sleep times in milliseconds)
+
+Example in `.env` file:
+```
+# Only check Best Buy and Newegg (with custom sleep times for Newegg)
+STORES=bestbuy,newegg:8000:15000
+```
 
 ## Price Limits
 

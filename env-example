@@ -1,0 +1,19 @@
+# Example .env file for specific store and series filtering
+# Copy this file to .env to use it
+
+# Store Configuration - Only these stores will be checked
+# Browsers will only be launched for these stores
+STORES=bestbuy,newegg
+
+# Series Filtering - Only these product series will be checked
+SHOW_ONLY_SERIES=5090
+
+# Optional: Set price limits 
+MAX_PRICE_SERIES_5090=2500
+
+# Optional: Notification settings
+DESKTOP_NOTIFICATIONS=true
+OPEN_BROWSER=true
+
+# Logging level
+LOG_LEVEL=info

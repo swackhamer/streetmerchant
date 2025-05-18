@@ -96,8 +96,17 @@ export const store = {
     []  // This will be updated in the main config
   ),
   showOnlyCountry: envOrArray(process.env.SHOW_ONLY_COUNTRY, []),
-  stores: envOrArray(process.env.STORES, ['amazon', 'bestbuy']).map(entry => {
+  // Only use explicitly defined stores from .env STORES variable
+  // If STORES is not set in .env, use amazon and bestbuy as defaults
+  stores: (process.env.STORES ? 
+    // If STORES is explicitly set in .env, use only those stores
+    envOrArray(process.env.STORES) : 
+    // Otherwise use defaults
+    envOrArray(process.env.STORES, ['amazon', 'bestbuy'])
+  ).map(entry => {
     const [name, minPageSleep, maxPageSleep] = entry.match(/[^:]+/g) ?? [];
+    
+    console.info(`Configuring store: ${name}`);
 
     let proxyList = loadProxyList(name as string);
 

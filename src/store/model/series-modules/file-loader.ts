@@ -43,9 +43,11 @@ export async function getStoreSeriesLinksFromFiles(
   
   // Try to import the series-specific links file
   const seriesDir = path.join(__dirname, '..', 'series', series);
-  const filePath = path.join(seriesDir, `${storeName}.ts`);
+  const filePathTS = path.join(seriesDir, `${storeName}.ts`);
+  const filePathJS = path.join(seriesDir, `${storeName}.js`);
   
-  if (fs.existsSync(filePath)) {
+  // Check for either TS or JS file (JS for compiled code)
+  if (fs.existsSync(filePathTS) || fs.existsSync(filePathJS)) {
     try {
       // Use dynamic import to load the module
       // Note: The import path is relative to the current directory

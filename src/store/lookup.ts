@@ -204,7 +204,32 @@ async function handleInStockItem(
  * Schedule a series of lookups for all configured stores
  */
 export async function lookupAllStores(browser: Browser): Promise<void> {
-  const stores = getStores();
+  // Get stores from config
+  const configuredStores = config.store.stores.map(storeConfig => storeConfig.name);
+  
+  // Log which stores are being processed
+  if (process.env.STORES) {
+    logger.info(`Using stores from .env: ${configuredStores.join(', ')}`);
+  } else {
+    logger.info(`Using default stores: ${configuredStores.join(', ')}`);
+  }
+  
+  // Only process stores that are configured in STORES env var
+  const stores = getStores().filter(store => {
+    // Check if this store is in the configured list
+    const isConfigured = configuredStores.includes(store.name);
+    
+    if (!isConfigured) {
+      logger.debug(`Skipping store ${store.name} as it's not in STORES configuration`);
+    }
+    
+    return isConfigured;
+  });
+  
+  // Log the stores being processed
+  logger.info(`Processing ${stores.length} configured stores`);
+  
+  // Process all stores in parallel
   const lookups = stores.map(store =>
     usingBrowser(store, browser => lookup(browser, store))
   );

@@ -106,13 +106,11 @@ The application is heavily driven by environment variables, which can be set in 
 
 The application uses the following priority order when loading environment variables:
 1. Custom config file specified with npm_config_conf
-2. `.env` file in project root directory
-3. `dotenv` file in project root directory (legacy)
-4. `.env` file in parent directory
-5. `dotenv` file in parent directory (legacy)
-6. System environment variables
+2. `.env` file in current working directory
+3. `dotenv` file in current working directory (legacy)
+4. System environment variables
 
-Variables defined in configuration files take precedence over system environment variables. Any environment variables not defined in the configuration files are preserved.
+Variables defined in the dotenv file take precedence over system environment variables.
 
 Important configuration options:
 - `STORES`: Comma-separated list of stores to check

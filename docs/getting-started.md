@@ -31,10 +31,12 @@ Before you begin, make sure you have the following installed:
 3. **Configure the application**
 
    ```bash
-   cp dotenv-example dotenv
+   cp dotenv-example .env
    ```
 
-   Edit the `dotenv` file with your preferred settings (see Configuration section below).
+   Edit the `.env` file with your preferred settings (see Configuration section below). The application now properly loads all configuration from the `.env` file in the current working directory, ensuring that these settings take precedence over any system environment variables.
+   
+   **Important**: The application will only launch browsers for stores explicitly listed in the `STORES` variable in your `.env` file, saving resources by not checking stores you're not interested in.
 
 4. **Start Streetmerchant**
 
@@ -53,15 +55,15 @@ Before you begin, make sure you have the following installed:
 1. **Create configuration file**
 
    ```bash
-   cp dotenv-example dotenv
+   cp dotenv-example .env
    ```
 
-   Edit the `dotenv` file with your preferred settings.
+   Edit the `.env` file with your preferred settings. You can also use the legacy `dotenv` filename if preferred.
 
 2. **Run with Docker**
 
    ```bash
-   docker run -it --rm --env-file ./dotenv ghcr.io/jef/streetmerchant:latest
+   docker run -it --rm --env-file ./.env ghcr.io/jef/streetmerchant:latest
    ```
 
    Or using docker-compose:
@@ -72,7 +74,7 @@ Before you begin, make sure you have the following installed:
 
 ## Basic Configuration
 
-Edit your `dotenv` file to customize Streetmerchant's behavior. Here are the most important settings:
+Edit your `.env` (or `dotenv`) file to customize Streetmerchant's behavior. Here are the most important settings:
 
 ### Store Selection
 
@@ -162,12 +164,12 @@ pnpm run test:captcha
 
 You can run multiple instances of Streetmerchant to distribute the load:
 
-1. Create separate configuration files (e.g., `dotenv.nvidia` and `dotenv.amd`)
+1. Create separate configuration files (e.g., `.env.nvidia` and `.env.amd`)
 2. Start each instance with its own configuration:
 
    ```bash
-   DOTENV_FILE=dotenv.nvidia pnpm run start
-   DOTENV_FILE=dotenv.amd pnpm run start
+   npm_config_conf=.env.nvidia pnpm run start
+   npm_config_conf=.env.amd pnpm run start
    ```
 
 ## Deployment Considerations
