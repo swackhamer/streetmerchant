@@ -121,7 +121,7 @@ dotenv.config = (options?: any) => {
   // Apply parsed values to process.env to simulate real behavior
   if (result.parsed) {
     Object.keys(result.parsed).forEach(key => {
-      process.env[key] = result.parsed[key];
+      process.env[key] = (result.parsed as Record<string, string>)[key];
     });
   }
   return result;
