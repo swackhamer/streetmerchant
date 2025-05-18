@@ -116,7 +116,16 @@ let mockDotenvConfig = () => ({ parsed: {} });
 require('fs').existsSync = (path: string) => mockExistsSync(path);
 
 // Override dotenv.config with our mock
-dotenv.config = (options?: any) => mockDotenvConfig();
+dotenv.config = (options?: any) => {
+  const result = mockDotenvConfig();
+  // Apply parsed values to process.env to simulate real behavior
+  if (result.parsed) {
+    Object.keys(result.parsed).forEach(key => {
+      process.env[key] = result.parsed[key];
+    });
+  }
+  return result;
+};
 
 const beforeEach = (fn: () => void) => {
   // This will be called before each test
