@@ -234,6 +234,42 @@ export async function lookupAllStores(browser: Browser): Promise<void> {
   // Log the matching stores
   console.log('Matched store names:', configuredStores.map(s => s.name));
   
+  // Apply store-specific sleep times from config
+  for (const store of configuredStores) {
+    // Find matching store config from environment variable
+    const storeConfig = config.store.stores.find(sc => sc.name.toLowerCase() === store.name.toLowerCase());
+    
+    // Apply min/max page sleep if specified in config
+    if (storeConfig) {
+      if (storeConfig.minPageSleep) {
+        store.minPageSleep = Number(storeConfig.minPageSleep);
+        console.log(`Setting ${store.name} minPageSleep to ${store.minPageSleep}ms`);
+      } else if (process.env.PAGE_SLEEP_MIN) {
+        store.minPageSleep = Number(process.env.PAGE_SLEEP_MIN);
+        console.log(`Using global minPageSleep for ${store.name}: ${store.minPageSleep}ms`);
+      }
+      
+      if (storeConfig.maxPageSleep) {
+        store.maxPageSleep = Number(storeConfig.maxPageSleep);
+        console.log(`Setting ${store.name} maxPageSleep to ${store.maxPageSleep}ms`);
+      } else if (process.env.PAGE_SLEEP_MAX) {
+        store.maxPageSleep = Number(process.env.PAGE_SLEEP_MAX);
+        console.log(`Using global maxPageSleep for ${store.name}: ${store.maxPageSleep}ms`);
+      }
+    } else if (process.env.PAGE_SLEEP_MIN || process.env.PAGE_SLEEP_MAX) {
+      // Apply global page sleep values
+      if (process.env.PAGE_SLEEP_MIN) {
+        store.minPageSleep = Number(process.env.PAGE_SLEEP_MIN);
+        console.log(`Using global minPageSleep for ${store.name}: ${store.minPageSleep}ms`);
+      }
+      
+      if (process.env.PAGE_SLEEP_MAX) {
+        store.maxPageSleep = Number(process.env.PAGE_SLEEP_MAX);
+        console.log(`Using global maxPageSleep for ${store.name}: ${store.maxPageSleep}ms`);
+      }
+    }
+  }
+
   // Initialize these stores before processing
   for (const store of configuredStores) {
     if (store.setupAction) {

@@ -51,7 +51,16 @@ export async function startStoreLoop(store: Store): Promise<void> {
     await usingBrowser(store, async browser => {
       while (true) {
         await lookup(browser, store);
-        await delay(getSleepTime(store));
+        
+        // Calculate the actual sleep time - ensure it's at least 5 seconds
+        let sleepTime = getSleepTime(store);
+        if (!sleepTime || sleepTime < 5000) {
+          logger.warn(`Sleep time for ${store.name} is too short (${sleepTime}ms), using 5000ms minimum`);
+          sleepTime = 5000;
+        }
+        
+        logger.info(`Sleeping for ${Math.round(sleepTime/1000)} seconds before next check of ${store.name}`);
+        await delay(sleepTime);
       }
     });
   } catch (error) {
