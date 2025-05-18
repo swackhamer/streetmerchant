@@ -224,6 +224,7 @@ export async function lookupAllStores(browser: Browser): Promise<void> {
     // Find matching store config from environment variable
     const storeConfig = config.store.stores.find(
       sc => sc.name.toLowerCase() === store.name.toLowerCase()
+    );
 
     // Apply min/max page sleep if specified in config
     if (storeConfig) {
@@ -272,6 +273,7 @@ export async function lookupAllStores(browser: Browser): Promise<void> {
           chalk.blue(`global minPageSleep =`),
           chalk.bold.blue(`${store.minPageSleep}ms`)
         );
+      }
 
       if (process.env.PAGE_SLEEP_MAX) {
         store.maxPageSleep = Number(process.env.PAGE_SLEEP_MAX);
