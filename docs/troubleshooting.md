@@ -2,6 +2,32 @@
 
 This document provides solutions for common issues you might encounter when running Streetmerchant.
 
+## Configuration Issues
+
+### Store Configuration Not Recognized
+
+**Problem:** The application reports "Processing 0 configured stores" even though STORES is set in your .env file.
+
+**Solution:**
+- Verify your STORES format. Use commas to separate store names and colons for sleep times:
+  ```
+  STORES=amazon:10000:30000,bestbuy,newegg:50000:80000
+  ```
+- Make sure there are no spaces before or after commas
+- Check that store names match exactly what's in the registry (case-sensitive)
+
+### Series Filtering Not Working
+
+**Problem:** The application does not show any products for your specified series (e.g., 5090) even though those products exist.
+
+**Solution:**
+- We've fixed an issue with series filtering in version 3.12.0 that correctly sets the series property on links
+- Make sure your SHOW_ONLY_SERIES value matches the series name exactly:
+  ```
+  SHOW_ONLY_SERIES=5090
+  ```
+- Ensure there are no spaces in the value
+
 ## Browser and Network Issues
 
 ### Protocol Error: Network.enable Timed Out

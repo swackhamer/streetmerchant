@@ -53,8 +53,18 @@ export async function getStoreSeriesLinksFromFiles(
       // Note: The import path is relative to the current directory
       const module = await import(`../series/${series}/${storeName}`);
       
-      // Validate links before caching
+      // Get raw links from the module
       const rawLinks = module.links || [];
+      
+      // Ensure each link has the series property set correctly
+      for (const link of rawLinks) {
+        // Only set the series if it's not already set or is undefined
+        if (!link.series) {
+          link.series = series;
+        }
+      }
+      
+      // Validate links before caching
       const validLinks = validateLinks(rawLinks, `${storeName}_${series}`);
       
       // Cache the valid links

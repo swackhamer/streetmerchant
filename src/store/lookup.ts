@@ -204,33 +204,68 @@ async function handleInStockItem(
  * Schedule a series of lookups for all configured stores
  */
 export async function lookupAllStores(browser: Browser): Promise<void> {
-  // Get stores from config
-  const configuredStores = config.store.stores.map(storeConfig => storeConfig.name);
+  // Extract just the basic names from config to avoid any case sensitivity issues
+  const configuredStoreNames = process.env.STORES
+    ? process.env.STORES.split(',').map(entry => {
+        // Handles format like "amazon:10000:30000"
+        const storeName = entry.trim().split(':')[0].trim();
+        return storeName;
+      })
+    : [];
+  
+  console.log('Parsed store names:', configuredStoreNames);
   
   // Log which stores are being processed
-  if (process.env.STORES) {
-    logger.info(`Using stores from .env: ${configuredStores.join(', ')}`);
-  } else {
-    logger.info(`Using default stores: ${configuredStores.join(', ')}`);
-  }
+  logger.info(`Using stores from .env: ${configuredStoreNames.join(', ')}`);
   
-  // Only process stores that are configured in STORES env var
-  const stores = getStores().filter(store => {
-    // Check if this store is in the configured list
-    const isConfigured = configuredStores.includes(store.name);
-    
-    if (!isConfigured) {
-      logger.debug(`Skipping store ${store.name} as it's not in STORES configuration`);
+  // Get all available stores
+  const allStores = getStores();
+  
+  // Use case-insensitive matching to find the right stores
+  const configuredStores = allStores.filter(store => {
+    for (const configName of configuredStoreNames) {
+      if (store.name.toLowerCase() === configName.toLowerCase()) {
+        return true;
+      }
     }
-    
-    return isConfigured;
+    return false;
   });
   
-  // Log the stores being processed
-  logger.info(`Processing ${stores.length} configured stores`);
+  // Log the matching stores
+  console.log('Matched store names:', configuredStores.map(s => s.name));
+  
+  // Initialize these stores before processing
+  for (const store of configuredStores) {
+    if (store.setupAction) {
+      try {
+        await store.setupAction(browser);
+        logger.info(`Loaded ${store.links.length} links for ${store.name}`);
+        
+        // Debug information about links
+        if (store.links.length > 0) {
+          // Count links by series
+          const seriesCounts = new Map<string, number>();
+          for (const link of store.links) {
+            const count = seriesCounts.get(link.series as string) || 0;
+            seriesCounts.set(link.series as string, count + 1);
+          }
+          
+          // Log series breakdown
+          for (const [series, count] of seriesCounts.entries()) {
+            console.log(`${store.name} - ${series}: ${count} links`);
+          }
+        }
+      } catch (error) {
+        logger.error(`Error loading links for ${store.name}:`, error);
+      }
+    }
+  }
+  
+  // Log the final count of stores being processed
+  logger.info(`Processing ${configuredStores.length} configured stores`);
   
   // Process all stores in parallel
-  const lookups = stores.map(store =>
+  const lookups = configuredStores.map(store =>
     usingBrowser(store, browser => lookup(browser, store))
   );
   await Promise.all(lookups);

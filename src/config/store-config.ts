@@ -95,17 +95,69 @@ export const store = {
     };
   }),
   // No default series - only use what's in .env
-  showOnlySeries: envOrArray(process.env.SHOW_ONLY_SERIES),
+  showOnlySeries: (() => { 
+    const series = envOrArray(process.env.SHOW_ONLY_SERIES); 
+    console.log(`[DEBUG-CONFIG] Parsed SHOW_ONLY_SERIES: ${JSON.stringify(series)}`); 
+    return series; 
+  })(),
   showOnlyCountry: envOrArray(process.env.SHOW_ONLY_COUNTRY),
   
   // No default stores - only use what's explicitly defined in .env STORES variable
   stores: (process.env.STORES ? 
-    // If STORES is explicitly set in .env, use only those stores
-    envOrArray(process.env.STORES) : 
+    // Parse STORES env var (could be comma-separated list of stores, 
+    // potentially with sleep parameters in the format "storename,min:max")
+    (() => {
+      const storeConfigs = [];
+      const entries = process.env.STORES.split(',');
+      
+      // The expected format could be either:
+      // 1. "store1,store2,store3" (simple comma-separated list)
+      // 2. "store1,min:max" (store with sleep params)
+      // 3. "store1,store2:min:max" (multiple stores, some with params)
+      
+      for (let i = 0; i < entries.length; i++) {
+        const entry = entries[i].trim();
+        
+        // If the entry contains a colon, it might be sleep parameters
+        if (entry.includes(':')) {
+          // Check if this is a sleep parameter for the previous store
+          // This handles the case "bestbuy,1000000:3000000" where 1000000:3000000 are sleep params for bestbuy
+          if (!isNaN(Number(entry.split(':')[0])) && i > 0) {
+            // This is likely a sleep parameter for the previous store
+            const prevStore = storeConfigs[storeConfigs.length - 1];
+            const sleepParams = entry.split(':');
+            
+            // Update previous store's sleep parameters
+            prevStore.minPageSleep = sleepParams[0];
+            prevStore.maxPageSleep = sleepParams.length > 1 ? sleepParams[1] : undefined;
+            
+            // Skip to next entry since we processed this as parameters
+            continue;
+          } else {
+            // This is a store name with embedded sleep parameters
+            const parts = entry.split(':');
+            storeConfigs.push({
+              name: parts[0],
+              minPageSleep: parts[1],
+              maxPageSleep: parts.length > 2 ? parts[2] : undefined
+            });
+          }
+        } else {
+          // Just a regular store name
+          storeConfigs.push({
+            name: entry,
+            minPageSleep: undefined,
+            maxPageSleep: undefined
+          });
+        }
+      }
+      
+      return storeConfigs;
+    })() : 
     // Otherwise use an empty array (no stores)
     []
   ).map(entry => {
-    const [name, minPageSleep, maxPageSleep] = entry.match(/[^:]+/g) ?? [];
+    const { name, minPageSleep, maxPageSleep } = entry;
     
     console.info(`Configuring store: ${name}`);
 

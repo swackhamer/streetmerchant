@@ -120,8 +120,8 @@ export function validateLinks(links: Link[], storeName?: string): any {
     return result;
   });
   
-  // For regular functionality, return results
-  return results;
+  // For regular functionality, filter out invalid links and return the valid ones
+  return links.filter((link, index) => results[index].valid);
 }
 
 /**

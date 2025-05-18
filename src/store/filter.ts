@@ -51,11 +51,14 @@ function filterModel(model: Link['model'], series: Link['series']): boolean {
  * @param series The series of the GPU
  */
 export function filterSeries(series: Link['series']): boolean {
+  console.log(`[DEBUG] Filtering series: ${series}, showOnlySeries: ${JSON.stringify(config.store.showOnlySeries)}`);
   if (config.store.showOnlySeries.length === 0) {
     return true;
   }
 
-  return config.store.showOnlySeries.includes(series);
+  const result = config.store.showOnlySeries.includes(series);
+  console.log(`[DEBUG] Series ${series} included? ${result}`);
+  return result;
 }
 
 /**

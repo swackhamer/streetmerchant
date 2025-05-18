@@ -22,7 +22,11 @@ import {SampleStoreSeries} from './sample-store-series';
 const storeList = new Map<string, Store>();
 
 // Add the sample store for testing/development
-storeList.set(SampleStoreSeries.name, SampleStoreSeries);
+// Note: We only want to add the sample store during development/testing
+if (process.env.NODE_ENV === 'development' || process.env.ENABLE_SAMPLE_STORE === 'true') {
+  storeList.set(SampleStoreSeries.name, SampleStoreSeries);
+  logger.debug('Added sample store for testing/development');
+}
 
 // Export the storeList for web interface
 export {storeList};

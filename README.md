@@ -28,6 +28,7 @@ Streetmerchant is an automated stock checking application that continuously moni
   - Efficient filtering and retrieval by series, brand, model, and price
   - Dramatically reduced file count and complexity
   - Enhanced extensibility for adding new products
+  - Improved filtering system for SHOW_ONLY_SERIES environment variable
 
 - **Modular Architecture:** Improved code organization and maintainability
   - Clear separation of concerns between modules
@@ -63,10 +64,11 @@ corepack enable
 pnpm install
 
 # Create configuration file
-cp dotenv-example dotenv
+cp dotenv-example .env
 
-# Edit configuration file to set up your preferences
-# At minimum, configure stores and notification methods
+# Edit .env file to set up your preferences
+# At minimum, configure STORES and SHOW_ONLY_SERIES variables
+# Example: STORES=bestbuy,newegg SHOW_ONLY_SERIES=5090
 
 # Run tests to ensure everything is working
 pnpm test
@@ -86,41 +88,51 @@ git clone https://github.com/swackhamer/streetmerchant.git
 cd streetmerchant
 
 # Create configuration file
-cp dotenv-example dotenv
+cp dotenv-example .env
 
-# Edit configuration file
+# Edit .env file to configure your stores and series filters
+# Example: STORES=bestbuy,newegg SHOW_ONLY_SERIES=5090
+
 # Start with Docker
 docker-compose up -d
 ```
 
 ## Configuration
 
-Streetmerchant is configured through environment variables in a `dotenv` file. Here are some important configuration options:
+Streetmerchant is configured through environment variables in a `.env` file in the current working directory. The application only uses variables defined in this file, with no defaults applied for key settings. Here are some important configuration options:
 
 ### Store Selection
 
+The application will ONLY launch browsers for stores explicitly listed in the STORES variable:
+
 ```
-# Comma-separated list of stores to check
+# Comma-separated list of stores to check - only these stores will be processed
 STORES=amazon,bestbuy,newegg
 
 # With custom sleep times (in ms) between checks
 STORES=amazon:5000:10000,bestbuy:8000:15000
 ```
 
+**Important**: If STORES is not specified in your .env file, no stores will be processed.
+
 ### Product Filtering
+
+The application will only process links that match your filter criteria:
 
 ```
 # Only show specific brands
 SHOW_ONLY_BRANDS=evga,asus,zotac
 
-# Only show specific series
-SHOW_ONLY_SERIES=3080,3090,5090
+# Only show specific series - e.g., only RTX 5090 cards
+SHOW_ONLY_SERIES=5090
 
 # Only show specific models
 SHOW_ONLY_MODELS=ftw3,strix,tuf
 ```
 
-With the centralized store registry and product data system, Streetmerchant can efficiently manage hundreds of product links across multiple stores, making it easier to target specific hardware generations while maintaining a clean, modular codebase.
+**Important**: If SHOW_ONLY_SERIES is not specified in your .env file, you may want to specify it to avoid checking unnecessary products. The application will automatically filter links by series, brand, and model based on these variables.
+
+With the centralized store registry and product data system, Streetmerchant efficiently manages product links across stores, making it easy to target specific hardware generations while optimizing resource usage.
 
 ### Price Limits
 

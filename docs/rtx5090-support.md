@@ -2,6 +2,8 @@
 
 Streetmerchant includes full support for monitoring the latest NVIDIA GeForce RTX 5090 graphics cards across multiple retailers.
 
+> **Update**: We've implemented significant improvements to the store configuration and series filtering system. The application now properly loads and filters RTX 5090 series links from all configured stores.
+
 ## Supported Retailers for RTX 5090
 
 The following retailers are currently supported for RTX 5090 tracking:
@@ -31,10 +33,11 @@ SHOW_ONLY_SERIES=5090
 MAX_PRICE_SERIES_5090=2500
 
 # Configure specific stores for 5090
-STORES=asus::10000:30000,bandh::10000:30000,bestbuy::10000:30000,bestbuy-ca::10000:30000,msi::10000:30000,newegg::10000:30000,nvidia-gb::10000:30000,pny::10000:30000,zotac::10000:30000
+# Format: storename:min_sleep:max_sleep
+STORES=amazon:10000:30000,bestbuy,newegg:50000:80000,asus:10000:30000,bandh:10000:30000,msi:10000:30000,nvidia-gb:10000:30000,pny:10000:30000,zotac:10000:30000
 ```
 
-The store format uses `::` to separate the store name from the minimum and maximum sleep times between checks (in milliseconds). This helps prevent rate limiting.
+The store format uses `:` to separate the store name from the minimum and maximum sleep times between checks (in milliseconds). This helps prevent rate limiting. If no sleep times are specified (e.g., `bestbuy`), default values will be used.
 
 ## Available Models
 

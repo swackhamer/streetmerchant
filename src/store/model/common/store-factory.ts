@@ -70,14 +70,27 @@ export function createStore(options: StoreFactoryOptions): Store {
   
   // Create the setupAction function with series-based organization
   store.setupAction = async (browser: Browser) => {
-    // Default to using centralized data for registry-based stores
+    // Try to load links from centralized data first
     const seriesLinkOptions = {
       ...(options.seriesLinkOptions || {}),
       useCentralizedData: true,
     };
     
-    // Load links based on series from either files or centralized data
-    store.links = await getSeriesLinks(options.name, seriesLinkOptions);
+    // Load links based on series from centralized data
+    let links = await getSeriesLinks(options.name, seriesLinkOptions);
+    
+    // If no links were found in centralized data, try file-based approach
+    if (links.length === 0) {
+      console.log(`No links found in centralized data for ${options.name}, trying file-based approach`);
+      const fileBasedOptions = {
+        ...(options.seriesLinkOptions || {}),
+        useCentralizedData: false,
+      };
+      links = await getSeriesLinks(options.name, fileBasedOptions);
+    }
+    
+    // Update store links
+    store.links = links;
     
     // Call custom setup action if provided
     if (options.customSetupAction) {

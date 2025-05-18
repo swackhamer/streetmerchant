@@ -10,8 +10,33 @@ import {config} from '../../../config';
  * Filters links from series data based on config
  */
 export function filterSeriesDataLinks(links: Link[]): Link[] {
+  // Debug all link series before filtering
+  if (links.length > 0) {
+    console.log(`[DEBUG] Processing ${links.length} links for filtering`);
+    
+    // Count links by series
+    const seriesCounts = new Map<string, number>();
+    for (const link of links) {
+      const series = link.series || 'undefined';
+      const count = seriesCounts.get(series) || 0;
+      seriesCounts.set(series, count + 1);
+    }
+    
+    // Log series breakdown
+    console.log(`[DEBUG] Links by series before filtering:`);
+    for (const [series, count] of seriesCounts.entries()) {
+      console.log(`[DEBUG]   - ${series}: ${count} links`);
+    }
+  }
+  
   const filteredByShowOnly = config.store.showOnlySeries.length > 0
-    ? links.filter(link => config.store.showOnlySeries.includes(link.series))
+    ? links.filter(link => {
+        const included = config.store.showOnlySeries.includes(link.series);
+        if (!included) {
+          console.log(`[DEBUG] Filtering out link with series ${link.series}, not in showOnlySeries ${JSON.stringify(config.store.showOnlySeries)}`);
+        }
+        return included;
+      })
     : links;
   
   // Add explicit debug - will show in logs
