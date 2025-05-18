@@ -5,7 +5,7 @@ import Puppeteer from 'puppeteer';
 import * as abortctl from '../../../abortctl';
 import {config} from '../../../config';
 import {logger} from '../../../logger';
-import {BrowserLaunchConfig} from '../types';
+import {BrowserLaunchConfig} from '..';
 import {buildBrowserArgs} from './browser-config';
 import {configureBrowserPages} from './page-config';
 import {clearBrowserCookies} from './cdp-session';

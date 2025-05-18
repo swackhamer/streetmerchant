@@ -91,7 +91,7 @@ export async function usingPage<T>(
   }
 
   // Use the session's withPage method
-  return await session.withPage(async page => {
+  return await session.withPage(async (page: any) => {
     if (store.disableAdBlocker) {
       await disableBlockerInPage(page);
     }
@@ -134,7 +134,7 @@ export async function tryUsingPage<T>(
         sessionMap.set(store, session);
       }
 
-      return await session.tryWithPage(page => callback(page, browser));
+      return await session.tryWithPage((page: any) => callback(page, browser));
     } else {
       const store = p1 as Store;
       const callback = p2 as UsingPageCallback<T>;
@@ -146,7 +146,7 @@ export async function tryUsingPage<T>(
         sessionMap.set(store, session);
       }
 
-      return await session.tryWithPage(page => callback(page, session['browser']));
+      return await session.tryWithPage((page: any) => callback(page, session['browser']));
     }
   } catch (error) {
     // This should not happen as tryWithPage handles errors, but just in case

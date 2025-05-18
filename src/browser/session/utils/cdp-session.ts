@@ -1,5 +1,5 @@
 import {Browser, Page} from 'puppeteer';
-import {CdpSessionCallback} from '../types';
+import {CdpSessionCallback} from '..';
 
 /**
  * Run a callback with a CDP session

@@ -13,7 +13,7 @@ import {nextStoreProxy, parseProxy, Proxy as ProxyConfig} from '../../proxy';
 import {Store} from '../../store/model/store';
 import {logUnexpectedError} from '../../util';
 import {Browser, Page} from 'puppeteer';
-import {BrowserInstance, CookiePolicy, PageCallback} from './types';
+import {BrowserInstance, CookiePolicy, PageCallback} from '.';
 import {
   clearBrowserCookies,
   cleanUserDataDir,

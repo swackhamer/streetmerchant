@@ -7,7 +7,7 @@ import {config} from '../../../config';
 import {logger} from '../../../logger';
 import {Proxy as ProxyConfig} from '../../../proxy';
 import {getRandomUserAgent} from '../../../util';
-import {CookiePolicy} from '../types';
+import {CookiePolicy} from '..';
 
 /**
  * Determine cookie policy based on configuration

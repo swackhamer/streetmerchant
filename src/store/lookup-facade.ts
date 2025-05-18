@@ -69,7 +69,7 @@ async function checkLink(
   link: Link
 ): Promise<boolean> {
   return (
-    (await browserSession.tryWithPage(async page => {
+    (await browserSession.tryWithPage(async (page: any) => {
       const requestHandler = new RequestHandler(store, page, browserSession);
 
       // Make the request with standardized retry and backoff logic
