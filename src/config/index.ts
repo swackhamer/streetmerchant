@@ -74,7 +74,7 @@ function loadEnvironmentVariables() {
       // Restore original env vars for any values not in the env file
       // This preserves environment variables not specified in the file
       for (const key in originalEnv) {
-        if (!(key in result.parsed || {})) {
+        if (!(key in (result.parsed || {}))) {
           process.env[key] = originalEnv[key];
         }
       }
