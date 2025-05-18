@@ -60,8 +60,16 @@ export const frStores: Record<string, ExtendedStoreOptions> = {
     storeType: 'european',
     labels: {
       inStock: {
-        container: '.modal-stock',
-        text: ['en stock']
+        container: '.stock',
+        text: ['stock'],
+      },
+      maxPrice: {
+        container: '.price .price',
+        euroFormat: true,
+      },
+      outOfStock: {
+        container: '.stock',
+        text: ['rupture'],
       },
     },
   },

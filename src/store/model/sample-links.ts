@@ -1,114 +1,56 @@
 /**
- * Sample links for testing the centralized data store
+ * Sample links for testing purposes
+ * 
+ * This file contains sample links for various product series
+ * Used for testing and development purposes
  */
-import {seriesData} from './series-data';
-import {Link, Brand, Model, Series} from './store';
+import {Link} from './types';
 
-// Sample NVIDIA RTX 3080 links for BestBuy
-const bestbuy3080Links: Link[] = [
+/**
+ * Sample set of links
+ */
+export const sampleLinks: Link[] = [
+  {
+    brand: 'test:brand',
+    model: 'test:model',
+    series: 'test:series',
+    url: 'https://www.example.com/test-product-url'
+  },
   {
     brand: 'nvidia',
     model: 'founders edition',
     series: '3080',
-    url: 'https://api.bestbuy.com/click/-/6429440/pdp',
-    cartUrl: 'https://api.bestbuy.com/click/-/6429440/cart',
+    url: 'https://www.example.com/nvidia-3080-fe'
   },
   {
     brand: 'evga',
-    model: 'xc3 black',
-    series: '3080',
-    url: 'https://api.bestbuy.com/click/-/6432400/pdp',
-    cartUrl: 'https://api.bestbuy.com/click/-/6432400/cart',
-  },
-  {
-    brand: 'msi',
-    model: 'ventus 3x',
-    series: '3080',
-    url: 'https://api.bestbuy.com/click/-/6430175/pdp',
-    cartUrl: 'https://api.bestbuy.com/click/-/6430175/cart',
-  }
-];
-
-// Sample AMD Ryzen 5950X links
-const amdRyzenLinks: Link[] = [
-  {
-    brand: 'amd',
-    model: 'amd reference', // Using a valid model from the enum
-    series: 'ryzen5950',
-    url: 'https://www.amd.com/en/direct-buy/us/5450881500',
+    model: 'xc3 ultra',
+    series: '3070',
+    url: 'https://www.example.com/evga-3070-xc3-ultra'
   },
   {
     brand: 'amd',
-    model: 'amd reference', // Using a valid model from the enum
-    series: 'ryzen5900',
-    url: 'https://www.amd.com/en/direct-buy/us/5450881400',
-  }
-];
-
-// Sample PlayStation 5 links
-const ps5Links: Link[] = [
-  {
-    brand: 'sony' as Brand,
-    model: 'playstation 5 digital edition' as Model,
-    series: 'sonyps5de' as Series,
-    url: 'https://api.bestbuy.com/click/-/6430161/pdp',
-    cartUrl: 'https://api.bestbuy.com/click/-/6430161/cart',
-  },
-  {
-    brand: 'sony' as Brand,
-    model: 'playstation 5 console' as Model,
-    series: 'sonyps5c' as Series,
-    url: 'https://api.bestbuy.com/click/-/6426149/pdp',
-    cartUrl: 'https://api.bestbuy.com/click/-/6426149/cart',
+    model: 'reference',
+    series: 'rx6800',
+    url: 'https://www.example.com/amd-rx6800-reference'
   }
 ];
 
 /**
- * Adds sample links to the centralized data store for testing
+ * Add sample links to a store
+ * @param store Store object to add links to (optional)
  */
-export function addSampleLinks(): void {
-  console.log('Adding sample links to centralized data store...');
-  
-  // Add BestBuy RTX 3080 links
-  if (!seriesData['3080']) {
-    seriesData['3080'] = {};
+export function addSampleLinks(store?: any): any {
+  // For backwards compatibility with index.ts calls
+  if (!store) {
+    return sampleLinks;
+  }
+  if (!store.links) {
+    store.links = [];
   }
   
-  if (!seriesData['3080']['bestbuy']) {
-    seriesData['3080']['bestbuy'] = [];
+  // Add test link if no links exist
+  if (store.links.length === 0) {
+    store.links.push(sampleLinks[0]);
   }
-  
-  seriesData['3080']['bestbuy'] = bestbuy3080Links;
-  
-  // Add AMD Ryzen links
-  for (const link of amdRyzenLinks) {
-    const series = link.series;
-    
-    if (!seriesData[series]) {
-      seriesData[series] = {};
-    }
-    
-    if (!seriesData[series]['amd']) {
-      seriesData[series]['amd'] = [];
-    }
-    
-    seriesData[series]['amd'].push(link);
-  }
-  
-  // Add PlayStation 5 links
-  for (const link of ps5Links) {
-    const series = link.series;
-    
-    if (!seriesData[series]) {
-      seriesData[series] = {};
-    }
-    
-    if (!seriesData[series]['bestbuy']) {
-      seriesData[series]['bestbuy'] = [];
-    }
-    
-    seriesData[series]['bestbuy'].push(link);
-  }
-  
-  console.log('Sample links added successfully.');
 }

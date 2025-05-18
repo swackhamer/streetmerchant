@@ -1,122 +1,84 @@
-import {Link, Series} from './store';
-import {logger} from '../../logger';
+/**
+ * Link validator for series links
+ * Verifies that links are valid and conform to expected format
+ * 
+ * Maintained for backwards compatibility with tests and existing modules
+ */
+import {Link} from './types';
 
 /**
- * Result of validating a link
+ * Result interface for link validation
  */
-export interface LinkValidationResult {
+interface ValidationResult {
   valid: boolean;
   errors: string[];
+  link?: Link;
 }
 
 /**
- * Validates a single link
- * 
- * @param link The link to validate
- * @returns Validation result
+ * Validates a set of store links
+ * @param links An array of links to validate
+ * @param storeName Optional store name for error reporting
+ * @returns Array of validated links with validation results
  */
-export function validateLink(link: Link): LinkValidationResult {
-  const errors: string[] = [];
-  
-  // Required fields
-  if (!link.brand) {
-    errors.push('Missing required field: brand');
-  }
-  
-  if (!link.model) {
-    errors.push('Missing required field: model');
-  }
-  
-  if (!link.series) {
-    errors.push('Missing required field: series');
-  }
-  
-  if (!link.url) {
-    errors.push('Missing required field: url');
-  } else {
-    // URL format validation
-    try {
-      new URL(link.url);
-    } catch (error) {
-      errors.push(`Invalid URL format: ${link.url}`);
-    }
-  }
-  
-  // Check for URL duplicates within the same store
-  // Check for URL duplicates within the same store
-  if (link.url && (link as any).duplicate) {
-    errors.push(`Duplicate URL detected: ${link.url}`);
-  }
-  
-  // Validate price if present
-  if (link.price !== undefined) {
-    if (typeof link.price !== 'number' || link.price < 0) {
-      errors.push(`Invalid price value: ${link.price}`);
-    }
-  }
-  
-  // Series format validation (can expand with known valid values if needed)
-  if (link.series && !/^[\w-]+$/.test(link.series)) {
-    errors.push(`Invalid series format: ${link.series}`);
-  }
-  
-  return {
-    valid: errors.length === 0,
-    errors
-  };
-}
-
-/**
- * Validates an array of links
- * 
- * @param links Array of links to validate
- * @param storeName Name of the store (for logging)
- * @returns Array of valid links
- */
-export function validateLinks(links: Link[], storeName: string): Link[] {
+export function validateLinks(links: Link[], storeName?: string): any[] {
   if (!Array.isArray(links)) {
-    logger.error(`Invalid links format for store ${storeName}: expected array`);
-    return [];
+    throw new Error('Links must be an array');
   }
-  
-  const validLinks: Link[] = [];
-  const invalidLinks: Link[] = [];
-  
-  // Check for duplicates
-  const urlMap = new Map<string, boolean>();
-  
-  // First pass - mark duplicates
-  links.forEach(link => {
-    if (link.url) {
-      if (urlMap.has(link.url)) {
-        (link as any).duplicate = true;
-      } else {
-        urlMap.set(link.url, true);
-      }
+
+  return links.map((link, i) => {
+    const result: ValidationResult = {
+      valid: true,
+      errors: [],
+      link
+    };
+
+    if (!link.brand) {
+      result.valid = false;
+      result.errors.push('Missing required field: brand');
     }
-  });
-  
-  // Second pass - validate each link
-  links.forEach(link => {
-    const result = validateLink(link);
-    
-    if (result.valid) {
-      validLinks.push(link);
-    } else {
-      // Log validation errors
-      logger.debug(
-        `Invalid link for store ${storeName}: ${link.url || 'unknown URL'}`,
-        result.errors
-      );
-      invalidLinks.push(link);
+
+    if (!link.model) {
+      result.valid = false;
+      result.errors.push('Missing required field: model');
     }
+
+    if (!link.series) {
+      result.valid = false;
+      result.errors.push('Missing required field: series');
+    }
+
+    if (!link.url) {
+      result.valid = false;
+      result.errors.push('Missing required field: url');
+    } else if (!link.url.startsWith('http')) {
+      result.valid = false;
+      result.errors.push(`Invalid URL format: ${link.url}`);
+    }
+
+    // Add price validation if present
+    if (link.price !== undefined && link.price !== null && 
+        (isNaN(Number(link.price)) || Number(link.price) < 0)) {
+      result.valid = false;
+      result.errors.push(`Invalid price value: ${link.price}`);
+    }
+
+    // Series format validation
+    if (link.series && typeof link.series === 'string' && /[^a-z0-9]/.test(link.series)) {
+      result.valid = false;
+      result.errors.push(`Invalid series format: ${link.series}`);
+    }
+
+    return result;
   });
-  
-  if (invalidLinks.length > 0) {
-    logger.warn(
-      `Found ${invalidLinks.length} invalid links for store ${storeName}`
-    );
-  }
-  
-  return validLinks;
+}
+
+/**
+ * Validates a single store link
+ * @param link Link to validate
+ * @param storeName Optional store name for error reporting
+ * @returns Validated link object with validation result
+ */
+export function validateLink(link: Link, storeName?: string): any {
+  return validateLinks([link], storeName)[0];
 }

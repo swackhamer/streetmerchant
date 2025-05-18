@@ -13,7 +13,7 @@ import './common/link-factory';
 import './common/label-sets';
 
 // Import the store registry
-import {storeRegistry, createStoreFromRegistry} from './store-registry';
+import {storeRegistry, createStoreFromRegistry, getAllStoreNames} from './registry';
 
 // Sample store using series links (for testing only)
 import {SampleStoreSeries} from './sample-store-series';
@@ -29,7 +29,10 @@ export {storeList};
 
 // Function to load all stores from the registry
 function loadAllStoresFromRegistry() {
-  for (const storeName of Object.keys(storeRegistry)) {
+  // Get all store names from the registry
+  const storeNames = getAllStoreNames();
+  
+  for (const storeName of storeNames) {
     try {
       const store = createStoreFromRegistry(storeName);
       storeList.set(storeName, store);
@@ -41,74 +44,13 @@ function loadAllStoresFromRegistry() {
       logger.error(`Error loading store from registry: ${storeName}`, error);
     }
   }
-}
-
-// Function to dynamically discover and load stores from files
-// This is a fallback approach for stores not in registry
-function discoverAndLoadRemainingStores() {
-  const fs = require('fs');
-  const path = require('path');
   
-  // List all store files in the directory
-  const fileExtension = __filename.endsWith('.js') ? '.js' : '.ts';
-  const storeFiles = fs.readdirSync(__dirname)
-    .filter((file: string) => file.endsWith(fileExtension))
-    .filter((file: string) => {
-      // Exclude utility files, non-store files, and stores already loaded from registry
-      return !file.includes(`store${fileExtension}`) &&
-             !file.includes(`index${fileExtension}`) &&
-             !file.includes('sample-') &&
-             !file.includes('series-') &&
-             !file.includes('auto-load-') &&
-             !file.includes('link-validator') &&
-             !file.includes('store-registry') &&
-             !file.includes('timestamp-') &&
-             !storeRegistry[file.replace(fileExtension, '')];
-    });
-
-  for (const file of storeFiles) {
-    try {
-      // Convert from filename to PascalCase store name
-      const storeName = file.replace(fileExtension, '');
-      const pascalStoreName = storeName
-        .split('-')
-        .map((part: string) => part.charAt(0).toUpperCase() + part.slice(1))
-        .join('');
-      
-      // Skip if store is already loaded from registry
-      if (storeList.has(storeName)) {
-        continue;
-      }
-      
-      // Dynamic require the module
-      const storeModule = require(`./${storeName}`);
-      
-      // Check if the store export exists
-      if (storeModule[pascalStoreName]) {
-        storeList.set(storeName, storeModule[pascalStoreName]);
-        
-        // Initialize series links loader
-        initializeSeriesLinksLoader(storeModule[pascalStoreName]);
-        
-        logger.debug(`Loaded store from file: ${storeName}`);
-      } else {
-        logger.debug(`Store module found but no export named ${pascalStoreName} in ${file}`);
-      }
-    } catch (error) {
-      logger.error(`Error loading store module: ${file}`, error);
-    }
-  }
+  logger.info(`Loaded ${storeList.size} stores from registry`);
 }
 
-// Load all stores, prioritizing registry
+// Load all stores from registry
 try {
-  // First load from registry
   loadAllStoresFromRegistry();
-  
-  // Then discover and load any remaining stores
-  discoverAndLoadRemainingStores();
-  
-  logger.info(`Loaded ${storeList.size} stores total`);
 } catch (error) {
   logger.error('Error loading stores:', error);
 }

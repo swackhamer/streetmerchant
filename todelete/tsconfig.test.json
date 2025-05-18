@@ -1,9 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "exclude": [
-    "node_modules",
-    "src/network/refactored/**/*",
-    "src/store/refactored/**/*",
-    "src/store/model/refactored/**/*"
-  ]
-}
