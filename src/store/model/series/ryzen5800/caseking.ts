@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for caseking ryzen5800 series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.caseking.de/amd-ryzen-7-5800x-3-8-ghz-vermeer-am4-boxed-ohne-kuehler-hpam-203.html',
     },
   ]),
-
 ];

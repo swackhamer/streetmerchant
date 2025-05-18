@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for mindfactory ryzen5950 series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.mindfactory.de/product_info.php/AMD-Ryzen-9-5950X-16x-3-40GHz-So-AM4-WOF_1380729.html',
     },
   ]),
-
 ];

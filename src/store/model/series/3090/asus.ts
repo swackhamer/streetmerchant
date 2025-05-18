@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for asus 3090 series
@@ -23,5 +27,4 @@ export const links: Link[] = [
       itemNumber: '202012AM220000001',
     },
   ]),
-
 ];

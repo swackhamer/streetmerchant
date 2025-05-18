@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for power-no 3060 series
@@ -52,5 +56,4 @@ export const links: Link[] = [
       url: 'https://www.power.no/data-og-tilbehoer/datakomponenter/grafikkort/msi-geforce-rtx-3060-gaming-x-12-gb-grafikkort/p-1163156/',
     },
   ]),
-
 ];

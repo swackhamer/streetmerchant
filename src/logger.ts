@@ -6,9 +6,4 @@
  */
 
 // Re-export all components from the modular logger implementation
-export {
-  logger,
-  Print,
-  buildProductString,
-  buildSetupString,
-} from './logger/index';
+export {logger, Print, buildProductString, buildSetupString} from './logger/index';

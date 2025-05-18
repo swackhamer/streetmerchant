@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -73,5 +77,4 @@ export const links: Link[] = [
       url: 'https://www.caseking.de/sapphire-pulse-radeon-rx-6700-xt-oc-12g-12288-mb-gddr6-gcsp-226.html',
     },
   ]),
-
 ];

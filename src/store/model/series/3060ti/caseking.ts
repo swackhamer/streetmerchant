@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for caseking 3060ti series
@@ -136,5 +140,4 @@ export const links: Link[] = [
       url: 'https://www.caseking.de/zotac-gaming-geforce-rtx-3060-ti-twin-edge-oc-8192-mb-gddr6-gczt-170.html',
     },
   ]),
-
 ];

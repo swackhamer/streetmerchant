@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for opirata 3080 series
@@ -48,5 +52,4 @@ export const links: Link[] = [
       url: 'https://www.opirata.com/p/tarjeta-grafica-evga-geforce-rtx-3080-ftw3-gaming-10gb-gddr6x',
     },
   ]),
-
 ];

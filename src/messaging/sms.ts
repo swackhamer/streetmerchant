@@ -7,24 +7,18 @@ import {transporter} from './email';
 const {email, phone} = config.notifications;
 
 if (phone.number.length > 0 && (!email.username || !email.password)) {
-  logger.warn(
-    '✖ in order to receive sms alerts, email notifications must also be configured'
-  );
+  logger.warn('✖ in order to receive sms alerts, email notifications must also be configured');
 }
 
 if (phone.carrier.length !== phone.number.length) {
-  logger.warn(
-    '✖ the number of carriers must match the number of phone numbers',
-    {carrier: phone.carrier, number: phone.number}
-  );
+  logger.warn('✖ the number of carriers must match the number of phone numbers', {
+    carrier: phone.carrier,
+    number: phone.number,
+  });
 }
 
 export function sendSms(link: Link, store: Store) {
-  for (
-    let i = 0;
-    i < Math.max(phone.number.length, phone.carrier.length);
-    i++
-  ) {
+  for (let i = 0; i < Math.max(phone.number.length, phone.carrier.length); i++) {
     const currentNumber = phone.number[i];
     const currentCarrier = phone.carrier[i];
 

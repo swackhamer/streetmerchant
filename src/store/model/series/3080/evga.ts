@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for evga 3080 series
@@ -32,5 +36,4 @@ export const links: Link[] = [
       url: 'https://www.evga.com/products/product.aspx?pn=10G-P5-3885-KR',
     },
   ]),
-
 ];

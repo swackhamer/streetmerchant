@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for harristechnology 3080 series
@@ -28,5 +32,4 @@ export const links: Link[] = [
       url: 'https://www.ht.com.au/part/BY193-MSI-GeForce-RTX-3080-GAMING-X-TRIO-10GB-Video-Card/detail.hts',
     },
   ]),
-
 ];

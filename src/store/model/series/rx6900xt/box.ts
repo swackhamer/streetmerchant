@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -13,5 +17,4 @@ export const links: Link[] = [
       url: 'https://www.box.co.uk/90YV0GE0-M0NM00-ASUS-Radeon-RX-X6900XT-16GB-OC-Gaming-Gr_3561243.html',
     },
   ]),
-
 ];

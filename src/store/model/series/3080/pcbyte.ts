@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for pcbyte 3080 series
@@ -76,5 +80,4 @@ export const links: Link[] = [
       url: 'https://www.pcbyte.com.au/store/product/msi-nvidia-geforce-rtx-3080-suprim-x-10g-video-card-64075',
     },
   ]),
-
 ];

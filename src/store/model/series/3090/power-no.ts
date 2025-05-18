@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for power-no 3090 series
@@ -92,5 +96,4 @@ export const links: Link[] = [
       url: 'https://www.power.no/data-og-tilbehoer/datakomponenter/grafikkort/pny-geforce-rtx-3090-24-gb-xlr8-gaming-uprising-epic-x-rgb-triple-fan-edition-grafikkort/p-1128966/',
     },
   ]),
-
 ];

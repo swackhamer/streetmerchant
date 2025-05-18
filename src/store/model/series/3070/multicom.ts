@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for multicom 3070 series
@@ -128,5 +132,4 @@ export const links: Link[] = [
       url: 'https://www.multicom.no/business/inno3d-geforce-rtx-3070-8gb/cat-p/c100134/p1001501646',
     },
   ]),
-
 ];

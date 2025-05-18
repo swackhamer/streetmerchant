@@ -17,16 +17,22 @@ export const inStockLabels = {
   },
   bestbuyAddToCart: {
     container: '.add-to-cart-button',
-    text: ['add to cart']
+    text: ['add to cart'],
   },
   neweggAddToCart: {
     container: '.product-buy',
-    text: ['add to cart']
+    text: ['add to cart'],
   },
   // European variations
   euroAddToCart: {
     container: '.add-to-cart',
-    text: ['add to basket', 'add to cart', 'in den warenkorb', 'ajouter au panier', 'añadir a la cesta']
+    text: [
+      'add to basket',
+      'add to cart',
+      'in den warenkorb',
+      'ajouter au panier',
+      'añadir a la cesta',
+    ],
   },
   // Patterns for availability messages
   available: {
@@ -52,25 +58,25 @@ export const outOfStockLabels = {
   amazonOutOfStock: [
     {
       container: '#availability',
-      text: ['currently unavailable']
+      text: ['currently unavailable'],
     },
     {
       container: '#outOfStock',
-      text: ['unavailable']
-    }
+      text: ['unavailable'],
+    },
   ],
   bestbuyOutOfStock: {
     container: '.add-to-cart-button',
-    text: ['sold out']
+    text: ['sold out'],
   },
   neweggOutOfStock: {
     container: '.product-inventory',
-    text: ['out of stock']
+    text: ['out of stock'],
   },
   // European variations
   euroOutOfStock: {
     container: '.availability',
-    text: ['out of stock', 'sold out', 'ausverkauft', 'en rupture', 'agotado', 'non disponibile']
+    text: ['out of stock', 'sold out', 'ausverkauft', 'en rupture', 'agotado', 'non disponibile'],
   },
   // Pre-order patterns
   preOrder: {

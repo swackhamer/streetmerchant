@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -25,5 +29,4 @@ export const links: Link[] = [
       url: 'https://www.future-x.de/sapphire-amd-radeon-rx-6700-xt-gaming-oc-12gb-gddr6-hdmi-12288-mb-p-8808436/',
     },
   ]),
-
 ];

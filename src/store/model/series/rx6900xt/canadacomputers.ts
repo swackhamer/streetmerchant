@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -21,5 +25,4 @@ export const links: Link[] = [
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_558&item_id=186614&language=en',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -89,5 +93,4 @@ export const links: Link[] = [
       url: 'https://www.newegg.ca/powercolor-radeon-rx-6800-xt-axrx-6800xt-16gbd6-2dhce-oc/p/N82E16814131767',
     },
   ]),
-
 ];

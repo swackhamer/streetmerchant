@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for drako 3070 series
@@ -10,22 +14,26 @@ export const links: Link[] = [
     {
       model: 'dual',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24420',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24420&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24420&action=add_product',
     },
     {
       model: 'strix',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24422',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24422&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24422&action=add_product',
     },
     {
       model: 'tuf',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24721',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24721&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24721&action=add_product',
     },
     {
       model: 'tuf oc',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24421',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24421&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24421&action=add_product',
     },
   ]),
 
@@ -34,22 +42,26 @@ export const links: Link[] = [
     {
       model: 'aorus master',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24426',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24426&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24426&action=add_product',
     },
     {
       model: 'eagle oc',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24423',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24423&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24423&action=add_product',
     },
     {
       model: 'gaming oc',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24425',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24425&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24425&action=add_product',
     },
     {
       model: 'eagle',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24424',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24424&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24424&action=add_product',
     },
   ]),
 
@@ -58,8 +70,8 @@ export const links: Link[] = [
     {
       model: 'sg',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24475',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24292&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24292&action=add_product',
     },
   ]),
-
 ];

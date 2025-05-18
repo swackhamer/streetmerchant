@@ -15,11 +15,11 @@ export const SampleStoreSeries = createStandardStore({
   labels: {
     inStock: {
       container: '.stock-info',
-      text: ['IN STOCK', 'In Stock', 'Available']
+      text: ['IN STOCK', 'In Stock', 'Available'],
     },
     outOfStock: {
       container: '.stock-info',
-      text: ['OUT OF STOCK', 'Sold Out']
-    }
-  }
+      text: ['OUT OF STOCK', 'Sold Out'],
+    },
+  },
 });

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for Akinformatica RTX 3060Ti series
@@ -41,5 +45,5 @@ export const links: Link[] = [
     model: 'twin edge oc',
     series: '3060ti',
     url: 'https://shop.akinformatica.it/catalogo/nvidia-rtx-3060ti/vga-zotac-gaming-geforce-rtx-3060ti-twin-edge-oc-8g_4895173622519.aspx',
-  }
+  },
 ];

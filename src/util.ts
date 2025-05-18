@@ -18,10 +18,7 @@ export async function delay(ms: number) {
   });
 }
 
-export function isStatusCodeInRange(
-  statusCode: number,
-  range: StatusCodeRangeArray
-) {
+export function isStatusCodeInRange(statusCode: number, range: StatusCodeRangeArray) {
   for (const value of range) {
     let min: number;
     let max: number;
@@ -50,13 +47,10 @@ export function getRandomUserAgent(): string {
   ).map(s => s.trim());
 
   if (deprecatedUserAgent.length > 0) {
-    return deprecatedUserAgent[
-      Math.floor(Math.random() * deprecatedUserAgent.length)
-    ];
+    return deprecatedUserAgent[Math.floor(Math.random() * deprecatedUserAgent.length)];
   }
 
-  const userAgent =
-    topUserAgents[Math.floor(Math.random() * topUserAgents.length)];
+  const userAgent = topUserAgents[Math.floor(Math.random() * topUserAgents.length)];
   logger.debug('user agent', {userAgent});
   return userAgent;
 }

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for caseking 3070 series
@@ -148,5 +152,4 @@ export const links: Link[] = [
       url: 'https://www.caseking.de/zotac-gaming-geforce-rtx-3070-twin-edge-oc-white-8192-mb-gddr6-gczt-171.html',
     },
   ]),
-
 ];

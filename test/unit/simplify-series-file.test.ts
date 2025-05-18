@@ -15,53 +15,53 @@ describe('Series File Functionality', () => {
   beforeEach(() => {
     // Clear all mocks before each test
     jest.clearAllMocks();
-    
+
     // Mock path.join to return predictable paths
     (path.join as jest.Mock).mockImplementation((...paths) => {
       return paths.join('/');
     });
   });
-  
+
   describe('getAllSeriesNames', () => {
     it('should return an array of series names from the directory', () => {
       // Arrange
       (fs.existsSync as jest.Mock).mockReturnValue(true);
       (fs.readdirSync as jest.Mock).mockReturnValue(['3080', '3070', '3090']);
-      (fs.statSync as jest.Mock).mockImplementation((path) => ({
-        isDirectory: () => true
+      (fs.statSync as jest.Mock).mockImplementation(path => ({
+        isDirectory: () => true,
       }));
-      
+
       // Act
       const seriesNames = getAllSeriesNames();
-      
+
       // Assert
       expect(seriesNames).toEqual(['3080', '3070', '3090']);
       expect(fs.readdirSync).toHaveBeenCalledTimes(1);
     });
-    
+
     it('should return an empty array when series directory does not exist', () => {
       // Arrange
       (fs.existsSync as jest.Mock).mockReturnValue(false);
-      
+
       // Act
       const seriesNames = getAllSeriesNames();
-      
+
       // Assert
       expect(seriesNames).toEqual([]);
       expect(fs.readdirSync).not.toHaveBeenCalled();
     });
-    
+
     it('should filter out non-directory entries', () => {
       // Arrange
       (fs.existsSync as jest.Mock).mockReturnValue(true);
       (fs.readdirSync as jest.Mock).mockReturnValue(['3080', 'README.md', '3070']);
-      (fs.statSync as jest.Mock).mockImplementation((path) => ({
-        isDirectory: () => !path.includes('README')
+      (fs.statSync as jest.Mock).mockImplementation(path => ({
+        isDirectory: () => !path.includes('README'),
       }));
-      
+
       // Act
       const seriesNames = getAllSeriesNames();
-      
+
       // Assert
       expect(seriesNames).toEqual(['3080', '3070']);
     });

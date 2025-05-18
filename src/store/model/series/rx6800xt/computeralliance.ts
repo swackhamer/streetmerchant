@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -29,5 +33,4 @@ export const links: Link[] = [
       url: 'https://www.computeralliance.com.au/msi-rx6800xt-16gb-gaming-x-trio-pcie-video-card',
     },
   ]),
-
 ];

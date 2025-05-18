@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for euronics sonyps5de series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.euronics.it/console/sony-computer/playstation-5-digital-edition/eProd202008907',
     },
   ]),
-
 ];

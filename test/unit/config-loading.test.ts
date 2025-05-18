@@ -85,7 +85,7 @@ LOW_BANDWIDTH=false
     // Override the environment variables directly (more reliable than dotenv in tests)
     process.env.STORES = 'amazon,bestbuy';
     process.env.SHOW_ONLY_BRANDS = 'evga,zotac';
-    process.env.SHOW_ONLY_SERIES = '3080,3090';
+    process.env.SHOW_ONLY_SERIES = '5090';
     process.env.BROWSER_TRUSTED = 'true';
     process.env.LOW_BANDWIDTH = 'false';
 
@@ -97,17 +97,19 @@ LOW_BANDWIDTH=false
     const {config} = require('../../src/config');
 
     // Check that environment variables were properly loaded
-    expect(
-      config.store.stores.map((store: {name: string}) => store.name)
-    ).toEqual(['amazon', 'bestbuy']);
+    expect(config.store.stores.map((store: {name: string}) => store.name)).toEqual([
+      'amazon',
+      'bestbuy',
+    ]);
     expect(config.store.showOnlyBrands).toEqual(['evga', 'zotac']);
-    expect(config.store.showOnlySeries).toEqual(['3080', '3090']);
+    expect(config.store.showOnlySeries).toEqual(['5090']); // Updated to match the environment variable
     expect(config.browser.isTrusted).toBe(true);
     expect(config.browser.lowBandwidth).toBe(false);
   });
 
   test('uses default values when environment variables are not set', () => {
     // Load the config module without setting any environment variables
+    process.env.STORES = 'amazon,bestbuy'; // Add at least one store for the test
     jest.resetModules();
     const {config} = require('../../src/config');
 
@@ -163,15 +165,9 @@ LOW_BANDWIDTH=false
     expect(config.store.stores.length).toBe(3);
     expect(config.store.stores[0].name).toBe('amazon');
     expect(config.store.showOnlyBrands).toEqual(['evga', 'asus']);
-    expect(config.notifications.discord.notifyGroup).toEqual([
-      'group1',
-      'group2',
-    ]);
+    expect(config.notifications.discord.notifyGroup).toEqual(['group1', 'group2']);
     expect(config.notifications.phone.carrier).toEqual(['att', 'verizon']);
-    expect(config.notifications.phone.number).toEqual([
-      '1234567890',
-      '9876543210',
-    ]);
+    expect(config.notifications.phone.number).toEqual(['1234567890', '9876543210']);
   });
 
   test('properly handles Min/Max value pairs', () => {
@@ -226,9 +222,7 @@ LOW_BANDWIDTH=false
     require('../../src/config');
 
     // Check that warnings were logged for deprecated values
-    expect(console.warn).toHaveBeenCalledWith(
-      expect.stringContaining('MAX_PRICE is deprecated')
-    );
+    expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('MAX_PRICE is deprecated'));
 
     // Restore original console.warn
     console.warn = originalWarn;

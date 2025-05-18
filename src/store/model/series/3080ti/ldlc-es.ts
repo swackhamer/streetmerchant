@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for ldlc-es 3080ti series
@@ -160,5 +164,4 @@ export const links: Link[] = [
       url: 'https://www.ldlc.com/es-es/ficha/PB00438233.html',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for netonnet-no 3070 series
@@ -68,5 +72,4 @@ export const links: Link[] = [
       url: 'https://www.netonnet.no/art/datakomponenter/skjermkort/nvidia/kfa2-geforce-rtx-3070-1-click-oc-8gb/1017014.11111/',
     },
   ]),
-
 ];

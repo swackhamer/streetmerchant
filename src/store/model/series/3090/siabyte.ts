@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for siabyte 3090 series
@@ -80,5 +84,4 @@ export const links: Link[] = [
       url: 'https://siabyte.com/tarjetas-graficas/938-zotac-gaming-geforce-rtx-3090-trinity-oc-24gb-gddr6x.html',
     },
   ]),
-
 ];

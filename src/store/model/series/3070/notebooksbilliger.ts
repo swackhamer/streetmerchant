@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for notebooksbilliger 3070 series
@@ -64,5 +68,4 @@ export const links: Link[] = [
       url: 'https://www.notebooksbilliger.de/zotac+gaming+geforce+rtx+3070+twin+edge+oc+8gb+gddr6+grafikkarte+684216',
     },
   ]),
-
 ];

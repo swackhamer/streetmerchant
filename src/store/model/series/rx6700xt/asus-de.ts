@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -21,5 +25,4 @@ export const links: Link[] = [
       url: 'https://webshop.asus.com/de/komponenten/grafikkarten/tuf-247-betrieb/3105/asus-tuf-rx6700xt-o12g-gaming',
     },
   ]),
-
 ];

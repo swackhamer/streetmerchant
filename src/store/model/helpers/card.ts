@@ -16,18 +16,13 @@ interface LinksBuilderOptions {
   urlSelector?: string;
 }
 
-export type LinksBuilderBuilder = ((
-  docElement: Cheerio<ParentNode>,
-  series: Series
-) => Link[]) & {
+export type LinksBuilderBuilder = ((docElement: Cheerio<ParentNode>, series: Series) => Link[]) & {
   readonly options?: Readonly<LinksBuilderOptions>;
 };
 
 const isPartialUrlRegExp = /^(?!https?:).*/i;
 
-export function getProductLinksBuilder(
-  options: LinksBuilderOptions
-): LinksBuilderBuilder {
+export function getProductLinksBuilder(options: LinksBuilderOptions): LinksBuilderBuilder {
   const builder: LinksBuilderBuilder = (docElement, series) => {
     const productElements = docElement.find(options.productsSelector);
     const links: Link[] = [];
@@ -128,12 +123,8 @@ export function parseCard(name: string): Card | null {
     }
 
     return (
-      !word.match(
-        /^(graphics|card|gpu|pci-?e(xpress)?|ray-?tracing|ray|tracing|core|boost)$/i
-      ) &&
-      !word.match(
-        /^(nvidia|geforce|ge|force|rtx|ti|super|amp[ae]re|blackwell|epic-?x)$/i
-      ) &&
+      !word.match(/^(graphics|card|gpu|pci-?e(xpress)?|ray-?tracing|ray|tracing|core|boost)$/i) &&
+      !word.match(/^(nvidia|geforce|ge|force|rtx|ti|super|amp[ae]re|blackwell|epic-?x)$/i) &&
       !word.match(/^(amd|radeon|rx|xt|rdna[0-9]*)$/i) &&
       !word.match(/^(\d+(?:gb?|mhz)?|gb|mhz|g?ddr(\d+x?)?)$/i) &&
       !word.match(/^(display[ -]?port|hdmi|vga)$/i)

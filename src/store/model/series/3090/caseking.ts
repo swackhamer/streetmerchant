@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for caseking 3090 series
@@ -156,5 +160,4 @@ export const links: Link[] = [
       url: 'https://www.caseking.de/zotac-gaming-geforce-rtx-3090-trinity-24576-mb-gddr6x-gczt-162.html',
     },
   ]),
-
 ];

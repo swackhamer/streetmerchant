@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for wellstechnology ryzen5600 series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://wellstechnology.com.au/products/amd-ryzen-5-5600x-cpu?_pos=1&_sid=3f4c61e03&_ss=r&variant=36941063422118',
     },
   ]),
-
 ];

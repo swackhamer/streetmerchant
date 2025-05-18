@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for komplett-no 3060ti series
@@ -124,5 +128,4 @@ export const links: Link[] = [
       url: 'https://www.komplett.no/product/1174394/',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for mightyape xboxss series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.mightyape.co.nz/product/xbox-series-s-all-digital-console/33856647',
     },
   ]),
-
 ];

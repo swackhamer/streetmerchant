@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for xtremmedia 3070ti series
@@ -64,5 +68,4 @@ export const links: Link[] = [
       url: 'https://xtremmedia.com/Zotac_GeForce_RTX_3070Ti_Trinity_8GB_GDDR6X.html',
     },
   ]),
-
 ];

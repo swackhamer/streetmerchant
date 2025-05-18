@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for globaldata 3070 series
@@ -108,5 +112,4 @@ export const links: Link[] = [
       url: 'https://www.globaldata.pt/grafica-zotac-geforce-rtx-3070-twin-edge-white-oc-8gb-gd6-zt-a30700j-10p',
     },
   ]),
-
 ];

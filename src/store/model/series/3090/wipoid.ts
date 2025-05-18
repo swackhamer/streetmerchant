@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for wipoid 3090 series
@@ -76,5 +80,4 @@ export const links: Link[] = [
       url: 'https://www.wipoid.com/zotac-gaming-geforce-rtx-3090-trinity-24gb-gddr6x.html',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -105,5 +109,4 @@ export const links: Link[] = [
       url: 'https://www.acom-pc.de/Hardware-Software/Grafikkarten-Zubehoer/Grafikkarten-AMD/ATI-PCI-Express/XFX-VGA-12GB-Radeon-RX6700XT-SWFT-309-Gaming-3xDP-H-Radeon-RX-6700XT-Grafikkarte-12.288-MB.html',
     },
   ]),
-
 ];

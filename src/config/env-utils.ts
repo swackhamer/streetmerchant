@@ -1,6 +1,6 @@
 /**
  * Environment variable utility functions
- * 
+ *
  * This module provides helper functions for working with environment variables
  * and converting them to the appropriate types.
  */
@@ -11,10 +11,7 @@
  * @param environment Interested environment variable.
  * @param array Default array. If not set, is `[]`.
  */
-export function envOrArray(
-  environment: string | undefined,
-  array?: string[]
-): string[] {
+export function envOrArray(environment: string | undefined, array?: string[]): string[] {
   return (
     environment
       ? environment.includes('\n')
@@ -30,10 +27,7 @@ export function envOrArray(
  * @param environment Interested environment variable.
  * @param boolean Default boolean. If not set, is `true`.
  */
-export function envOrBoolean(
-  environment: string | undefined,
-  boolean?: boolean
-): boolean {
+export function envOrBoolean(environment: string | undefined, boolean?: boolean): boolean {
   return environment ? environment === 'true' : boolean ?? true;
 }
 
@@ -77,16 +71,12 @@ export function envOrNumberMin(
   if (environmentMin || environmentMax) {
     if (environmentMin && environmentMax) {
       return Number(
-        Number(environmentMin) < Number(environmentMax)
-          ? environmentMin
-          : environmentMax
+        Number(environmentMin) < Number(environmentMax) ? environmentMin : environmentMax
       );
     }
 
     if (environmentMax) {
-      return Number(environmentMax) < (number ?? 0)
-        ? Number(environmentMax)
-        : number ?? 0;
+      return Number(environmentMax) < (number ?? 0) ? Number(environmentMax) : number ?? 0;
     }
 
     if (environmentMin) {
@@ -117,16 +107,12 @@ export function envOrNumberMax(
   if (environmentMin || environmentMax) {
     if (environmentMin && environmentMax) {
       return Number(
-        Number(environmentMin) < Number(environmentMax)
-          ? environmentMax
-          : environmentMax
+        Number(environmentMin) < Number(environmentMax) ? environmentMax : environmentMax
       );
     }
 
     if (environmentMin) {
-      return Number(environmentMin) > (number ?? 0)
-        ? Number(environmentMin)
-        : number ?? 0;
+      return Number(environmentMin) > (number ?? 0) ? Number(environmentMin) : number ?? 0;
     }
 
     if (environmentMax) {

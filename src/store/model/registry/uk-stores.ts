@@ -15,7 +15,7 @@ export const ukStores: Record<string, ExtendedStoreOptions> = {
     storeType: 'marketplace',
     labels: commonLabels.amazon,
   },
-  'box': {
+  box: {
     name: 'box',
     country: 'UK',
     currency: '£',
@@ -23,11 +23,11 @@ export const ukStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '#divBuyButton',
-        text: ['add to basket']
+        text: ['add to basket'],
       },
     },
   },
-  'currys': {
+  currys: {
     name: 'currys',
     country: 'UK',
     currency: '£',
@@ -35,11 +35,11 @@ export const ukStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.channels-search-results',
-        text: ['add to basket', 'buy']
+        text: ['add to basket', 'buy'],
       },
     },
   },
-  'scan': {
+  scan: {
     name: 'scan',
     country: 'UK',
     currency: '£',
@@ -48,13 +48,13 @@ export const ukStores: Record<string, ExtendedStoreOptions> = {
       inStock: [
         {
           container: '#detailsAddToBasket',
-          text: ['add to basket']
+          text: ['add to basket'],
         },
         {
           container: '#purchaseRegion',
-          text: ['add to basket', 'in stock']
-        }
-      ]
+          text: ['add to basket', 'in stock'],
+        },
+      ],
     },
   },
   // Add more UK stores here

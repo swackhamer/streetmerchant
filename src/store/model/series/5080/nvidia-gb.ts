@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for nvidia-gb 5080 series
@@ -11,5 +15,4 @@ export const links: Link[] = [
       url: 'https://marketplace.nvidia.com/en-gb/consumer/graphics-cards/nvidia-geforce-rtx-5080/',
     },
   ]),
-
 ];

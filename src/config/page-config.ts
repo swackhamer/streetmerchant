@@ -1,4 +1,4 @@
-import { envOrBoolean, envOrNumber, envOrString } from './env-utils';
+import {envOrBoolean, envOrNumber, envOrString} from './env-utils';
 
 export const page = {
   height: 900,

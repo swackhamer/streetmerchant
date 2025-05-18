@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for computeruniverse 3060ti series
@@ -156,5 +160,4 @@ export const links: Link[] = [
       url: 'https://www.computeruniverse.net/de/pny-geforce-rtx3060-ti-xlr8-gaming-8-gb',
     },
   ]),
-
 ];

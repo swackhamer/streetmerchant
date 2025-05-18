@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for siabyte 3080 series
@@ -76,5 +80,4 @@ export const links: Link[] = [
       url: 'https://siabyte.com/tarjetas-graficas/924-msi-geforce-rtx-3080-suprim-x-10gb-gddr6x.html',
     },
   ]),
-
 ];

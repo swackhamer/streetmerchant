@@ -11,5 +11,4 @@ export const ExtendedStore = createStandardStore({
   name: 'extended-store',
   country: 'US',
   currency: '$',
-
 });

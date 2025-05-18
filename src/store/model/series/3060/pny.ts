@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for pny 3060 series
@@ -16,5 +20,4 @@ export const links: Link[] = [
       url: 'https://www.pny.com/pny-geforce-rtx-3060-12gb-xlr8-gaming-revel-epic-x-rgb-sf',
     },
   ]),
-
 ];

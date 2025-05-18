@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -11,17 +15,20 @@ export const links: Link[] = [
     {
       model: 'strix',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24604',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24604&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24604&action=add_product',
     },
     {
       model: 'tuf',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24605',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24605&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24605&action=add_product',
     },
     {
       model: 'tuf oc',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24606',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24606&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24606&action=add_product',
     },
   ]),
 
@@ -30,8 +37,8 @@ export const links: Link[] = [
     {
       model: 'amd reference',
       url: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24606',
-      cartUrl: 'http://www.drako.it/drako_catalog/product_info.php?products_id=24606&action=add_product',
+      cartUrl:
+        'http://www.drako.it/drako_catalog/product_info.php?products_id=24606&action=add_product',
     },
   ]),
-
 ];

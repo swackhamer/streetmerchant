@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for pccomponentes 3080ti series
@@ -68,5 +72,4 @@ export const links: Link[] = [
       url: 'https://www.pccomponentes.com/zotac-gaming-geforce-rtx-3080-ti-trinity-oc-12gb-gddr6x',
     },
   ]),
-
 ];

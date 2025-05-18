@@ -29,7 +29,7 @@ export const caStores: Record<string, ExtendedStoreOptions> = {
     storeType: 'standard',
     labels: commonLabels.newegg,
   },
-  'canadacomputers': {
+  canadacomputers: {
     name: 'canadacomputers',
     country: 'CA',
     currency: '$',
@@ -37,11 +37,11 @@ export const caStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.pi-prod-availability',
-        text: ['online in stock']
+        text: ['online in stock'],
       },
     },
   },
-  'memoryexpress': {
+  memoryexpress: {
     name: 'memoryexpress',
     country: 'CA',
     currency: '$',
@@ -49,7 +49,7 @@ export const caStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.c-capr-inventory-selector__details-online',
-        text: ['in stock']
+        text: ['in stock'],
       },
     },
   },

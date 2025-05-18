@@ -1,6 +1,6 @@
 /**
  * Browser Session Management
- * 
+ *
  * This file implements a class-based approach to browser session management,
  * consolidating the various browser handling functions into a single cohesive API.
  */
@@ -13,17 +13,13 @@ import {nextStoreProxy, parseProxy, Proxy as ProxyConfig} from '../../proxy';
 import {Store} from '../../store/model/store';
 import {logUnexpectedError} from '../../util';
 import {Browser, Page} from 'puppeteer';
-import {
-  BrowserInstance,
-  CookiePolicy,
-  PageCallback
-} from './types';
+import {BrowserInstance, CookiePolicy, PageCallback} from './types';
 import {
   clearBrowserCookies,
   cleanUserDataDir,
   getCookiePolicy,
   getDefaultUserAgent,
-  launchBrowser
+  launchBrowser,
 } from './utils';
 
 /**
@@ -34,7 +30,7 @@ export class BrowserSession {
   private static defaultUserAgent?: string;
   private static cookiePolicy = BrowserSession.getCookiePolicy();
   private static defaultProxy = parseProxy(config.proxy.address, config);
-  
+
   /**
    * Creates a new BrowserSession for a store or reuses an existing one
    */
@@ -42,20 +38,18 @@ export class BrowserSession {
     const browser = await this.getBrowserForStore(store);
     return new BrowserSession(store, {browser});
   }
-  
+
   /**
    * Gets or creates a browser for a store
    */
   private static async getBrowserForStore(store: Store): Promise<Browser> {
     const instance = this.instances.get(store);
     const proxy = nextStoreProxy(store) ?? this.defaultProxy;
-    
+
     if (instance) {
       const browser = await instance.browser;
       if (proxy !== instance.proxy) {
-        logger.debug(
-          `ℹ [${store.name}] restarting browser instance with proxy: ${proxy?.server}`
-        );
+        logger.debug(`ℹ [${store.name}] restarting browser instance with proxy: ${proxy?.server}`);
         await browser.close();
         this.instances.delete(store);
         return await this.createBrowser(store, proxy);
@@ -68,7 +62,7 @@ export class BrowserSession {
       return await this.createBrowser(store, proxy);
     }
   }
-  
+
   /**
    * Creates a new browser instance
    */
@@ -76,17 +70,17 @@ export class BrowserSession {
     try {
       // Make sure browser context is available
       abortctl.assert('browser');
-      
+
       const userDataDir = path.join(config.browser.profileParentDir, store.name);
       cleanUserDataDir(userDataDir);
-      
+
       const userAgent = await this.getDefaultUserAgent();
       const browserPromise = launchBrowser({
-        options: {userDataDir}, 
-        proxy, 
-        userAgent
+        options: {userDataDir},
+        proxy,
+        userAgent,
       });
-      
+
       this.instances.set(store, {browser: browserPromise, proxy, userDataDir});
       return await browserPromise;
     } catch (error) {
@@ -94,25 +88,25 @@ export class BrowserSession {
       if (error instanceof abortctl.AsyncContextError) {
         logger.warn(`ℹ [${store.name}] browser context not available, re-enabling`);
         abortctl.create('browser');
-        
+
         // Try again after enabling the context
         const userDataDir = path.join(config.browser.profileParentDir, store.name);
         cleanUserDataDir(userDataDir);
-        
+
         const userAgent = await this.getDefaultUserAgent();
         const browserPromise = launchBrowser({
-          options: {userDataDir}, 
-          proxy, 
-          userAgent
+          options: {userDataDir},
+          proxy,
+          userAgent,
         });
-        
+
         this.instances.set(store, {browser: browserPromise, proxy, userDataDir});
         return await browserPromise;
       }
       throw error;
     }
   }
-  
+
   /**
    * Get the default user agent
    */
@@ -120,34 +114,31 @@ export class BrowserSession {
     if (this.defaultUserAgent) {
       return this.defaultUserAgent;
     }
-    
+
     this.defaultUserAgent = await getDefaultUserAgent();
     return this.defaultUserAgent;
   }
-  
+
   /**
    * Determine cookie policy based on configuration
    */
   private static getCookiePolicy(): CookiePolicy {
     return getCookiePolicy();
   }
-  
+
   /**
    * Constructor - can be created directly with options or via factory method
    */
   private browser: Browser;
 
-  constructor(
-    private readonly store: Store,
-    options: { browser: Browser }
-  ) {
+  constructor(private readonly store: Store, options: {browser: Browser}) {
     if (options.browser) {
       this.browser = options.browser;
     } else {
       throw new Error('Browser must be provided');
     }
   }
-  
+
   /**
    * Use a page for processing
    */
@@ -162,7 +153,7 @@ export class BrowserSession {
       await this.cleanupPage(page);
     }
   }
-  
+
   /**
    * Try to use a page, handling errors gracefully
    */
@@ -184,7 +175,7 @@ export class BrowserSession {
       return undefined;
     }
   }
-  
+
   /**
    * Process cookie handling based on policy
    */
@@ -200,23 +191,23 @@ export class BrowserSession {
         }
         break;
     }
-    
+
     if (deleteCookies) {
       await clearBrowserCookies(this.browser);
     }
   }
-  
+
   /**
    * Clean up a page after use
    */
   private async cleanupPage(page: Page): Promise<void> {
     await page.close({runBeforeUnload: false});
-    
+
     if (BrowserSession.cookiePolicy === CookiePolicy.DEFAULT) {
       await clearBrowserCookies(this.browser);
     }
   }
-  
+
   /**
    * Close the session and clean up resources
    */
@@ -229,29 +220,27 @@ export class BrowserSession {
       BrowserSession.instances.delete(this.store);
     }
   }
-  
+
   /**
    * Close all browser sessions
    */
   public static async closeAll(): Promise<void> {
     abortctl.destroy('browser');
-    
+
     await Promise.all(
-      [...BrowserSession.instances.entries()].map(
-        async ([store, {browser: browserPromise}]) => {
-          try {
-            const browser = await browserPromise;
-            await browser.close();
-          } catch (error) {
-            logger.error('✖ failed to close browser', error);
-          } finally {
-            BrowserSession.instances.delete(store);
-          }
+      [...BrowserSession.instances.entries()].map(async ([store, {browser: browserPromise}]) => {
+        try {
+          const browser = await browserPromise;
+          await browser.close();
+        } catch (error) {
+          logger.error('✖ failed to close browser', error);
+        } finally {
+          BrowserSession.instances.delete(store);
         }
-      )
+      })
     );
   }
-  
+
   /**
    * Enable browser contexts
    */

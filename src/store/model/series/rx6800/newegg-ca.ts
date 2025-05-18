@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -65,5 +69,4 @@ export const links: Link[] = [
       url: 'https://www.newegg.ca/sapphire-radeon-rx-6800-11305-01-20g/p/N82E16814202392',
     },
   ]),
-
 ];

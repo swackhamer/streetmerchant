@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for computeruniverse ryzen5900 series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.computeruniverse.net/de/amd-ryzen-9-5900x-box-ohne-kuehler',
     },
   ]),
-
 ];

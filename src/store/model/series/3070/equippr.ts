@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for equippr 3070 series
@@ -28,5 +32,4 @@ export const links: Link[] = [
       url: 'https://www.equippr.de/gigabyte-geforce-rtx-3070-eagle-oc-8-gb-gddr6-retail-2063882.html',
     },
   ]),
-
 ];

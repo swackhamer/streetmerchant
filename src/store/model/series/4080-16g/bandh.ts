@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for bandh 4080-16g series
@@ -96,5 +100,4 @@ export const links: Link[] = [
       url: 'https://www.bhphotovideo.com/c/product/1733739-REG/msi_g408016v3xc_geforce_rtx_4080_16gb.html',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for game-es 3090 series
@@ -28,5 +32,4 @@ export const links: Link[] = [
       url: 'https://www.game.es/COMPONENTES/TARJETA-GRAFICA/PC-GAMING/PALIT-RTX-3090-GAMING-PRO-OC-24GB-GDDR6X-TARJETA-GRAFICA/185004',
     },
   ]),
-
 ];

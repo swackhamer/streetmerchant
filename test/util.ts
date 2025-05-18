@@ -26,8 +26,7 @@ export function getTestLink(): Link {
 export function getCaptchaTestLink(): Link {
   const link: Link = {
     brand: 'test:brand',
-    cartUrl:
-      'https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/RickRoll.png/250px-RickRoll.png',
+    cartUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/RickRoll.png/250px-RickRoll.png',
     model: 'test:model',
     price: 100,
     series: 'test:series',

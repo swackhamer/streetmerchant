@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for opirata 3060 series
@@ -24,5 +28,4 @@ export const links: Link[] = [
       url: 'https://www.opirata.com/p/tarjeta-grafica-gigabyte-geforce-rtx-3060-eagle-oc-12gb-gddr6',
     },
   ]),
-
 ];

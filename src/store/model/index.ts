@@ -35,20 +35,20 @@ export {storeList};
 function loadAllStoresFromRegistry() {
   // Get all store names from the registry
   const storeNames = getAllStoreNames();
-  
+
   for (const storeName of storeNames) {
     try {
       const store = createStoreFromRegistry(storeName);
       storeList.set(storeName, store);
       logger.debug(`Loaded store from registry: ${storeName}`);
-      
+
       // Initialize series links loader for each store
       initializeSeriesLinksLoader(store);
     } catch (error) {
       logger.error(`Error loading store from registry: ${storeName}`, error);
     }
   }
-  
+
   logger.info(`Loaded ${storeList.size} stores from registry`);
 }
 
@@ -102,9 +102,7 @@ function printConfig() {
     logger.info(
       `ℹ selected models: ${config.store.showOnlyModels
         .map(entry => {
-          return entry.series
-            ? entry.name + ' (' + entry.series + ')'
-            : entry.name;
+          return entry.series ? entry.name + ' (' + entry.series + ')' : entry.name;
         })
         .join(', ')}`
     );
@@ -119,9 +117,7 @@ function printConfig() {
     logger.info(`ℹ selected stores: ${stores.names.join(', ')}`);
 
     if (stores.anyExcluded) {
-      logger.warn(
-        'ℹ some of the selected stores (grayed out) dont have what you are looking for'
-      );
+      logger.warn('ℹ some of the selected stores (grayed out) dont have what you are looking for');
     }
   }
 }
@@ -140,8 +136,7 @@ function darkenEmptyStores(): {names: string[]; anyExcluded: boolean} {
         l =>
           (config.store.showOnlySeries?.includes(l.series as string) ?? false) ||
           config.store.showOnlyBrands?.includes(l.brand as string) ||
-          (config.store.showOnlyModels?.map(m => m.name).includes(l.model) ??
-            false)
+          (config.store.showOnlyModels?.map(m => m.name).includes(l.model) ?? false)
       ) ?? true;
 
     if (!hasAny) {

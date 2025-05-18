@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -57,5 +61,4 @@ export const links: Link[] = [
       url: 'https://www.mindfactory.de/product_info.php/12GB-XFX-Radeon-RX-6700-XT-QICK319-DDR6-Black-Gaming-3xDP--Retail-_1405679.html',
     },
   ]),
-
 ];

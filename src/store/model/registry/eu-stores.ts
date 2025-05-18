@@ -23,11 +23,11 @@ export const deStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.stockStatus',
-        text: ['auf lager', 'lieferbar']
+        text: ['auf lager', 'lieferbar'],
       },
     },
   },
-  'caseking': {
+  caseking: {
     name: 'caseking',
     country: 'DE',
     currency: '€',
@@ -35,7 +35,7 @@ export const deStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.delivery_container',
-        text: ['auf lager', 'verfügbar']
+        text: ['auf lager', 'verfügbar'],
       },
     },
   },
@@ -53,7 +53,7 @@ export const frStores: Record<string, ExtendedStoreOptions> = {
     storeType: 'marketplace',
     labels: commonLabels.amazon,
   },
-  'ldlc': {
+  ldlc: {
     name: 'ldlc',
     country: 'FR',
     currency: '€',

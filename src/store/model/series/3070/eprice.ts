@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for eprice 3070 series
@@ -48,5 +52,4 @@ export const links: Link[] = [
       url: 'https://www.eprice.it/schede-video-ZOTAC/d-13979806',
     },
   ]),
-
 ];

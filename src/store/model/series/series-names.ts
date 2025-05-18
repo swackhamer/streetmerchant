@@ -9,7 +9,7 @@ let cachedSeriesNames: string[] | null = null;
 
 /**
  * Gets all available series names from the directory structure
- * 
+ *
  * @returns Array of all series names
  */
 export function getAllSeriesNames(): string[] {
@@ -19,21 +19,20 @@ export function getAllSeriesNames(): string[] {
   }
 
   const seriesDir = path.join(__dirname);
-  
+
   if (!fs.existsSync(seriesDir)) {
     return [];
   }
-  
+
   // Find all directories that aren't hidden/special (don't start with .)
-  const seriesNames = fs.readdirSync(seriesDir)
-    .filter(file => {
-      const fullPath = path.join(seriesDir, file);
-      return fs.statSync(fullPath).isDirectory() && !file.startsWith('.');
-    });
-  
+  const seriesNames = fs.readdirSync(seriesDir).filter(file => {
+    const fullPath = path.join(seriesDir, file);
+    return fs.statSync(fullPath).isDirectory() && !file.startsWith('.');
+  });
+
   // Cache the result
   cachedSeriesNames = seriesNames;
-  
+
   return seriesNames;
 }
 

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -69,5 +73,4 @@ export const links: Link[] = [
       url: 'https://www.pcking.de/eshop.php?action=article_detail&s_supplier_aid=15938177',
     },
   ]),
-
 ];

@@ -25,18 +25,18 @@ export function getAllStoreNames(): string[] {
 export const storeRegistry: Record<string, ExtendedStoreOptions> = {
   // US stores
   ...usStores,
-  
+
   // Canadian stores
   ...caStores,
-  
+
   // UK stores
   ...ukStores,
-  
+
   // European stores
   ...deStores,
   ...frStores,
   ...otherEuStores,
-  
+
   // Other region stores
   ...auNzStores,
   ...asiaStores,

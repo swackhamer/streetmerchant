@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for game-es 3080 series
@@ -40,5 +44,4 @@ export const links: Link[] = [
       url: 'https://www.game.es/COMPONENTES/TARJETA-GRAFICA/PC-GAMING/MSI-RTX-3080-GAMING-X-TRIO-10G-TARJETA-GRAFICA-NVIDIA-GEFORCE-RTX-3080-10-GB-GDDR6X/V0P9YG',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for zotac 4080-16g series
@@ -16,5 +20,4 @@ export const links: Link[] = [
       url: 'https://www.zotacstore.com/us/zotac-gaming-geforce-rtx-4080-16gb-trinity',
     },
   ]),
-
 ];

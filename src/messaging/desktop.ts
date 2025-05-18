@@ -14,19 +14,16 @@ const {desktop} = config.notifications;
 export function sendDesktopNotification(link: Link, store: Store) {
   if (desktop) {
     logger.debug('↗ sending desktop notification');
-    
+
     // Get the platform-specific notifier
     const notifierInstance = getPlatformNotifier();
-    
+
     // Path to the logo
-    const logoPath = join(
-      __dirname,
-      '../../../docs/assets/images/streetmerchant-logo.png'
-    );
-    
+    const logoPath = join(__dirname, '../../../docs/assets/images/streetmerchant-logo.png');
+
     // Product URL (prefer cart URL if available)
     const productUrl = link.cartUrl ? link.cartUrl : link.url;
-    
+
     // Prepare notification options
     const notificationOptions = {
       title: Print.inStock(link, store),
@@ -41,37 +38,38 @@ export function sendDesktopNotification(link: Link, store: Store) {
       actions: ['Open URL', 'Dismiss'], // macOS specific
       dropdownLabel: 'Actions', // macOS specific
     };
-    
+
     // Send notification with detailed error handling
     notifierInstance.notify(notificationOptions, (error: any, response: any, metadata: any) => {
       if (error) {
         logger.error('✖ desktop notification failed', error);
         return;
       }
-      
+
       if (response) {
         logger.debug(`Desktop notification response: ${response}`);
       }
-      
+
       if (metadata) {
         logger.debug(`Desktop notification metadata: ${JSON.stringify(metadata)}`);
       }
-      
+
       logger.info('✔ desktop notification sent');
     });
-    
+
     // Set up event handlers
     (notifierInstance as any).on('click', () => {
       logger.debug('Desktop notification clicked');
     });
-    
+
     (notifierInstance as any).on('timeout', () => {
       logger.debug('Desktop notification timed out');
     });
-    
+
     (notifierInstance as any).on('action', (notifierObj: any, options: any, index: any) => {
       logger.debug(`Desktop notification action clicked: ${index}`);
-      if (index === 0) { // "Open URL" action
+      if (index === 0) {
+        // "Open URL" action
         import('open').then(({default: open}) => {
           open(productUrl);
         });
@@ -86,22 +84,22 @@ export function sendDesktopNotification(link: Link, store: Store) {
  */
 function getPlatformNotifier(): any {
   const platform = process.platform;
-  
+
   switch (platform) {
     case 'darwin':
       // Use NotificationCenter on macOS
       return new notifier.NotificationCenter({
-        withFallback: true
+        withFallback: true,
       });
     case 'win32':
       // Use WindowsToaster on Windows
       return new notifier.WindowsToaster({
-        withFallback: true
+        withFallback: true,
       });
     case 'linux':
       // Use NotifySend on Linux
       return new notifier.NotifySend({
-        withFallback: true
+        withFallback: true,
       });
     default:
       // Use the generic notifier as fallback

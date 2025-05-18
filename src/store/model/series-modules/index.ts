@@ -1,6 +1,6 @@
 /**
  * Series Modules - Central export point
- * 
+ *
  * This file re-exports all the components of the series data system.
  */
 // Types
@@ -15,7 +15,7 @@ export {
   getLinksForSeriesAndStore,
   getAllLinksForSeries,
   getAllSeries,
-  getStoreSeriesLinksFromData
+  getStoreSeriesLinksFromData,
 } from './data-access';
 
 // Link filtering

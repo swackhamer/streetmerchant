@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for pcdiga 3070 series
@@ -96,5 +100,4 @@ export const links: Link[] = [
       url: 'https://www.pcdiga.com/componentes/placas-graficas/placas-graficas-nvidia/placa-grafica-asus-tuf-gaming-geforce-rtx-3070-8gb-gddr6-oc-edition-90yv0fq6-m0na00',
     },
   ]),
-
 ];

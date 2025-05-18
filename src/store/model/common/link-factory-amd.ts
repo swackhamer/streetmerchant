@@ -8,7 +8,7 @@ import {createBrandSeriesLinks} from './link-factory';
  * Create AMD reference links for a specific series
  */
 export function createAmdReferenceLinks(
-  series: Series, 
+  series: Series,
   configs: Array<{
     url: string;
     cartUrl?: string;
@@ -16,8 +16,12 @@ export function createAmdReferenceLinks(
     price?: number;
   }>
 ): Link[] {
-  return createBrandSeriesLinks('amd', series, configs.map(config => ({
-    model: 'amd reference',
-    ...config
-  })));
+  return createBrandSeriesLinks(
+    'amd',
+    series,
+    configs.map(config => ({
+      model: 'amd reference',
+      ...config,
+    }))
+  );
 }

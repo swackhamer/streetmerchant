@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for neobyte 3070ti series
@@ -28,5 +32,4 @@ export const links: Link[] = [
       url: 'https://www.neobyte.es/gigabyte-rtx-3070ti-gaming-oc-8gb-9468.html',
     },
   ]),
-
 ];

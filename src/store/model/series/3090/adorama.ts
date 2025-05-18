@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for adorama 3090 series
@@ -32,5 +36,4 @@ export const links: Link[] = [
       url: 'https://www.adorama.com/asrx3090o24g.html',
     },
   ]),
-
 ];

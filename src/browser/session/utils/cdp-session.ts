@@ -10,7 +10,7 @@ export async function withCdpSession<T>(
 ): Promise<T> {
   let isNewPage: boolean;
   let page: Page;
-  
+
   if (browserOrPage instanceof Page) {
     page = browserOrPage;
     isNewPage = false;
@@ -23,7 +23,7 @@ export async function withCdpSession<T>(
       page = pages[0];
     }
   }
-  
+
   const client = await page.createCDPSession();
   try {
     return await cb(client);
@@ -38,7 +38,5 @@ export async function withCdpSession<T>(
  * Clear browser cookies using CDP
  */
 export async function clearBrowserCookies(browser: Browser): Promise<void> {
-  await withCdpSession(browser, async client =>
-    client.send('Network.clearBrowserCookies')
-  );
+  await withCdpSession(browser, async client => client.send('Network.clearBrowserCookies'));
 }

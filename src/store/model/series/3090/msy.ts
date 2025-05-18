@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for msy 3090 series
@@ -52,5 +56,4 @@ export const links: Link[] = [
       url: 'https://www.msy.com.au/msi-nvidia-geforce-rtx-3090-suprim-x-24g-24gb-rtx-3090-suprim-x-pci-e-vga-card',
     },
   ]),
-
 ];

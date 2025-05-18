@@ -46,11 +46,13 @@ export function createBrandSeriesLinks(
     price?: number;
   }>
 ): Link[] {
-  return configs.map(config => createLink({
-    brand,
-    series,
-    ...config,
-  }));
+  return configs.map(config =>
+    createLink({
+      brand,
+      series,
+      ...config,
+    })
+  );
 }
 
 /**
@@ -65,10 +67,14 @@ export function createFoundersEditionLinks(
     price?: number;
   }>
 ): Link[] {
-  return createBrandSeriesLinks('nvidia', series, configs.map(config => ({
-    model: 'founders edition',
-    ...config,
-  })));
+  return createBrandSeriesLinks(
+    'nvidia',
+    series,
+    configs.map(config => ({
+      model: 'founders edition',
+      ...config,
+    }))
+  );
 }
 
 /**
@@ -83,10 +89,14 @@ export function createAmdReferenceLinks(
     price?: number;
   }>
 ): Link[] {
-  return createBrandSeriesLinks('amd', series, configs.map(config => ({
-    model: 'amd reference',
-    ...config,
-  })));
+  return createBrandSeriesLinks(
+    'amd',
+    series,
+    configs.map(config => ({
+      model: 'amd reference',
+      ...config,
+    }))
+  );
 }
 
 /**

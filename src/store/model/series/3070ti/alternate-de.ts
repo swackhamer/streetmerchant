@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for alternate-de 3070ti series
@@ -60,5 +64,4 @@ export const links: Link[] = [
       url: 'https://www.alternate.de/html/product/1759465',
     },
   ]),
-
 ];

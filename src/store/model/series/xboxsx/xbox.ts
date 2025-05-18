@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for xbox xboxsx series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.xbox.com/en-us/configure/8WJ714N3RBTL',
     },
   ]),
-
 ];

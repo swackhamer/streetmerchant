@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for globaldata 3060ti series
@@ -96,5 +100,4 @@ export const links: Link[] = [
       url: 'https://www.globaldata.pt/grafica-zotac-geforce-rtx-3060-ti-twin-edge-oc-8gb-gd6-zt-a30610h-10m',
     },
   ]),
-
 ];

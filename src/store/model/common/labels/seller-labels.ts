@@ -13,6 +13,6 @@ export const bannedSellerLabels = {
   },
   amazonThirdParty: {
     container: '#merchant-info',
-    text: ['japan import', 'third party']
+    text: ['japan import', 'third party'],
   },
 };

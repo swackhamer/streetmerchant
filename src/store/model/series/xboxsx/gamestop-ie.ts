@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for gamestop-ie xboxsx series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.gamestop.ie/Xbox%20Series/Games/73034/xbox-series-x-console',
     },
   ]),
-
 ];

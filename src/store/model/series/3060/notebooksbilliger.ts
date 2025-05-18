@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for notebooksbilliger 3060 series
@@ -68,5 +72,4 @@ export const links: Link[] = [
       url: 'https://www.notebooksbilliger.de/zotac+gaming+geforce+rtx+3060+twin+edge+oc+12gb+grafikkarte+700378',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for neobyte 3090 series
@@ -60,5 +64,4 @@ export const links: Link[] = [
       url: 'https://www.neobyte.es/grafica-msi-rtx-3090-ventus-3x-24g-oc-7288.html',
     },
   ]),
-
 ];

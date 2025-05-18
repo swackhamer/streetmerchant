@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for saturn sonyps5c series
@@ -80,5 +84,4 @@ export const links: Link[] = [
       url: 'https://www.saturn.de/de/product/_sony-playstationr5-ghost-of-tsushima-death-stranding-dc-nur-online-2768019.html',
     },
   ]),
-
 ];

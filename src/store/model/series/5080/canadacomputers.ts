@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for canadacomputers 5080 series
@@ -20,5 +24,4 @@ export const links: Link[] = [
       url: 'https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=268141&language=en',
     },
   ]),
-
 ];

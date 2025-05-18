@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -41,5 +45,4 @@ export const links: Link[] = [
       url: 'https://www.vuugo.com/computer-hardware/computer-parts/video-cards/sapphire-video-cards-21305-01-20G.html',
     },
   ]),
-
 ];

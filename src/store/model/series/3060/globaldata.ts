@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for globaldata 3060 series
@@ -72,5 +76,4 @@ export const links: Link[] = [
       url: 'https://www.globaldata.pt/grafica-gigabyte-geforce-rtx-3060-gaming-oc-12gb-gd6-gvn3060go-00-10',
     },
   ]),
-
 ];

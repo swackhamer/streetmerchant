@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -13,5 +17,4 @@ export const links: Link[] = [
       cartUrl: 'https://www.amd.com/en/direct-buy/5458374200/be?add-to-cart=true',
     },
   ]),
-
 ];

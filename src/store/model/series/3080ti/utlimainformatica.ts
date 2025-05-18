@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for utlimainformatica 3080ti series
@@ -84,5 +88,4 @@ export const links: Link[] = [
       url: 'https://ultimainformatica.com/tarjetas-graficas/99496-zotac-zt-a30810j-10p-tarjeta-grafica-nvidia-geforce-rtx-3080-ti-12-gb-gddr6x-4895173623202.html',
     },
   ]),
-
 ];

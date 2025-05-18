@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for zotac 3070 series
@@ -16,5 +20,4 @@ export const links: Link[] = [
       url: 'https://store.zotac.com/zotac-gaming-geforce-rtx-3070-twin-edge-oc-zt-a30700h-10p',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for centrecom 3080 series
@@ -56,5 +60,4 @@ export const links: Link[] = [
       url: 'https://www.centrecom.com.au/msi-geforce-rtx-3080-ventus-3x-oc-10gb-graphics-card',
     },
   ]),
-
 ];

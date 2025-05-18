@@ -49,10 +49,7 @@ jest.mock('../../src/logger', () => ({
 }));
 
 // Function to test
-import {
-  initializeSeriesLinksLoader,
-  hasSeriesLinks,
-} from '../../src/store/model/auto-load-series';
+import {initializeSeriesLinksLoader, hasSeriesLinks} from '../../src/store/model/auto-load-series';
 
 // We need to hack the import since these are internal functions
 // For testing purposes, create a separate module with the functions exported
@@ -100,10 +97,9 @@ jest.mock('../../src/store/model/auto-load-series', () => {
         }
 
         // Load series links
-        const seriesLinks =
-          await require('../../src/store/model/series-links').getSeriesLinks(
-            store.name
-          );
+        const seriesLinks = await require('../../src/store/model/series-links').getSeriesLinks(
+          store.name
+        );
 
         if (seriesLinks.length > 0) {
           store.links = store.links.concat(seriesLinks);
@@ -145,14 +141,9 @@ describe('Auto-load Series Links', () => {
 
     test('should return false if store does not have series links', () => {
       // Mock fs.existsSync to return false for store file
-      (fs.existsSync as jest.Mock).mockImplementation(
-        (filePath: string | fs.PathLike) => {
-          return (
-            typeof filePath === 'string' &&
-            !filePath.includes('non-existent-store')
-          );
-        }
-      );
+      (fs.existsSync as jest.Mock).mockImplementation((filePath: string | fs.PathLike) => {
+        return typeof filePath === 'string' && !filePath.includes('non-existent-store');
+      });
 
       // Mock fs.readdirSync to return series directories
       (fs.readdirSync as jest.Mock).mockReturnValue(['3080', '3070']);

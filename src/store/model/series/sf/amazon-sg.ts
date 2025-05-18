@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for amazon-sg sf series
@@ -18,5 +22,4 @@ export const links: Link[] = [
       cartUrl: 'https://www.amazon.sg/gp/aws/cart/add.html?ASIN.1=B07F84FJ1G&Quantity.1=1',
     },
   ]),
-
 ];

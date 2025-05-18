@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for novoatalho 3060 series
@@ -40,5 +44,4 @@ export const links: Link[] = [
       url: 'https://www.novoatalho.pt/pt-PT/produto/46701/Placa-Grafica-Asus-GeForce-RTX-3060-ROG-STRIX-OC-12GB/90YV0GC2-M0NA00.html',
     },
   ]),
-
 ];

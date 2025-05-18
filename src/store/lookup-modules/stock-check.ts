@@ -11,11 +11,7 @@ import {Print} from '../../logger';
 /**
  * Check if an item is in stock
  */
-export async function isItemInStock(
-  store: Store,
-  page: Page,
-  link: Link
-): Promise<boolean> {
+export async function isItemInStock(store: Store, page: Page, link: Link): Promise<boolean> {
   // Check using the realtime inventory lookup if available
   if (store.realTimeInventoryLookup && link.itemNumber) {
     try {
@@ -27,15 +23,11 @@ export async function isItemInStock(
 
   // Get the page content to check against the labels
   const pageContent = await page.content();
-  
+
   // Parse price if label exists
   if (link.labels?.maxPrice) {
     try {
-      const price = await getPrice(
-        store,
-        page,
-        link.labels.maxPrice
-      );
+      const price = await getPrice(store, page, link.labels.maxPrice);
       link.price = price;
     } catch (error) {
       logger.error(`✖ [${store.name}] unable to get price: ${error}`);
@@ -43,7 +35,7 @@ export async function isItemInStock(
   }
 
   const labels = link.labels ?? store.labels;
-  
+
   // Return false if there are no in-stock labels
   if (!labels.inStock) {
     return false;
@@ -53,12 +45,12 @@ export async function isItemInStock(
   const defaultSelector = {
     requireVisible: true,
     selector: 'body',
-    type: 'textContent' as const
+    type: 'textContent' as const,
   };
-  
+
   // Check the page content for in-stock indicators
   const inStockResult = await pageIncludesLabels(page, labels.inStock, defaultSelector);
-  
+
   // Check if there are any out-of-stock indicators
   let outOfStockResult = false;
   if (labels.outOfStock) {
@@ -76,11 +68,11 @@ export async function isItemInStock(
   // 2. Out-of-stock indicators are not present (if defined)
   // 3. Banned seller indicators are not present (if defined)
   const hasStock = inStockResult && !outOfStockResult && !bannedSellerResult;
-  
+
   if (!hasStock) {
     logger.info(Print.outOfStock(link, store, true));
   }
-  
+
   return hasStock;
 }
 
@@ -97,9 +89,9 @@ export async function getPrice(
     const priceSelector = {
       requireVisible: true,
       selector: pricing.container,
-      type: 'textContent' as const
+      type: 'textContent' as const,
     };
-    
+
     return await getPriceFromPage(page, pricing, priceSelector);
   } catch (error) {
     logger.debug(`✖ [${store.name}] unable to get price: ${error}`);

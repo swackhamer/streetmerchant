@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for wipoid 3060 series
@@ -16,5 +20,4 @@ export const links: Link[] = [
       url: 'https://www.wipoid.com/asus-rog-strix-geforce-rtx-3060-oc-edition-12gb-gddr6.html',
     },
   ]),
-
 ];

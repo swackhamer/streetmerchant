@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for power-no 3080 series
@@ -116,5 +120,4 @@ export const links: Link[] = [
       url: 'https://www.power.no/data-og-tilbehoer/datakomponenter/grafikkort/pny-geforce-rtx-3080-10-gb-xlr8-gaming-revel-epic-x-rgb-triple-fan-edition-grafikkort/p-1128965/',
     },
   ]),
-
 ];

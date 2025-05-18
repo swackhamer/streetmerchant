@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -13,5 +17,4 @@ export const links: Link[] = [
       url: 'https://www.pbtech.com/au/product/VGASAP16915/Sapphire-Nitro-AMD-Radeon-RX-6900-XT-OC-Gaming-Gra',
     },
   ]),
-
 ];

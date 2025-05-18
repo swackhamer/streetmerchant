@@ -1,12 +1,7 @@
 import {Page} from 'puppeteer';
 import {config} from '../config';
 import {logger} from '../logger';
-import {
-  CaptchaPayload,
-  DMPayload,
-  getCaptchaInputAsync,
-  sendDMAsync,
-} from '../messaging';
+import {CaptchaPayload, DMPayload, getCaptchaInputAsync, sendDMAsync} from '../messaging';
 import {delay, deleteFile} from '../util';
 import {Store} from './model';
 
@@ -19,10 +14,7 @@ const DefaultCaptureType = 'link';
  * @param store streetmerchant store configuration object
  * @returns true if solution obtained and submitted, false otherwise
  */
-export async function handleCaptchaAsync(
-  page: Page,
-  store: Store
-): Promise<boolean> {
+export async function handleCaptchaAsync(page: Page, store: Store): Promise<boolean> {
   // get captcha challenge
   let processingFailed = false;
   let captchaPayload: CaptchaPayload | undefined = undefined;
@@ -62,8 +54,7 @@ async function getCaptchaPayloadAsync(
   page: Page,
   store: Store
 ): Promise<CaptchaPayload | undefined> {
-  const challengeElementSelector =
-    store.labels.captchaHandler?.challenge || 'img';
+  const challengeElementSelector = store.labels.captchaHandler?.challenge || 'img';
   const challengeFileName = `captcha-${Date.now()}.png`;
   let captchaPayload: CaptchaPayload | undefined = undefined;
   const captureType =
@@ -88,10 +79,7 @@ async function getCaptchaPayloadAsync(
       break;
     case 'link':
       captchaPayload = {
-        content:
-          (await challengeElement?.evaluate(
-            img => (img as HTMLImageElement).src
-          )) || '',
+        content: (await challengeElement?.evaluate(img => (img as HTMLImageElement).src)) || '',
         type: 'text',
       };
       break;
@@ -114,16 +102,13 @@ async function enterCaptchaResponseAsync(
   store: Store
 ): Promise<boolean> {
   const inputElementSelector = store.labels.captchaHandler?.input || 'input';
-  const submitElementSelector =
-    store.labels.captchaHandler?.submit || 'button[type="submit"]';
+  const submitElementSelector = store.labels.captchaHandler?.submit || 'button[type="submit"]';
   const result = await page.evaluate(
     (inputSelector, submitSelector, response) => {
-      const inputElement =
-        document.querySelector<HTMLInputElement>(inputSelector);
+      const inputElement = document.querySelector<HTMLInputElement>(inputSelector);
       if (!inputElement) return false;
       inputElement.value = response;
-      const submitElement =
-        document.querySelector<HTMLButtonElement>(submitSelector);
+      const submitElement = document.querySelector<HTMLButtonElement>(submitSelector);
       if (!submitElement) return false;
       submitElement.click();
       return true;

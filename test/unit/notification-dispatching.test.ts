@@ -73,10 +73,7 @@ import {DMPayload} from '../../src/messaging';
 // Import the mocked functions
 import {sendApns} from '../../src/messaging/apns';
 import {sendDesktopNotification} from '../../src/messaging/desktop';
-import {
-  sendDiscordMessage,
-  sendDMAsync as sendDiscordDMAsync,
-} from '../../src/messaging/discord';
+import {sendDiscordMessage, sendDMAsync as sendDiscordDMAsync} from '../../src/messaging/discord';
 import {sendEmail} from '../../src/messaging/email';
 import {sendFreeMobileAlert} from '../../src/messaging/freemobile';
 import {sendGotifyNotification} from '../../src/messaging/gotify';
@@ -87,10 +84,7 @@ import {adjustPhilipsHueLights} from '../../src/messaging/philips-hue';
 import {sendPushbulletNotification} from '../../src/messaging/pushbullet';
 import {sendPushoverNotification} from '../../src/messaging/pushover';
 import {updateRedis} from '../../src/messaging/redis';
-import {
-  sendSlackMessage,
-  sendDMAsync as sendSlackDMAsync,
-} from '../../src/messaging/slack';
+import {sendSlackMessage, sendDMAsync as sendSlackDMAsync} from '../../src/messaging/slack';
 import {sendSms} from '../../src/messaging/sms';
 import {playSound} from '../../src/messaging/sound';
 import {sendStreamLabsAlert} from '../../src/messaging/streamlabs';
@@ -138,10 +132,7 @@ describe('Notification Dispatching', () => {
     expect(sendGotifyNotification).toHaveBeenCalledWith(mockLink, mockStore);
     expect(sendMqttMessage).toHaveBeenCalledWith(mockLink, mockStore);
     expect(sendPagerDutyNotification).toHaveBeenCalledWith(mockLink, mockStore);
-    expect(sendPushbulletNotification).toHaveBeenCalledWith(
-      mockLink,
-      mockStore
-    );
+    expect(sendPushbulletNotification).toHaveBeenCalledWith(mockLink, mockStore);
     expect(sendPushoverNotification).toHaveBeenCalledWith(mockLink, mockStore);
     expect(sendSlackMessage).toHaveBeenCalledWith(mockLink, mockStore);
     expect(sendTelegramMessage).toHaveBeenCalledWith(mockLink, mockStore);

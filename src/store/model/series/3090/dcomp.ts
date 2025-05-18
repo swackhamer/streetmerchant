@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for dcomp 3090 series
@@ -64,5 +68,4 @@ export const links: Link[] = [
       url: 'https://dcomp.com.au/productdetail/3300',
     },
   ]),
-
 ];

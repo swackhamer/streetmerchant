@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for bestbuy 4080-16g series
@@ -78,5 +82,4 @@ export const links: Link[] = [
       cartUrl: 'https://api.bestbuy.com/click/-/6522940/cart',
     },
   ]),
-
 ];

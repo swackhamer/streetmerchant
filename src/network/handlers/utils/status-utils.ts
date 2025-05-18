@@ -9,7 +9,7 @@ export function isSuccessStatusCode(statusCode: number, store: Store): boolean {
   if (store.successStatusCodes) {
     return isStatusCodeInRange(statusCode, store.successStatusCodes);
   }
-  
+
   // Default success range: 200-299
   return statusCode >= 200 && statusCode <= 299;
 }
@@ -24,7 +24,7 @@ export function shouldRetry(
   if (retryOn) {
     return isStatusCodeInRange(statusCode, retryOn);
   }
-  
+
   // Default retry on server errors
   return statusCode >= 500 && statusCode <= 599;
 }
@@ -40,11 +40,11 @@ export function shouldBackoff(
   if (backoffOn) {
     return isStatusCodeInRange(statusCode, backoffOn);
   }
-  
+
   if (store.backoffStatusCodes) {
     return isStatusCodeInRange(statusCode, store.backoffStatusCodes);
   }
-  
+
   // Default backoff on rate limiting (429) and some server errors
   return statusCode === 429 || statusCode === 503;
 }
@@ -56,7 +56,7 @@ export function calculateBackoff(attempt: number): number {
   const minBackoff = config.browser.minBackoff;
   const maxBackoff = config.browser.maxBackoff;
   const backoff = Math.min(minBackoff * Math.pow(2, attempt - 1), maxBackoff);
-  
+
   // Add jitter to prevent synchronized retries
   const jitter = Math.random() * 0.3 * backoff;
   return backoff + jitter;

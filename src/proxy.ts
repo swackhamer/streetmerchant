@@ -11,10 +11,7 @@ export interface Proxy {
   toString(): string;
 }
 
-export function parseProxy(
-  raw: string,
-  config: typeof import('./config').config
-): Proxy {
+export function parseProxy(raw: string, config: typeof import('./config').config): Proxy {
   const match =
     /^(?:(?<protocol>[a-z0-9]+):\/\/)?(?:(?<auth>.+?)@)?(?<host>[^@:]+)(?::(?<port>[0-9]+))?$/i.exec(
       raw
@@ -23,9 +20,7 @@ export function parseProxy(
   if (match?.groups) {
     const protocol = match.groups.protocol ?? config.proxy.protocol;
     const host = match.groups.host;
-    const port = match.groups.port
-      ? Number(match.groups.port)
-      : config.proxy.port;
+    const port = match.groups.port ? Number(match.groups.port) : config.proxy.port;
     let credentials: Proxy['credentials'] | undefined;
     if (match.groups.auth) {
       const [username, password] = match.groups.auth.split(':', 2);

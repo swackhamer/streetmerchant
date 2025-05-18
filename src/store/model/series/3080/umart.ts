@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for umart 3080 series
@@ -104,5 +108,4 @@ export const links: Link[] = [
       url: 'https://www.umart.com.au/MSI-GeForce-RTX-3080-Ventus-3X-10G-Graphics-Card_56789G.html',
     },
   ]),
-
 ];

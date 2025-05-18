@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for ubiquiti udm-us series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://store.ui.com/collections/unifi-network-unifi-os-consoles/products/udm-us',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for azerty 3070 series
@@ -80,5 +84,4 @@ export const links: Link[] = [
       url: 'https://azerty.nl/product/evga/4377252/xc3-black-geforce-rtx-3070-videokaart-8-gb-gddr6',
     },
   ]),
-
 ];

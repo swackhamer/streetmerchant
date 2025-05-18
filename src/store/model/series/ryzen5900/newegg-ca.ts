@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for newegg-ca ryzen5900 series
@@ -13,5 +17,4 @@ export const links: Link[] = [
       itemNumber: '19-113-664',
     },
   ]),
-
 ];

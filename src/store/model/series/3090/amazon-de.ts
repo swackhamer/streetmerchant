@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for amazon-de 3090 series
@@ -126,5 +130,4 @@ export const links: Link[] = [
       cartUrl: 'https://www.amazon.de/gp/aws/cart/add.html?ASIN.1=B08HJQ182D&Quantity.1=1',
     },
   ]),
-
 ];

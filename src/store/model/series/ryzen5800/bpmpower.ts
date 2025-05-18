@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for bpmpower ryzen5800 series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.bpm-power.com/it/online/componenti-pc/processori/cpu-amd-ryzen-7-b1710075',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for pcdiga 3060ti series
@@ -104,5 +108,4 @@ export const links: Link[] = [
       url: 'https://www.pcdiga.com/componentes/placas-graficas/placas-graficas-nvidia/placa-grafica-zotac-gaming-geforce-rtx-3060-ti-8gb-gddr6-twin-edge-zt-a30610e-10m',
     },
   ]),
-
 ];

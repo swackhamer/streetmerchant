@@ -1,5 +1,7 @@
-import {Link} from './model';
 import {config} from '../config';
+import chalk from 'chalk';
+
+import {Link} from './model';
 
 /**
  * Returns true if the brand should be checked for stock
@@ -31,10 +33,7 @@ function filterModel(model: Link['model'], series: Link['series']): boolean {
     const sanitizedConfigModel = configModelEntry.name.replace(/\s/g, '');
     const sanitizedConfigSeries = configModelEntry.series.replace(/\s/g, '');
     if (sanitizedConfigSeries) {
-      if (
-        sanitizedSeries === sanitizedConfigSeries &&
-        sanitizedModel === sanitizedConfigModel
-      ) {
+      if (sanitizedSeries === sanitizedConfigSeries && sanitizedModel === sanitizedConfigModel) {
         return true;
       }
     } else if (sanitizedModel === sanitizedConfigModel) {
@@ -51,13 +50,22 @@ function filterModel(model: Link['model'], series: Link['series']): boolean {
  * @param series The series of the GPU
  */
 export function filterSeries(series: Link['series']): boolean {
-  console.log(`[DEBUG] Filtering series: ${series}, showOnlySeries: ${JSON.stringify(config.store.showOnlySeries)}`);
+  // Using info level for series filtering logs
+  console.info(
+    chalk.blue('[DEBUG]'),
+    `Filtering series: ${chalk.yellow(series)}, showOnlySeries: ${chalk.cyan(
+      JSON.stringify(config.store.showOnlySeries)
+    )}`
+  );
   if (config.store.showOnlySeries.length === 0) {
     return true;
   }
 
   const result = config.store.showOnlySeries.includes(series);
-  console.log(`[DEBUG] Series ${series} included? ${result}`);
+  console.info(
+    chalk.blue('[DEBUG]'),
+    `Series ${chalk.yellow(series)} included? ${result ? chalk.green('true') : chalk.red('false')}`
+  );
   return result;
 }
 
@@ -68,8 +76,6 @@ export function filterSeries(series: Link['series']): boolean {
  */
 export function filterStoreLink(link: Link): boolean {
   return (
-    filterBrand(link.brand) &&
-    filterModel(link.model, link.series) &&
-    filterSeries(link.series)
+    filterBrand(link.brand) && filterModel(link.model, link.series) && filterSeries(link.series)
   );
 }

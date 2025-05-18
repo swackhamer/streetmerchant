@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for mediamarkt 3060ti series
@@ -20,5 +24,4 @@ export const links: Link[] = [
       url: 'https://www.mediamarkt.de/de/product/-2704436.html',
     },
   ]),
-
 ];

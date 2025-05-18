@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for bestbuy-ca 5090 series
@@ -51,5 +55,4 @@ export const links: Link[] = [
       url: 'https://www.bestbuy.ca/en-ca/product/18931631',
     },
   ]),
-
 ];

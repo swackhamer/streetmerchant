@@ -32,14 +32,14 @@ export async function getSeriesLinks(
   if (linksCache.has(cacheKey)) {
     return linksCache.get(cacheKey) || [];
   }
-  
+
   try {
     // Get all links for the store across all series
     let allLinks: Link[] = [];
-    
+
     // Determine which series to include
     const seriesToInclude = options?.series || getAllSeries();
-    
+
     // For each series, get links for this store
     for (const series of seriesToInclude) {
       const seriesKey = series as keyof typeof seriesData;
@@ -53,13 +53,13 @@ export async function getSeriesLinks(
         allLinks = [...allLinks, ...links];
       }
     }
-    
+
     // Apply filters if provided
     const filteredLinks = filterLinks(allLinks, options);
-    
+
     // Cache the results
     linksCache.set(cacheKey, filteredLinks);
-    
+
     logger.debug(`Loaded ${filteredLinks.length} links for store ${storeName}`);
     return filteredLinks;
   } catch (error) {
@@ -75,34 +75,28 @@ export function filterLinks(links: Link[], options?: LinkFilterOptions): Link[] 
   if (!options) {
     return links;
   }
-  
+
   let filteredLinks = links;
-  
+
   // Filter by series if specified
   if (options.series && options.series.length > 0) {
-    filteredLinks = filteredLinks.filter(link => 
-      options.series!.includes(link.series)
-    );
+    filteredLinks = filteredLinks.filter(link => options.series!.includes(link.series));
   }
-  
+
   // Filter by brand if specified
   if (options.brands && options.brands.length > 0) {
     filteredLinks = filteredLinks.filter(link =>
-      options.brands!.some(brand =>
-        link.brand.toLowerCase().includes(brand.toLowerCase())
-      )
+      options.brands!.some(brand => link.brand.toLowerCase().includes(brand.toLowerCase()))
     );
   }
-  
+
   // Filter by model if specified
   if (options.models && options.models.length > 0) {
     filteredLinks = filteredLinks.filter(link =>
-      options.models!.some(model =>
-        link.model.toLowerCase().includes(model.toLowerCase())
-      )
+      options.models!.some(model => link.model.toLowerCase().includes(model.toLowerCase()))
     );
   }
-  
+
   // Filter by maximum price if specified
   if (options.maxPrice) {
     filteredLinks = filteredLinks.filter(link => {
@@ -113,7 +107,7 @@ export function filterLinks(links: Link[], options?: LinkFilterOptions): Link[] 
       return true; // Keep links without price info or without max price for their series
     });
   }
-  
+
   return filteredLinks;
 }
 

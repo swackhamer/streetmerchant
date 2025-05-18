@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for dustinhome-no 3080 series
@@ -52,5 +56,4 @@ export const links: Link[] = [
       url: 'https://www.dustinhome.no/product/5011199977/',
     },
   ]),
-
 ];

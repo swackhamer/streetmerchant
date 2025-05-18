@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for asus-de 3090 series
@@ -24,5 +28,4 @@ export const links: Link[] = [
       url: 'https://webshop.asus.com/de/komponenten/grafikkarten/nvidia-serie/2823/asus-tuf-rtx3090-o24g-gaming',
     },
   ]),
-
 ];

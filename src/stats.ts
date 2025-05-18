@@ -21,22 +21,14 @@ export function logTransferStats() {
  * @param {Page} page - The current browser page instance.
  * @param {HTTPResponse} response - The HTTP response object.
  */
-export async function gatherResponseStats(
-  page: Page,
-  response: HTTPResponse
-): Promise<void> {
-  if (
-    response.url().startsWith('about:') ||
-    response.url().startsWith('data:')
-  ) {
+export async function gatherResponseStats(page: Page, response: HTTPResponse): Promise<void> {
+  if (response.url().startsWith('about:') || response.url().startsWith('data:')) {
     return;
   }
 
   const headers = response.headers();
 
-  let contentLength = headers['content-length']
-    ? parseInt(headers['content-length'], 10)
-    : NaN;
+  let contentLength = headers['content-length'] ? parseInt(headers['content-length'], 10) : NaN;
 
   if (isNaN(contentLength)) {
     // fallback to detecting content-length from the body contents,

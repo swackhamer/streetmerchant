@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for vsgamers 3090 series
@@ -76,5 +80,4 @@ export const links: Link[] = [
       url: 'https://www.vsgamers.es/product/tarjeta-grafica-gigabyte-geforce-rtx-3090-gaming-oc-24g-24-gb-gddr6x',
     },
   ]),
-
 ];

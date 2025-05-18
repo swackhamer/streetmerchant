@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for amd-at ryzen5900 series
@@ -13,5 +17,4 @@ export const links: Link[] = [
       cartUrl: 'https://www.amd.com/en/direct-buy/5450881500/at?add-to-cart=true',
     },
   ]),
-
 ];

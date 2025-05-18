@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for argos sonyps5c series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.argos.co.uk/product/8349000',
     },
   ]),
-
 ];

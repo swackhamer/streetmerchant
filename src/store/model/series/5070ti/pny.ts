@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for pny 5070ti series
@@ -24,5 +28,4 @@ export const links: Link[] = [
       url: 'https://www.pny.com/geforce-rtx-5070-ti-series?sku=VCG5070T16TFXXPB1-O',
     },
   ]),
-
 ];

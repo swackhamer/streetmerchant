@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for eletronicamente 3080 series
@@ -44,5 +48,4 @@ export const links: Link[] = [
       url: 'https://www.electronicamente.com/comprar-tarjetas-graficas/34245-tarjeta-grafica-pcie-nvidia-gf-rtx-3080-gaming-10gb-ddr6-3xdp-hdmi-vcg308010tfxppb.html',
     },
   ]),
-
 ];

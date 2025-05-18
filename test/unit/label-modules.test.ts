@@ -5,7 +5,7 @@ import {
   bannedSellerLabels,
   captchaLabels,
   createLabelSet,
-  commonLabels
+  commonLabels,
 } from '../../src/store/model/common/labels';
 import {Labels, LabelQuery} from '../../src/store/model/store';
 
@@ -13,7 +13,7 @@ describe('Label Modules', () => {
   describe('inStockLabels', () => {
     it('should define addToCart labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(inStockLabels.addToCart).toBeDefined();
       expect(inStockLabels.addToCart.container).toBe('.add-to-cart');
@@ -22,7 +22,7 @@ describe('Label Modules', () => {
 
     it('should define amazonAddToCart labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(inStockLabels.amazonAddToCart).toBeDefined();
       expect(inStockLabels.amazonAddToCart.container).toBe('#add-to-cart-button');
@@ -30,7 +30,7 @@ describe('Label Modules', () => {
 
     it('should define euroAddToCart labels with multiple languages', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(inStockLabels.euroAddToCart).toBeDefined();
       expect(inStockLabels.euroAddToCart.text).toContain('in den warenkorb');
@@ -41,7 +41,7 @@ describe('Label Modules', () => {
   describe('outOfStockLabels', () => {
     it('should define standard out-of-stock labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(outOfStockLabels.standard).toBeDefined();
       expect(outOfStockLabels.standard.container).toBe('.availability');
@@ -50,7 +50,7 @@ describe('Label Modules', () => {
 
     it('should define amazonOutOfStock as an array', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(outOfStockLabels.amazonOutOfStock).toBeDefined();
       expect(Array.isArray(outOfStockLabels.amazonOutOfStock)).toBe(true);
@@ -59,7 +59,7 @@ describe('Label Modules', () => {
 
     it('should define euroOutOfStock with multiple languages', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(outOfStockLabels.euroOutOfStock).toBeDefined();
       expect(outOfStockLabels.euroOutOfStock.text).toContain('ausverkauft');
@@ -68,7 +68,7 @@ describe('Label Modules', () => {
 
     it('should define preOrder labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(outOfStockLabels.preOrder).toBeDefined();
       expect(outOfStockLabels.preOrder.text).toContain('pre-order');
@@ -79,7 +79,7 @@ describe('Label Modules', () => {
   describe('pricingLabels', () => {
     it('should define standard pricing labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(pricingLabels.standard).toBeDefined();
       expect(pricingLabels.standard.container).toBe('.price');
@@ -88,7 +88,7 @@ describe('Label Modules', () => {
 
     it('should define euro pricing labels with euroFormat = true', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(pricingLabels.euro).toBeDefined();
       expect(pricingLabels.euro.euroFormat).toBe(true);
@@ -96,7 +96,7 @@ describe('Label Modules', () => {
 
     it('should define store-specific pricing labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(pricingLabels.amazonPrice).toBeDefined();
       expect(pricingLabels.bestbuyPrice).toBeDefined();
@@ -107,7 +107,7 @@ describe('Label Modules', () => {
   describe('bannedSellerLabels', () => {
     it('should define thirdParty labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(bannedSellerLabels.thirdParty).toBeDefined();
       expect(bannedSellerLabels.thirdParty.container).toBe('.seller-info');
@@ -116,7 +116,7 @@ describe('Label Modules', () => {
 
     it('should define amazonThirdParty labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(bannedSellerLabels.amazonThirdParty).toBeDefined();
       expect(bannedSellerLabels.amazonThirdParty.container).toBe('#merchant-info');
@@ -126,7 +126,7 @@ describe('Label Modules', () => {
   describe('captchaLabels', () => {
     it('should define amazon captcha labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(captchaLabels.amazon).toBeDefined();
       expect(captchaLabels.amazon.container).toBe('body');
@@ -135,11 +135,11 @@ describe('Label Modules', () => {
 
     it('should define localized captcha labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(captchaLabels.amazonDE).toBeDefined();
       expect(captchaLabels.amazonDE.text).toContain('geben sie die zeichen');
-      
+
       expect(captchaLabels.amazonFR).toBeDefined();
       expect(captchaLabels.amazonFR.text).toContain('entrez les caractères');
     });
@@ -152,12 +152,12 @@ describe('Label Modules', () => {
         inStock: inStockLabels.addToCart,
         outOfStock: outOfStockLabels.standard,
         maxPrice: pricingLabels.standard,
-        bannedSeller: bannedSellerLabels.thirdParty
+        bannedSeller: bannedSellerLabels.thirdParty,
       };
-      
+
       // Act
       const labelSet = createLabelSet(options);
-      
+
       // Assert
       expect(labelSet.inStock).toBe(inStockLabels.addToCart);
       expect(labelSet.outOfStock).toBe(outOfStockLabels.standard);
@@ -168,12 +168,12 @@ describe('Label Modules', () => {
     it('should handle a minimal label set', () => {
       // Arrange
       const options = {
-        inStock: inStockLabels.addToCart
+        inStock: inStockLabels.addToCart,
       };
-      
+
       // Act
       const labelSet = createLabelSet(options);
-      
+
       // Assert
       expect(labelSet.inStock).toBe(inStockLabels.addToCart);
       expect(labelSet.outOfStock).toBeUndefined();
@@ -185,18 +185,18 @@ describe('Label Modules', () => {
         challenge: '.challenge',
         input: '.input',
         submit: '.submit',
-        captureType: 'image'
+        captureType: 'image',
       };
-      
+
       const options = {
         inStock: inStockLabels.addToCart,
         captcha: captchaLabels.amazon,
-        captchaHandler
+        captchaHandler,
       };
-      
+
       // Act
       const labelSet = createLabelSet(options);
-      
+
       // Assert
       expect(labelSet.inStock).toBe(inStockLabels.addToCart);
       expect(labelSet.captcha).toBe(captchaLabels.amazon);
@@ -207,7 +207,7 @@ describe('Label Modules', () => {
   describe('commonLabels', () => {
     it('should define standard labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(commonLabels.standard).toBeDefined();
       expect(commonLabels.standard.inStock).toBe(inStockLabels.addToCart);
@@ -216,7 +216,7 @@ describe('Label Modules', () => {
 
     it('should define european labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(commonLabels.european).toBeDefined();
       expect(commonLabels.european.inStock).toBe(inStockLabels.euroAddToCart);
@@ -225,7 +225,7 @@ describe('Label Modules', () => {
 
     it('should define marketplace labels with banned seller detection', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(commonLabels.marketplace).toBeDefined();
       expect(commonLabels.marketplace.bannedSeller).toBe(bannedSellerLabels.thirdParty);
@@ -233,7 +233,7 @@ describe('Label Modules', () => {
 
     it('should define amazon-specific labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(commonLabels.amazon).toBeDefined();
       expect(commonLabels.amazon.inStock).toBe(inStockLabels.amazonAddToCart);
@@ -242,22 +242,22 @@ describe('Label Modules', () => {
 
     it('should define localized amazon labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(commonLabels.amazonDE).toBeDefined();
       expect(commonLabels.amazonDE.captcha).toBe(captchaLabels.amazonDE);
-      
+
       expect(commonLabels.amazonFR).toBeDefined();
       expect(commonLabels.amazonFR.captcha).toBe(captchaLabels.amazonFR);
     });
 
     it('should define retailer-specific labels', () => {
       // Arrange & Act - Labels are static
-      
+
       // Assert
       expect(commonLabels.bestbuy).toBeDefined();
       expect(commonLabels.bestbuy.inStock).toBe(inStockLabels.bestbuyAddToCart);
-      
+
       expect(commonLabels.newegg).toBeDefined();
       expect(commonLabels.newegg.inStock).toBe(inStockLabels.neweggAddToCart);
     });

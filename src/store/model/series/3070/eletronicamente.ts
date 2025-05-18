@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for eletronicamente 3070 series
@@ -32,5 +36,4 @@ export const links: Link[] = [
       url: 'https://www.electronicamente.com/comprar-tarjetas-graficas/35403-tarjeta-grafica-pcie-nvidia-gf-rtx-3070-ventus-3x-8gb-ddr6-hdmi-3xdp-912-v390-007.html',
     },
   ]),
-
 ];

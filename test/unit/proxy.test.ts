@@ -73,9 +73,9 @@ describe('Proxy Management', () => {
         credentials,
         toString: () =>
           credentials
-            ? `${server.split('://')[0]}://${credentials.username}:${
-                credentials.password
-              }@${server.split('://')[1]}`
+            ? `${server.split('://')[0]}://${credentials.username}:${credentials.password}@${
+                server.split('://')[1]
+              }`
             : server,
       };
     });
@@ -88,8 +88,7 @@ describe('Proxy Management', () => {
       if (store.currentProxyIndex === undefined) {
         store.currentProxyIndex = 0;
       } else {
-        store.currentProxyIndex =
-          (store.currentProxyIndex + 1) % store.proxyList.length;
+        store.currentProxyIndex = (store.currentProxyIndex + 1) % store.proxyList.length;
       }
 
       const raw = store.proxyList[store.currentProxyIndex];
@@ -149,9 +148,7 @@ describe('Proxy Management', () => {
         username: 'socksuser',
         password: 'sockspass',
       });
-      expect(proxy.toString()).toBe(
-        'socks5://socksuser:sockspass@socks.example.com:1080'
-      );
+      expect(proxy.toString()).toBe('socks5://socksuser:sockspass@socks.example.com:1080');
     });
 
     test('should use default protocol and port if not provided', () => {
@@ -183,8 +180,7 @@ describe('Proxy Management', () => {
             username: config.proxy.username,
             password: config.proxy.password,
           },
-          toString: () =>
-            'http://defaultuser:defaultpass@hostwithdefaults:1234',
+          toString: () => 'http://defaultuser:defaultpass@hostwithdefaults:1234',
         };
       });
 
@@ -194,9 +190,7 @@ describe('Proxy Management', () => {
         username: 'defaultuser',
         password: 'defaultpass',
       });
-      expect(proxy.toString()).toBe(
-        'http://defaultuser:defaultpass@hostwithdefaults:1234'
-      );
+      expect(proxy.toString()).toBe('http://defaultuser:defaultpass@hostwithdefaults:1234');
     });
   });
 
@@ -210,10 +204,7 @@ describe('Proxy Management', () => {
         currency: '$',
         links: [],
         labels: {},
-        proxyList: [
-          'http://storeproxy1.com:8081',
-          'http://storeproxy2.com:8082',
-        ],
+        proxyList: ['http://storeproxy1.com:8081', 'http://storeproxy2.com:8082'],
         currentProxyIndex: undefined,
       };
 
@@ -230,8 +221,7 @@ describe('Proxy Management', () => {
         if (store.currentProxyIndex === undefined) {
           store.currentProxyIndex = 0;
         } else {
-          store.currentProxyIndex =
-            (store.currentProxyIndex + 1) % store.proxyList.length;
+          store.currentProxyIndex = (store.currentProxyIndex + 1) % store.proxyList.length;
         }
 
         const raw = store.proxyList[store.currentProxyIndex];
@@ -254,10 +244,7 @@ describe('Proxy Management', () => {
       const proxy = nextStoreProxy(mockStore);
       expect(mockStore.currentProxyIndex).toBe(0);
       expect(proxy?.server).toBe('http://storeproxy1.com:8081');
-      expect(parseProxy).toHaveBeenCalledWith(
-        'http://storeproxy1.com:8081',
-        expect.anything()
-      );
+      expect(parseProxy).toHaveBeenCalledWith('http://storeproxy1.com:8081', expect.anything());
     });
 
     test('should increment currentProxyIndex and return the next proxy', () => {
@@ -271,10 +258,7 @@ describe('Proxy Management', () => {
       const proxy = nextStoreProxy(mockStore);
       expect(mockStore.currentProxyIndex).toBe(1);
       expect(proxy?.server).toBe('http://storeproxy2.com:8082');
-      expect(parseProxy).toHaveBeenCalledWith(
-        'http://storeproxy2.com:8082',
-        expect.anything()
-      );
+      expect(parseProxy).toHaveBeenCalledWith('http://storeproxy2.com:8082', expect.anything());
     });
 
     test('should wrap around currentProxyIndex and return the first proxy after the last one', () => {
@@ -288,10 +272,7 @@ describe('Proxy Management', () => {
       const proxy = nextStoreProxy(mockStore);
       expect(mockStore.currentProxyIndex).toBe(0);
       expect(proxy?.server).toBe('http://storeproxy1.com:8081');
-      expect(parseProxy).toHaveBeenCalledWith(
-        'http://storeproxy1.com:8081',
-        expect.anything()
-      );
+      expect(parseProxy).toHaveBeenCalledWith('http://storeproxy1.com:8081', expect.anything());
     });
 
     test('should handle an empty proxyList gracefully', () => {

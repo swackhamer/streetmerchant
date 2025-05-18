@@ -31,18 +31,14 @@ const filterLinks = (links: Link[], options?: LinkFilterOptions) => {
   // Filter by brand if specified
   if (options.brands && options.brands.length > 0) {
     filteredLinks = filteredLinks.filter(link =>
-      options.brands!.some(brand =>
-        link.brand.toLowerCase().includes(brand.toLowerCase())
-      )
+      options.brands!.some(brand => link.brand.toLowerCase().includes(brand.toLowerCase()))
     );
   }
 
   // Filter by model if specified
   if (options.models && options.models.length > 0) {
     filteredLinks = filteredLinks.filter(link =>
-      options.models!.some(model =>
-        link.model.toLowerCase().includes(model.toLowerCase())
-      )
+      options.models!.some(model => link.model.toLowerCase().includes(model.toLowerCase()))
     );
   }
 
@@ -129,9 +125,7 @@ describe('Series Links Filtering', () => {
     const result = filterLinks(testLinks, options);
 
     expect(result).toHaveLength(2);
-    expect(result.every((link: Link) => link.model.includes('founders'))).toBe(
-      true
-    );
+    expect(result.every((link: Link) => link.model.includes('founders'))).toBe(true);
   });
 
   test('filterLinks should filter links by price', () => {
@@ -155,14 +149,10 @@ describe('Series Links Filtering', () => {
     expect(result.find((link: Link) => link.brand === 'evga')).toBeDefined();
 
     // Should exclude Gigabyte 3070 (price above maxPrice)
-    expect(
-      result.find((link: Link) => link.brand === 'gigabyte')
-    ).toBeUndefined();
+    expect(result.find((link: Link) => link.brand === 'gigabyte')).toBeUndefined();
 
     // Should include founders editions (no price specified)
-    expect(
-      result.filter((link: Link) => link.model === 'founders edition')
-    ).toHaveLength(2);
+    expect(result.filter((link: Link) => link.model === 'founders edition')).toHaveLength(2);
   });
 
   test('filterLinks should combine multiple filter criteria', () => {
@@ -195,8 +185,7 @@ describe('Series Links Filtering', () => {
     expect(
       result.every(
         (link: Link) =>
-          link.brand.toLowerCase() === 'nvidia' &&
-          link.model.toLowerCase().includes('founders')
+          link.brand.toLowerCase() === 'nvidia' && link.model.toLowerCase().includes('founders')
       )
     ).toBe(true);
   });

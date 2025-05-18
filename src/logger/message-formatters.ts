@@ -23,9 +23,7 @@ export const Print = {
         '✖ ' +
         buildProductString(link, store, true) +
         ' :: ' +
-        chalk.yellow(
-          `BACKOFF DELAY status=${parameters.statusCode} delay=${parameters.delay}`
-        )
+        chalk.yellow(`BACKOFF DELAY status=${parameters.statusCode} delay=${parameters.delay}`)
       );
     }
 
@@ -33,16 +31,11 @@ export const Print = {
       parameters.statusCode
     } delay=${parameters.delay}`;
   },
-  
+
   /**
    * Format a bad status code message
    */
-  badStatusCode(
-    link: Link,
-    store: Store,
-    statusCode: number,
-    color?: boolean
-  ): string {
+  badStatusCode(link: Link, store: Store, statusCode: number, color?: boolean): string {
     if (color) {
       return (
         '✖ ' +
@@ -52,60 +45,44 @@ export const Print = {
       );
     }
 
-    return `✖ ${buildProductString(
-      link,
-      store
-    )} :: STATUS CODE ERROR ${statusCode}`;
+    return `✖ ${buildProductString(link, store)} :: STATUS CODE ERROR ${statusCode}`;
   },
-  
+
   /**
    * Format a banned seller message
    */
   bannedSeller(link: Link, store: Store, color?: boolean): string {
     if (color) {
-      return (
-        '✖ ' +
-        buildProductString(link, store, true) +
-        ' :: ' +
-        chalk.yellow('BANNED SELLER')
-      );
+      return '✖ ' + buildProductString(link, store, true) + ' :: ' + chalk.yellow('BANNED SELLER');
     }
 
     return `✖ ${buildProductString(link, store)} :: BANNED SELLER`;
   },
-  
+
   /**
    * Format a captcha message
    */
   captcha(link: Link, store: Store, color?: boolean): string {
     if (color) {
-      return (
-        '✖ ' +
-        buildProductString(link, store, true) +
-        ' :: ' +
-        chalk.yellow('CAPTCHA')
-      );
+      return '✖ ' + buildProductString(link, store, true) + ' :: ' + chalk.yellow('CAPTCHA');
     }
 
     return `✖ ${buildProductString(link, store)} :: CAPTCHA`;
   },
-  
+
   /**
    * Format a cloudflare message
    */
   cloudflare(link: Link, store: Store, color?: boolean): string {
     if (color) {
       return (
-        '✖ ' +
-        buildProductString(link, store, true) +
-        ' :: ' +
-        chalk.yellow('CLOUDFLARE, WAITING')
+        '✖ ' + buildProductString(link, store, true) + ' :: ' + chalk.yellow('CLOUDFLARE, WAITING')
       );
     }
 
     return `✖ ${buildProductString(link, store)} :: CLOUDFLARE, WAITING`;
   },
-  
+
   /**
    * Format an in-stock message
    */
@@ -122,40 +99,30 @@ export const Print = {
 
     return `🚀🚨 ${productString} 🚨🚀`;
   },
-  
+
   /**
    * Format an in-stock waiting message
    */
   inStockWaiting(link: Link, store: Store, color?: boolean): string {
     if (color) {
       return (
-        'ℹ ' +
-        buildProductString(link, store, true) +
-        ' :: ' +
-        chalk.yellow('IN STOCK, WAITING')
+        'ℹ ' + buildProductString(link, store, true) + ' :: ' + chalk.yellow('IN STOCK, WAITING')
       );
     }
 
     return `ℹ ${buildProductString(link, store)} :: IN STOCK, WAITING`;
   },
-  
+
   /**
    * Format a max price message
    */
-  maxPrice(
-    link: Link,
-    store: Store,
-    maxPrice: number,
-    color?: boolean
-  ): string {
+  maxPrice(link: Link, store: Store, maxPrice: number, color?: boolean): string {
     if (color) {
       return (
         '✖ ' +
         buildProductString(link, store, true) +
         ' :: ' +
-        chalk.yellow(
-          `IN STOCK, PRICE ${link.price ?? ''} EXCEEDS LIMIT ${maxPrice}`
-        )
+        chalk.yellow(`IN STOCK, PRICE ${link.price ?? ''} EXCEEDS LIMIT ${maxPrice}`)
       );
     }
 
@@ -163,62 +130,41 @@ export const Print = {
       link.price ?? ''
     } EXCEEDS LIMIT ${maxPrice}`;
   },
-  
+
   /**
    * Format a generic message
    */
-  message(
-    message: string,
-    topic: string,
-    store: Store,
-    color?: boolean,
-    info?: boolean
-  ): string {
+  message(message: string, topic: string, store: Store, color?: boolean, info?: boolean): string {
     const symbol = info ? 'ℹ' : '✖';
     if (color) {
-      return (
-        `${symbol} ` +
-        buildSetupString(topic, store, true) +
-        ' :: ' +
-        chalk.yellow(message)
-      );
+      return `${symbol} ` + buildSetupString(topic, store, true) + ' :: ' + chalk.yellow(message);
     }
 
     return `${symbol} ${buildSetupString(topic, store)} :: ${message}`;
   },
-  
+
   /**
    * Format a no response message
    */
   noResponse(link: Link, store: Store, color?: boolean): string {
     if (color) {
-      return (
-        '✖ ' +
-        buildProductString(link, store, true) +
-        ' :: ' +
-        chalk.yellow('NO RESPONSE')
-      );
+      return '✖ ' + buildProductString(link, store, true) + ' :: ' + chalk.yellow('NO RESPONSE');
     }
 
     return `✖ ${buildProductString(link, store)} :: NO RESPONSE`;
   },
-  
+
   /**
    * Format an out-of-stock message
    */
   outOfStock(link: Link, store: Store, color?: boolean): string {
     if (color) {
-      return (
-        '✖ ' +
-        buildProductString(link, store, true) +
-        ' :: ' +
-        chalk.red('OUT OF STOCK')
-      );
+      return '✖ ' + buildProductString(link, store, true) + ' :: ' + chalk.red('OUT OF STOCK');
     }
 
     return `✖ ${buildProductString(link, store)} :: OUT OF STOCK`;
   },
-  
+
   /**
    * Format a product in-stock message
    */
@@ -228,23 +174,20 @@ export const Print = {
 
     return productString;
   },
-  
+
   /**
    * Format a rate limit message
    */
   rateLimit(link: Link, store: Store, color?: boolean): string {
     if (color) {
       return (
-        '✖ ' +
-        buildProductString(link, store, true) +
-        ' :: ' +
-        chalk.yellow('RATE LIMIT EXCEEDED')
+        '✖ ' + buildProductString(link, store, true) + ' :: ' + chalk.yellow('RATE LIMIT EXCEEDED')
       );
     }
 
     return `✖ ${buildProductString(link, store)} :: RATE LIMIT EXCEEDED`;
   },
-  
+
   /**
    * Format a recursion limit message
    */
@@ -258,9 +201,6 @@ export const Print = {
       );
     }
 
-    return `✖ ${buildProductString(
-      link,
-      store
-    )} :: CLOUDFLARE RETRY LIMIT REACHED, ABORT`;
+    return `✖ ${buildProductString(link, store)} :: CLOUDFLARE RETRY LIMIT REACHED, ABORT`;
   },
 };

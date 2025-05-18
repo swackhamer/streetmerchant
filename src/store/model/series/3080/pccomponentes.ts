@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for pccomponentes 3080 series
@@ -108,5 +112,4 @@ export const links: Link[] = [
       url: 'https://www.pccomponentes.com/pny-geforce-rtx-3080-epic-x-rgb-triple-fan-xlr8-gaming-edition-10gb-gddr6x',
     },
   ]),
-
 ];

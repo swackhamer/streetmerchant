@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for amazon-es 3080 series
@@ -168,5 +172,4 @@ export const links: Link[] = [
       cartUrl: 'https://www.amazon.es/gp/aws/cart/add.html?ASIN.1=B08MKSYYZ4&Quantity.1=1',
     },
   ]),
-
 ];

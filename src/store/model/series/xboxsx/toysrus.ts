@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for toysrus xboxsx series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.toysrus.ca/en/XBOX-Series-X-Console/84D9A92D.html',
     },
   ]),
-
 ];

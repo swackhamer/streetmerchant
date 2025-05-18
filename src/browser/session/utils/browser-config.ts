@@ -15,9 +15,7 @@ import {CookiePolicy} from '../types';
 export function getCookiePolicy(): CookiePolicy {
   let cookiePolicy: CookiePolicy;
   if (
-    (Object.values(CookiePolicy) as string[]).includes(
-      config.browser.cookiePolicy.toLowerCase()
-    )
+    (Object.values(CookiePolicy) as string[]).includes(config.browser.cookiePolicy.toLowerCase())
   ) {
     cookiePolicy = config.browser.cookiePolicy as CookiePolicy;
   } else if (config.browser.cookiePolicy === '') {
@@ -35,21 +33,25 @@ export function getCookiePolicy(): CookiePolicy {
 /**
  * Builds browser launch arguments
  */
-export function buildBrowserArgs(options?: LaunchOptions, proxy?: ProxyConfig, userAgent?: string): string[] {
+export function buildBrowserArgs(
+  options?: LaunchOptions,
+  proxy?: ProxyConfig,
+  userAgent?: string
+): string[] {
   const args: string[] = [
     '--disable-blink-features=AutomationControlled',
     `--window-size=${config.page.width},${config.page.height}`,
   ];
-  
+
   if (userAgent) {
     args.push(`--user-agent=${userAgent}`);
   }
-  
+
   // Skip Chromium Linux Sandbox if trusted or in Docker
   if (config.browser.isTrusted || config.docker) {
     args.push('--no-sandbox');
   }
-  
+
   // Enable headless (force if docker)
   if (config.browser.isHeadless || config.docker || options?.headless) {
     args.push(
@@ -57,20 +59,20 @@ export function buildBrowserArgs(options?: LaunchOptions, proxy?: ProxyConfig, u
       '--ozone-platform-hint=auto',
       `--ozone-override-screen-size=${config.page.width},${config.page.height}`
     );
-    
+
     // Handle GPU acceleration
     const gpuAcceleration = configureGpuAcceleration(args);
-    
+
     if (!gpuAcceleration) {
       args.push('--disable-gpu');
     }
   }
-  
+
   // Add proxy configuration
   if (proxy) {
     args.push(`--proxy-server=${proxy.server}`);
   }
-  
+
   return args;
 }
 
@@ -82,7 +84,7 @@ function configureGpuAcceleration(args: string[]): boolean {
     case 'darwin':
       args.push('--angle=metal');
       return true;
-      
+
     case 'linux':
       if (fs.existsSync('/dev/dri/renderD128')) {
         args.push(
@@ -96,7 +98,7 @@ function configureGpuAcceleration(args: string[]): boolean {
       }
       break;
   }
-  
+
   return false;
 }
 

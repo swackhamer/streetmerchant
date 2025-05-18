@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -25,5 +29,4 @@ export const links: Link[] = [
       url: 'https://www.novoatalho.pt/pt-PT/produto/46279/Placa-Grafica-MSI-Radeon-RX-6800-XT-GAMING-X-TRIO-16GB/912-V395-001.html',
     },
   ]),
-
 ];

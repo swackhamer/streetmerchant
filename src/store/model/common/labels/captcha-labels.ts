@@ -8,14 +8,14 @@
 export const captchaLabels = {
   amazon: {
     container: 'body',
-    text: ['enter the characters you see below']
+    text: ['enter the characters you see below'],
   },
   amazonDE: {
     container: 'body',
-    text: ['geben sie die zeichen']
+    text: ['geben sie die zeichen'],
   },
   amazonFR: {
     container: 'body',
-    text: ['entrez les caractères']
+    text: ['entrez les caractères'],
   },
 };

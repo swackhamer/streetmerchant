@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for game-es 3060 series
@@ -36,5 +40,4 @@ export const links: Link[] = [
       url: 'https://www.game.es/COMPONENTES/TARJETA-GRAFICA/PC-GAMING/GIGABYTE-GEFORCE-RTX-3060-WINDFORCE-GAMING-OC-12GB-GDDR6-RGB-TARJETA-GRAFICA-GAMING/187675',
     },
   ]),
-
 ];

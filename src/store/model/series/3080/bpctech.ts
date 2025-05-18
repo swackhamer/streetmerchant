@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for bpctech 3080 series
@@ -112,5 +116,4 @@ export const links: Link[] = [
       url: 'https://www.bpctech.com.au/rtx3080-gaming-x-trio-10g-msi-rtx-3080-gaming-x-trio-10g-video-card.html',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -49,5 +53,4 @@ export const links: Link[] = [
       url: 'https://www.pcbyte.com.au/store/product/sapphire-amd-radeon-rx-6800-xt-nitro-se-16gb-video-card-11304-01-20g-185859',
     },
   ]),
-
 ];

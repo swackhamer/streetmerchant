@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for pny 5080 series
@@ -24,5 +28,4 @@ export const links: Link[] = [
       url: 'https://www.pny.com/geforce-rtx-5080-series?sku=VCG508016TFXXPB1-O',
     },
   ]),
-
 ];

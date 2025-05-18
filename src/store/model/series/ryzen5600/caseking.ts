@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for caseking ryzen5600 series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.caseking.de/amd-ryzen-5-5600x-3-7-ghz-vermeer-am4-mit-amd-wraith-stealth-kuehler-hpam-202.html',
     },
   ]),
-
 ];

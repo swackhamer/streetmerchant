@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for utlimainformatica 3060ti series
@@ -116,5 +120,4 @@ export const links: Link[] = [
       url: 'https://ultimainformatica.com/tarjetas-graficas/92816-evga-geforce-rtx-3060-ti-xc-gaming-nvidia-8-gb-gddr6-4250812439208.html',
     },
   ]),
-
 ];

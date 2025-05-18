@@ -1,6 +1,6 @@
 /**
  * Index file for store model type definitions
- * 
+ *
  * Re-exports all type definitions for easy access
  */
 

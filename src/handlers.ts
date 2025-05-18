@@ -1,6 +1,6 @@
 /**
  * Request and Response Handlers
- * 
+ *
  * This file contains the handlers for HTTP requests and responses.
  * It provides basic functionality for request interception and statistics gathering.
  * For more advanced request handling, use the RequestHandler class from the network module.
@@ -22,10 +22,7 @@ const rejectedResourceTypes = getLowBandwidthRejectedResourceTypes();
  * Implements low bandwidth mode and continues valid requests
  */
 export async function onRequest(page: Page, request: HTTPRequest) {
-  if (
-    request.isInterceptResolutionHandled() ||
-    (await isHandleLowBandwidth(request))
-  ) {
+  if (request.isInterceptResolutionHandled() || (await isHandleLowBandwidth(request))) {
     return;
   }
 
@@ -58,9 +55,7 @@ async function isHandleLowBandwidth(request: HTTPRequest): Promise<boolean> {
     return false;
   }
 
-  logger.silly(
-    `aborting low bandwidth request [${request.resourceType()}]: ${request.url()}`
-  );
+  logger.silly(`aborting low bandwidth request [${request.resourceType()}]: ${request.url()}`);
 
   await tryAbortRequest(request);
 
@@ -98,9 +93,9 @@ function getLowBandwidthRejectedResourceTypes(): string[] {
     logger.warn(
       `✖ invalid value LOW_BANDWIDTH_MODE=${
         config.browser.lowBandwidthMode
-      } expected value between 0..${
-        LOW_BANDWIDTH_MODES.length - 1
-      }, defaulting to: ${rejected.join(', ')}`
+      } expected value between 0..${LOW_BANDWIDTH_MODES.length - 1}, defaulting to: ${rejected.join(
+        ', '
+      )}`
     );
     return rejected;
   }

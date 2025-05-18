@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for newegg-ca 3080ti series
@@ -92,5 +96,4 @@ export const links: Link[] = [
       url: 'https://www.newegg.ca/msi-geforce-rtx-3080-ti-rtx-3080-ti-ventus-3x-12g/p/N82E16814137656',
     },
   ]),
-
 ];

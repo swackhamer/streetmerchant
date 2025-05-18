@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for computeralliance 3090 series
@@ -76,5 +80,4 @@ export const links: Link[] = [
       url: 'https://www.computeralliance.com.au/msi-rtx3090-24gb-suprim-x-pcie-video-card',
     },
   ]),
-
 ];

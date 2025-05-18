@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for zotac 3060ti series
@@ -16,5 +20,4 @@ export const links: Link[] = [
       url: 'https://store.zotac.com/zotac-gaming-geforce-rtx-3060-ti-twin-edge-oc-zt-a30610h-10m',
     },
   ]),
-
 ];

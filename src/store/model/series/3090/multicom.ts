@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for multicom 3090 series
@@ -64,5 +68,4 @@ export const links: Link[] = [
       url: 'https://www.multicom.no/business/pny-xlr8-geforce-rtx-3090/cat-p/c100134/p1001454298',
     },
   ]),
-
 ];

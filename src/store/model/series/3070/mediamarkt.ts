@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for mediamarkt 3070 series
@@ -88,5 +92,4 @@ export const links: Link[] = [
       url: 'https://www.mediamarkt.de/de/product/-2695671.html',
     },
   ]),
-
 ];

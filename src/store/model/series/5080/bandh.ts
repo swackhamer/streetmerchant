@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for bandh 5080 series
@@ -104,5 +108,4 @@ export const links: Link[] = [
       url: 'https://www.bhphotovideo.com/c/product/1875715-REG/gigabyte_gv_n5080aorusx_wb_16gd_geforce_rtx_5080_aorus.html',
     },
   ]),
-
 ];

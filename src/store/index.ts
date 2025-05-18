@@ -1,6 +1,6 @@
 /**
  * Store module
- * 
+ *
  * Exports all store-related functionality
  */
 

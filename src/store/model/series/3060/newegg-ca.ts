@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for newegg-ca 3060 series
@@ -99,5 +103,4 @@ export const links: Link[] = [
       itemNumber: '14-487-539',
     },
   ]),
-
 ];

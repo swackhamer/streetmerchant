@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -21,5 +25,4 @@ export const links: Link[] = [
       url: 'https://www.msy.com.au/msi-radeon-rx-6800-gaming-x-trio-16g-16gb-rx-6800-pci-e-vga-card',
     },
   ]),
-
 ];

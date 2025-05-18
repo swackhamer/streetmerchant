@@ -17,9 +17,7 @@ function initRedis(): RedisClient | null {
 export function updateRedis(link: Link, store: Store) {
   try {
     if (client) {
-      const key = `${store.name}:${link.brand}:${link.model}`
-        .split(' ')
-        .join('-');
+      const key = `${store.name}:${link.brand}:${link.model}`.split(' ').join('-');
 
       const value = {
         ...link,

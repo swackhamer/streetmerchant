@@ -19,12 +19,7 @@ export function sendTelegramMessage(link: Link, store: Store) {
 
       for (const chatId of telegram.chatId) {
         try {
-          results.push(
-            client.sendMessage(
-              chatId,
-              `${Print.inStock(link, store)}\n${message}`
-            )
-          );
+          results.push(client.sendMessage(chatId, `${Print.inStock(link, store)}\n${message}`));
           logger.info('✔ telegram message sent');
         } catch (error: unknown) {
           logger.error("✖ couldn't send telegram message", error);

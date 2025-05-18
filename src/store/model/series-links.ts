@@ -1,6 +1,6 @@
 /**
  * Series Links - API for retrieving product links by series
- * 
+ *
  * This file is now a thin wrapper around the modular series links system
  * for backward compatibility.
  */
@@ -12,5 +12,5 @@ export {
   clearLinkCache,
   getAllSeriesNames,
   getAllSeriesNamesCombined,
-  filterLinks
+  filterLinks,
 } from './series-modules';

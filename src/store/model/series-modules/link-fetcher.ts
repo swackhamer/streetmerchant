@@ -11,7 +11,7 @@ import {getStoreSeriesLinksFromData, getAllSeries} from './data-access';
 export function getAllSeriesNamesCombined(): string[] {
   const seriesFromDir = getAllSeriesNames();
   const seriesFromData = getAllSeries();
-  
+
   // Combine and deduplicate
   return [...new Set([...seriesFromDir, ...seriesFromData])];
 }
@@ -19,14 +19,14 @@ export function getAllSeriesNamesCombined(): string[] {
 /**
  * Gets links for a specific store and series
  * Checks both file-based and data-driven approaches
- * 
+ *
  * @param storeName The name of the store
  * @param series The series to get links for
  * @param useCentralizedData Whether to use the data-driven approach
  * @returns Links for the specified store and series
  */
 export async function getStoreSeriesLinks(
-  storeName: string, 
+  storeName: string,
   series: Series,
   useCentralizedData = false
 ): Promise<Link[]> {
@@ -38,7 +38,7 @@ export async function getStoreSeriesLinks(
       return seriesLinks;
     }
   }
-  
+
   // Fall back to file-based approach
   return getStoreSeriesLinksFromFiles(storeName, series);
 }

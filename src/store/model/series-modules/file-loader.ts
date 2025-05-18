@@ -10,29 +10,30 @@ import {cacheLinksBySeries, getCachedLinks} from './link-cache';
 
 /**
  * Gets all available series names from the series directory
- * 
+ *
  * @returns Array of all series names
  */
 export function getAllSeriesNames(): string[] {
   const seriesDir = path.join(__dirname, '..', 'series');
-  
+
   if (!fs.existsSync(seriesDir)) {
     return [];
   }
-  
-  return fs.readdirSync(seriesDir)
+
+  return fs
+    .readdirSync(seriesDir)
     .filter(file => fs.statSync(path.join(seriesDir, file)).isDirectory());
 }
 
 /**
  * Gets links for a specific store and series from file-based approach
- * 
+ *
  * @param storeName The name of the store
  * @param series The series to get links for
  * @returns Links for the specified store and series
  */
 export async function getStoreSeriesLinksFromFiles(
-  storeName: string, 
+  storeName: string,
   series: Series
 ): Promise<Link[]> {
   // Return cached links if available
@@ -40,22 +41,22 @@ export async function getStoreSeriesLinksFromFiles(
   if (cachedLinks) {
     return cachedLinks;
   }
-  
+
   // Try to import the series-specific links file
   const seriesDir = path.join(__dirname, '..', 'series', series);
   const filePathTS = path.join(seriesDir, `${storeName}.ts`);
   const filePathJS = path.join(seriesDir, `${storeName}.js`);
-  
+
   // Check for either TS or JS file (JS for compiled code)
   if (fs.existsSync(filePathTS) || fs.existsSync(filePathJS)) {
     try {
       // Use dynamic import to load the module
       // Note: The import path is relative to the current directory
       const module = await import(`../series/${series}/${storeName}`);
-      
+
       // Get raw links from the module
       const rawLinks = module.links || [];
-      
+
       // Ensure each link has the series property set correctly
       for (const link of rawLinks) {
         // Only set the series if it's not already set or is undefined
@@ -63,19 +64,21 @@ export async function getStoreSeriesLinksFromFiles(
           link.series = series;
         }
       }
-      
+
       // Validate links before caching
       const validLinks = validateLinks(rawLinks, `${storeName}_${series}`);
-      
+
       // Cache the valid links
       cacheLinksBySeries(storeName, series, validLinks, 'file');
-      
+
       if (validLinks.length < rawLinks.length) {
         logger.warn(
-          `Filtered out ${rawLinks.length - validLinks.length} invalid links for store ${storeName}, series ${series}`
+          `Filtered out ${
+            rawLinks.length - validLinks.length
+          } invalid links for store ${storeName}, series ${series}`
         );
       }
-      
+
       return validLinks;
     } catch (error) {
       logger.error(`Error loading links for store ${storeName}, series ${series}`);

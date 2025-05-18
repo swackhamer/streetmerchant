@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for evatech 3090 series
@@ -28,5 +32,4 @@ export const links: Link[] = [
       url: 'https://evatech.com.au/product/6573/msi-geforce-rtx-3090-suprim-x-24g',
     },
   ]),
-
 ];

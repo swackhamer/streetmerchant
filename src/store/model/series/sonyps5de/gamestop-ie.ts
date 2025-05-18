@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for gamestop-ie sonyps5de series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.gamestop.ie/PlayStation%205/Games/72504/playstation-5-console',
     },
   ]),
-
 ];

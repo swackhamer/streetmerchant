@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for siabyte 3070 series
@@ -104,5 +108,4 @@ export const links: Link[] = [
       url: 'https://siabyte.com/tarjetas-graficas/917-zotac-gaming-geforce-rtx-3070-twin-edge-oc-white-edition-8gb-gddr6.html',
     },
   ]),
-
 ];

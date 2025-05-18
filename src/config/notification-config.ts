@@ -1,9 +1,9 @@
 /**
  * Notification Configuration
- * 
+ *
  * This module exports notification-related configuration settings.
  */
-import { envOrArray, envOrBoolean, envOrNumber, envOrString } from './env-utils';
+import {envOrArray, envOrBoolean, envOrNumber, envOrString} from './env-utils';
 
 /**
  * Configuration for all notification services
@@ -71,10 +71,7 @@ export const notifications = {
     password: envOrString(process.env.EMAIL_PASSWORD),
     smtpAddress: envOrString(process.env.SMTP_ADDRESS),
     smtpPort: envOrNumber(process.env.SMTP_PORT, 25),
-    to: envOrString(
-      process.env.EMAIL_TO,
-      envOrString(process.env.EMAIL_USERNAME)
-    ),
+    to: envOrString(process.env.EMAIL_TO, envOrString(process.env.EMAIL_USERNAME)),
     username: envOrString(process.env.EMAIL_USERNAME),
   },
   gotify: {

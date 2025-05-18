@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for igame 3090 series
@@ -16,5 +20,4 @@ export const links: Link[] = [
       url: 'https://www.igamecomputer.com.au/products/mc021?_pos=2&_sid=b07af5f7e&_ss=r',
     },
   ]),
-
 ];

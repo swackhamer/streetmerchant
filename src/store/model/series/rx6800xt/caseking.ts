@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -41,5 +45,4 @@ export const links: Link[] = [
       url: 'https://www.caseking.de/asus-radeon-rx-6800-xt-tuf-o16g-16384-mb-gddr6-gcas-417.html',
     },
   ]),
-
 ];

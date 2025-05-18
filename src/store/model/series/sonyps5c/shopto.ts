@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for shopto sonyps5c series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.shopto.net/en/ps5hw01-playstation-5-console-p191472/',
     },
   ]),
-
 ];

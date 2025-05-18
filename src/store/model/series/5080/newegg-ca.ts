@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for newegg-ca 5080 series
@@ -44,5 +48,4 @@ export const links: Link[] = [
       url: 'https://www.newegg.ca/asus-prime-rtx5080-16g-nvidia-geforce-rtx-5080-16gb-gddr7/p/N82E16814126776',
     },
   ]),
-
 ];

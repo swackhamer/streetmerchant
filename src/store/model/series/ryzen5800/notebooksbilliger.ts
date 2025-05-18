@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for notebooksbilliger ryzen5800 series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.notebooksbilliger.de/amd+ryzen+ryzen+7+5800x+cpu+684018',
     },
   ]),
-
 ];

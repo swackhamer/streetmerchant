@@ -1,6 +1,6 @@
 /**
  * Label definitions - Central export point
- * 
+ *
  * This file re-exports all the components of the label system.
  */
 // Types

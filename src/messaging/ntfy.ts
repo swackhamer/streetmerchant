@@ -13,12 +13,9 @@ export function sendNtfyAlert(link: Link, store: Store) {
       const headers: Record<string, string> = {};
 
       if (ntfy.priority) headers['Priority'] = ntfy.priority;
-      headers[
-        'Tags'
-      ] = `${store.name},${link.model},${link.series},${link.brand}`;
+      headers['Tags'] = `${store.name},${link.model},${link.series},${link.brand}`;
       if (ntfy.title) headers['Title'] = ntfy.title;
-      if (ntfy.accessToken)
-        headers['Authorization'] = `Bearer ${ntfy.accessToken}`;
+      if (ntfy.accessToken) headers['Authorization'] = `Bearer ${ntfy.accessToken}`;
 
       const body = {
         topic: ntfy.topic,
@@ -42,8 +39,7 @@ export function sendNtfyAlert(link: Link, store: Store) {
           },
         });
 
-        if (!response.ok)
-          throw new Error(`Failed to send ntfy alert: ${response.statusText}`);
+        if (!response.ok) throw new Error(`Failed to send ntfy alert: ${response.statusText}`);
 
         logger.info('✔ ntfy alert sent');
       } catch (error: unknown) {

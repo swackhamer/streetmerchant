@@ -18,10 +18,7 @@ if (mqtt.broker) {
       password: mqtt.password === '' ? undefined : mqtt.password,
       username: mqtt.username === '' ? undefined : mqtt.username,
     };
-    client = MqttClient.connect(
-      `mqtt://${mqtt.broker}:${mqtt.port}`,
-      clientOptions
-    );
+    client = MqttClient.connect(`mqtt://${mqtt.broker}:${mqtt.port}`, clientOptions);
   }
 }
 
@@ -31,10 +28,7 @@ export function sendMqttMessage(link: Link, store: Store) {
 
     (async () => {
       const givenUrl = link.cartUrl ? link.cartUrl : link.url;
-      const message = `{"msg":"${Print.inStock(
-        link,
-        store
-      )}", "url":"${givenUrl}"}`;
+      const message = `{"msg":"${Print.inStock(link, store)}", "url":"${givenUrl}"}`;
       const topic = generateTopic(link, store, mqtt.topic);
       const pubOptions: IClientPublishOptions = {
         qos: mqtt.qos as 0 | 1 | 2,
@@ -104,8 +98,7 @@ function isClassBNet(address: string): boolean {
 }
 
 function isClassCNet(address: string): boolean {
-  const classRegex =
-    /^(192\.168\.(\d|[1-9]\d|[12][0-5]{2})\.(\d|[1-9]\d|[12][0-5]{2}))$/;
+  const classRegex = /^(192\.168\.(\d|[1-9]\d|[12][0-5]{2})\.(\d|[1-9]\d|[12][0-5]{2}))$/;
 
   return Boolean(classRegex.exec(address));
 }

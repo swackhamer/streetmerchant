@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for evatech 3080 series
@@ -44,5 +48,4 @@ export const links: Link[] = [
       url: 'https://evatech.com.au/product/6496/zotac-rtx3080-trinity-10gb-gddr6x',
     },
   ]),
-
 ];

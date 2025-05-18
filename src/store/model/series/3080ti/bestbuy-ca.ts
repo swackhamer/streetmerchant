@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for bestbuy-ca 3080ti series
@@ -50,5 +54,4 @@ export const links: Link[] = [
       url: 'https://www.bestbuy.ca/en-ca/product/evga-geforce-rtx-3080-ti-ftw3-ultra-12gb-gddr6x-video-card/15524485',
     },
   ]),
-
 ];

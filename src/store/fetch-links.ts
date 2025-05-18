@@ -15,8 +15,7 @@ function getRefreshKey(store: Store, series: Series, url: string) {
 }
 
 export async function refreshLinksBuilder(browser: Browser, store: Store) {
-  const seriesUrlList =
-    store.linksBuilder?.urls.filter(({series}) => filterSeries(series)) ?? [];
+  const seriesUrlList = store.linksBuilder?.urls.filter(({series}) => filterSeries(series)) ?? [];
 
   if (seriesUrlList.length === 0) {
     return;
@@ -26,16 +25,12 @@ export async function refreshLinksBuilder(browser: Browser, store: Store) {
     const promises: Array<Promise<void>> = [];
 
     for (const {series, url} of seriesUrlList) {
-      logger.debug(
-        Print.message('finding product links', series, store, true, true)
-      );
+      logger.debug(Print.message('finding product links', series, store, true, true));
 
       const urls = Array.isArray(url) ? url : [url];
 
       urls.map(url =>
-        promises.push(
-          refreshLink(browser, store as StoreWithLinksBuilder, series, url)
-        )
+        promises.push(refreshLink(browser, store as StoreWithLinksBuilder, series, url))
       );
     }
 
@@ -58,13 +53,9 @@ async function refreshLink(
     return;
   }
 
-  logger.debug(
-    Print.message(`refreshing links: ${url}`, series, store, true, true)
-  );
+  logger.debug(Print.message(`refreshing links: ${url}`, series, store, true, true));
 
-  const waitUntil = linksBuilder.waitUntil
-    ? linksBuilder.waitUntil
-    : 'domcontentloaded';
+  const waitUntil = linksBuilder.waitUntil ? linksBuilder.waitUntil : 'domcontentloaded';
 
   const waitForSelector =
     linksBuilder.waitForSelector ??
@@ -93,9 +84,7 @@ async function refreshLink(
       status = response?.status() ?? 0;
 
       if (isStatusCodeInRange(status, [200, 299])) {
-        await page
-          .waitForNetworkIdle({concurrency: 2, timeout: 10000})
-          .catch(() => null);
+        await page.waitForNetworkIdle({concurrency: 2, timeout: 10000}).catch(() => null);
       }
     }
 
@@ -117,20 +106,13 @@ async function refreshLink(
       // if links were discovered, respect ttl set by the linksBuilder object
       // or default to INF (do not refresh); otherwise refresh in 15m when
       // no links were discovered
-      ttl =
-        linksBuilder.ttl ?? links.length === 0 ? ttl : Number.POSITIVE_INFINITY;
+      ttl = linksBuilder.ttl ?? links.length === 0 ? ttl : Number.POSITIVE_INFINITY;
     } else {
       logger.error(Print.message('NO RESPONSE', series, store, true));
     }
 
     logger.debug(
-      Print.message(
-        `next refresh in ${ttl / 1000} seconds: ${url}`,
-        series,
-        store,
-        true,
-        true
-      )
+      Print.message(`next refresh in ${ttl / 1000} seconds: ${url}`, series, store, true, true)
     );
 
     nextRunTimes[refreshKey] = Date.now() + ttl;
@@ -139,9 +121,7 @@ async function refreshLink(
 
 function addNewLinks(store: Store, links: Link[], series: Series) {
   if (links.length === 0) {
-    logger.warn(
-      Print.message(`found ${links.length} product links`, series, store, true)
-    );
+    logger.warn(Print.message(`found ${links.length} product links`, series, store, true));
 
     return;
   }
@@ -155,13 +135,7 @@ function addNewLinks(store: Store, links: Link[], series: Series) {
   }
 
   logger.info(
-    Print.message(
-      `found ${newLinks.length} new product links`,
-      series,
-      store,
-      true,
-      true
-    )
+    Print.message(`found ${newLinks.length} new product links`, series, store, true, true)
   );
 
   logger.debug(JSON.stringify(newLinks, null, 2));

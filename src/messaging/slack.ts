@@ -27,11 +27,7 @@ const tokens: ClientMap<string> = {
   dm: config.captchaHandler.token,
 };
 
-export function sendSlackMessage(
-  link: Link,
-  store: Store,
-  client: WebClient = getClient()
-) {
+export function sendSlackMessage(link: Link, store: Store, client: WebClient = getClient()) {
   if (channel && client.token) {
     logger.debug('↗ sending slack message');
 
@@ -162,9 +158,7 @@ export async function getDMResponseAsync(
         }
 
         const lastUserMessage = messages
-          .filter(
-            (m: any) => !Object.keys(m).includes('bot_id') && m.user === userId
-          )
+          .filter((m: any) => !Object.keys(m).includes('bot_id') && m.user === userId)
           .sort((a: any, b: any) => Number(b.ts) - Number(a.ts))[0];
         logger.debug(`lastUserMessage: ${JSON.stringify(lastUserMessage)}`);
         if (!lastUserMessage) {
@@ -205,11 +199,7 @@ export async function sendDMAndGetResponseAsync(
   const dmClient = getClient('dm');
   const botMessage = await sendDMAsync(payload, dmClient);
   if (botMessage) {
-    userInput = await getDMResponseAsync(
-      botMessage,
-      timeout || responseTimeout,
-      dmClient
-    );
+    userInput = await getDMResponseAsync(botMessage, timeout || responseTimeout, dmClient);
   }
   return userInput;
 }

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for vsgamers 3070 series
@@ -64,5 +68,4 @@ export const links: Link[] = [
       url: 'https://www.vsgamers.es/product/tarjeta-grafica-msi-geforce-rtxr-3070-ventus-3x-oc-8gb-gddr6',
     },
   ]),
-
 ];

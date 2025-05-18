@@ -17,14 +17,14 @@ export const commonLabels = {
     outOfStock: outOfStockLabels.standard,
     maxPrice: pricingLabels.standard,
   }),
-  
+
   // European store labels
   european: createLabelSet({
     inStock: inStockLabels.euroAddToCart,
     outOfStock: outOfStockLabels.euroOutOfStock,
     maxPrice: pricingLabels.euro,
   }),
-  
+
   // Marketplace with third-party sellers
   marketplace: createLabelSet({
     inStock: inStockLabels.addToCart,
@@ -39,50 +39,54 @@ export const commonLabels = {
     outOfStock: outOfStockLabels.amazonOutOfStock,
     maxPrice: pricingLabels.amazonPrice,
     bannedSeller: bannedSellerLabels.amazonThirdParty,
-    captcha: captchaLabels.amazon
+    captcha: captchaLabels.amazon,
   }),
 
   // Amazon-specific labels (DE)
   amazonDE: createLabelSet({
     inStock: {
       container: '#add-to-cart-button',
-      text: ['in den einkaufswagen']
+      text: ['in den einkaufswagen'],
     },
-    outOfStock: [{
-      container: '#availability',
-      text: ['Derzeit nicht verfügbar']
-    }],
+    outOfStock: [
+      {
+        container: '#availability',
+        text: ['Derzeit nicht verfügbar'],
+      },
+    ],
     maxPrice: pricingLabels.amazonEuroPrice,
     bannedSeller: bannedSellerLabels.amazonThirdParty,
-    captcha: captchaLabels.amazonDE
+    captcha: captchaLabels.amazonDE,
   }),
 
   // Amazon-specific labels (FR)
   amazonFR: createLabelSet({
     inStock: {
       container: '#add-to-cart-button',
-      text: ['ajouter au panier']
+      text: ['ajouter au panier'],
     },
-    outOfStock: [{
-      container: '#availability',
-      text: ['Actuellement indisponible']
-    }],
+    outOfStock: [
+      {
+        container: '#availability',
+        text: ['Actuellement indisponible'],
+      },
+    ],
     maxPrice: pricingLabels.amazonEuroPrice,
     bannedSeller: bannedSellerLabels.amazonThirdParty,
-    captcha: captchaLabels.amazonFR
+    captcha: captchaLabels.amazonFR,
   }),
 
   // Best Buy specific labels
   bestbuy: createLabelSet({
     inStock: inStockLabels.bestbuyAddToCart,
     outOfStock: outOfStockLabels.bestbuyOutOfStock,
-    maxPrice: pricingLabels.bestbuyPrice
+    maxPrice: pricingLabels.bestbuyPrice,
   }),
 
   // Newegg specific labels
   newegg: createLabelSet({
     inStock: inStockLabels.neweggAddToCart,
     outOfStock: outOfStockLabels.neweggOutOfStock,
-    maxPrice: pricingLabels.neweggPrice
-  })
+    maxPrice: pricingLabels.neweggPrice,
+  }),
 };

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for bestbuy 3090 series
@@ -77,5 +81,4 @@ export const links: Link[] = [
       cartUrl: 'https://api.bestbuy.com/click/-/6432657/cart',
     },
   ]),
-
 ];

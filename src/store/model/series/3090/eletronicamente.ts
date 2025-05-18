@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for eletronicamente 3090 series
@@ -36,5 +40,4 @@ export const links: Link[] = [
       url: 'https://www.electronicamente.com/comprar-tarjetas-graficas/34167-tarjeta-grafica-pcie-nvidia-gf-rtx-3090-trinity-24gb-ddr6-3xdp-hdmi-zt-a30900d-10p.html',
     },
   ]),
-
 ];

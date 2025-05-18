@@ -10,10 +10,7 @@ import {config} from '../../../config';
 /**
  * Gets links for a specific series and store
  */
-export function getLinksForSeriesAndStore(
-  series: Series,
-  storeName: string
-): Link[] {
+export function getLinksForSeriesAndStore(series: Series, storeName: string): Link[] {
   if (!seriesData[series]) {
     return [];
   }

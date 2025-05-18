@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for scorptec 3080 series
@@ -136,5 +140,4 @@ export const links: Link[] = [
       url: 'https://www.scorptec.com.au/product/graphics-cards/nvidia/85326-zt-a30800j-10p',
     },
   ]),
-
 ];

@@ -8,28 +8,28 @@ import {commonLabels} from '../common/label-sets';
  * Registry of US stores
  */
 export const usStores: Record<string, ExtendedStoreOptions> = {
-  'amazon': {
+  amazon: {
     name: 'amazon',
     country: 'US',
     currency: '$',
     storeType: 'marketplace',
     labels: commonLabels.amazon,
   },
-  'bestbuy': {
+  bestbuy: {
     name: 'bestbuy',
     country: 'US',
     currency: '$',
     storeType: 'standard',
     labels: commonLabels.bestbuy,
   },
-  'newegg': {
+  newegg: {
     name: 'newegg',
     country: 'US',
     currency: '$',
     storeType: 'standard',
     labels: commonLabels.newegg,
   },
-  'antonline': {
+  antonline: {
     name: 'antonline',
     country: 'US',
     currency: '$',
@@ -49,7 +49,7 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
       },
     },
   },
-  'microcenter': {
+  microcenter: {
     name: 'microcenter',
     country: 'US',
     currency: '$',
@@ -57,14 +57,14 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '#cart-options',
-        text: ['in stock']
+        text: ['in stock'],
       },
       maxPrice: {
         container: 'span.price-label',
-      }
+      },
     },
   },
-  'adorama': {
+  adorama: {
     name: 'adorama',
     country: 'US',
     currency: '$',
@@ -72,11 +72,11 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.buy-section',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'amd': {
+  amd: {
     name: 'amd',
     country: 'US',
     currency: '$',
@@ -84,11 +84,11 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.product-page-description',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'bandh': {
+  bandh: {
     name: 'bandh',
     country: 'US',
     currency: '$',
@@ -96,11 +96,11 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.purchase-wrap',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'corsair': {
+  corsair: {
     name: 'corsair',
     country: 'US',
     currency: '$',
@@ -108,11 +108,11 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.product-details-page',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'evga': {
+  evga: {
     name: 'evga',
     country: 'US',
     currency: '$',
@@ -120,11 +120,11 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.product-buy',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'gamestop': {
+  gamestop: {
     name: 'gamestop',
     country: 'US',
     currency: '$',
@@ -132,11 +132,11 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.add-to-cart-buttons',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'microsoft': {
+  microsoft: {
     name: 'microsoft',
     country: 'US',
     currency: '$',
@@ -144,11 +144,11 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.purchase-button-container',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'officedepot': {
+  officedepot: {
     name: 'officedepot',
     country: 'US',
     currency: '$',
@@ -156,11 +156,11 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.buybox__actions',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'pny': {
+  pny: {
     name: 'pny',
     country: 'US',
     currency: '$',
@@ -168,11 +168,11 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.product-info-main',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'target': {
+  target: {
     name: 'target',
     country: 'US',
     currency: '$',
@@ -180,11 +180,11 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.styles__ButtonsWrapper-sc-17dxxwu-11',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'toysrus': {
+  toysrus: {
     name: 'toysrus',
     country: 'US',
     currency: '$',
@@ -192,11 +192,11 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.product-detail-page',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'walmart': {
+  walmart: {
     name: 'walmart',
     country: 'US',
     currency: '$',
@@ -204,11 +204,11 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.add-to-cart-container',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'xbox': {
+  xbox: {
     name: 'xbox',
     country: 'US',
     currency: '$',
@@ -216,7 +216,7 @@ export const usStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.product-details-hero',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },

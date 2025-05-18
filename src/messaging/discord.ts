@@ -42,8 +42,7 @@ export function sendDiscordMessage(link: Link, store: Store) {
           .setTimestamp();
 
         embed.addField('Store', store.name, true);
-        if (link.price)
-          embed.addField('Price', `${store.currency}${link.price}`, true);
+        if (link.price) embed.addField('Price', `${store.currency}${link.price}`, true);
         embed.addField('Product Page', link.url);
         if (link.cartUrl) embed.addField('Add to Cart', link.cartUrl);
         embed.addField('Brand', link.brand, true);
@@ -61,9 +60,7 @@ export function sendDiscordMessage(link: Link, store: Store) {
         const notifyKeys = Object.keys(notifyGroupSeries);
         const notifyIndex = notifyKeys.indexOf(link.series);
         if (notifyIndex !== -1) {
-          notifyText = notifyText.concat(
-            Object.values(notifyGroupSeries)[notifyIndex]
-          );
+          notifyText = notifyText.concat(Object.values(notifyGroupSeries)[notifyIndex]);
         }
 
         const promises = [];
@@ -99,9 +96,7 @@ export function sendDiscordMessage(link: Link, store: Store) {
   }
 }
 
-export async function sendDMAsync(
-  payload: DMPayload
-): Promise<Discord.Message | undefined> {
+export async function sendDMAsync(payload: DMPayload): Promise<Discord.Message | undefined> {
   if (userId && token) {
     logger.debug('↗ sending discord DM');
     let client = undefined;
@@ -192,10 +187,7 @@ export async function sendDMAndGetResponseAsync(
   timeout?: number
 ): Promise<string> {
   const message = await sendDMAsync(payload);
-  const response = await getDMResponseAsync(
-    message,
-    timeout || responseTimeout
-  );
+  const response = await getDMResponseAsync(message, timeout || responseTimeout);
   return response;
 }
 

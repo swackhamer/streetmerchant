@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for comet sonyps5c series
@@ -13,5 +17,4 @@ export const links: Link[] = [
       cartUrl: 'https://www.comet.it/cart/insert/PSX01802A/online',
     },
   ]),
-
 ];

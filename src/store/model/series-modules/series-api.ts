@@ -12,13 +12,13 @@ import {clearLinkCache} from './link-cache';
 
 /**
  * Gets links for a specific store, filtered by active series and other options
- * 
+ *
  * @param storeName The name of the store
  * @param filterOptions Additional filtering options (brand, model, etc.)
  * @returns Links for the store's active series, filtered by options
  */
 export async function getSeriesLinks(
-  storeName: string, 
+  storeName: string,
   filterOptions?: LinkFilterOptions
 ): Promise<Link[]> {
   // For test compatibility with the series-links test
@@ -52,19 +52,22 @@ export async function getSeriesLinks(
   }
 
   const useCentralizedData = filterOptions?.useCentralizedData ?? false;
-  
+
   // Determine which series to load links for
-  const activeSeriesList = config.store.showOnlySeries.length > 0 
-    ? config.store.showOnlySeries 
-    : (useCentralizedData ? getAllSeriesNamesCombined() : getAllSeriesNames());
-  
+  const activeSeriesList =
+    config.store.showOnlySeries.length > 0
+      ? config.store.showOnlySeries
+      : useCentralizedData
+      ? getAllSeriesNamesCombined()
+      : getAllSeriesNames();
+
   let allLinks: Link[] = [];
-  
+
   // Load links for each active series
   for (const series of activeSeriesList) {
     try {
       const seriesLinks = await getStoreSeriesLinks(
-        storeName, 
+        storeName,
         series as Series,
         useCentralizedData
       );
@@ -73,7 +76,7 @@ export async function getSeriesLinks(
       logger.debug(`No links found for store ${storeName}, series ${series}`);
     }
   }
-  
+
   // Apply additional filtering
   return filterLinks(allLinks, filterOptions);
 }

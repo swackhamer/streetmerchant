@@ -6,7 +6,7 @@ import {Store} from '../store';
 import {
   createStandardStore,
   createEuropeanStore,
-  createMarketplaceStore
+  createMarketplaceStore,
 } from '../common/store-factory';
 import {getStoreConfig} from './index';
 
@@ -18,7 +18,7 @@ export function createStoreFromRegistry(storeName: string): Store {
   if (!config) {
     throw new Error(`Store "${storeName}" not found in registry`);
   }
-  
+
   return createStore(config);
 }
 

@@ -99,10 +99,7 @@ export async function usingPage<T>(
   });
 }
 
-type UsingPageCallback<T> = (
-  page: Page,
-  browser: Browser
-) => Promise<T | undefined>;
+type UsingPageCallback<T> = (page: Page, browser: Browser) => Promise<T | undefined>;
 
 /**
  * Legacy function using BrowserSession internally
@@ -149,9 +146,7 @@ export async function tryUsingPage<T>(
         sessionMap.set(store, session);
       }
 
-      return await session.tryWithPage(page =>
-        callback(page, session['browser'])
-      );
+      return await session.tryWithPage(page => callback(page, session['browser']));
     }
   } catch (error) {
     // This should not happen as tryWithPage handles errors, but just in case

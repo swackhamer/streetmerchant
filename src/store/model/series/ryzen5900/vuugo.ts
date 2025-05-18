@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for vuugo ryzen5900 series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.vuugo.com/computer-hardware/computer-parts/cpu/amd-cpu-100-100000061WOF.html',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for asus 5090 series
@@ -24,5 +28,4 @@ export const links: Link[] = [
       url: 'https://shop.asus.com/us/90yv0lw0-m0aa00-rog-astral-rtx5090-o32g-gaming.html',
     },
   ]),
-
 ];

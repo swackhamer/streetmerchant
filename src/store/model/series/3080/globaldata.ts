@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for globaldata 3080 series
@@ -104,5 +108,4 @@ export const links: Link[] = [
       url: 'https://www.globaldata.pt/grafica-zotac-geforce-rtx-3080-trinity-oc-10gb-gd6x-zt-a30800j-10p',
     },
   ]),
-
 ];

@@ -8,15 +8,15 @@ const linkCache: Record<string, Link[]> = {};
 
 /**
  * Stores links in the cache
- * 
+ *
  * @param storeName The name of the store
  * @param series The series
  * @param links The links to cache
  * @param type Cache type ('file' or 'data')
  */
 export function cacheLinksBySeries(
-  storeName: string, 
-  series: string, 
+  storeName: string,
+  series: string,
   links: Link[],
   type: 'file' | 'data' = 'file'
 ): void {
@@ -26,14 +26,14 @@ export function cacheLinksBySeries(
 
 /**
  * Retrieves links from the cache
- * 
+ *
  * @param storeName The name of the store
  * @param series The series
  * @param type Cache type ('file' or 'data')
  * @returns Cached links or undefined if not cached
  */
 export function getCachedLinks(
-  storeName: string, 
+  storeName: string,
   series: string,
   type: 'file' | 'data' = 'file'
 ): Link[] | undefined {

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for cpl 3080 series
@@ -104,5 +108,4 @@ export const links: Link[] = [
       url: 'https://cplonline.com.au/graphics-cards/geforce-rtx-3080/msi-rtx-3080-ventus-3x-10g-oc-graphics-card.html',
     },
   ]),
-
 ];

@@ -1,6 +1,6 @@
 /**
  * Series Data - Centralized data storage for product links
- * 
+ *
  * This file is now a thin wrapper around the modular series data system
  * for backward compatibility.
  */
@@ -14,5 +14,5 @@ export {
   getAllLinksForSeries,
   getAllSeries,
   getStoreSeriesLinksFromData,
-  filterSeriesDataLinks
+  filterSeriesDataLinks,
 } from './series-modules';

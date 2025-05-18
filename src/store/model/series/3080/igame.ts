@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for igame 3080 series
@@ -32,5 +36,4 @@ export const links: Link[] = [
       url: 'https://www.igamecomputer.com.au/products/mc023?_pos=1&_sid=42c0f4fc6&_ss=r',
     },
   ]),
-
 ];

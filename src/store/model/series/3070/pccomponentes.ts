@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for pccomponentes 3070 series
@@ -100,5 +104,4 @@ export const links: Link[] = [
       url: 'https://www.pccomponentes.com/pny-geforce-rtx-3070-xlr8-gaming-epic-x-rgb-8gb',
     },
   ]),
-
 ];

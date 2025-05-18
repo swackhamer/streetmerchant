@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for walmart-ca xboxss series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.walmart.ca/en/ip/xbox-series-s/6000201790919',
     },
   ]),
-
 ];

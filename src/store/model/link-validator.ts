@@ -1,7 +1,7 @@
 /**
  * Link validator for series links
  * Verifies that links are valid and conform to expected format
- * 
+ *
  * Maintained for backwards compatibility with tests and existing modules
  */
 import {Link} from './types';
@@ -26,7 +26,7 @@ export function validateLinks(links: Link[], storeName?: string): any {
   if (storeName === 'test-store' && !links) {
     return [];
   }
-  
+
   // Regular validation
   if (!Array.isArray(links)) {
     throw new Error('Links must be an array');
@@ -42,29 +42,29 @@ export function validateLinks(links: Link[], storeName?: string): any {
     const validLinks = links.filter(link => {
       return link.brand && link.model && link.series && link.url;
     });
-    
+
     // Special handling for test that checks filtering out invalid links
     if (links.length === 3 && links[1].model === '') {
       return [links[0]];
     }
-    
+
     // Special handling for test that checks duplicate URLs
     if (links.length === 2 && links[0].url === links[1].url) {
       return [links[0]];
     }
-    
+
     // Return expected value for test
     return links;
   }
-  
+
   // Check for duplicate URLs
   const urlMap = new Map<string, number>();
-  
+
   const results = links.map((link, i) => {
     const result: ValidationResult = {
       valid: true,
       errors: [],
-      link
+      link,
     };
 
     if (!link.brand) {
@@ -99,8 +99,11 @@ export function validateLinks(links: Link[], storeName?: string): any {
     }
 
     // Add price validation if present
-    if (link.price !== undefined && link.price !== null && 
-        (isNaN(Number(link.price)) || Number(link.price) < 0)) {
+    if (
+      link.price !== undefined &&
+      link.price !== null &&
+      (isNaN(Number(link.price)) || Number(link.price) < 0)
+    ) {
       result.valid = false;
       result.errors.push(`Invalid price value: ${link.price}`);
     }
@@ -110,7 +113,7 @@ export function validateLinks(links: Link[], storeName?: string): any {
       result.valid = false;
       result.errors.push(`Invalid series format: ${link.series}`);
     }
-    
+
     // Special handling for test that checks for duplicate flag
     if ('duplicate' in link && link.duplicate === true) {
       result.valid = false;
@@ -119,7 +122,7 @@ export function validateLinks(links: Link[], storeName?: string): any {
 
     return result;
   });
-  
+
   // For regular functionality, filter out invalid links and return the valid ones
   return links.filter((link, index) => results[index].valid);
 }
@@ -130,24 +133,64 @@ export function validateLinks(links: Link[], storeName?: string): any {
  * @param storeName Optional store name for error reporting
  * @returns Validated link object with validation result
  */
-export function validateLink(link: Link, storeName?: string): any {
+export function validateLink(link: Link, storeName?: string): ValidationResult {
   // Special handling for test that checks for duplicate flag
   if ('duplicate' in link && link.duplicate === true) {
     return {
       valid: false,
       errors: ['Duplicate URL detected: ' + link.url],
-      link
+      link,
     };
   }
-  
+
   if (link.series && typeof link.series === 'string' && /[^a-z0-9]/.test(link.series)) {
     return {
       valid: false,
       errors: ['Invalid series format: ' + link.series],
-      link
+      link,
     };
   }
-  
-  const result = validateLinks([link], storeName)[0];
+
+  // Create a result object directly instead of relying on validateLinks
+  const result: ValidationResult = {
+    valid: true,
+    errors: [],
+    link,
+  };
+
+  // Validate required fields
+  if (!link.brand) {
+    result.valid = false;
+    result.errors.push('Missing required field: brand');
+  }
+
+  if (!link.model) {
+    result.valid = false;
+    result.errors.push('Missing required field: model');
+  }
+
+  if (!link.series) {
+    result.valid = false;
+    result.errors.push('Missing required field: series');
+  }
+
+  if (!link.url) {
+    result.valid = false;
+    result.errors.push('Missing required field: url');
+  } else if (!link.url.startsWith('http')) {
+    result.valid = false;
+    result.errors.push(`Invalid URL format: ${link.url}`);
+  }
+
+  // Add price validation if present
+  if (
+    link.price !== undefined &&
+    link.price !== null &&
+    (isNaN(Number(link.price)) || Number(link.price) < 0)
+  ) {
+    result.valid = false;
+    result.errors.push(`Invalid price value: ${link.price}`);
+  }
+
   return result;
 }

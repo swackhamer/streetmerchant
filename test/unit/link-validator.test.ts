@@ -1,8 +1,5 @@
 import {Link} from '../../src/store/model/store';
-import {
-  validateLink,
-  validateLinks,
-} from '../../src/store/model/link-validator';
+import {validateLink, validateLinks} from '../../src/store/model/link-validator';
 
 // Mock the logger to prevent console output during tests
 jest.mock('../../src/logger', () => ({

@@ -1,6 +1,6 @@
 /**
  * Desktop Notification Test
- * 
+ *
  * This test specifically checks the desktop notification functionality
  * across different platforms.
  */
@@ -25,10 +25,7 @@ logger.info(`Testing desktop notifications on platform: ${process.platform}`);
 logger.info(`Using node-notifier version: ${require('node-notifier/package.json').version}`);
 
 // Path to the logo
-const logoPath = join(
-  __dirname,
-  '../../docs/assets/images/streetmerchant-logo.png'
-);
+const logoPath = join(__dirname, '../../docs/assets/images/streetmerchant-logo.png');
 
 // Product URL
 const productUrl = link.cartUrl ? link.cartUrl : link.url;
@@ -72,15 +69,15 @@ notifierInstance.notify(notification, (error, response, metadata) => {
     logger.error('❌ Desktop notification test failed', error);
     process.exit(1);
   }
-  
+
   if (response) {
     logger.info(`Response: ${response}`);
   }
-  
+
   if (metadata) {
     logger.info(`Metadata: ${JSON.stringify(metadata)}`);
   }
-  
+
   logger.info('✅ Desktop notification test succeeded');
 });
 

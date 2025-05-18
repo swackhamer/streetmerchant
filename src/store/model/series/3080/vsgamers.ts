@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for vsgamers 3080 series
@@ -92,5 +96,4 @@ export const links: Link[] = [
       url: 'https://www.vsgamers.es/product/tarjeta-grafica-pny-nvidia-geforce-rtx-3080-10gb-gddrex',
     },
   ]),
-
 ];

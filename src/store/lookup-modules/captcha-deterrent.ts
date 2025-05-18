@@ -60,20 +60,16 @@ async function runSearchDeterrent(
 /**
  * Visit several random pages before checking stock
  */
-async function visitRandomPages(
-  store: Store,
-  page: Page,
-  links: string[]
-): Promise<void> {
+async function visitRandomPages(store: Store, page: Page, links: string[]): Promise<void> {
   // Choose a random number of pages to visit (1-3)
   const pagesToVisit = Math.floor(Math.random() * 3) + 1;
-  
+
   for (let i = 0; i < pagesToVisit; i++) {
     try {
       // Choose a random link
       const randomLink = links[Math.floor(Math.random() * links.length)];
       logger.debug(`ℹ [${store.name}] visiting random page: ${randomLink}`);
-      
+
       // Visit the page
       await page.goto(randomLink, {waitUntil: 'domcontentloaded'});
       await delay(getSleepTime(store));

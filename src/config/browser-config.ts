@@ -1,9 +1,9 @@
 /**
  * Browser Configuration
- * 
+ *
  * This module exports browser-related configuration settings.
  */
-import { envOrBoolean, envOrNumber, envOrNumberMax, envOrNumberMin, envOrString } from './env-utils';
+import {envOrBoolean, envOrNumber, envOrNumberMax, envOrNumberMin, envOrString} from './env-utils';
 
 /**
  * Configuration for the browser used to scrape websites
@@ -14,35 +14,13 @@ export const browser = {
   isTrusted: envOrBoolean(process.env.BROWSER_TRUSTED, false),
   lowBandwidth: envOrBoolean(process.env.LOW_BANDWIDTH, false),
   lowBandwidthMode: envOrNumber(process.env.LOW_BANDWIDTH_MODE),
-  maxBackoff: envOrNumberMax(
-    process.env.PAGE_BACKOFF_MIN,
-    process.env.PAGE_BACKOFF_MAX,
-    3600000
-  ),
-  maxSleep: envOrNumberMax(
-    process.env.PAGE_SLEEP_MIN,
-    process.env.PAGE_SLEEP_MAX,
-    10000
-  ),
-  minBackoff: envOrNumberMin(
-    process.env.PAGE_BACKOFF_MIN,
-    process.env.PAGE_BACKOFF_MAX,
-    10000
-  ),
-  minSleep: envOrNumberMin(
-    process.env.PAGE_SLEEP_MIN,
-    process.env.PAGE_SLEEP_MAX,
-    5000
-  ),
-  open: envOrBoolean(
-    process.env.OPEN_BROWSER,
-    !envOrBoolean(process.env.DOCKER, false)
-  ),
+  maxBackoff: envOrNumberMax(process.env.PAGE_BACKOFF_MIN, process.env.PAGE_BACKOFF_MAX, 3600000),
+  maxSleep: envOrNumberMax(process.env.PAGE_SLEEP_MIN, process.env.PAGE_SLEEP_MAX, 10000),
+  minBackoff: envOrNumberMin(process.env.PAGE_BACKOFF_MIN, process.env.PAGE_BACKOFF_MAX, 10000),
+  minSleep: envOrNumberMin(process.env.PAGE_SLEEP_MIN, process.env.PAGE_SLEEP_MAX, 5000),
+  open: envOrBoolean(process.env.OPEN_BROWSER, !envOrBoolean(process.env.DOCKER, false)),
   profileParentDir: '',
-  userAgentKeepDefault: envOrBoolean(
-    process.env.USER_AGENT_KEEP_DEFAULT,
-    false
-  ),
+  userAgentKeepDefault: envOrBoolean(process.env.USER_AGENT_KEEP_DEFAULT, false),
 };
 
 /**
@@ -65,10 +43,7 @@ export const page = {
 export const captchaHandler = {
   captureType: envOrString(process.env.CAPTCHA_HANDLER_CAPTURE_TYPE),
   pollInterval: envOrNumber(process.env.CAPTCHA_HANDLER_POLL_INTERVAL, 5),
-  responseTimeout: envOrNumber(
-    process.env.CAPTCHA_HANDLER_RESPONSE_TIMEOUT,
-    300
-  ),
+  responseTimeout: envOrNumber(process.env.CAPTCHA_HANDLER_RESPONSE_TIMEOUT, 300),
   service: envOrString(process.env.CAPTCHA_HANDLER_SERVICE),
   token: envOrString(process.env.CAPTCHA_HANDLER_TOKEN),
   userId: envOrString(process.env.CAPTCHA_HANDLER_USER_ID),

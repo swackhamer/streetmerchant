@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for ebuyer xboxsx series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.ebuyer.com/1133948-xbox-series-x-console-rrt-00007',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for alternate-nl 3080 series
@@ -132,5 +136,4 @@ export const links: Link[] = [
       url: 'https://www.alternate.nl/product/1673134',
     },
   ]),
-
 ];

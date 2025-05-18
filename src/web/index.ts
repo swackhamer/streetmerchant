@@ -35,11 +35,7 @@ const contentTypeMap: Record<string, string> = {
   txt: 'text/plain',
 };
 
-function sendFile(
-  response: ServerResponse,
-  path: string,
-  relativeTo: string = webroot
-) {
+function sendFile(response: ServerResponse, path: string, relativeTo: string = webroot) {
   path = normalize(`./${path}`);
 
   const fsPath = join(relativeTo, path);
@@ -67,10 +63,7 @@ function sendFile(
       return;
     }
 
-    response.setHeader(
-      'Content-Type',
-      contentTypeMap[ext] ?? contentTypeMap.txt
-    );
+    response.setHeader('Content-Type', contentTypeMap[ext] ?? contentTypeMap.txt);
 
     stream.on('end', () => response.end());
     stream.pipe(response);
@@ -97,11 +90,7 @@ function sendConfig(response: ServerResponse) {
   sendJSON(response, config);
 }
 
-function handleAPI(
-  request: IncomingMessage,
-  response: ServerResponse,
-  urlComponents: string[]
-) {
+function handleAPI(request: IncomingMessage, response: ServerResponse, urlComponents: string[]) {
   if (urlComponents.length < 2) {
     sendError(response, 'No API route specified', 400);
     return;

@@ -13,15 +13,15 @@ export const pricingLabels = {
   },
   amazonPrice: {
     container: '#priceblock_ourprice',
-    euroFormat: false
+    euroFormat: false,
   },
   bestbuyPrice: {
     container: '.priceView-customer-price span',
-    euroFormat: false
+    euroFormat: false,
   },
   neweggPrice: {
     container: '.price-current',
-    euroFormat: false
+    euroFormat: false,
   },
   // Euro-formatted prices
   euro: {
@@ -30,7 +30,7 @@ export const pricingLabels = {
   },
   amazonEuroPrice: {
     container: '#priceblock_ourprice',
-    euroFormat: true
+    euroFormat: true,
   },
   // Sale prices
   sale: {

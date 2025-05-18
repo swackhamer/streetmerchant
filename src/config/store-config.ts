@@ -1,5 +1,6 @@
-import { envOrArray, envOrBoolean, envOrNumber, envOrString } from './env-utils';
-import { readFileSync } from 'fs';
+import {envOrArray, envOrBoolean, envOrNumber, envOrString} from './env-utils';
+import {readFileSync} from 'fs';
+import chalk from 'chalk';
 
 /**
  * Loads proxy list from a file
@@ -21,10 +22,10 @@ function loadProxyList(filename: string): string[] | undefined {
 export const store = {
   // Only use value directly from environment variable with no default
   autoAddToCart: envOrBoolean(process.env.AUTO_ADD_TO_CART),
-  
+
   // No default country - only use what's in .env
   country: envOrString(process.env.COUNTRY),
-  
+
   maxPrice: {
     series: {
       3050: envOrNumber(process.env.MAX_PRICE_SERIES_3050),
@@ -49,9 +50,7 @@ export const store = {
       'a3-matx': envOrNumber(process.env.MAX_PRICE_SERIES_A3_MATX),
       'captcha-deterrent': 0,
       darkhero: envOrNumber(process.env.MAX_PRICE_SERIES_DARKHERO),
-      'g4-doorbell-pro': envOrNumber(
-        process.env.MAX_PRICE_SERIES_G4_DOORBELL_PRO
-      ),
+      'g4-doorbell-pro': envOrNumber(process.env.MAX_PRICE_SERIES_G4_DOORBELL_PRO),
       rx6700xt: envOrNumber(process.env.MAX_PRICE_SERIES_RX6700XT),
       rx6800: envOrNumber(process.env.MAX_PRICE_SERIES_RX6800),
       rx6800xt: envOrNumber(process.env.MAX_PRICE_SERIES_RX6800XT),
@@ -85,7 +84,7 @@ export const store = {
   },
   // No default location - only use what's in .env
   microCenterLocation: envOrArray(process.env.MICROCENTER_LOCATION),
-  
+
   showOnlyBrands: envOrArray(process.env.SHOW_ONLY_BRANDS),
   showOnlyModels: envOrArray(process.env.SHOW_ONLY_MODELS).map(entry => {
     const [name, series] = entry.match(/[^:]+/g) ?? [];
@@ -95,71 +94,82 @@ export const store = {
     };
   }),
   // No default series - only use what's in .env
-  showOnlySeries: (() => { 
-    const series = envOrArray(process.env.SHOW_ONLY_SERIES); 
-    console.log(`[DEBUG-CONFIG] Parsed SHOW_ONLY_SERIES: ${JSON.stringify(series)}`); 
-    return series; 
+  showOnlySeries: (() => {
+    const series = envOrArray(process.env.SHOW_ONLY_SERIES);
+    if (process.env.NODE_ENV !== 'test') {
+      console.log(
+        chalk.blue('[DEBUG-CONFIG]'),
+        `Parsed SHOW_ONLY_SERIES: ${chalk.cyan(JSON.stringify(series))}`
+      );
+    } else {
+      console.log('[DEBUG-CONFIG] Parsed SHOW_ONLY_SERIES:', JSON.stringify(series));
+    }
+    return series;
   })(),
   showOnlyCountry: envOrArray(process.env.SHOW_ONLY_COUNTRY),
-  
+
   // No default stores - only use what's explicitly defined in .env STORES variable
-  stores: (process.env.STORES ? 
-    // Parse STORES env var (could be comma-separated list of stores, 
-    // potentially with sleep parameters in the format "storename,min:max")
-    (() => {
-      const storeConfigs = [];
-      const entries = process.env.STORES.split(',');
-      
-      // The expected format could be either:
-      // 1. "store1,store2,store3" (simple comma-separated list)
-      // 2. "store1,min:max" (store with sleep params)
-      // 3. "store1,store2:min:max" (multiple stores, some with params)
-      
-      for (let i = 0; i < entries.length; i++) {
-        const entry = entries[i].trim();
-        
-        // If the entry contains a colon, it might be sleep parameters
-        if (entry.includes(':')) {
-          // Check if this is a sleep parameter for the previous store
-          // This handles the case "bestbuy,1000000:3000000" where 1000000:3000000 are sleep params for bestbuy
-          if (!isNaN(Number(entry.split(':')[0])) && i > 0) {
-            // This is likely a sleep parameter for the previous store
-            const prevStore = storeConfigs[storeConfigs.length - 1];
-            const sleepParams = entry.split(':');
-            
-            // Update previous store's sleep parameters
-            prevStore.minPageSleep = sleepParams[0];
-            prevStore.maxPageSleep = sleepParams.length > 1 ? sleepParams[1] : undefined;
-            
-            // Skip to next entry since we processed this as parameters
-            continue;
+  stores: (process.env.STORES
+    ? // Parse STORES env var (could be comma-separated list of stores,
+      // potentially with sleep parameters in the format "storename,min:max")
+      (() => {
+        const storeConfigs = [];
+        const entries = process.env.STORES.split(',');
+
+        // The expected format could be either:
+        // 1. "store1,store2,store3" (simple comma-separated list)
+        // 2. "store1,min:max" (store with sleep params)
+        // 3. "store1,store2:min:max" (multiple stores, some with params)
+
+        for (let i = 0; i < entries.length; i++) {
+          const entry = entries[i].trim();
+
+          // If the entry contains a colon, it might be sleep parameters
+          if (entry.includes(':')) {
+            // Check if this is a sleep parameter for the previous store
+            // This handles the case "bestbuy,1000000:3000000" where 1000000:3000000 are sleep params for bestbuy
+            if (!isNaN(Number(entry.split(':')[0])) && i > 0) {
+              // This is likely a sleep parameter for the previous store
+              const prevStore = storeConfigs[storeConfigs.length - 1];
+              const sleepParams = entry.split(':');
+
+              // Update previous store's sleep parameters
+              prevStore.minPageSleep = sleepParams[0];
+              prevStore.maxPageSleep = sleepParams.length > 1 ? sleepParams[1] : undefined;
+
+              // Skip to next entry since we processed this as parameters
+              continue;
+            } else {
+              // This is a store name with embedded sleep parameters
+              const parts = entry.split(':');
+              storeConfigs.push({
+                name: parts[0],
+                minPageSleep: parts[1],
+                maxPageSleep: parts.length > 2 ? parts[2] : undefined,
+              });
+            }
           } else {
-            // This is a store name with embedded sleep parameters
-            const parts = entry.split(':');
+            // Just a regular store name
             storeConfigs.push({
-              name: parts[0],
-              minPageSleep: parts[1],
-              maxPageSleep: parts.length > 2 ? parts[2] : undefined
+              name: entry,
+              minPageSleep: undefined,
+              maxPageSleep: undefined,
             });
           }
-        } else {
-          // Just a regular store name
-          storeConfigs.push({
-            name: entry,
-            minPageSleep: undefined,
-            maxPageSleep: undefined
-          });
         }
-      }
-      
-      return storeConfigs;
-    })() : 
-    // Otherwise use an empty array (no stores)
-    []
+
+        return storeConfigs;
+      })()
+    : // Otherwise use an empty array (no stores)
+      []
   ).map(entry => {
-    const { name, minPageSleep, maxPageSleep } = entry;
-    
-    console.info(`Configuring store: ${name}`);
+    const {name, minPageSleep, maxPageSleep} = entry;
+
+    if (process.env.NODE_ENV !== 'test') {
+      console.info(chalk.green(`Configuring store: ${chalk.bold.yellow(name)}`));
+    } else {
+      console.info(`Configuring store: ${name}`);
+    }
 
     let proxyList = loadProxyList(name as string);
 
@@ -176,16 +186,8 @@ export const store = {
 
     // Don't use default values for page sleep times
     return {
-      maxPageSleep: envOrNumberMax(
-        minPageSleep,
-        maxPageSleep,
-        0
-      ),
-      minPageSleep: envOrNumberMin(
-        minPageSleep,
-        maxPageSleep,
-        0
-      ),
+      maxPageSleep: envOrNumberMax(minPageSleep, maxPageSleep, 0),
+      minPageSleep: envOrNumberMin(minPageSleep, maxPageSleep, 0),
       name: envOrString(name),
       proxyList,
     };
@@ -201,16 +203,12 @@ function envOrNumberMin(
   if (environmentMin || environmentMax) {
     if (environmentMin && environmentMax) {
       return Number(
-        Number(environmentMin) < Number(environmentMax)
-          ? environmentMin
-          : environmentMax
+        Number(environmentMin) < Number(environmentMax) ? environmentMin : environmentMax
       );
     }
 
     if (environmentMax) {
-      return Number(environmentMax) < (number ?? 0)
-        ? Number(environmentMax)
-        : number ?? 0;
+      return Number(environmentMax) < (number ?? 0) ? Number(environmentMax) : number ?? 0;
     }
 
     if (environmentMin) {
@@ -229,16 +227,12 @@ function envOrNumberMax(
   if (environmentMin || environmentMax) {
     if (environmentMin && environmentMax) {
       return Number(
-        Number(environmentMin) < Number(environmentMax)
-          ? environmentMax
-          : environmentMax
+        Number(environmentMin) < Number(environmentMax) ? environmentMax : environmentMax
       );
     }
 
     if (environmentMin) {
-      return Number(environmentMin) > (number ?? 0)
-        ? Number(environmentMin)
-        : number ?? 0;
+      return Number(environmentMin) > (number ?? 0) ? Number(environmentMin) : number ?? 0;
     }
 
     if (environmentMax) {

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for mwave 3080 series
@@ -132,5 +136,4 @@ export const links: Link[] = [
       url: 'https://www.mwave.com.au/product/galax-geforce-rtx-3080-sg-1click-oc-10gb-video-card-ac38128',
     },
   ]),
-
 ];

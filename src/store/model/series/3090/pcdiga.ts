@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for pcdiga 3090 series
@@ -100,5 +104,4 @@ export const links: Link[] = [
       url: 'https://www.pcdiga.com/placa-grafica-pny-geforce-rtx-3090-24gb-gddr6x-xlr8-gaming-epic-x-rgb-triple-fan-vcg309024tfxmpb',
     },
   ]),
-
 ];

@@ -1,6 +1,6 @@
 /**
  * Common label sets for store configurations
- * 
+ *
  * This file is now a thin wrapper around the modular label system
  * for backward compatibility.
  */
@@ -14,5 +14,5 @@ export {
   bannedSellerLabels,
   captchaLabels,
   createLabelSet,
-  commonLabels
+  commonLabels,
 } from './labels';

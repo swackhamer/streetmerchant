@@ -9,9 +9,7 @@ export type Selector = {
 };
 
 function isElementArray(query: LabelQuery): query is Element[] {
-  return (
-    Array.isArray(query) && query.length > 0 && typeof query[0] === 'object'
-  );
+  return Array.isArray(query) && query.length > 0 && typeof query[0] === 'object';
 }
 
 function getQueryAsElementArray(
@@ -42,11 +40,7 @@ function getQueryAsElementArray(
   ];
 }
 
-export async function pageIncludesLabels(
-  page: Page,
-  query: LabelQuery,
-  options: Selector
-) {
+export async function pageIncludesLabels(page: Page, query: LabelQuery, options: Selector) {
   const elementQueries = getQueryAsElementArray(query, options.selector);
 
   const resolved = await Promise.all(
@@ -67,23 +61,15 @@ export async function pageIncludesLabels(
   return resolved.includes(true);
 }
 
-export async function extractPageContents(
-  page: Page,
-  selector: Selector
-): Promise<string | null> {
+export async function extractPageContents(page: Page, selector: Selector): Promise<string | null> {
   return page.evaluate((options: Selector) => {
-    const element: globalThis.HTMLElement | null = document.querySelector(
-      options.selector
-    );
+    const element: globalThis.HTMLElement | null = document.querySelector(options.selector);
 
     if (!element) {
       return null;
     }
 
-    if (
-      options.requireVisible &&
-      !(element.offsetWidth > 0 && element.offsetHeight > 0)
-    ) {
+    if (options.requireVisible && !(element.offsetWidth > 0 && element.offsetHeight > 0)) {
       return null;
     }
 
@@ -106,14 +92,9 @@ export async function extractPageContents(
  * @param domText Complete DOM of website.
  * @param searchLabels Search labels for a match.
  */
-export function includesLabels(
-  domText: string,
-  searchLabels: string[]
-): boolean {
+export function includesLabels(domText: string, searchLabels: string[]): boolean {
   const domTextLowerCase = domText.toLowerCase();
-  return searchLabels.some(label =>
-    domTextLowerCase.includes(label.toLowerCase())
-  );
+  return searchLabels.some(label => domTextLowerCase.includes(label.toLowerCase()));
 }
 
 export async function getPrice(

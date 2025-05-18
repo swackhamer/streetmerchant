@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for target sonyps5de series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.target.com/p/playstation-5-digital-edition-console/-/A-81114596',
     },
   ]),
-
 ];

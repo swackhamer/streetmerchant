@@ -7,11 +7,7 @@ import {Link, Store} from '../store/model';
 /**
  * Build a setup string for logging
  */
-export function buildSetupString(
-  topic: string,
-  store: Store,
-  color?: boolean
-): string {
+export function buildSetupString(topic: string, store: Store, color?: boolean): string {
   let proxy = '';
   if (
     typeof store.currentProxyIndex === 'number' &&
@@ -22,11 +18,7 @@ export function buildSetupString(
   }
 
   if (color) {
-    return (
-      chalk.grey(proxy) +
-      chalk.cyan(`[${store.name}]`) +
-      chalk.grey(` [setup (${topic})]`)
-    );
+    return chalk.grey(proxy) + chalk.cyan(`[${store.name}]`) + chalk.grey(` [setup (${topic})]`);
   }
 
   return `${proxy}[${store.name}] [setup (${topic})]`;

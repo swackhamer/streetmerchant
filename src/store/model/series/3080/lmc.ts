@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for lmc 3080 series
@@ -20,5 +24,4 @@ export const links: Link[] = [
       url: 'https://www.lmc.com.au/leadtek-geforce-rtx-3080-hurricane-12789000110-10g-gddr6x-hdmi2.1-3xdp1.4a',
     },
   ]),
-
 ];

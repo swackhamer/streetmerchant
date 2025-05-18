@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for xtremmedia 3080ti series
@@ -64,5 +68,4 @@ export const links: Link[] = [
       url: 'https://xtremmedia.com/PNY_GeForce_RTX_3080Ti_XLR8_Gaming_REVEL_Edition_12GB_GDDR6X.html',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for azerty 3080 series
@@ -60,5 +64,4 @@ export const links: Link[] = [
       url: 'https://azerty.nl/product/pny/4342269/geforce-rtx-3080-xlr8-gaming-revel-epic-x-rgb-triple-fan-gaming-edition-grafische-kaart-gf-rtx-3080',
     },
   ]),
-
 ];

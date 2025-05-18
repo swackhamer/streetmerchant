@@ -1,7 +1,4 @@
-import {
-  getSeriesLinks,
-  clearLinkCache,
-} from '../../src/store/model/series-links';
+import {getSeriesLinks, clearLinkCache} from '../../src/store/model/series-links';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -72,28 +69,24 @@ describe('Series Links', () => {
     clearLinkCache();
 
     // Mock fs.existsSync
-    jest
-      .spyOn(fs, 'existsSync')
-      .mockImplementation((filePath: string | fs.PathLike) => {
-        if (
-          typeof filePath === 'string' &&
-          (filePath.includes('series/3080/sample-store') ||
-            filePath.includes('series/3070/sample-store'))
-        ) {
-          return true;
-        }
-        return false;
-      });
+    jest.spyOn(fs, 'existsSync').mockImplementation((filePath: string | fs.PathLike) => {
+      if (
+        typeof filePath === 'string' &&
+        (filePath.includes('series/3080/sample-store') ||
+          filePath.includes('series/3070/sample-store'))
+      ) {
+        return true;
+      }
+      return false;
+    });
 
     // Mock fs.readdirSync
-    jest
-      .spyOn(fs, 'readdirSync')
-      .mockImplementation((dirPath: string | fs.PathLike) => {
-        if (typeof dirPath === 'string' && dirPath.includes('series')) {
-          return ['3080', '3070', '3090'] as any as fs.Dirent[];
-        }
-        return [] as any as fs.Dirent[];
-      });
+    jest.spyOn(fs, 'readdirSync').mockImplementation((dirPath: string | fs.PathLike) => {
+      if (typeof dirPath === 'string' && dirPath.includes('series')) {
+        return ['3080', '3070', '3090'] as any as fs.Dirent[];
+      }
+      return [] as any as fs.Dirent[];
+    });
 
     // Mock fs.statSync
     jest.spyOn(fs, 'statSync').mockImplementation(
@@ -110,9 +103,7 @@ describe('Series Links', () => {
 
   test('getSeriesLinks should return links for active series', async () => {
     // Mock the dynamic import
-    const originalImport = jest.requireActual(
-      '../../src/store/model/series-links'
-    ).import;
+    const originalImport = jest.requireActual('../../src/store/model/series-links').import;
     // @ts-ignore: Mock implementation
     global.import = jest.fn().mockImplementation((moduleSpecifier: string) => {
       if (moduleSpecifier === './series/3080/sample-store') {
@@ -162,18 +153,10 @@ describe('Series Links', () => {
 
     // Verify the results
     expect(links).toHaveLength(4);
-    expect(
-      links.some(link => link.brand === 'nvidia' && link.series === '3080')
-    ).toBe(true);
-    expect(
-      links.some(link => link.brand === 'asus' && link.series === '3080')
-    ).toBe(true);
-    expect(
-      links.some(link => link.brand === 'nvidia' && link.series === '3070')
-    ).toBe(true);
-    expect(
-      links.some(link => link.brand === 'evga' && link.series === '3070')
-    ).toBe(true);
+    expect(links.some(link => link.brand === 'nvidia' && link.series === '3080')).toBe(true);
+    expect(links.some(link => link.brand === 'asus' && link.series === '3080')).toBe(true);
+    expect(links.some(link => link.brand === 'nvidia' && link.series === '3070')).toBe(true);
+    expect(links.some(link => link.brand === 'evga' && link.series === '3070')).toBe(true);
   });
 
   test('getSeriesLinks should return empty array for non-existent store', async () => {

@@ -28,21 +28,21 @@ export function cleanUserDataDir(userDataDir: string): void {
 export async function launchBrowser({
   options,
   proxy,
-  userAgent
+  userAgent,
 }: BrowserLaunchConfig): Promise<Browser> {
   abortctl.assert('browser');
-  
+
   const args = buildBrowserArgs(options, proxy, userAgent);
-  
+
   if (args.length > 0) {
     logger.debug('ℹ puppeteer config: ', args.toSorted());
   }
-  
+
   // In Docker, always disable browser open
   if (config.docker) {
     config.browser.open = false;
   }
-  
+
   const browser = await Puppeteer.launch({
     args,
     defaultViewport: null,
@@ -53,13 +53,13 @@ export async function launchBrowser({
     protocolTimeout: config.page.protocolTimeout,
     ...options,
   });
-  
+
   // Set up page configuration
   await configureBrowserPages(browser, proxy);
-  
+
   // Clear cookies on browser start
   await clearBrowserCookies(browser);
-  
+
   return browser;
 }
 
@@ -70,10 +70,10 @@ export async function getDefaultUserAgent(): Promise<string | undefined> {
   if (!config.browser.userAgentKeepDefault) {
     return undefined;
   }
-  
+
   let browser: Browser | undefined;
   let userAgent: string | undefined;
-  
+
   try {
     browser = await launchBrowser({
       options: {
@@ -81,9 +81,9 @@ export async function getDefaultUserAgent(): Promise<string | undefined> {
         userDataDir: path.join(config.browser.profileParentDir, 'default'),
       },
     });
-    
+
     userAgent = await browser.userAgent();
-    
+
     // Remove headless from the default user agent
     if (userAgent.includes('Headless')) {
       userAgent = userAgent.replaceAll(/headless/gi, '');
@@ -99,6 +99,6 @@ export async function getDefaultUserAgent(): Promise<string | undefined> {
       }
     }
   }
-  
+
   return userAgent;
 }

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for materiel 3060ti series
@@ -180,5 +184,4 @@ export const links: Link[] = [
       url: 'https://www.materiel.net/produit/202011060033.html',
     },
   ]),
-
 ];

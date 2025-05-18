@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for igame ryzen5900 series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://www.igamecomputer.com.au/products/a0126?_pos=1&_psq=5900x&_ss=e&_v=1.0',
     },
   ]),
-
 ];

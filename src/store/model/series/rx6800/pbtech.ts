@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -29,5 +33,4 @@ export const links: Link[] = [
       url: 'https://www.pbtech.com/au/product/VGASAP16802/Sapphire-PULSE-AMD-Radeon-RX-6800-OC-Graphics-Card',
     },
   ]),
-
 ];

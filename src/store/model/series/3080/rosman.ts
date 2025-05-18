@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for rosman 3080 series
@@ -60,5 +64,4 @@ export const links: Link[] = [
       url: 'https://rosmancomputers.com.au/inno3d-nvidia-rtx-3080-twin-x2-oc-mhz-10gb-gddr6x-3xdp-1xhdmi-atx-3xfans-750w-3-years-warranty/',
     },
   ]),
-
 ];

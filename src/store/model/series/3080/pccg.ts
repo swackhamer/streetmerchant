@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for pccg 3080 series
@@ -96,5 +100,4 @@ export const links: Link[] = [
       url: 'https://www.pccasegear.com/products/51752/msi-geforce-rtx-3080-gaming-x-trio-10gb',
     },
   ]),
-
 ];

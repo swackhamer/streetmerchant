@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for acompc 3090 series
@@ -60,5 +64,4 @@ export const links: Link[] = [
       url: 'https://www.acom-pc.de/Hardware-Software/Grafikkarten-Zubehoer/Grafikkarten-NVIDIA-PCI-Express/ZOTAC-GAMING-GeForce-RTX-3090-Trinity-Grafikkarten-GF-RTX-3090-24-GB-GDDR6X-PCIe-4.0-HDMI-3x-DisplayPort.html',
     },
   ]),
-
 ];

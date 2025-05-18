@@ -20,12 +20,7 @@ export function sendFreeMobileAlert(link: Link, store: Store) {
       const color = false;
       const sms = true;
 
-      const message = `${Print.inStock(
-        link,
-        store,
-        color,
-        sms
-      )}\n${Print.productInStock(link)}`;
+      const message = `${Print.inStock(link, store, color, sms)}\n${Print.productInStock(link)}`;
 
       url.searchParams.append('msg', message);
 

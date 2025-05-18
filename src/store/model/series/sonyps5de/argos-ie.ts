@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for argos-ie sonyps5de series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'http://www.argos.ie/static/Product/partNumber/8349000/Trail/searchtext%3EPS5+CONSOLE.htm',
     },
   ]),
-
 ];

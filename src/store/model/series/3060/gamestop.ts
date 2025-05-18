@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for gamestop 3060 series
@@ -20,5 +24,4 @@ export const links: Link[] = [
       url: 'https://www.gamestop.com/video-games/pc-gaming/components/graphics-cards/products/geforce-rtx-3060-8-gb-gddr6-ti-gaming-x-trio-graphic-card/11118702.html',
     },
   ]),
-
 ];

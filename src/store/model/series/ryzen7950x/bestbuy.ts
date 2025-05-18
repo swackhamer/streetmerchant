@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for bestbuy ryzen7950x series
@@ -13,5 +17,4 @@ export const links: Link[] = [
       cartUrl: 'https://api.bestbuy.com/click/-/6519470/cart',
     },
   ]),
-
 ];

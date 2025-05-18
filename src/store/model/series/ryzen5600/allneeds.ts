@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for allneeds ryzen5600 series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://allneeds.com.au/amd-ryzen-5-5600x-with-wraith-stealth-100-100000065box',
     },
   ]),
-
 ];

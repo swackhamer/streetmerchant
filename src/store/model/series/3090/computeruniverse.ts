@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for computeruniverse 3090 series
@@ -140,5 +144,4 @@ export const links: Link[] = [
       url: 'https://www.computeruniverse.net/de/zotac-gaming-geforce-rtx-3090-trinity-24-gb-enthusiast-grafikkarte',
     },
   ]),
-
 ];

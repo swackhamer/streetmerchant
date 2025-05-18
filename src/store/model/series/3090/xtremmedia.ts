@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for xtremmedia 3090 series
@@ -128,5 +132,4 @@ export const links: Link[] = [
       url: 'https://xtremmedia.com/Zotac_GeForce_RTX_3090_Trinity_24GB_GDDR6X.html',
     },
   ]),
-
 ];

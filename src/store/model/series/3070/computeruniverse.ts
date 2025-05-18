@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for computeruniverse 3070 series
@@ -116,5 +120,4 @@ export const links: Link[] = [
       url: 'https://www.computeruniverse.net/de/zotac-gaming-geforce-rtx3070-twin-edge-oc-8-gb-oc',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for utlimainformatica 3080 series
@@ -116,5 +120,4 @@ export const links: Link[] = [
       url: 'https://ultimainformatica.com/tarjetas-graficas/92288-evga-10g-p5-3897-kr-tarjeta-grafica-nvidia-geforce-rtx-3080-10-gb-gddr6x-4250812438287.html',
     },
   ]),
-
 ];

@@ -161,9 +161,7 @@ describe('Utility Functions', () => {
     });
 
     test('should handle protocol error messages', () => {
-      const protocolError = new Error(
-        'Protocol error: Network.enable timed out'
-      );
+      const protocolError = new Error('Protocol error: Network.enable timed out');
       logUnexpectedError(protocolError);
 
       expect(logger.silly).toHaveBeenCalledWith(protocolError.toString());

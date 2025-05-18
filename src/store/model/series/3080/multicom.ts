@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for multicom 3080 series
@@ -132,5 +136,4 @@ export const links: Link[] = [
       url: 'https://www.multicom.no/business/gainward-geforce-rtx-3080-phoenix/cat-p/c100134/p1001441689',
     },
   ]),
-
 ];

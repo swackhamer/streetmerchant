@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for game-es 3070 series
@@ -48,5 +52,4 @@ export const links: Link[] = [
       url: 'https://www.game.es/COMPONENTES/TARJETA-GRAFICA/PC-GAMING/MSI-RTX3070-VENTUS-3X-OC-NVIDIA-GEFORCE-RTX-3070-8-GB-GDDR6/V0PA1J',
     },
   ]),
-
 ];

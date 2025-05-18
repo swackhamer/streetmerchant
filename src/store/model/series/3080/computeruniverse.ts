@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for computeruniverse 3080 series
@@ -160,5 +164,4 @@ export const links: Link[] = [
       url: 'https://www.computeruniverse.net/de/zotac-gaming-geforce-rtx3080-trinity-oc-10-gb-enthusiast-grafikkarte',
     },
   ]),
-
 ];

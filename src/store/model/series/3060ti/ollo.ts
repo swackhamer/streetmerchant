@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for ollo 3060ti series
@@ -20,5 +24,4 @@ export const links: Link[] = [
       url: 'https://www.ollo.it/msi-geforce-rtx-3060-ti-ventus-3x-oc/p_810398',
     },
   ]),
-
 ];

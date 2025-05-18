@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for bandh 4090 series
@@ -76,5 +80,4 @@ export const links: Link[] = [
       url: 'https://www.bhphotovideo.com/c/product/1729096-REG/pny_vcg409024tfxxpb1_geforce_rtx_4090_24gb.html',
     },
   ]),
-
 ];

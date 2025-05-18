@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for rosman-melb 3090 series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://rosmancomputers.com.au/gigabyte-nvidia-gv-n3090turbo-24gd1/',
     },
   ]),
-
 ];

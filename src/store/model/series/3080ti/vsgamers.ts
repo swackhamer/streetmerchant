@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for vsgamers 3080ti series
@@ -44,5 +48,4 @@ export const links: Link[] = [
       url: 'https://www.vsgamers.es/product/tarjeta-grafica-zotac-geforce-rtx-3080-ti-amp-holo-12gb-gddr6x',
     },
   ]),
-
 ];

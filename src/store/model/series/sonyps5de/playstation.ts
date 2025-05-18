@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for playstation sonyps5de series
@@ -13,5 +17,4 @@ export const links: Link[] = [
       itemNumber: '3005817',
     },
   ]),
-
 ];

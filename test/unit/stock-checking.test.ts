@@ -111,9 +111,7 @@ describe('Stock Checking Logic', () => {
     const mockBrowser = {} as Browser;
 
     // Call the function and expect it to throw
-    await expect(lookup(mockBrowser, mockStore)).rejects.toThrow(
-      'Failed to lookup'
-    );
+    await expect(lookup(mockBrowser, mockStore)).rejects.toThrow('Failed to lookup');
     expect(lookup).toHaveBeenCalledWith(mockBrowser, mockStore);
   });
 });

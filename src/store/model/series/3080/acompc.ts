@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for acompc 3080 series
@@ -88,5 +92,4 @@ export const links: Link[] = [
       url: 'https://www.acom-pc.de/Hardware-Software/Grafikkarten-Zubehoer/Grafikkarten-NVIDIA-PCI-Express/ZOTAC-GAMING-GeForce-RTX-3080-Trinity-Grafikkarten-GF-RTX-3080-10-GB-GDDR6X-PCIe-4.0-HDMI-3x-DisplayPort.html',
     },
   ]),
-
 ];

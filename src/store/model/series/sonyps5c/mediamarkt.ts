@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for mediamarkt sonyps5c series
@@ -80,5 +84,4 @@ export const links: Link[] = [
       url: 'https://www.mediamarkt.de/de/product/_sony-playstation%C2%AE5-dualsense%E2%84%A2-2752998.html',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for arlt 3070 series
@@ -44,5 +48,4 @@ export const links: Link[] = [
       url: 'https://www.arlt.com/Gaming/Gaming-Hardware/Gainward-GeForce-RTX-3070-Phoenix-GS.html',
     },
   ]),
-
 ];

@@ -8,7 +8,7 @@ import {commonLabels} from '../common/label-sets';
  * Registry of Australian/NZ stores
  */
 export const auNzStores: Record<string, ExtendedStoreOptions> = {
-  'pccg': {
+  pccg: {
     name: 'pccg',
     country: 'AU',
     currency: '$',
@@ -16,11 +16,11 @@ export const auNzStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.product-data-container',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
-  'centrecom': {
+  centrecom: {
     name: 'centrecom',
     country: 'AU',
     currency: '$',
@@ -28,7 +28,7 @@ export const auNzStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.productRight',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
@@ -68,7 +68,7 @@ export const specialtyStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.buy-section',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
@@ -80,7 +80,7 @@ export const specialtyStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.buy-section',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },
@@ -92,7 +92,7 @@ export const specialtyStores: Record<string, ExtendedStoreOptions> = {
     labels: {
       inStock: {
         container: '.buy-section',
-        text: ['add to cart']
+        text: ['add to cart'],
       },
     },
   },

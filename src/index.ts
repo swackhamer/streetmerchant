@@ -19,10 +19,7 @@ import {startAPIServer, stopAPIServer} from './web';
 class StreetMerchantApplication {
   readonly #processListeners: Map<NodeJS.Signals, () => void>;
 
-  readonly #errorListeners: Map<
-    NodeJS.UncaughtExceptionOrigin,
-    (error: unknown) => void
-  >;
+  readonly #errorListeners: Map<NodeJS.UncaughtExceptionOrigin, (error: unknown) => void>;
 
   #checkForNewStoresTimer?: Timer;
   #errorRestartTimer?: Timer;
@@ -82,10 +79,7 @@ class StreetMerchantApplication {
 
     // check for stores enabled via the web interface every second
     // todo refactor this to use event emitter
-    this.#checkForNewStoresTimer = timers.addInterval(
-      this.#lookupEnabledStores.bind(this),
-      1000
-    );
+    this.#checkForNewStoresTimer = timers.addInterval(this.#lookupEnabledStores.bind(this), 1000);
   }
 
   /**
@@ -100,9 +94,7 @@ class StreetMerchantApplication {
       return;
     }
 
-    this.#errorListeners.forEach((listener, signal) =>
-      process.removeListener(signal, listener)
-    );
+    this.#errorListeners.forEach((listener, signal) => process.removeListener(signal, listener));
 
     if (this.#checkForNewStoresTimer) {
       timers.removeInterval(this.#checkForNewStoresTimer);
@@ -133,17 +125,13 @@ class StreetMerchantApplication {
       logger.debug(`cleaning up temp directory: file://${this.#tempDirectory}`);
       await fs.promises
         .rm(this.#tempDirectory, {recursive: true, force: true})
-        .catch(error =>
-          logger.warn('✖ error cleaning up temp directory', error)
-        );
+        .catch(error => logger.warn('✖ error cleaning up temp directory', error));
       this.#tempDirectory = undefined;
     }
 
     this.#running = false;
 
-    this.#processListeners.forEach((listener, signal) =>
-      process.removeListener(signal, listener)
-    );
+    this.#processListeners.forEach((listener, signal) => process.removeListener(signal, listener));
   }
 
   async restart(): Promise<void> {
@@ -159,9 +147,7 @@ class StreetMerchantApplication {
   }
 
   #lookupEnabledStores() {
-    const pending = [...getStores().values()].filter(
-      store => !this.#stores.includes(store)
-    );
+    const pending = [...getStores().values()].filter(store => !this.#stores.includes(store));
 
     for (const store of pending) {
       usingBrowser(store, browser => tryLookupAndLoop(browser)).finally(() => {
@@ -198,26 +184,17 @@ class StreetMerchantApplication {
   }
 
   async #errorHandler(error: unknown) {
-    if (
-      this.#shutdownStartTime ||
-      this.#errorRestartTimer ||
-      error instanceof AsyncContextError
-    ) {
+    if (this.#shutdownStartTime || this.#errorRestartTimer || error instanceof AsyncContextError) {
       return;
     }
 
-    logger.error(
-      '✖ something bad happened, resetting streetmerchant in 5 seconds',
-      error
-    );
+    logger.error('✖ something bad happened, resetting streetmerchant in 5 seconds', error);
 
     this.#errorRestartTimer = timers.addTimeout(this.restart.bind(this), 5000);
   }
 
   #registerListeners() {
-    this.#processListeners.forEach((listener, signal) =>
-      process.addListener(signal, listener)
-    );
+    this.#processListeners.forEach((listener, signal) => process.addListener(signal, listener));
 
     this.#errorListeners.forEach((listener, signal) =>
       process.addListener(signal as 'uncaughtException', listener)

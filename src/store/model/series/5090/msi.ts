@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for msi 5090 series
@@ -32,5 +36,4 @@ export const links: Link[] = [
       url: 'https://us-store.msi.com/Graphics-Cards/NVIDIA-GPU/GeForce-RTX-50-Series?product_id=2474',
     },
   ]),
-
 ];

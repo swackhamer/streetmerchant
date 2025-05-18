@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for evatech ryzen5800 series
@@ -12,5 +16,4 @@ export const links: Link[] = [
       url: 'https://evatech.com.au/product/6557/amd-ryzen-7-5800x-8core-16-thread-base38ghz-boost47ghz-preorder',
     },
   ]),
-
 ];

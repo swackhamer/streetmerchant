@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for novoatalho 3090 series
@@ -40,5 +44,4 @@ export const links: Link[] = [
       url: 'https://www.novoatalho.pt/pt-PT/produto/45819/Placa-Grafica-MSI-GeForce-RTX-3090-SUPRIM-X-24GB/912-V388-010.html',
     },
   ]),
-
 ];

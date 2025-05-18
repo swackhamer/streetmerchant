@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for zotac 4090 series
@@ -20,5 +24,4 @@ export const links: Link[] = [
       url: 'https://www.zotac.com/product/graphics_card/zotac-gaming-geforce-rtx-4090-trinity-oc',
     },
   ]),
-
 ];

@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 import {createAmdReferenceLinks} from '../../common/link-factory-amd';
 
 /**
@@ -25,5 +29,4 @@ export const links: Link[] = [
       url: 'https://www.arlt.com/Gaming/Gaming-Hardware/Grafikkarten/Sapphire-Nitro-Radeon-RX-6700-XT.html',
     },
   ]),
-
 ];

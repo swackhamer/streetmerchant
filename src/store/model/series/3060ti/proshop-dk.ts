@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for proshop-dk 3060ti series
@@ -104,5 +108,4 @@ export const links: Link[] = [
       url: 'https://www.proshop.dk/2914133',
     },
   ]),
-
 ];

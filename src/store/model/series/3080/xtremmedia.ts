@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for xtremmedia 3080 series
@@ -140,5 +144,4 @@ export const links: Link[] = [
       url: 'https://xtremmedia.com/Zotac_GeForce_RTX_3080_Trinity_OC_10GB_GDDR6X.html',
     },
   ]),
-
 ];

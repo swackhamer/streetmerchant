@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for wipoid 3070 series
@@ -92,5 +96,4 @@ export const links: Link[] = [
       url: 'https://www.wipoid.com/pny-geforce-rtx-3070-dual-fan-8gb-gddr6.html',
     },
   ]),
-
 ];

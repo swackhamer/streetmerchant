@@ -1,4 +1,4 @@
-import { envOrNumber, envOrString } from './env-utils';
+import {envOrNumber, envOrString} from './env-utils';
 
 export const proxy = {
   address: envOrString(process.env.PROXY_ADDRESS),

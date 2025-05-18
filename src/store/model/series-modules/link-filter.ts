@@ -5,6 +5,7 @@
  */
 import {Link} from '../store';
 import {config} from '../../../config';
+import chalk from 'chalk';
 
 /**
  * Filters links from series data based on config
@@ -12,8 +13,11 @@ import {config} from '../../../config';
 export function filterSeriesDataLinks(links: Link[]): Link[] {
   // Debug all link series before filtering
   if (links.length > 0) {
-    console.log(`[DEBUG] Processing ${links.length} links for filtering`);
-    
+    console.log(
+      chalk.blue(`[DEBUG]`),
+      `Processing ${chalk.bold.green(links.length)} links for filtering`
+    );
+      
     // Count links by series
     const seriesCounts = new Map<string, number>();
     for (const link of links) {
@@ -21,36 +25,52 @@ export function filterSeriesDataLinks(links: Link[]): Link[] {
       const count = seriesCounts.get(series) || 0;
       seriesCounts.set(series, count + 1);
     }
-    
+
     // Log series breakdown
-    console.log(`[DEBUG] Links by series before filtering:`);
+    console.log(chalk.blue('[DEBUG]'), 'Links by series before filtering:');
     for (const [series, count] of seriesCounts.entries()) {
-      console.log(`[DEBUG]   - ${series}: ${count} links`);
+      console.log(
+        chalk.blue(`[DEBUG]`),
+        `  - ${chalk.yellow(series)}: ${chalk.bold.green(count)} links`
+      );
     }
   }
-  
-  const filteredByShowOnly = config.store.showOnlySeries.length > 0
-    ? links.filter(link => {
-        const included = config.store.showOnlySeries.includes(link.series);
-        if (!included) {
-          console.log(`[DEBUG] Filtering out link with series ${link.series}, not in showOnlySeries ${JSON.stringify(config.store.showOnlySeries)}`);
-        }
-        return included;
-      })
-    : links;
-  
+
+  const filteredByShowOnly =
+    config.store.showOnlySeries.length > 0
+      ? links.filter(link => {
+          const included = config.store.showOnlySeries.includes(link.series);
+          if (!included) {
+            console.log(
+              chalk.blue(`[DEBUG]`),
+              `Filtering out link with series ${chalk.yellow(
+                link.series
+              )}, not in showOnlySeries ${chalk.cyan(JSON.stringify(config.store.showOnlySeries))}`
+            );
+          }
+          return included;
+        })
+      : links;
+
   // Add explicit debug - will show in logs
   if (config.store.showOnlySeries.includes('5090')) {
     const fiveNinetyLinks = filteredByShowOnly.filter(link => link.series === '5090');
-    console.log(`[DEBUG] Found ${fiveNinetyLinks.length} links for 5090 series`);
-    
+    console.log(
+      chalk.blue(`[DEBUG]`),
+      `Found ${chalk.bold.green(fiveNinetyLinks.length)} links for ${chalk.yellow('5090')} series`
+    );
+
     for (const link of fiveNinetyLinks) {
-      console.log(`[DEBUG] 5090 link: ${link.url}, brand: ${link.brand}, model: ${link.model}`);
+      console.log(
+        chalk.blue(`[DEBUG]`),
+        `5090 link: ${chalk.cyan(link.url)}, brand: ${chalk.yellow(
+          link.brand
+        )}, model: ${chalk.magenta(link.model)}`
+      );
     }
   }
-  
-  return filteredByShowOnly.filter(link => {
 
+  return filteredByShowOnly.filter(link => {
     // Filter by brand
     if (
       config.store.showOnlyBrands.length > 0 &&
@@ -66,10 +86,7 @@ export function filterSeriesDataLinks(links: Link[]): Link[] {
 
       for (const configModelEntry of config.store.showOnlyModels) {
         const sanitizedConfigModel = configModelEntry.name.replace(/\\s/g, '');
-        const sanitizedConfigSeries = configModelEntry.series.replace(
-          /\\s/g,
-          ''
-        );
+        const sanitizedConfigSeries = configModelEntry.series.replace(/\\s/g, '');
 
         if (sanitizedConfigSeries) {
           if (

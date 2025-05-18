@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for cyberport 3080 series
@@ -64,5 +68,4 @@ export const links: Link[] = [
       url: 'https://www.cyberport.de?DEEP=2E13-1H7',
     },
   ]),
-
 ];

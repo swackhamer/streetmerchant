@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for neobyte 3070 series
@@ -68,5 +72,4 @@ export const links: Link[] = [
       url: 'https://www.neobyte.es/tarjeta-grafica-asus-rog-strix-geforce-rtx-3070-white-edition-8523.html',
     },
   ]),
-
 ];

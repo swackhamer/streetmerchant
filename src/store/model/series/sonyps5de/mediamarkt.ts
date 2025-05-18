@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for mediamarkt sonyps5de series
@@ -20,5 +24,4 @@ export const links: Link[] = [
       url: 'https://www.mediamarkt.de/de/product/_sony-playstation%C2%AE5-digital-edition-medienfernbedienung-2722423.html',
     },
   ]),
-
 ];

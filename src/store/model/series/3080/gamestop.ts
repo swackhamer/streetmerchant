@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for gamestop 3080 series
@@ -32,5 +36,4 @@ export const links: Link[] = [
       url: 'https://www.gamestop.com/video-games/pc-gaming/components/graphics-cards/products/geforce-rtx-3080-10-gb-gddr6x-gaming-x-trio-graphic-card/11118753.html',
     },
   ]),
-
 ];

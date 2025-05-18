@@ -13,9 +13,7 @@ export const banner = {
 	  ░              ░        ░  ░   ░  ░               ░      ░  ░   ░     ░ ░       ░  ░  ░      ░  ░         ░
 ${process.env.npm_package_version}`,
   render(ascii: boolean, hexColor: string) {
-    return chalk
-      .hex(hexColor)
-      .bold(ascii ? this.asciiVersion : this.stringVersion);
+    return chalk.hex(hexColor).bold(ascii ? this.asciiVersion : this.stringVersion);
   },
   stringVersion: `ＳＴＲＥＥＴＭＥＲＣＨＡＮＴ
 ${process.env.npm_package_version}`,

@@ -29,23 +29,19 @@ describe('Browser Refactoring', () => {
 describe('Network Refactoring', () => {
   test('RequestHandler class exists', () => {
     expect(RequestHandler).toBeDefined();
-    
+
     // Create a mock store
     const mockStore: Store = {
       name: 'test-store',
       country: 'US',
       currency: '$',
       labels: {},
-      links: []
+      links: [],
     };
-    
+
     // Create a mock handler instance
-    const handler = new RequestHandler(
-      mockStore,
-      null as any,
-      null as any
-    );
-    
+    const handler = new RequestHandler(mockStore, null as any, null as any);
+
     expect(handler).toBeDefined();
     expect(typeof handler.makeRequest).toBe('function');
     expect(typeof handler.checkInStock).toBe('function');

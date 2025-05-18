@@ -1,5 +1,9 @@
 import {Link} from '../store';
-import {createLink, createBrandSeriesLinks, createFoundersEditionLinks} from '../common/link-factory';
+import {
+  createLink,
+  createBrandSeriesLinks,
+  createFoundersEditionLinks,
+} from '../common/link-factory';
 
 /**
  * Links for novoatalho 3070 series
@@ -32,5 +36,4 @@ export const links: Link[] = [
       url: 'https://www.novoatalho.pt/pt-PT/produto/45334/Placa-Grafica-MSI-GeForce-RTX-3070-GAMING-X-TRIO-8GB/912-V390-006.html',
     },
   ]),
-
 ];

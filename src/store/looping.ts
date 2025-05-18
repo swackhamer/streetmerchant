@@ -1,6 +1,6 @@
 /**
  * Store looping functionality
- * 
+ *
  * Handles the main loop for repeatedly looking up product stock.
  */
 import {Browser} from 'puppeteer';
@@ -19,7 +19,9 @@ export async function tryLookupAndLoop(browser: Browser): Promise<void> {
   try {
     await lookupAllStores(browser);
   } catch (error) {
-    logger.error(`${chalk.red('✖')} [${chalk.magenta('looping')}] unexpected error: ${chalk.red(error)}`);
+    logger.error(
+      `${chalk.red('✖')} [${chalk.magenta('looping')}] unexpected error: ${chalk.red(error)}`
+    );
   }
 
   // Create a minimal store object for sleep time calculation
@@ -52,21 +54,29 @@ export async function startStoreLoop(store: Store): Promise<void> {
     await usingBrowser(store, async browser => {
       while (true) {
         await lookup(browser, store);
-        
+
         // Calculate the actual sleep time - ensure it's at least 5 seconds
         let sleepTime = getSleepTime(store);
         if (!sleepTime || sleepTime < 5000) {
-          logger.warn(`Sleep time for ${chalk.yellow(store.name)} is too short (${chalk.red(sleepTime + 'ms')}), using ${chalk.green('5000ms')} minimum`);
+          logger.warn(
+            `Sleep time for ${chalk.yellow(store.name)} is too short (${chalk.red(
+              sleepTime + 'ms'
+            )}), using ${chalk.green('5000ms')} minimum`
+          );
           sleepTime = 5000;
         }
-        
+
         logger.info(
-          `${chalk.cyan('⏳')} Sleeping for ${chalk.bold.green(Math.round(sleepTime/1000) + ' seconds')} before next check of ${chalk.yellow(store.name)}`
+          `${chalk.cyan('⏳')} Sleeping for ${chalk.bold.green(
+            Math.round(sleepTime / 1000) + ' seconds'
+          )} before next check of ${chalk.yellow(store.name)}`
         );
         await delay(sleepTime);
       }
     });
   } catch (error) {
-    logger.error(`${chalk.red('✖')} [${chalk.yellow(store.name)}] store loop error: ${chalk.red(error)}`);
+    logger.error(
+      `${chalk.red('✖')} [${chalk.yellow(store.name)}] store loop error: ${chalk.red(error)}`
+    );
   }
 }
