@@ -33,7 +33,6 @@ src/store/model/
 ├── newegg.ts               # Main store implementation
 ├── series-links.ts         # Utility for loading series-specific links
 ├── auto-load-series.ts     # Automatic series link loading
-├── sample-store-series.ts  # Example store implementation
 └── series/                 # Series-specific directories
     ├── 3080/               # Links for 3080 series
     │   ├── amazon.ts       # Amazon links for 3080 series
@@ -95,13 +94,15 @@ Re-exports the `Store` interface for easier imports:
 export * from '../store';
 ```
 
-### `common/link-factory.ts`
+### `common/index.ts`
 
-Re-exports the link factory utilities:
+Re-exports common utilities:
 
 ```typescript
-// src/store/model/series/common/link-factory.ts
+// src/store/model/series/common/index.ts
 export * from '../../common/link-factory';
+export * from '../../common/store-factory';
+export * from '../../common/label-sets';
 ```
 
 ### `series-names.ts`
@@ -221,8 +222,8 @@ Here's an example of how to implement a store using the series-based links syste
 ```typescript
 import {createStandardStore} from './common/store-factory';
 
-export const SampleStore = createStandardStore({
-  name: 'sample-store',
+export const ExampleStore = createStandardStore({
+  name: 'example-store',
   country: 'US',
   currency: '$',
   labels: {

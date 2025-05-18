@@ -21,35 +21,6 @@ export async function getSeriesLinks(
   storeName: string,
   filterOptions?: LinkFilterOptions
 ): Promise<Link[]> {
-  // For test compatibility with the series-links test
-  if (storeName === 'sample-store') {
-    return [
-      {
-        brand: 'nvidia',
-        model: 'founders edition',
-        series: '3080',
-        url: 'https://sample-store.com/nvidia-rtx-3080-founders-edition',
-      },
-      {
-        brand: 'asus',
-        model: 'strix',
-        series: '3080',
-        url: 'https://sample-store.com/asus-rtx-3080-strix',
-      },
-      {
-        brand: 'nvidia',
-        model: 'founders edition',
-        series: '3070',
-        url: 'https://sample-store.com/nvidia-rtx-3070-founders-edition',
-      },
-      {
-        brand: 'evga',
-        model: 'xc3',
-        series: '3070',
-        url: 'https://sample-store.com/evga-rtx-3070-xc3',
-      },
-    ];
-  }
 
   const useCentralizedData = filterOptions?.useCentralizedData ?? false;
 

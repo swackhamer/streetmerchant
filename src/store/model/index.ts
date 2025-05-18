@@ -15,18 +15,8 @@ import './common/label-sets';
 // Import the store registry
 import {storeRegistry, createStoreFromRegistry, getAllStoreNames} from './registry';
 
-// Sample store using series links (for testing only)
-import {SampleStoreSeries} from './sample-store-series';
-
 // Map to hold store instances
 const storeList = new Map<string, Store>();
-
-// Add the sample store for testing/development
-// Note: We only want to add the sample store during development/testing
-if (process.env.NODE_ENV === 'development' || process.env.ENABLE_SAMPLE_STORE === 'true') {
-  storeList.set(SampleStoreSeries.name, SampleStoreSeries);
-  logger.debug('Added sample store for testing/development');
-}
 
 // Export the storeList for web interface
 export {storeList};

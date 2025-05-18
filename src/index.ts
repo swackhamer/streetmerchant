@@ -10,8 +10,6 @@ import {logTransferStats} from './stats';
 import {tryLookupAndLoop} from './store';
 import {usingBrowser} from './browser';
 import {getStores, Store} from './store/model';
-// Import sample links for testing the centralized link data store
-import {addSampleLinks} from './store/model/sample-links';
 import type {Timer} from './timers';
 import * as timers from './timers';
 import {startAPIServer, stopAPIServer} from './web';
@@ -47,9 +45,6 @@ class StreetMerchantApplication {
       return;
     }
 
-    // Add sample links to the centralized data store for testing
-    addSampleLinks();
-
     this.#running = true;
 
     this.#registerListeners();
@@ -68,9 +63,6 @@ class StreetMerchantApplication {
 
     this.#tempDirectory = temporaryDirectory({prefix: 'streetmerchant-'});
     config.browser.profileParentDir = this.#tempDirectory;
-
-    // Add sample links to the centralized data store for testing
-    addSampleLinks();
 
     this.#statsTimer = timers.addInterval(logTransferStats, 60000);
     this.#stores = [];
