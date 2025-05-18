@@ -19,11 +19,12 @@ function loadProxyList(filename: string): string[] | undefined {
 }
 
 export const store = {
-  autoAddToCart: envOrBoolean(
-    process.env.AUTO_ADD_TO_CART,
-    !envOrBoolean(process.env.DOCKER, false)
-  ),
-  country: envOrString(process.env.COUNTRY, 'usa'),
+  // Only use value directly from environment variable with no default
+  autoAddToCart: envOrBoolean(process.env.AUTO_ADD_TO_CART),
+  
+  // No default country - only use what's in .env
+  country: envOrString(process.env.COUNTRY),
+  
   maxPrice: {
     series: {
       3050: envOrNumber(process.env.MAX_PRICE_SERIES_3050),
@@ -82,7 +83,9 @@ export const store = {
       xboxsx: envOrNumber(process.env.MAX_PRICE_SERIES_XBOXSX),
     },
   },
-  microCenterLocation: envOrArray(process.env.MICROCENTER_LOCATION, ['web']),
+  // No default location - only use what's in .env
+  microCenterLocation: envOrArray(process.env.MICROCENTER_LOCATION),
+  
   showOnlyBrands: envOrArray(process.env.SHOW_ONLY_BRANDS),
   showOnlyModels: envOrArray(process.env.SHOW_ONLY_MODELS).map(entry => {
     const [name, series] = entry.match(/[^:]+/g) ?? [];
@@ -91,18 +94,16 @@ export const store = {
       series: envOrString(series),
     };
   }),
-  showOnlySeries: envOrArray(
-    process.env.SHOW_ONLY_SERIES,
-    []  // This will be updated in the main config
-  ),
-  showOnlyCountry: envOrArray(process.env.SHOW_ONLY_COUNTRY, []),
-  // Only use explicitly defined stores from .env STORES variable
-  // If STORES is not set in .env, use amazon and bestbuy as defaults
+  // No default series - only use what's in .env
+  showOnlySeries: envOrArray(process.env.SHOW_ONLY_SERIES),
+  showOnlyCountry: envOrArray(process.env.SHOW_ONLY_COUNTRY),
+  
+  // No default stores - only use what's explicitly defined in .env STORES variable
   stores: (process.env.STORES ? 
     // If STORES is explicitly set in .env, use only those stores
     envOrArray(process.env.STORES) : 
-    // Otherwise use defaults
-    envOrArray(process.env.STORES, ['amazon', 'bestbuy'])
+    // Otherwise use an empty array (no stores)
+    []
   ).map(entry => {
     const [name, minPageSleep, maxPageSleep] = entry.match(/[^:]+/g) ?? [];
     
@@ -121,7 +122,7 @@ export const store = {
       proxyList = loadProxyList('global');
     }
 
-    // These default values will be properly initialized in the main config
+    // Don't use default values for page sleep times
     return {
       maxPageSleep: envOrNumberMax(
         minPageSleep,
