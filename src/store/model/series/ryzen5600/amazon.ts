@@ -3,7 +3,7 @@ import {
   createLink,
   createBrandSeriesLinks,
   createFoundersEditionLinks,
-} from '../common/link-factory';
+} from '../common';
 
 /**
  * Links for amazon ryzen5600 series

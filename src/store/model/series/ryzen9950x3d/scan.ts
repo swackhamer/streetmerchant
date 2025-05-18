@@ -3,7 +3,7 @@ import {
   createLink,
   createBrandSeriesLinks,
   createFoundersEditionLinks,
-} from '../common/link-factory';
+} from '../common';
 
 /**
  * Links for scan ryzen9950x3d series

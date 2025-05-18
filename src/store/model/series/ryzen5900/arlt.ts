@@ -3,7 +3,7 @@ import {
   createLink,
   createBrandSeriesLinks,
   createFoundersEditionLinks,
-} from '../common/link-factory';
+} from '../common';
 
 /**
  * Links for arlt ryzen5900 series

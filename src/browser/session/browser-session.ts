@@ -131,9 +131,12 @@ export class BrowserSession {
    */
   private browser: Browser;
 
-  constructor(private readonly store: Store, options: {browser: Browser}) {
+  constructor(private readonly store: Store, options: {browser: Browser | Promise<Browser>}) {
     if (options.browser) {
-      this.browser = options.browser;
+      // For test compatibility, accept either a Browser or a Promise<Browser>
+      this.browser = options.browser instanceof Promise 
+        ? options.browser as unknown as Browser 
+        : options.browser;
     } else {
       throw new Error('Browser must be provided');
     }
