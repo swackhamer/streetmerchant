@@ -27,6 +27,7 @@ import {
   isItemInStock,
   takeScreenshot
 } from './lookup-modules';
+import chalk from 'chalk';
 
 // Track in-stock status to prevent repeated notifications
 const inStock: Record<string, boolean> = {};
@@ -213,10 +214,10 @@ export async function lookupAllStores(browser: Browser): Promise<void> {
       })
     : [];
   
-  console.log('Parsed store names:', configuredStoreNames);
+  console.log(chalk.cyan('Parsed store names:'), chalk.green(configuredStoreNames.join(', ')));
   
   // Log which stores are being processed
-  logger.info(`Using stores from .env: ${configuredStoreNames.join(', ')}`);
+  logger.info(`Using stores from .env: ${chalk.green(configuredStoreNames.join(', '))}`);
   
   // Get all available stores
   const allStores = getStores();
@@ -232,7 +233,7 @@ export async function lookupAllStores(browser: Browser): Promise<void> {
   });
   
   // Log the matching stores
-  console.log('Matched store names:', configuredStores.map(s => s.name));
+  console.log(chalk.cyan('Matched store names:'), chalk.green(configuredStores.map(s => s.name).join(', ')));
   
   // Apply store-specific sleep times from config
   for (const store of configuredStores) {
@@ -243,29 +244,29 @@ export async function lookupAllStores(browser: Browser): Promise<void> {
     if (storeConfig) {
       if (storeConfig.minPageSleep) {
         store.minPageSleep = Number(storeConfig.minPageSleep);
-        console.log(`Setting ${store.name} minPageSleep to ${store.minPageSleep}ms`);
+        console.log(chalk.cyan(`Sleep config:`), chalk.yellow(store.name), chalk.green(`minPageSleep =`), chalk.bold.green(`${store.minPageSleep}ms`));
       } else if (process.env.PAGE_SLEEP_MIN) {
         store.minPageSleep = Number(process.env.PAGE_SLEEP_MIN);
-        console.log(`Using global minPageSleep for ${store.name}: ${store.minPageSleep}ms`);
+        console.log(chalk.cyan(`Sleep config:`), chalk.yellow(store.name), chalk.blue(`global minPageSleep =`), chalk.bold.blue(`${store.minPageSleep}ms`));
       }
       
       if (storeConfig.maxPageSleep) {
         store.maxPageSleep = Number(storeConfig.maxPageSleep);
-        console.log(`Setting ${store.name} maxPageSleep to ${store.maxPageSleep}ms`);
+        console.log(chalk.cyan(`Sleep config:`), chalk.yellow(store.name), chalk.green(`maxPageSleep =`), chalk.bold.green(`${store.maxPageSleep}ms`));
       } else if (process.env.PAGE_SLEEP_MAX) {
         store.maxPageSleep = Number(process.env.PAGE_SLEEP_MAX);
-        console.log(`Using global maxPageSleep for ${store.name}: ${store.maxPageSleep}ms`);
+        console.log(chalk.cyan(`Sleep config:`), chalk.yellow(store.name), chalk.blue(`global maxPageSleep =`), chalk.bold.blue(`${store.maxPageSleep}ms`));
       }
     } else if (process.env.PAGE_SLEEP_MIN || process.env.PAGE_SLEEP_MAX) {
       // Apply global page sleep values
       if (process.env.PAGE_SLEEP_MIN) {
         store.minPageSleep = Number(process.env.PAGE_SLEEP_MIN);
-        console.log(`Using global minPageSleep for ${store.name}: ${store.minPageSleep}ms`);
+        console.log(chalk.cyan(`Sleep config:`), chalk.yellow(store.name), chalk.blue(`global minPageSleep =`), chalk.bold.blue(`${store.minPageSleep}ms`));
       }
       
       if (process.env.PAGE_SLEEP_MAX) {
         store.maxPageSleep = Number(process.env.PAGE_SLEEP_MAX);
-        console.log(`Using global maxPageSleep for ${store.name}: ${store.maxPageSleep}ms`);
+        console.log(chalk.cyan(`Sleep config:`), chalk.yellow(store.name), chalk.blue(`global maxPageSleep =`), chalk.bold.blue(`${store.maxPageSleep}ms`));
       }
     }
   }
@@ -288,7 +289,13 @@ export async function lookupAllStores(browser: Browser): Promise<void> {
           
           // Log series breakdown
           for (const [series, count] of seriesCounts.entries()) {
-            console.log(`${store.name} - ${series}: ${count} links`);
+            console.log(
+              chalk.yellow(store.name), 
+              chalk.cyan('-'), 
+              chalk.magenta(series || 'unknown'), 
+              chalk.cyan(':'), 
+              chalk.bold.green(`${count} links`)
+            );
           }
         }
       } catch (error) {
