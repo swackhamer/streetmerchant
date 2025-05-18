@@ -1,6 +1,9 @@
-import { promises as fs } from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
+
+// Import Jest test functions
+const jestExports = jest.requireActual('@jest/globals');
+const { describe, test, expect, beforeEach } = jestExports;
 
 /**
  * Mock implementation of the loadEnvironmentVariables function from src/config/index.ts
@@ -23,7 +26,7 @@ function loadEnvironmentVariables() {
     // Custom config specified
     const customPath = path.join(__dirname, '../../' + process.env.npm_config_conf);
     // In real implementation we'd use async but for testing we can mock this
-    if (require('fs').existsSync(customPath)) {
+    if (mockExistsSync(customPath)) {
       configPath = customPath;
     }
   }
@@ -31,7 +34,7 @@ function loadEnvironmentVariables() {
   if (!configPath) {
     // Check .env in project root first
     const dotEnvPath = path.join(__dirname, '../../.env');
-    if (require('fs').existsSync(dotEnvPath)) {
+    if (mockExistsSync(dotEnvPath)) {
       configPath = dotEnvPath;
     }
   }
@@ -39,14 +42,14 @@ function loadEnvironmentVariables() {
   if (!configPath) {
     // Check legacy 'dotenv' in project root
     const legacyDotenvPath = path.join(__dirname, '../../dotenv');
-    if (require('fs').existsSync(legacyDotenvPath)) {
+    if (mockExistsSync(legacyDotenvPath)) {
       configPath = legacyDotenvPath;
     }
   }
   
   // Load the config file if found
   if (configPath) {
-    const result = dotenv.config({ path: configPath });
+    const result = mockDotenvConfig({ path: configPath });
     if (result.error) {
       console.error(`Error loading environment variables from ${configPath}:`, result.error);
     } else {
@@ -67,92 +70,54 @@ function loadEnvironmentVariables() {
   return { originalEnv, configPath };
 }
 
-// Override Jest with our own simple test framework
-const describe = (name: string, fn: () => void) => {
-  console.log(`\nTest Suite: ${name}`);
-  fn();
-};
+// Mock implementations
+let mockExistsSync = jest.fn().mockReturnValue(false);
+let mockDotenvConfig = jest.fn().mockReturnValue({ parsed: {} });
 
-const test = (name: string, fn: () => void) => {
-  console.log(`  Test: ${name}`);
-  try {
-    fn();
-    console.log('    ✓ PASS');
-  } catch (error: any) {
-    console.log(`    ✗ FAIL: ${error?.message || 'Unknown error'}`);
+// Mock fs.existsSync
+jest.mock('fs', () => ({
+  ...jest.requireActual('fs'),
+  existsSync: (path: string) => mockExistsSync(path)
+}));
+
+// Mock dotenv.config
+jest.mock('dotenv', () => ({
+  config: (options?: any) => {
+    const result = mockDotenvConfig(options);
+    if (result.parsed) {
+      Object.keys(result.parsed).forEach(key => {
+        process.env[key] = (result.parsed as Record<string, string>)[key];
+      });
+    }
+    return result;
   }
-};
-
-const expect = (actual: any) => ({
-  toBe: (expected: any) => {
-    if (actual !== expected) {
-      throw new Error(`Expected ${expected} but got ${actual}`);
-    }
-  },
-  toContain: (expected: any) => {
-    if (!actual.includes(expected)) {
-      throw new Error(`Expected ${actual} to contain ${expected}`);
-    }
-  },
-  toMatch: (expected: any) => {
-    if (!(expected.test ? expected.test(actual) : actual.match(expected))) {
-      throw new Error(`Expected ${actual} to match ${expected}`);
-    }
-  },
-  toBeUndefined: () => {
-    if (actual !== undefined) {
-      throw new Error(`Expected undefined but got ${actual}`);
-    }
-  }
-});
-
-// Mock existsSync manually
-let mockExistsSync = (path: string) => false;
-
-// Mock dotenv.config manually
-let mockDotenvConfig = () => ({ parsed: {} });
-
-// Override fs.existsSync with our mock
-require('fs').existsSync = (path: string) => mockExistsSync(path);
-
-// Override dotenv.config with our mock
-dotenv.config = (options?: any) => {
-  const result = mockDotenvConfig();
-  // Apply parsed values to process.env to simulate real behavior
-  if (result.parsed) {
-    Object.keys(result.parsed).forEach(key => {
-      process.env[key] = (result.parsed as Record<string, string>)[key];
-    });
-  }
-  return result;
-};
-
-const beforeEach = (fn: () => void) => {
-  // This will be called before each test
-  fn();
-};
+}));
 
 describe('Environment Variable Handling', () => {
+  let originalProcessEnv: NodeJS.ProcessEnv;
+  
   beforeEach(() => {
-    // Reset mocks
-    mockExistsSync = () => false;
-    mockDotenvConfig = () => ({ parsed: {} });
+    // Save original env vars
+    originalProcessEnv = { ...process.env };
     
-    // Reset process.env for each test
-    const savedEnv = process.env;
+    // Reset mocks for each test
+    mockExistsSync.mockReset().mockReturnValue(false);
+    mockDotenvConfig.mockReset().mockReturnValue({ parsed: {} });
+    
+    // Reset process.env
     process.env = { NODE_ENV: 'test' };
-    
-    // Clean up after the test
-    return () => {
-      process.env = savedEnv;
-    };
+  });
+  
+  afterEach(() => {
+    // Restore original env vars
+    process.env = originalProcessEnv;
   });
   
   test('should prioritize custom config file when npm_config_conf is set', () => {
     // Setup
     process.env.npm_config_conf = 'custom-config';
-    mockExistsSync = (path: string) => path.includes('custom-config');
-    mockDotenvConfig = () => ({ parsed: { TEST_VAR: 'custom-value' } });
+    mockExistsSync.mockImplementation((path: string) => path.includes('custom-config'));
+    mockDotenvConfig.mockReturnValue({ parsed: { TEST_VAR: 'custom-value' } });
     
     // Execute
     const { configPath } = loadEnvironmentVariables();
@@ -163,8 +128,8 @@ describe('Environment Variable Handling', () => {
   
   test('should prioritize .env file in project root', () => {
     // Setup
-    mockExistsSync = (path: string) => path.endsWith('/.env');
-    mockDotenvConfig = () => ({ parsed: { TEST_VAR: 'env-value' } });
+    mockExistsSync.mockImplementation((path: string) => path.endsWith('/.env'));
+    mockDotenvConfig.mockReturnValue({ parsed: { TEST_VAR: 'env-value' } });
     
     // Execute
     const { configPath } = loadEnvironmentVariables();
@@ -175,8 +140,8 @@ describe('Environment Variable Handling', () => {
   
   test('should fall back to dotenv file in project root', () => {
     // Setup
-    mockExistsSync = (path: string) => path.endsWith('/dotenv');
-    mockDotenvConfig = () => ({ parsed: { TEST_VAR: 'dotenv-value' } });
+    mockExistsSync.mockImplementation((path: string) => path.endsWith('/dotenv'));
+    mockDotenvConfig.mockReturnValue({ parsed: { TEST_VAR: 'dotenv-value' } });
     
     // Execute
     const { configPath } = loadEnvironmentVariables();
@@ -187,11 +152,11 @@ describe('Environment Variable Handling', () => {
   
   test('should preserve original environment variables not in dotenv file', () => {
     // Setup
-    mockExistsSync = (path: string) => path.endsWith('/dotenv');
+    mockExistsSync.mockImplementation((path: string) => path.endsWith('/dotenv'));
     process.env.PRESERVED_VAR = 'original-value';
     process.env.OVERRIDDEN_VAR = 'original-value';
     
-    mockDotenvConfig = () => ({ 
+    mockDotenvConfig.mockReturnValue({ 
       parsed: { 
         OVERRIDDEN_VAR: 'new-value',
         NEW_VAR: 'dotenv-value'
@@ -210,7 +175,7 @@ describe('Environment Variable Handling', () => {
   
   test('should use environment variables when no config file is found', () => {
     // Setup
-    mockExistsSync = () => false;
+    mockExistsSync.mockReturnValue(false);
     process.env.TEST_VAR = 'env-value';
     
     // Execute
